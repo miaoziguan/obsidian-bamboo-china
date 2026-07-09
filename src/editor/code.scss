@@ -1,0 +1,237 @@
+/*
+Syntax highlighting for code blocks.
+
+Obsidian renders fenced code with highlight.js, so tokens carry both the
+`token.*` (Prism-style) and `hljs-*` (highlight.js-style) class names.
+We map those onto the theme's semantic palette (--color-*) so the colors
+stay in sync with every color-scheme (Cupertino / Material / Adwaita) and
+with both light and dark mode.
+*/
+
+@media screen, print {
+  // --- Rendered (Reading view / exported) code blocks ---
+  .markdown-rendered pre code,
+  .markdown-rendered .el-pre code {
+    // Keyword / control flow / storage
+    .token.keyword,
+    .token.boolean,
+    .token.module,
+    .token.control,
+    .hljs-keyword,
+    .hljs-selector-tag,
+    .hljs-literal,
+    .hljs-built_in {
+      color: var(--color-purple);
+    }
+
+    // Strings / characters / regex
+    .token.string,
+    .token.char,
+    .token.attr-value,
+    .token.regex,
+    .hljs-string,
+    .hljs-meta .hljs-string,
+    .hljs-regexp {
+      color: var(--color-green);
+    }
+
+    // Comments / documentation / quotes
+    .token.comment,
+    .token.prolog,
+    .token.doctype,
+    .token.cdata,
+    .token.quote,
+    .hljs-comment,
+    .hljs-quote {
+      color: var(--text-faint);
+      font-style: italic;
+    }
+
+    // Numbers / constants
+    .token.number,
+    .token.constant,
+    .token.symbol,
+    .hljs-number,
+    .hljs-symbol,
+    .hljs-link {
+      color: var(--color-orange);
+    }
+
+    // Functions / methods
+    .token.function,
+    .token.class-name,
+    .token.maybe-class-name,
+    .hljs-title,
+    .hljs-title.function_,
+    .hljs-section,
+    .hljs-name {
+      color: var(--color-blue);
+    }
+
+    // Variables / properties / parameters
+    .token.property,
+    .token.variable,
+    .token.parameter,
+    .token.attr-name,
+    .hljs-attr,
+    .hljs-attribute,
+    .hljs-variable,
+    .hljs-variable.constant_,
+    .hljs-property,
+    .hljs-params {
+      color: var(--color-cyan);
+    }
+
+    // Types / classes / tags
+    .token.type,
+    .token.tag,
+    .token.selector,
+    .hljs-type,
+    .hljs-class .hljs-title,
+    .hljs-builtin-name,
+    .hljs-selector-id,
+    .hljs-selector-class,
+    .hljs-selector-attr,
+    .hljs-selector-pseudo {
+      color: var(--color-pink);
+    }
+
+    // Operators / punctuation
+    .token.operator,
+    .token.entity,
+    .token.url,
+    .token.punctuation,
+    .hljs-meta,
+    .hljs-operator,
+    .hljs-punctuation {
+      color: var(--text-muted);
+    }
+
+    // Important / deleted / inserted (diffs, annotations)
+    .token.important,
+    .token.deleted,
+    .hljs-deletion {
+      color: var(--color-red);
+    }
+    .token.inserted,
+    .hljs-addition {
+      color: var(--color-green);
+    }
+
+    // Emphasis helpers
+    .token.bold,
+    .hljs-strong {
+      font-weight: var(--bold-weight, var(--font-bold, 600));
+    }
+    .token.italic,
+    .hljs-emphasis {
+      font-style: italic;
+    }
+  }
+
+  // --- Editor (Live Preview / Source mode) via CodeMirror ---
+  // Obsidian's editor uses CodeMirror and reuses highlight.js token classes
+  // on `.cm-` spans. We mirror the same palette so editing looks identical
+  // to the rendered output.
+  .cm-s-obsidian .cm-line,
+  .markdown-source-view .cm-content {
+    .token.keyword,
+    .cm-keyword,
+    .hljs-keyword,
+    .hljs-selector-tag,
+    .hljs-literal,
+    .hljs-built_in {
+      color: var(--color-purple);
+    }
+
+    .token.string,
+    .token.char,
+    .token.attr-value,
+    .token.regex,
+    .cm-string,
+    .cm-string-2,
+    .hljs-string,
+    .hljs-regexp {
+      color: var(--color-green);
+    }
+
+    .token.comment,
+    .token.prolog,
+    .token.doctype,
+    .token.cdata,
+    .cm-comment,
+    .hljs-comment,
+    .hljs-quote {
+      color: var(--text-faint);
+      font-style: italic;
+    }
+
+    .token.number,
+    .token.constant,
+    .token.symbol,
+    .cm-number,
+    .hljs-number,
+    .hljs-symbol {
+      color: var(--color-orange);
+    }
+
+    .token.function,
+    .token.class-name,
+    .cm-def,
+    .cm-variable-2,
+    .hljs-title,
+    .hljs-title.function_ {
+      color: var(--color-blue);
+    }
+
+    .token.property,
+    .token.variable,
+    .token.parameter,
+    .token.attr-name,
+    .cm-variable,
+    .cm-variable-3,
+    .cm-type,
+    .hljs-attr,
+    .hljs-variable,
+    .hljs-property {
+      color: var(--color-cyan);
+    }
+
+    .token.type,
+    .token.tag,
+    .token.selector,
+    .cm-tag,
+    .cm-attribute,
+    .hljs-type,
+    .hljs-builtin-name,
+    .hljs-selector-id,
+    .hljs-selector-class {
+      color: var(--color-pink);
+    }
+
+    .token.operator,
+    .token.punctuation,
+    .cm-operator,
+    .cm-punctuation,
+    .hljs-meta,
+    .hljs-operator,
+    .hljs-punctuation {
+      color: var(--text-muted);
+    }
+
+    .token.deleted,
+    .hljs-deletion {
+      color: var(--color-red);
+    }
+    .token.inserted,
+    .hljs-addition {
+      color: var(--color-green);
+    }
+  }
+
+  // Keep the active-line highlight from washing out token colors.
+  body:not(.active-line-off) .cm-line.cm-active .token,
+  body:not(.active-line-off) .cm-line.cm-active .hljs-* {
+    opacity: 1;
+  }
+}

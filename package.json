@@ -1,0 +1,18 @@
+{
+  "name": "obsidian-cupertino",
+  "version": "3.2.11",
+  "description": "Cupertino — a native, minimal Obsidian theme (Best Theme of Obsidian Gems of the Year 2024).",
+  "author": "Alexis C (https://github.com/aaaaalexis)",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "build": "sass src/theme.scss theme.css --no-source-map --style=expanded",
+    "build:min": "sass src/theme.scss theme.css --no-source-map --style=compressed",
+    "watch": "sass --watch src/theme.scss theme.css --no-source-map --style=expanded",
+    "deploy": "node scripts/deploy.mjs",
+    "release": "npm run build && npm run deploy"
+  },
+  "devDependencies": {
+    "sass": "^1.69.5"
+  }
+}

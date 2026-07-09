@@ -1,0 +1,288 @@
+/*!
+/* @settings
+
+name: Cupertino
+id: cupertino
+settings:
+    - 
+        id: cupertino-desc
+        description: "Cupertino 提供简洁的原生风格界面。如需更精细的控制，请使用 [Baseline](obsidian://show-theme?name=Baseline) 主题。"
+        type: info-text
+        markdown: true
+    -
+        id: system-native-font
+        title: 系统原生字体
+        description: 使用系统原生中文字体栈，替代默认的 SF Pro。
+        type: class-toggle
+    -
+        id: colorful-frame
+        title: 侧边栏染色
+        description: 根据强调色为侧边栏添加微妙的色调。
+        type: class-toggle
+    -
+        id: material-color
+        title: 动态颜色
+        description: 根据强调色应用动态主题。
+        type: class-toggle
+    -
+        id: adaptive-mode-off
+        title: 关闭自适应模式
+        description: 禁止根据操作系统自动调整样式。
+        type: class-toggle
+    -
+        id: tab-floating
+        title: 取消标签页居中
+        type: class-toggle
+    -
+        id: desktop-header
+        title: 桌面
+        type: heading
+        level: 1
+        collapsed: true
+    -
+        id: hover-ribbon
+        title: 悬浮显示功能区
+        description: 鼠标悬停窗口左边缘时显示功能区。
+        type: class-toggle
+        addCommand: true
+    -
+        id: ribbon-dock
+        title: Ribbon Dock 风格
+        description: 功能区图标采用 macOS Dock 风格，hover 放大并显示激活指示点。
+        type: class-toggle
+    -
+        id: transparent-sidebar
+        title: 隐藏卡片边框
+        description: 去掉左侧栏面板的圆角、边框等卡片样式，与编辑器无缝融合。
+        type: class-toggle
+    -
+        id: radius-modifier
+        title: 卡片圆角
+        description: 统一调整所有卡片、标注、代码块、弹窗的圆角大小。1 = 主题默认，0 = 直角，2 = 更圆润。
+        type: variable-number-slider
+        default: 1
+        min: 0
+        max: 2
+        step: 0.05
+        format: ""
+    -
+        id: hover-sidedock
+        title: 悬浮显示侧边栏
+        description: 鼠标悬停窗口边缘时显示折叠的侧边栏。
+        type: class-toggle
+        addCommand: true
+    -
+        id: header-title-opacity
+        title: 标题栏可见度
+        description: 鼠标未悬停时标题栏的透明度。0 = 完全隐藏，0.5 = 半透明，1 = 始终显示。
+        type: variable-number-slider
+        default: 0
+        min: 0
+        max: 1
+        step: 0.1
+        format: ""
+    -
+        id: focus-view
+        title: 专注视图
+        description: 两侧边栏折叠时隐藏标签页和标题栏。
+        type: class-toggle
+        addCommand: true
+    -
+        id: nav-action-center
+        title: 取消紧凑面板操作
+        type: class-toggle
+    -
+        id: tab-icon
+        title: 取消紧凑侧边栏标签
+        type: class-toggle
+    -
+        id: status-bar-baseline
+        title: 取消紧凑状态栏
+        type: class-toggle
+    -
+        id: zoom-off
+        title: 关闭媒体缩放
+        type: class-toggle
+    -
+        id: frosted-sidebar
+        title: 毛玻璃侧边栏
+        description: 为侧边栏添加 iOS 风格的半透明磨砂玻璃效果。
+        type: class-toggle
+    -
+        id: frosted-opacity
+        title: 磨砂透明度
+        description: 控制侧边栏的透明度。越低越通透。
+        type: variable-number-slider
+        default: 0.72
+        min: 0.3
+        max: 0.95
+        step: 0.02
+        format: ""
+    -
+        id: editor
+        title: 编辑器
+        type: heading
+        level: 1
+        collapsed: true
+    -
+        id: active-line-off
+        title: 关闭活动行高亮
+        type: class-toggle
+    -
+        id: banner-off
+        title: 关闭横幅图片
+        type: class-toggle
+    -
+        id: block-width-off
+        title: 关闭块宽度
+        type: class-toggle
+    -
+        id: font-variant-off
+        title: 关闭字体变体
+        type: class-toggle
+    -
+        id: full-width-media-off
+        title: 关闭全宽元素
+        type: class-toggle
+    -
+        id: mode-switcher-off
+        title: 关闭快速模式切换
+        type: class-toggle
+    -
+        id: unstyled-tags
+        title: 简约标签
+        description: 去除标签的背景色和边框，仅保留文字颜色。
+        type: class-toggle
+    -
+        id: accessibility
+        title: 无障碍
+        type: heading
+        level: 1
+        collapsed: true
+    -
+        id: bold-modifier
+        title: 粗体字重
+        description: 调整粗体文字的粗细程度。300 = 纤细，600 = 明显。
+        type: variable-number-slider
+        default: 300
+        min: 100
+        max: 900
+        step: 100
+    -
+        id: line-height-normal
+        title: 正文行间距
+        description: 调整正文的行间距。1.6 = 紧凑，1.8 = 中文阅读标准，2.2 = 宽松。
+        type: variable-number-slider
+        default: 1.8
+        min: 1.2
+        max: 2.8
+        step: 0.05
+        format: ""
+    -
+        id: reduce-contrast-change
+        title: 减少对比度变化
+        description: 窗口失焦时减少对比度变化。
+        type: class-toggle
+    -
+        id: high-contrast-code
+        title: 高对比度代码块
+        description: 使用纯色背景替代渐变，提高代码块可读性。
+        type: class-toggle
+    -
+        id: reduce-motion
+        title: 减少动画效果
+        description: 减少界面动画效果。
+        type: class-toggle
+    -
+        id: dynamic-type-off
+        title: 标准字号
+        description: 关闭操作系统动态字号。
+        type: class-toggle
+    -
+        id: font-ui-modifier
+        title: 界面字号
+        description: 微调界面文字大小。
+        type: variable-number-slider
+        default: 0
+        min: -8
+        max: 8
+        step: 1
+        format: px
+    -
+        id: icon-size-modifier
+        title: 图标大小
+        description: 微调图标大小。
+        type: variable-number-slider
+        default: 0
+        min: -4
+        max: 4
+        step: 1
+        format: px
+    -
+        id: hide-scrollbar
+        title: 隐藏滚动条
+        description: 隐藏所有滚动条以获得更简洁的界面。
+        type: class-toggle
+    -
+        id: clean-link-off
+        title: 带下划线的链接
+        description: 始终为链接添加下划线以提高可读性。
+        type: class-toggle
+    -
+        id: highlight-links
+        title: 高亮链接颜色
+        description: 提高链接文字的颜色对比度，在浅色背景下更醒目。
+        type: class-toggle
+*/
+
+.view-content .style-settings-container .style-settings-container .setting-item {
+  align-items: center;
+  padding: 16px;
+
+  &:not(.setting-item-heading) {
+    flex-direction: row;
+  }
+
+  .setting-item-control {
+    padding-top: 0;
+  }
+}
+.style-settings-heading:not(.is-collapsed) {
+  border-bottom: none;
+}
+.style-settings-heading,
+.style-settings-container {
+  margin-block: 0 !important;
+  padding-left: 32px;
+}
+.style-settings-heading {
+  border-radius: 0;
+  padding: 16px !important;
+}
+.style-settings-heading .setting-item-name {
+  color: var(--text-normal) !important;
+}
+
+.style-settings-container .setting-item {
+  margin-bottom: 0;
+  border-radius: 0;
+  gap: 4px !important;
+}
+.style-settings-container .setting-item-description > div:last-child {
+  display: none;
+}
+.style-settings-container .setting-item:not(.style-settings-heading) > .setting-item-control {
+  min-height: var(--input-height);
+}
+.style-settings-container .setting-item:nth-child(1 of .setting-item:not(.setting-item-heading)) {
+  border-top-right-radius: var(--setting-items-radius);
+  border-top-left-radius: var(--setting-items-radius);
+}
+.style-settings-container .setting-item:nth-last-child(1 of .setting-item:not(.setting-item-heading)) {
+  border-bottom-right-radius: var(--setting-items-radius);
+  border-bottom-left-radius: var(--setting-items-radius);
+}
+body:not(.mod-macos, .adaptive-mode-off) .setting-item[data-id="colorful-frame"],
+body:not(.is-android:not(.adaptive-mode-off)) .setting-item[data-id="material-color"] {
+  display: none;
+}
