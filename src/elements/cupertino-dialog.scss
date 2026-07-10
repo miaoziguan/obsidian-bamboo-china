@@ -152,7 +152,7 @@ body:is(.mod-macos, .adaptive-mode-off).is-tablet {
 
 // Modal
 body:is(.mod-macos, .adaptive-mode-off):not(.is-mobile) {
-  @keyframes modalInCupertino {
+  @keyframes modalInBambooChina {
     from {
       opacity: 1;
       filter: none;
@@ -160,7 +160,7 @@ body:is(.mod-macos, .adaptive-mode-off):not(.is-mobile) {
     }
   }
   .modal {
-    animation: modalInCupertino var(--anim-duration-moderate) var(--anim-motion-baseline) forwards;
+    animation: modalInBambooChina var(--anim-duration-moderate) var(--anim-motion-baseline) forwards;
   }
 
   .modal:not(.mod-sidebar-layout) {

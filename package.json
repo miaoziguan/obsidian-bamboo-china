@@ -1,8 +1,8 @@
 {
-  "name": "obsidian-cupertino",
+  "name": "obsidian-bamboo-china",
   "version": "3.2.11",
-  "description": "Cupertino — a native, minimal Obsidian theme (Best Theme of Obsidian Gems of the Year 2024).",
-  "author": "Alexis C (https://github.com/aaaaalexis)",
+  "description": "Bamboo China — a native, minimal Obsidian theme.",
+  "author": "羽鳞君",
   "license": "MIT",
   "private": true,
   "scripts": {

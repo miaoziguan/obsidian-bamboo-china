@@ -256,7 +256,7 @@ body:not(.is-mobile).frosted-sidebar .mod-sidedock .tree-item-self:not(:hover) {
     --modal-background: var(--background-secondary) !important;
   }
   body:not(.is-mobile):not(.is-popout-window) .mod-root::before {
-    content: "Cupertino requires a newer Obsidian installer. Download and run the latest installer from obsidian.md to remove this message.";
+    content: "Bamboo China requires a newer Obsidian installer. Download and run the latest installer from obsidian.md to remove this message.";
     display: flex;
     position: absolute;
     justify-content: center;
@@ -2254,7 +2254,7 @@ body.is-mobile .kanban-plugin__item-input-wrapper {
 }
 
 body.minimal-theme .workspace::before {
-  content: "Cupertino is not compatible with Minimal Theme Settings.\a\aTo use this theme, disable Minimal Theme Settings in Community plugins.";
+  content: "Bamboo China is not compatible with Minimal Theme Settings.\a\aTo use this theme, disable Minimal Theme Settings in Community plugins.";
   text-align: center;
   white-space: pre-wrap;
   position: fixed;
@@ -2278,12 +2278,12 @@ body.minimal-theme .workspace::before {
 /*!
 /* @settings
 
-name: Cupertino
-id: cupertino
+name: Bamboo China
+id: bamboo-china
 settings:
     - 
-        id: cupertino-desc
-        description: "Cupertino 提供简洁的原生风格界面。如需更精细的控制，请使用 [Baseline](obsidian://show-theme?name=Baseline) 主题。"
+        id: bamboo-china-desc
+        description: "Bamboo China 提供简洁的原生风格界面。如需更精细的控制，请使用 [Baseline](obsidian://show-theme?name=Baseline) 主题。"
         type: info-text
         markdown: true
     -
@@ -3457,7 +3457,7 @@ Syntax highlighting for code blocks.
 Obsidian renders fenced code with highlight.js, so tokens carry both the
 `token.*` (Prism-style) and `hljs-*` (highlight.js-style) class names.
 We map those onto the theme's semantic palette (--color-*) so the colors
-stay in sync with every color-scheme (Cupertino / Material / Adwaita) and
+stay in sync with every color-scheme (Bamboo China / Material / Adwaita) and
 with both light and dark mode.
 */
 @media screen, print {
@@ -4599,7 +4599,7 @@ body:is(.mod-macos, .adaptive-mode-off).is-tablet .suggestion-container {
   border-radius: var(--radius-m);
 }
 
-@keyframes modalInCupertino {
+@keyframes modalInBambooChina {
   from {
     opacity: 1;
     filter: none;
@@ -4607,7 +4607,7 @@ body:is(.mod-macos, .adaptive-mode-off).is-tablet .suggestion-container {
   }
 }
 body:is(.mod-macos, .adaptive-mode-off):not(.is-mobile) .modal {
-  animation: modalInCupertino var(--anim-duration-moderate) var(--anim-motion-baseline) forwards;
+  animation: modalInBambooChina var(--anim-duration-moderate) var(--anim-motion-baseline) forwards;
 }
 body:is(.mod-macos, .adaptive-mode-off):not(.is-mobile) .modal:not(.mod-sidebar-layout) .modal-title {
   width: 100%;
@@ -7832,8 +7832,7 @@ body.mod-linux:not(.is-android):not(.adaptive-mode-off).theme-dark:not(.is-focus
 }
 
 /*
-Cupertino
-https://developer.apple.com/design/human-interface-guidelines/color
+Bamboo China color scheme
 */
 body:is(.mod-macos, .adaptive-mode-off).theme-light {
   --color-red-rgb: 255, 56, 60;

@@ -4,19 +4,13 @@
 
 ### Crafted for the way you think.
 
-_Best Theme of [Obsidian Gems of the Year 2024](https://obsidian.md/blog/2024-goty-winners/)_
-
-[![](https://img.shields.io/badge/Made%20in-Taiwan-blue?style=for-the-badge)](https://wikipedia.org/wiki/Taiwan)
-[![](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-Donate-green?style=for-the-badge&logo=buymeacoffee)](https://www.buymeacoffee.com/sevenaxis)
-[![](https://img.shields.io/badge/Obsidian-Install-purple?style=for-the-badge&logo=obsidian)](https://aaaaalexis.github.io/obsidian-baseline/install?name=Cupertino)
-
 </div>
 
 ## Overview
 
 ### Fresh. Familiar. Focused.
 
-**A modern design that feels at home.** Clean typography, refined spacing, and native-inspired components make Cupertino feel like it belongs on your device.
+**A modern design that feels at home.** Clean typography, refined spacing, and native-inspired components make Bamboo China feel like it belongs on your device.
 
 ![](img/desktop.png)
 
@@ -24,7 +18,7 @@ _Best Theme of [Obsidian Gems of the Year 2024](https://obsidian.md/blog/2024-go
 
 ![](img/mobile.png)
 
-**Native everywhere.** Cupertino adapts to every platform, delivering a consistent and polished look whether you're on desktop or mobile.
+**Native everywhere.** Bamboo China adapts to every platform, delivering a consistent and polished look whether you're on desktop or mobile.
 
 ![](img/adaptive.png)
 
@@ -32,15 +26,15 @@ _Best Theme of [Obsidian Gems of the Year 2024](https://obsidian.md/blog/2024-go
 
 ### Less is more.
 
-Cupertino exists because great tools should just work. No rabbit holes. No endless tweaking. Just a beautiful, distraction-free place to think and write.
+Bamboo China exists because great tools should just work. No rabbit holes. No endless tweaking. Just a beautiful, distraction-free place to think and write.
 
 - **Fewer plugins**
 
-  Everything you need is here without plugins. Cupertino is complete the moment you install it.
+  Everything you need is here without plugins. Bamboo China is complete the moment you install it.
 
 - **Fewer customizations**
 
-  Every option is an invitation to procrastinate. Cupertino keeps choices intentionally minimal so you stay in flow.
+  Every option is an invitation to procrastinate. Bamboo China keeps choices intentionally minimal so you stay in flow.
 
 - **Less visual noise**
 
@@ -48,7 +42,7 @@ Cupertino exists because great tools should just work. No rabbit holes. No endle
 
 ## Plugins
 
-Cupertino works beautifully on its own. These plugins let you fine-tune the experience if you'd like.
+Bamboo China works beautifully on its own. These plugins let you fine-tune the experience if you'd like.
 
 ### [Style Settings](https://github.com/mgmeyers/obsidian-style-settings)
 
@@ -56,11 +50,11 @@ Enable focus view, hover sidebars. Or disable active line highlight, centered ta
 
 ### [Pseudo Mica](https://github.com/aaaaalexis/obsidian-pseudo-mica)
 
-Bring translucent window effects to Windows and macOS for an even more native feel.
+Bring translucent window effects to Windows and macOS for an even more native feel. (第三方插件,原作者 aaaaalexis)
 
 ## Features
 
-Cupertino supports most filter and helper classes from [Minimal](https://github.com/kepano/obsidian-minimal).
+Bamboo China supports most filter and helper classes from [Minimal](https://github.com/kepano/obsidian-minimal).
 
 ### Banner
 
@@ -193,4 +187,4 @@ Add at the end of the image link, e.g. `![[image.jpeg#invert]]`
 
 ## License
 
-Cupertino is licensed under the [MIT license](LICENSE).
+Bamboo China is licensed under the [MIT license](LICENSE).

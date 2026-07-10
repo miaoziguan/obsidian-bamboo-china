@@ -21,7 +21,7 @@ import { fileURLToPath } from "node:url";
 
 const __dirname = resolve(fileURLToPath(new URL(".", import.meta.url)), "..");
 
-const THEME_NAME = "Cupertino";
+const THEME_NAME = "Bamboo China";
 const DEFAULT_THEMES_DIR = "/Users/pokerhu/Downloads/CJ/obsidian-vault/.obsidian/themes";
 
 const themesDir =
