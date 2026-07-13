@@ -157,6 +157,11 @@ settings:
         description: 关闭操作系统动态字号。
         type: class-toggle
     -
+        id: accent-high-contrast
+        title: 高对比强调色
+        description: 把链接与强调色加深到 WCAG AA（4.5:1），提升可读性（默认关，开启后牺牲部分意境签名色）。
+        type: class-toggle
+    -
         id: font-ui-modifier
         title: 界面字号
         description: 微调界面文字大小。

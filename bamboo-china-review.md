@@ -264,3 +264,37 @@ Bamboo China 已经是一个**完成度高、设计语言统一、工程纪律�
 | `!important` | 207（未新增） |
 
 > 至此报告全部 P1→P3 项（含原第 3 项）均已完成。
+
+---
+
+## 十四、方向① 高对比强调色开关（a11y × 品牌取舍）
+
+### 背景（纠正 P3-⑧ 里的错误假设）
+复盘 P3-⑧ 我曾写"链接带下划线作额外区分"，核实后**此假设错误**：`editor.scss:330` 的 `body:not(.clean-link-off)` 把 `--link-decoration` 设为 `none`——本主题刻意走**干净无下划线**路线，链接只靠强调色区分。因此：
+- 链接仅以 ~2.09:1 的低对比强调色区分，**同时违反 WCAG 1.4.1（不得仅靠颜色区分）与 1.4.3（对比度）**。
+- 但主题作者明显偏爱干净无下划线，简单加下划线会毁人设。
+
+### 方案
+做**「高对比强调色」开关**（`accent-high-contrast`，style-settings 新增 `class-toggle`，默认**关**）：
+- **默认关** → 保留每套意境签名色 + 干净无下划线人设（与现状一致）。
+- **开启** → 默认绿 + 17 套意境强调色加深到 **≥4.6:1**（对画布），使干净链接也达标。
+
+作用域限定在 Bamboo China 主线 `#{mx.$bc}`（`accent-high-contrast.scss` 用 `mx.$bc` 保持同等特异性、且后加载胜出），**不影响 Adwaita / Material 各自皮肤**。
+
+### 实现
+- 新增 `scripts/gen-accent-aa.mjs`：解析 `bamboo-china-palettes.scss` 各套强调色与 `--background-primary`，用 WCAG 公式把每个强调色向黑（亮色背景）或白（暗色背景）混合至达标，生成 `src/color-schemes/accent-high-contrast.scss`（含重生成注释）。
+- 默认绿取自 `root.scss` 的 `--color-green-rgb`（light `74,213,95` / dark `72,196,90`），同样加深。
+- `theme.scss` 在 palettes 之后 `@use` 该局部；`style-settings.scss` 加开关。
+
+### 验证（方向①）
+| 项 | 结果 |
+|---|---|
+| 17 套意境 + 默认绿 全部 ≥4.6:1（light）/ 更高（dark） | ✅（脚本自检打印逐套比值） |
+| `npm run build` | ✅ 通过 |
+| `npm test`（check-css） | ✅ 通过 |
+| 产物含 `accent-high-contrast` 守卫 | ✅ 37 处 |
+| `!important` | 207（未新增） |
+
+> 这是复盘里唯一留下的 a11y 悬念（签名强调色对比度）的收口：默认保品牌、开启即合规，用户自决。Adwaita / Material 皮肤的强调色未纳入（属各自平台还原，留待后续评估）。
+
+> 至此报告全部 P1→P3 项、以及后续两项方向性改进（动态字号一致性、高对比强调色）均已完成。

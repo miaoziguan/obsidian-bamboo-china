@@ -2448,6 +2448,11 @@ settings:
         description: 关闭操作系统动态字号。
         type: class-toggle
     -
+        id: accent-high-contrast
+        title: 高对比强调色
+        description: 把链接与强调色加深到 WCAG AA（4.5:1），提升可读性（默认关，开启后牺牲部分意境签名色）。
+        type: class-toggle
+    -
         id: font-ui-modifier
         title: 界面字号
         description: 微调界面文字大小。
@@ -8985,6 +8990,258 @@ body:is(.mod-macos, .adaptive-mode-off).cn-yuebai.theme-dark.is-mobile {
   --text-normal: #dde6ec;
   --text-muted: #86949e;
   --text-faint: #3e4750;
+}
+
+body.accent-high-contrast:is(.mod-macos, .adaptive-mode-off).theme-light {
+  --interactive-accent: rgb(46, 132, 59);
+  --interactive-accent-hover: rgb(46, 132, 59);
+  --text-accent: rgb(46, 132, 59);
+  --text-accent-hover: rgb(46, 132, 59);
+}
+
+body.accent-high-contrast:is(.mod-macos, .adaptive-mode-off).theme-dark {
+  --interactive-accent: rgb(72, 196, 90);
+  --interactive-accent-hover: rgb(72, 196, 90);
+  --text-accent: rgb(72, 196, 90);
+  --text-accent-hover: rgb(72, 196, 90);
+}
+
+body.accent-high-contrast:is(.mod-macos, .adaptive-mode-off).cn-bohe.theme-dark {
+  --interactive-accent: rgb(96, 206, 176);
+  --interactive-accent-hover: rgb(96, 206, 176);
+  --text-accent: rgb(96, 206, 176);
+  --text-accent-hover: rgb(96, 206, 176);
+}
+
+body.accent-high-contrast:is(.mod-macos, .adaptive-mode-off).cn-bohe.theme-light {
+  --interactive-accent: rgb(38, 128, 106);
+  --interactive-accent-hover: rgb(38, 128, 106);
+  --text-accent: rgb(38, 128, 106);
+  --text-accent-hover: rgb(38, 128, 106);
+}
+
+body.accent-high-contrast:is(.mod-macos, .adaptive-mode-off).cn-daizi.theme-dark {
+  --interactive-accent: rgb(168, 120, 200);
+  --interactive-accent-hover: rgb(168, 120, 200);
+  --text-accent: rgb(168, 120, 200);
+  --text-accent-hover: rgb(168, 120, 200);
+}
+
+body.accent-high-contrast:is(.mod-macos, .adaptive-mode-off).cn-daizi.theme-light {
+  --interactive-accent: rgb(142, 96, 168);
+  --interactive-accent-hover: rgb(142, 96, 168);
+  --text-accent: rgb(142, 96, 168);
+  --text-accent-hover: rgb(142, 96, 168);
+}
+
+body.accent-high-contrast:is(.mod-macos, .adaptive-mode-off).cn-danju.theme-dark {
+  --interactive-accent: rgb(242, 146, 60);
+  --interactive-accent-hover: rgb(242, 146, 60);
+  --text-accent: rgb(242, 146, 60);
+  --text-accent-hover: rgb(242, 146, 60);
+}
+
+body.accent-high-contrast:is(.mod-macos, .adaptive-mode-off).cn-danju.theme-light {
+  --interactive-accent: rgb(171, 99, 37);
+  --interactive-accent-hover: rgb(171, 99, 37);
+  --text-accent: rgb(171, 99, 37);
+  --text-accent-hover: rgb(171, 99, 37);
+}
+
+body.accent-high-contrast:is(.mod-macos, .adaptive-mode-off).cn-dianlan.theme-dark {
+  --interactive-accent: rgb(96, 140, 226);
+  --interactive-accent-hover: rgb(96, 140, 226);
+  --text-accent: rgb(96, 140, 226);
+  --text-accent-hover: rgb(96, 140, 226);
+}
+
+body.accent-high-contrast:is(.mod-macos, .adaptive-mode-off).cn-dianlan.theme-light {
+  --interactive-accent: rgb(50, 104, 214);
+  --interactive-accent-hover: rgb(50, 104, 214);
+  --text-accent: rgb(50, 104, 214);
+  --text-accent-hover: rgb(50, 104, 214);
+}
+
+body.accent-high-contrast:is(.mod-macos, .adaptive-mode-off).cn-ehuang.theme-dark {
+  --interactive-accent: rgb(220, 180, 60);
+  --interactive-accent-hover: rgb(220, 180, 60);
+  --text-accent: rgb(220, 180, 60);
+  --text-accent-hover: rgb(220, 180, 60);
+}
+
+body.accent-high-contrast:is(.mod-macos, .adaptive-mode-off).cn-ehuang.theme-light {
+  --interactive-accent: rgb(140, 113, 31);
+  --interactive-accent-hover: rgb(140, 113, 31);
+  --text-accent: rgb(140, 113, 31);
+  --text-accent-hover: rgb(140, 113, 31);
+}
+
+body.accent-high-contrast:is(.mod-macos, .adaptive-mode-off).cn-haitang.theme-dark {
+  --interactive-accent: rgb(226, 118, 150);
+  --interactive-accent-hover: rgb(226, 118, 150);
+  --text-accent: rgb(226, 118, 150);
+  --text-accent-hover: rgb(226, 118, 150);
+}
+
+body.accent-high-contrast:is(.mod-macos, .adaptive-mode-off).cn-haitang.theme-light {
+  --interactive-accent: rgb(177, 88, 115);
+  --interactive-accent-hover: rgb(177, 88, 115);
+  --text-accent: rgb(177, 88, 115);
+  --text-accent-hover: rgb(177, 88, 115);
+}
+
+body.accent-high-contrast:is(.mod-macos, .adaptive-mode-off).cn-hupo.theme-dark {
+  --interactive-accent: rgb(220, 158, 64);
+  --interactive-accent-hover: rgb(220, 158, 64);
+  --text-accent: rgb(220, 158, 64);
+  --text-accent-hover: rgb(220, 158, 64);
+}
+
+body.accent-high-contrast:is(.mod-macos, .adaptive-mode-off).cn-hupo.theme-light {
+  --interactive-accent: rgb(153, 107, 40);
+  --interactive-accent-hover: rgb(153, 107, 40);
+  --text-accent: rgb(153, 107, 40);
+  --text-accent-hover: rgb(153, 107, 40);
+}
+
+body.accent-high-contrast:is(.mod-macos, .adaptive-mode-off).cn-liujin.theme-dark {
+  --interactive-accent: rgb(190, 144, 52);
+  --interactive-accent-hover: rgb(190, 144, 52);
+  --text-accent: rgb(190, 144, 52);
+  --text-accent-hover: rgb(190, 144, 52);
+}
+
+body.accent-high-contrast:is(.mod-macos, .adaptive-mode-off).cn-liujin.theme-light {
+  --interactive-accent: rgb(147, 107, 36);
+  --interactive-accent-hover: rgb(147, 107, 36);
+  --text-accent: rgb(147, 107, 36);
+  --text-accent-hover: rgb(147, 107, 36);
+}
+
+body.accent-high-contrast:is(.mod-macos, .adaptive-mode-off).cn-moye.theme-dark {
+  --interactive-accent: rgb(92, 150, 214);
+  --interactive-accent-hover: rgb(92, 150, 214);
+  --text-accent: rgb(92, 150, 214);
+  --text-accent-hover: rgb(92, 150, 214);
+}
+
+body.accent-high-contrast:is(.mod-macos, .adaptive-mode-off).cn-moye.theme-light {
+  --interactive-accent: rgb(58, 112, 175);
+  --interactive-accent-hover: rgb(58, 112, 175);
+  --text-accent: rgb(58, 112, 175);
+  --text-accent-hover: rgb(58, 112, 175);
+}
+
+body.accent-high-contrast:is(.mod-macos, .adaptive-mode-off).cn-ouhe.theme-dark {
+  --interactive-accent: rgb(204, 150, 184);
+  --interactive-accent-hover: rgb(204, 150, 184);
+  --text-accent: rgb(204, 150, 184);
+  --text-accent-hover: rgb(204, 150, 184);
+}
+
+body.accent-high-contrast:is(.mod-macos, .adaptive-mode-off).cn-ouhe.theme-light {
+  --interactive-accent: rgb(144, 105, 131);
+  --interactive-accent-hover: rgb(144, 105, 131);
+  --text-accent: rgb(144, 105, 131);
+  --text-accent-hover: rgb(144, 105, 131);
+}
+
+body.accent-high-contrast:is(.mod-macos, .adaptive-mode-off).cn-qinglu.theme-dark {
+  --interactive-accent: rgb(86, 196, 188);
+  --interactive-accent-hover: rgb(86, 196, 188);
+  --text-accent: rgb(86, 196, 188);
+  --text-accent-hover: rgb(86, 196, 188);
+}
+
+body.accent-high-contrast:is(.mod-macos, .adaptive-mode-off).cn-qinglu.theme-light {
+  --interactive-accent: rgb(43, 129, 123);
+  --interactive-accent-hover: rgb(43, 129, 123);
+  --text-accent: rgb(43, 129, 123);
+  --text-accent-hover: rgb(43, 129, 123);
+}
+
+body.accent-high-contrast:is(.mod-macos, .adaptive-mode-off).cn-songhua.theme-dark {
+  --interactive-accent: rgb(134, 172, 78);
+  --interactive-accent-hover: rgb(134, 172, 78);
+  --text-accent: rgb(134, 172, 78);
+  --text-accent-hover: rgb(134, 172, 78);
+}
+
+body.accent-high-contrast:is(.mod-macos, .adaptive-mode-off).cn-songhua.theme-light {
+  --interactive-accent: rgb(95, 127, 48);
+  --interactive-accent-hover: rgb(95, 127, 48);
+  --text-accent: rgb(95, 127, 48);
+  --text-accent-hover: rgb(95, 127, 48);
+}
+
+body.accent-high-contrast:is(.mod-macos, .adaptive-mode-off).cn-tianqing.theme-dark {
+  --interactive-accent: rgb(104, 172, 222);
+  --interactive-accent-hover: rgb(104, 172, 222);
+  --text-accent: rgb(104, 172, 222);
+  --text-accent-hover: rgb(104, 172, 222);
+}
+
+body.accent-high-contrast:is(.mod-macos, .adaptive-mode-off).cn-tianqing.theme-light {
+  --interactive-accent: rgb(55, 122, 163);
+  --interactive-accent-hover: rgb(55, 122, 163);
+  --text-accent: rgb(55, 122, 163);
+  --text-accent-hover: rgb(55, 122, 163);
+}
+
+body.accent-high-contrast:is(.mod-macos, .adaptive-mode-off).cn-yanzhi.theme-dark {
+  --interactive-accent: rgb(232, 92, 96);
+  --interactive-accent-hover: rgb(232, 92, 96);
+  --text-accent: rgb(232, 92, 96);
+  --text-accent-hover: rgb(232, 92, 96);
+}
+
+body.accent-high-contrast:is(.mod-macos, .adaptive-mode-off).cn-yanzhi.theme-light {
+  --interactive-accent: rgb(205, 68, 73);
+  --interactive-accent-hover: rgb(205, 68, 73);
+  --text-accent: rgb(205, 68, 73);
+  --text-accent-hover: rgb(205, 68, 73);
+}
+
+body.accent-high-contrast:is(.mod-macos, .adaptive-mode-off).cn-yuebai.theme-dark {
+  --interactive-accent: rgb(146, 172, 196);
+  --interactive-accent-hover: rgb(146, 172, 196);
+  --text-accent: rgb(146, 172, 196);
+  --text-accent-hover: rgb(146, 172, 196);
+}
+
+body.accent-high-contrast:is(.mod-macos, .adaptive-mode-off).cn-yuebai.theme-light {
+  --interactive-accent: rgb(97, 117, 136);
+  --interactive-accent-hover: rgb(97, 117, 136);
+  --text-accent: rgb(97, 117, 136);
+  --text-accent-hover: rgb(97, 117, 136);
+}
+
+body.accent-high-contrast:is(.mod-macos, .adaptive-mode-off).cn-zheshi.theme-dark {
+  --interactive-accent: rgb(190, 142, 104);
+  --interactive-accent-hover: rgb(190, 142, 104);
+  --text-accent: rgb(190, 142, 104);
+  --text-accent-hover: rgb(190, 142, 104);
+}
+
+body.accent-high-contrast:is(.mod-macos, .adaptive-mode-off).cn-zheshi.theme-light {
+  --interactive-accent: rgb(148, 108, 77);
+  --interactive-accent-hover: rgb(148, 108, 77);
+  --text-accent: rgb(148, 108, 77);
+  --text-accent-hover: rgb(148, 108, 77);
+}
+
+body.accent-high-contrast:is(.mod-macos, .adaptive-mode-off).cn-zhuyin.theme-dark {
+  --interactive-accent: rgb(104, 180, 128);
+  --interactive-accent-hover: rgb(104, 180, 128);
+  --text-accent: rgb(104, 180, 128);
+  --text-accent-hover: rgb(104, 180, 128);
+}
+
+body.accent-high-contrast:is(.mod-macos, .adaptive-mode-off).cn-zhuyin.theme-light {
+  --interactive-accent: rgb(66, 128, 88);
+  --interactive-accent-hover: rgb(66, 128, 88);
+  --text-accent: rgb(66, 128, 88);
+  --text-accent-hover: rgb(66, 128, 88);
 }
 
 /*
