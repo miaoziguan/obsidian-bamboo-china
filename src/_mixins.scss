@@ -1,0 +1,55 @@
+// Shared, reusable style fragments for the Bamboo China theme.
+//
+// Loaded on demand from feature/layout/element partials via:
+//   @use "../mixins" as mx;
+// (path depth depends on the partial's location under src/).
+//
+// Keep this file free of top-level CSS output — it should only define
+// variables, functions and mixins, so it is never emitted on its own.
+
+// ── Platform / main-line namespace ────────────────────────────────────────
+// "Bamboo China desktop design" applies when Obsidian runs on macOS OR the
+// adaptive (auto platform-skin) mode is switched off. This selector fragment
+// was previously copy-pasted ~149 times across 14 partials; centralising it
+// here means a future platform-condition change touches exactly one place.
+// Used as:  #{$bc}            →  :is(.mod-macos, .adaptive-mode-off)
+//           body#{$bc}        →  body:is(.mod-macos, .adaptive-mode-off)
+//           body#{$bc}:not(...) → with suffix
+// Specificity is byte-for-byte identical to the inlined literal.
+$bc: ":is(.mod-macos, .adaptive-mode-off)";
+
+// Strip the default Obsidian hover affordance from ribbon toggle / action
+// icons so they blend into the native macOS / Fluent / Adwaita chrome.
+// Previously duplicated verbatim in elements/bamboo-china.scss and
+// layouts/macos.scss.
+@mixin ribbon-icon-hover-reset {
+  box-shadow: none !important;
+  background-color: transparent !important;
+  color: var(--text-normal);
+}
+
+// Unified keyboard focus ring. Applied via `:focus-visible` so it never shows
+// for mouse users, and token-driven (--bc-focus-ring-*) so each platform skin
+// can re-theme it. `outline` (not box-shadow) keeps it layout-neutral and lets
+// it follow the element's border-radius in modern browsers.
+@mixin focus-ring {
+  outline: var(--bc-focus-ring-width) var(--bc-focus-ring-style) var(--bc-focus-ring-color);
+  outline-offset: var(--bc-focus-ring-offset);
+}
+
+// ── Window-control icons (title-bar min / max / close) ─────────────────────
+// Mask data-URIs for the three window controls, centralised so the icon
+// library lives in one place. Mac main line (root.scss) ships 12px black
+// glyphs; Linux / Adwaita (adwaita.scss) ships 16px #2E3436 glyphs — the two
+// platforms draw *different* native shapes, so both sets are kept but each
+// platform skin simply references its own. Each string is byte-identical to
+// the previously inlined literal, so output is unchanged.
+$win-min-mac: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='12' height='2' fill='none' viewBox='0 0 12 2'%3e%3cpath fill='black' d='M.598 1.201A.604.604 0 0 1 0 .604.61.61 0 0 1 .598 0h10.804c.324 0 .598.281.598.604a.605.605 0 0 1-.598.597H.598Z'/%3e%3c/svg%3e");
+$win-max-mac: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='none' viewBox='0 0 12 12'%3e%3cpath fill='black' d='M1.77 12C.825 12 0 11.175 0 10.23V1.77C0 .83.828 0 1.77 0h8.46C11.167 0 12 .833 12 1.77v8.46c0 .942-.83 1.77-1.77 1.77H1.77Zm8.431-1.201a.605.605 0 0 0 .598-.598V1.8a.606.606 0 0 0-.599-.6H1.8a.605.605 0 0 0-.6.6v8.4c0 .325.273.598.598.598H10.2Z'/%3e%3c/svg%3e");
+$win-close-mac: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='none' viewBox='0 0 12 12'%3e%3cpath fill='black' d='m6 6.848-4.975 4.974a.618.618 0 0 1-.856.006.618.618 0 0 1 .006-.855L5.15 5.998.175 1.024c-.226-.227-.24-.628 0-.85a.606.606 0 0 1 .85 0l4.974 4.975L10.974.174a.606.606 0 0 1 .85 0 .606.606 0 0 1 0 .85L6.848 5.998l4.974 4.975a.606.606 0 0 1 0 .85c-.222.239-.623.225-.85 0L6 6.847Z'/%3e%3c/svg%3e");
+$win-max-mac-maximized: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='none' viewBox='0 0 12 12'%3e%3cpath fill='black' d='M10.799 3.557C10.799 2.27 9.67 1.2 8.396 1.2H2.502a1.808 1.808 0 0 1 1.7-1.2h4.194C10.352 0 12 1.641 12 3.598v4.2c0 .758-.484 1.45-1.201 1.7V3.557ZM1.769 12C.826 12 0 11.175 0 10.23V4.172c0-.941.828-1.77 1.77-1.77h6.058c.945 0 1.77.825 1.77 1.77v6.058c0 .942-.829 1.77-1.77 1.77H1.77Zm6.03-1.201a.61.61 0 0 0 .603-.598v-6a.607.607 0 0 0-.603-.603h-6A.61.61 0 0 0 1.2 4.2v6c0 .325.273.598.598.598h6Z'/%3e%3c/svg%3e");
+
+$win-min-linux: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' viewBox='0 0 16 16'%3e%3cpath fill='%232E3436' d='M4 10.008h8v1.988H4v-1.988Z'/%3e%3c/svg%3e");
+$win-max-linux: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' viewBox='0 0 16 16'%3e%3cpath fill='%232E3436' d='M3.988 3.992v8.012H12V3.992H3.988Zm2 2H10v4.012H5.988V5.992Z'/%3e%3c/svg%3e");
+$win-close-linux: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' viewBox='0 0 16 16'%3e%3cpath fill='%232E3436' d='M4 4h1.031c.254.012.512.129.688.313L8 6.592l2.313-2.28c.265-.231.445-.305.687-.313h1v1c0 .285-.035.55-.25.75L9.469 8.031l2.25 2.25c.187.188.281.453.281.719v1h-1c-.266 0-.531-.094-.719-.281L8 9.438l2.281 2.28A1.016 1.016 0 0 1 5 12H4v-1c0-.266.094-.531.281-.719l2.282-2.25L4.28 5.75A.904.904 0 0 1 4 5V4Z'/%3e%3c/svg%3e");
+$win-max-linux-maximized: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' viewBox='0 0 16 16'%3e%3cpath fill='%232E3434' d='M4.988 4.992v6.012H11V4.992H4.988Zm2 2H9v2.012H6.988V6.992Z'/%3e%3c/svg%3e");

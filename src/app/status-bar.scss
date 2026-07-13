@@ -35,6 +35,7 @@ body:not(.status-bar-baseline) .status-bar {
     background-color var(--anim-duration-moderate) ease;
   border: none;
   border-radius: 100vh;
+  width: max-content;
   max-width: 100%;
   min-height: unset;
 
@@ -61,7 +62,8 @@ body:not(.status-bar-baseline) .status-bar {
     box-shadow: var(--shadow-s);
     border-color: var(--background-modifier-border);
     padding: 8px;
-    height: 40px;
+    min-height: 40px;
+    height: auto;
 
     &::before {
       transform: scaleY(1);

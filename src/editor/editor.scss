@@ -1,3 +1,5 @@
+@use "../mixins" as mx;
+
 @media screen, print {
   body {
     --heading-spacing: 2em;
@@ -43,8 +45,8 @@
     --file-header-border: none;
   }
 
-  body:is(.mod-macos, .adaptive-mode-off):not(.font-variant-off) .markdown-reading-view,
-  body:is(.mod-macos, .adaptive-mode-off):not(.font-variant-off) .markdown-source-view {
+  body#{mx.$bc}:not(.font-variant-off) .markdown-reading-view,
+  body#{mx.$bc}:not(.font-variant-off) .markdown-source-view {
     font-feature-settings:
       "ss01" 1,
       "ss07" 1,
@@ -129,7 +131,7 @@
   .markdown-rendered pre code {
     white-space: var(--code-white-space);
   }
-  body:is(.mod-macos, .adaptive-mode-off) .markdown-rendered pre {
+  body#{mx.$bc} .markdown-rendered pre {
     background: linear-gradient(var(--background-primary-alt), var(--background-secondary));
     box-shadow: var(--shadow-tactile);
   }

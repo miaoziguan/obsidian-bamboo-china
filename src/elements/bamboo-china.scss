@@ -1,4 +1,6 @@
-body:is(.mod-macos, .adaptive-mode-off) {
+@use "../mixins" as mx;
+
+body#{mx.$bc} {
   --side-padding: 20px;
 
   --p-spacing: 1rem;
@@ -10,7 +12,7 @@ body:is(.mod-macos, .adaptive-mode-off) {
   --blur-m: blur(4px) saturate(1.5) brightness(1.025);
   --blur-l: blur(8px) saturate(1.5) brightness(1.025);
 
-  --clickable-icon-radius: 100vh;
+  --clickable-icon-radius: 100vh !important;
   --button-radius: var(--input-radius);
   --input-radius: var(--radius-s);
   --input-height: 24px;
@@ -33,6 +35,29 @@ body:is(.mod-macos, .adaptive-mode-off) {
     --input-radius: var(--radius-l);
     --input-height: 48px;
     --input-padding: 0 var(--side-padding);
+  }
+
+  // ── Focus ring (unified, keyboard-only) ────────────────────────────────
+  // One token-driven ring for every redrawn interactive control on the
+  // Bamboo China desktop main line, so keyboard users never "lose" focus.
+  // Scoped to :focus-visible — pointer interaction never shows the ring.
+  button,
+  .clickable-icon,
+  input,
+  textarea,
+  select,
+  .dropdown,
+  .combobox-button,
+  .checkbox-container,
+  .slider,
+  .nav-file-title,
+  .nav-folder-title,
+  .workspace-tab-header,
+  .menu-item,
+  .search-input-container input {
+    &:focus-visible {
+      @include mx.focus-ring;
+    }
   }
   &.is-phone {
     --nav-item-padding: calc(16px * var(--density-modifier)) var(--side-padding);
@@ -206,9 +231,9 @@ body:is(.mod-macos, .adaptive-mode-off) {
     --dropdown-padding-start: var(--side-padding);
   }
 
-  select::focus-visible,
-  .combobox-button::focus-visible,
-  .dropdown::focus-visible {
+  select:focus-visible,
+  .combobox-button:focus-visible,
+  .dropdown:focus-visible {
     box-shadow: none;
   }
 
@@ -249,9 +274,7 @@ body:is(.mod-macos, .adaptive-mode-off) {
   // Ribbon
   .workspace-ribbon.mod-left .sidebar-toggle-button .clickable-icon:hover,
   .workspace-ribbon.mod-left .side-dock-actions .side-dock-ribbon-action:hover {
-    box-shadow: none !important;
-    background-color: transparent !important;
-    color: var(--text-normal);
+    @include mx.ribbon-icon-hover-reset;
   }
 
   // Side panels

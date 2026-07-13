@@ -1,3 +1,5 @@
+@use "../mixins" as mx;
+
 @media screen, print {
   body {
     --callout-blend-mode: normal;
@@ -57,7 +59,7 @@
   }
 
   // Callout: Tactile
-  body:is(.mod-macos, .adaptive-mode-off) .callout:not([data-callout="note-toolbar"]) {
+  body#{mx.$bc} .callout:not([data-callout="note-toolbar"]) {
     box-shadow: var(--shadow-tactile);
     background: linear-gradient(rgba(var(--callout-color), 0.1), rgba(var(--callout-color), 0.15));
   }

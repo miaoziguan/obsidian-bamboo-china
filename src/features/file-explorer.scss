@@ -1,3 +1,5 @@
+@use "../mixins" as mx;
+
 body.mod-windows:not(.adaptive-mode-off) .nav-files-container > div {
   --nav-item-background-active: var(--background-modifier-hover);
   --nav-item-color-active: var(--nav-item-color);
@@ -22,7 +24,7 @@ body.is-android:not(.adaptive-mode-off) .nav-files-container > div {
   --nav-item-color-active: var(--text-normal);
 }
 
-body:is(.mod-macos, .adaptive-mode-off):not(.is-mobile) .nav-files-container > div {
+body#{mx.$bc}:not(.is-mobile) .nav-files-container > div {
   --nav-item-background-hover: transparent;
   --nav-item-background-active: var(--background-modifier-hover);
   --nav-item-color: var(--text-normal);

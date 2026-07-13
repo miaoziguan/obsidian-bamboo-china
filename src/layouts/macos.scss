@@ -1,4 +1,6 @@
-body:is(.mod-macos, .adaptive-mode-off):not(.is-mobile) {
+@use "../mixins" as mx;
+
+body#{mx.$bc}:not(.is-mobile) {
   --shadow-sidedock-spread: -32px 0 0 32px var(--background-primary);
   --shadow-surface: 0 0 0 1px var(--background-modifier-hover);
   --tab-outline-width: 1px;
@@ -49,17 +51,31 @@ body:is(.mod-macos, .adaptive-mode-off):not(.is-mobile) {
 
     .workspace-ribbon.mod-left .sidebar-toggle-button .clickable-icon:hover,
     .workspace-ribbon.mod-left .side-dock-actions .side-dock-ribbon-action:hover {
-      box-shadow: none !important;
-      background-color: transparent !important;
-      color: var(--text-normal);
+      @include mx.ribbon-icon-hover-reset;
     }
   }
 
+  // 暗色模式下，侧边栏使用框架色，与中间编辑区（画布色）区分开
   &:not(.is-translucent).theme-dark .mod-sidedock {
-    background-color: hsl(from var(--background-primary) h s calc(l - 2));
+    background-color: var(--background-secondary);
   }
-  &.is-translucent .mod-sidedock.mod-left-split {
-    background-color: rgba(from var(--background-primary) r g b / 50%) !important;
+  &.is-translucent.theme-dark .mod-sidedock {
+    background-color: var(--background-secondary) !important;
+  }
+  // 浅色模式同样逻辑：侧边栏框架色，中间编辑区画布色
+  &:not(.is-translucent).theme-light .mod-sidedock {
+    background-color: var(--background-secondary);
+  }
+  &.is-translucent.theme-light .mod-sidedock {
+    background-color: var(--background-secondary) !important;
+  }
+  // 中间编辑区使用画布色，与两侧边栏框架色形成区分
+  .mod-root {
+    background-color: var(--background-primary);
+  }
+  // 编辑器标签页头部也使用框架色，让标题栏区域与侧边栏融为一体
+  .mod-root .workspace-tab-header-container {
+    background-color: var(--background-secondary) !important;
   }
   .mod-sidedock {
     transition:
@@ -68,26 +84,23 @@ body:is(.mod-macos, .adaptive-mode-off):not(.is-mobile) {
       box-shadow 0s;
   }
   .mod-sidedock.mod-left-split {
-    corner-shape: var(--corner-shape);
     z-index: var(--layer-sidedock);
-    margin: 8px 0 8px 8px;
-    box-shadow: var(--shadow-surface), var(--shadow-sidedock-spread);
-    border-radius: var(--radius-window, var(--radius-m));
     height: -webkit-fill-available;
     overflow: hidden;
   }
 
   .mod-sidedock.mod-left-split .mod-top-left-space .workspace-tab-header-container {
     padding-block: 0px;
+    // 固定 140px 兜底：macOS 红绿灯延伸到约 92px。用固定值 + !important，
+    // 避免 --frame-left-space 未定义导致 calc()/max() 整条非法。
+    // 必须保留 !important：hover-ribbon 模式对非 macOS 调成了 52/88px，
+    // 但 macOS 红绿灯区需要 ~92px+，这里要压过 hover-ribbon 的值而非被它覆盖。
+    padding-left: 140px !important;
   }
   .mod-sidedock.mod-left-split .mod-top-left-space .workspace-tab-header-container,
   .mod-sidedock.mod-left-split .mod-top-left-space .workspace-tab-header-container .sidebar-toggle-button {
-    min-height: calc(var(--header-height) - 16px);
-    max-height: calc(var(--header-height) - 16px);
-
-    div:is(.workspace-tab-header-inner, .clickable-icon) {
-      padding-block: 4px;
-    }
+    min-height: var(--header-height);
+    max-height: var(--header-height);
   }
 
   .mod-sidedock.mod-right-split > .workspace-leaf-resize-handle {
@@ -103,7 +116,7 @@ body:is(.mod-macos, .adaptive-mode-off):not(.is-mobile) {
   }
 }
 
-body:is(.mod-macos, .adaptive-mode-off).is-tablet {
+body#{mx.$bc}.is-tablet {
   &.theme-light {
     --shadow-surface: inset 1px 1px 2px rgba(255, 255, 255, 0.5), inset -1px -1px 2px rgba(255, 255, 255, 0.5), inset 0 4px 16px rgba(255, 255, 255, 0.025), 0 0 1px rgba(0, 0, 0, 0.25), 0 8px 16px 0 rgba(0, 0, 0, 0.05);
   }

@@ -43,12 +43,11 @@
 @use "features/dataview-cards.scss";
 @use "features/helpers-tables.scss";
 @use "features/image-filters.scss";
-@use "features/colorful-frame.scss";
 @use "features/focus-mode.scss";
-@use "features/hover-sidedock.scss";
-@use "features/mini-dock.scss";
+@use "features/hover-ribbon.scss";
 @use "features/file-explorer.scss";
 
 @use "color-schemes/adwaita.scss" as color-adwaita;
 @use "color-schemes/bamboo-china.scss" as color-bamboo-china;
+@use "color-schemes/bamboo-china-palettes.scss";
 @use "color-schemes/material.scss" as color-material;

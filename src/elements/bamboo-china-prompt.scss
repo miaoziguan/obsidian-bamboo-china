@@ -1,4 +1,6 @@
-body:is(.mod-macos, .adaptive-mode-off) {
+@use "../mixins" as mx;
+
+body#{mx.$bc} {
   .prompt-input-container {
     align-items: center;
   }
@@ -31,7 +33,7 @@ body:is(.mod-macos, .adaptive-mode-off) {
     border-top: none;
   }
 }
-body:is(.mod-macos, .adaptive-mode-off):not(.is-phone) {
+body#{mx.$bc}:not(.is-phone) {
   --prompt-input-height: 56px;
 
   @keyframes bounceInScale {
@@ -58,7 +60,7 @@ body:is(.mod-macos, .adaptive-mode-off):not(.is-phone) {
     pointer-events: none;
   }
 }
-body:is(.mod-macos, .adaptive-mode-off).is-phone {
+body#{mx.$bc}.is-phone {
   --prompt-input-height: 48px;
 
   .prompt {
@@ -137,6 +139,6 @@ body:is(.mod-macos, .adaptive-mode-off).is-phone {
   }
 }
 
-body:is(.mod-macos, .adaptive-mode-off).is-tablet .prompt {
+body#{mx.$bc}.is-tablet .prompt {
   border-radius: var(--radius-l);
 }

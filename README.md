@@ -52,6 +52,30 @@ Enable focus view, hover sidebars. Or disable active line highlight, centered ta
 
 Bring translucent window effects to Windows and macOS for an even more native feel. (第三方插件,原作者 aaaaalexis)
 
+### Ambience color schemes (意境配色)
+
+A signature Bamboo China feature. Choose an Eastern palette from **Style Settings → Bamboo China → 意境配色**; the theme adds a `cn-<name>` class to `<body>` and re-tints the side panels (the "frame", `--background-secondary`) and the signature accent — while keeping the editor canvas pure white. This is the *"white paper at the heart, indigo frame around it"* (白纸为心、黛青为框) principle in action.
+
+| Palette (pinyin) | 中文 | Mood |
+| :--------------- | :--- | :--- |
+| `zhuyin`   | 朱印 | Vermillion Seal   |
+| `moye`     | 墨叶 | Ink Leaf          |
+| `yanzhi`   | 胭脂 | Rouge             |
+| `qinglu`   | 青绿 | Cyan-Green        |
+| `liujin`   | 流金 | Flowing Gold      |
+| `tianqing` | 天青 | Sky Cyan          |
+| `daizi`    | 黛紫 | Dark Violet       |
+| `haitang`  | 海棠 | Crabapple         |
+| `bohe`     | 薄荷 | Mint              |
+| `hupo`     | 琥珀 | Amber             |
+| `dianlan`  | 靛蓝 | Indigo            |
+| `danju`    | 丹橘 | Cinnabar Orange   |
+| `ehuang`   | 鹅黄 | Gosling Yellow    |
+| `songhua`  | 松花 | Pine Pollen       |
+| `zheshi`   | 赭石 | Ochre             |
+| `ouhe`     | 藕荷 | Lotus Pink        |
+| `yuebai`   | 月白 | Moon White        |
+
 ## Features
 
 Bamboo China supports most filter and helper classes from [Minimal](https://github.com/kepano/obsidian-minimal).

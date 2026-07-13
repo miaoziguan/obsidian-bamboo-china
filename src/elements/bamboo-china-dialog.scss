@@ -1,4 +1,6 @@
-body:is(.mod-macos, .adaptive-mode-off) {
+@use "../mixins" as mx;
+
+body#{mx.$bc} {
   --background-modifier-message: var(--modal-background);
   --modal-background: rgb(from var(--background-secondary) r g b / 75%) !important;
 
@@ -28,7 +30,7 @@ body:is(.mod-macos, .adaptive-mode-off) {
 }
 
 // Menu
-body:is(.mod-macos, .adaptive-mode-off):not(.is-mobile) {
+body#{mx.$bc}:not(.is-mobile) {
   .menu,
   .suggestion-container {
     animation: none;
@@ -62,7 +64,7 @@ body:is(.mod-macos, .adaptive-mode-off):not(.is-mobile) {
   }
 }
 
-body:is(.mod-macos, .adaptive-mode-off).is-mobile {
+body#{mx.$bc}.is-mobile {
   .menu,
   .suggestion-container {
     .menu-scroll {
@@ -82,7 +84,7 @@ body:is(.mod-macos, .adaptive-mode-off).is-mobile {
     }
   }
 }
-body:is(.mod-macos, .adaptive-mode-off).is-phone {
+body#{mx.$bc}.is-phone {
   --menu-shadow: var(--shadow-s);
   --menu-padding: 32px var(--safe-area-inset-side);
 
@@ -130,7 +132,7 @@ body:is(.mod-macos, .adaptive-mode-off).is-phone {
     border-radius: var(--radius-m);
   }
 }
-body:is(.mod-macos, .adaptive-mode-off).is-tablet {
+body#{mx.$bc}.is-tablet {
   --menu-shadow: var(--shadow-l);
 
   .menu,
@@ -151,7 +153,7 @@ body:is(.mod-macos, .adaptive-mode-off).is-tablet {
 }
 
 // Modal
-body:is(.mod-macos, .adaptive-mode-off):not(.is-mobile) {
+body#{mx.$bc}:not(.is-mobile) {
   @keyframes modalInBambooChina {
     from {
       opacity: 1;
@@ -176,7 +178,7 @@ body:is(.mod-macos, .adaptive-mode-off):not(.is-mobile) {
   }
 }
 
-body:is(.mod-macos, .adaptive-mode-off).is-mobile {
+body#{mx.$bc}.is-mobile {
   .modal-setting-back-button,
   .modal-close-button,
   .modal-header-button {
@@ -185,7 +187,7 @@ body:is(.mod-macos, .adaptive-mode-off).is-mobile {
   }
 }
 
-body:is(.mod-macos, .adaptive-mode-off).is-phone {
+body#{mx.$bc}.is-phone {
   --modal-radius: var(--radius-xl);
 
   .modal-container.mod-confirmation .modal {
@@ -219,7 +221,7 @@ body:is(.mod-macos, .adaptive-mode-off).is-phone {
 }
 
 // Notice & Tooltip
-body:is(.mod-macos, .adaptive-mode-off) {
+body#{mx.$bc} {
   .notice {
     box-shadow: var(--shadow-l);
     border-radius: var(--radius-m);
@@ -239,11 +241,11 @@ body:is(.mod-macos, .adaptive-mode-off) {
   }
 }
 
-body:is(.mod-macos, .adaptive-mode-off):not(.is-mobile) .notice {
+body#{mx.$bc}:not(.is-mobile) .notice {
   transition: var(--anim-duration-moderate) !important;
 }
 
-body:is(.mod-macos, .adaptive-mode-off).is-mobile .notice {
+body#{mx.$bc}.is-mobile .notice {
   box-shadow: var(--shadow-xs);
 
   &:last-child {
@@ -258,7 +260,7 @@ body:is(.mod-macos, .adaptive-mode-off).is-mobile .notice {
 }
 
 // Drag ghost
-body:is(.mod-macos, .adaptive-mode-off):not(.is-mobile) {
+body#{mx.$bc}:not(.is-mobile) {
   --drag-ghost-background: var(--background-primary);
   --drag-ghost-text-color: var(--text-normal);
 

@@ -5,13 +5,13 @@ body,
   --font-interface-theme: "SF Pro";
   --font-text-theme: "SF Pro";
   --font-ui-modifier: 0px;
-  --font-ui-smaller: calc(12px + var(--font-ui-modifier));
-  --font-ui-small: calc(13px + var(--font-ui-modifier));
-  --font-ui-medium: calc(15px + var(--font-ui-modifier));
-  --font-ui-large: calc(20px + var(--font-ui-modifier));
   --bold-modifier: 300;
   --icon-size-modifier: 0px;
   --icon-opacity: 1;
+  --bc-focus-ring-color: var(--interactive-accent);
+  --bc-focus-ring-width: 2px;
+  --bc-focus-ring-offset: 2px;
+  --bc-focus-ring-style: solid;
   --titlebar-background: transparent;
   --titlebar-background-focused: transparent;
   --divider-color-hover: var(--color-base-50);
@@ -43,6 +43,14 @@ body,
   --color-purple: rgb(var(--color-purple-rgb));
   --color-pink: rgb(var(--color-pink-rgb));
   --background-modifier-cover: rgba(0, 0, 0, 0.35);
+}
+body:not(.dynamic-type-off),
+.theme-light:not(.dynamic-type-off),
+.theme-dark:not(.dynamic-type-off) {
+  --font-ui-smaller: calc(12px + var(--font-ui-modifier));
+  --font-ui-small: calc(13px + var(--font-ui-modifier));
+  --font-ui-medium: calc(15px + var(--font-ui-modifier));
+  --font-ui-large: calc(20px + var(--font-ui-modifier));
 }
 
 .theme-light {
@@ -138,6 +146,10 @@ body.is-frameless:not(.is-translucent, .is-hidden-frameless, .is-fullscreen) .ti
   background-color: var(--background-secondary);
 }
 
+body.is-frameless.is-translucent:not(.is-hidden-frameless, .is-fullscreen) .titlebar {
+  background-color: var(--background-secondary) !important;
+}
+
 body.titlebar-text-off .titlebar-text {
   display: none;
 }
@@ -194,8 +206,37 @@ body.reduce-motion.is-mobile .modal-bg {
   transition: none !important;
 }
 
-.hide-scrollbar ::-webkit-scrollbar {
-  display: none;
+@media (prefers-reduced-motion: reduce) {
+  body {
+    --anim-speed-modifier: 0 !important;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+body {
+  scrollbar-width: none !important;
+}
+
+body * {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+body ::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+body ::-webkit-scrollbar-thumb,
+body ::-webkit-scrollbar-track {
+  background-color: transparent;
 }
 
 .system-native-font {
@@ -222,37 +263,8 @@ body.high-contrast-code .markdown-rendered pre {
   --link-external-color-hover: #99ccff;
 }
 
-body:not(.is-mobile).transparent-sidebar .workspace-split.mod-sidedock,
-body:not(.is-mobile).transparent-sidebar .mod-sidedock {
-  border-right: none !important;
-  border-radius: 0 !important;
-  box-shadow: none !important;
-}
-
-body:not(.is-mobile).frosted-sidebar {
-  --frosted-opacity: 0.72;
-  --frosted-blur: 20px;
-}
-body:not(.is-mobile).frosted-sidebar .mod-sidedock {
-  backdrop-filter: blur(var(--frosted-blur)) saturate(180%);
-  -webkit-backdrop-filter: blur(var(--frosted-blur)) saturate(180%);
-}
-body:not(.is-mobile).frosted-sidebar .mod-sidedock .workspace-tabs,
-body:not(.is-mobile).frosted-sidebar .mod-sidedock .workspace-leaf-content,
-body:not(.is-mobile).frosted-sidebar .mod-sidedock .nav-header {
-  background-color: color-mix(in srgb, var(--background-primary), transparent calc((1 - var(--frosted-opacity)) * 100%)) !important;
-  border-right-color: transparent !important;
-}
-body:not(.is-mobile).frosted-sidebar .mod-sidedock .workspace-leaf {
-  background-color: transparent !important;
-}
-body:not(.is-mobile).frosted-sidebar .mod-sidedock .tree-item-self:not(.is-active),
-body:not(.is-mobile).frosted-sidebar .mod-sidedock .tree-item-self:not(:hover) {
-  background-color: transparent;
-}
-
 @supports not (interpolate-size: allow-keywords) {
-  body:not(.is-mobile).obsidian-app.obsidian-app.obsidian-app {
+  body:not(.is-mobile) {
     --modal-background: var(--background-secondary) !important;
   }
   body:not(.is-mobile):not(.is-popout-window) .mod-root::before {
@@ -1356,6 +1368,7 @@ body:not(.status-bar-baseline) .status-bar {
   transition: var(--anim-duration-moderate) var(--anim-motion-baseline), background-color var(--anim-duration-moderate) ease;
   border: none;
   border-radius: 100vh;
+  width: max-content;
   max-width: 100%;
   min-height: unset;
 }
@@ -1381,7 +1394,8 @@ body:not(.status-bar-baseline) .status-bar:hover {
   box-shadow: var(--shadow-s);
   border-color: var(--background-modifier-border);
   padding: 8px;
-  height: 40px;
+  min-height: 40px;
+  height: auto;
 }
 body:not(.status-bar-baseline) .status-bar:hover::before {
   transform: scaleY(1);
@@ -2283,7 +2297,7 @@ id: bamboo-china
 settings:
     - 
         id: bamboo-china-desc
-        description: "Bamboo China 提供简洁的原生风格界面。如需更精细的控制，请使用 [Baseline](obsidian://show-theme?name=Baseline) 主题。"
+        description: "Bamboo China是专为竹林中国系列插件产品所定制的专业主题。"
         type: info-text
         markdown: true
     -
@@ -2292,23 +2306,18 @@ settings:
         description: 使用系统原生中文字体栈，替代默认的 SF Pro。
         type: class-toggle
     -
-        id: colorful-frame
-        title: 侧边栏染色
-        description: 根据强调色为侧边栏添加微妙的色调。
-        type: class-toggle
-    -
         id: material-color
         title: 动态颜色
         description: 根据强调色应用动态主题。
         type: class-toggle
     -
         id: adaptive-mode-off
-        title: 关闭自适应模式
+        title: 固定平台样式
         description: 禁止根据操作系统自动调整样式。
         type: class-toggle
     -
         id: tab-floating
-        title: 取消标签页居中
+        title: 左对齐标签页
         type: class-toggle
     -
         id: desktop-header
@@ -2316,22 +2325,6 @@ settings:
         type: heading
         level: 1
         collapsed: true
-    -
-        id: hover-ribbon
-        title: 悬浮显示功能区
-        description: 鼠标悬停窗口左边缘时显示功能区。
-        type: class-toggle
-        addCommand: true
-    -
-        id: ribbon-dock
-        title: Ribbon Dock 风格
-        description: 功能区图标采用 macOS Dock 风格，hover 放大并显示激活指示点。
-        type: class-toggle
-    -
-        id: transparent-sidebar
-        title: 隐藏卡片边框
-        description: 去掉左侧栏面板的圆角、边框等卡片样式，与编辑器无缝融合。
-        type: class-toggle
     -
         id: radius-modifier
         title: 卡片圆角
@@ -2342,12 +2335,6 @@ settings:
         max: 2
         step: 0.05
         format: ""
-    -
-        id: hover-sidedock
-        title: 悬浮显示侧边栏
-        description: 鼠标悬停窗口边缘时显示折叠的侧边栏。
-        type: class-toggle
-        addCommand: true
     -
         id: header-title-opacity
         title: 标题栏可见度
@@ -2366,35 +2353,20 @@ settings:
         addCommand: true
     -
         id: nav-action-center
-        title: 取消紧凑面板操作
+        title: 展开面板操作
         type: class-toggle
     -
         id: tab-icon
-        title: 取消紧凑侧边栏标签
+        title: 展开侧边栏标签
         type: class-toggle
     -
         id: status-bar-baseline
-        title: 取消紧凑状态栏
+        title: 展开状态栏
         type: class-toggle
     -
         id: zoom-off
-        title: 关闭媒体缩放
+        title: 媒体原始尺寸
         type: class-toggle
-    -
-        id: frosted-sidebar
-        title: 毛玻璃侧边栏
-        description: 为侧边栏添加 iOS 风格的半透明磨砂玻璃效果。
-        type: class-toggle
-    -
-        id: frosted-opacity
-        title: 磨砂透明度
-        description: 控制侧边栏的透明度。越低越通透。
-        type: variable-number-slider
-        default: 0.72
-        min: 0.3
-        max: 0.95
-        step: 0.02
-        format: ""
     -
         id: editor
         title: 编辑器
@@ -2403,27 +2375,27 @@ settings:
         collapsed: true
     -
         id: active-line-off
-        title: 关闭活动行高亮
+        title: 隐藏活动行高亮
         type: class-toggle
     -
         id: banner-off
-        title: 关闭横幅图片
+        title: 隐藏横幅图片
         type: class-toggle
     -
         id: block-width-off
-        title: 关闭块宽度
+        title: 限制块宽度
         type: class-toggle
     -
         id: font-variant-off
-        title: 关闭字体变体
+        title: 常规字体变体
         type: class-toggle
     -
         id: full-width-media-off
-        title: 关闭全宽元素
+        title: 限制全宽元素
         type: class-toggle
     -
         id: mode-switcher-off
-        title: 关闭快速模式切换
+        title: 隐藏模式切换
         type: class-toggle
     -
         id: unstyled-tags
@@ -2496,11 +2468,6 @@ settings:
         step: 1
         format: px
     -
-        id: hide-scrollbar
-        title: 隐藏滚动条
-        description: 隐藏所有滚动条以获得更简洁的界面。
-        type: class-toggle
-    -
         id: clean-link-off
         title: 带下划线的链接
         description: 始终为链接添加下划线以提高可读性。
@@ -2565,7 +2532,6 @@ settings:
   border-bottom-left-radius: var(--setting-items-radius);
 }
 
-body:not(.mod-macos, .adaptive-mode-off) .setting-item[data-id=colorful-frame],
 body:not(.is-android:not(.adaptive-mode-off)) .setting-item[data-id=material-color] {
   display: none;
 }
@@ -3846,26 +3812,6 @@ body:is(.mod-macos, .adaptive-mode-off):not(.is-mobile) .mod-root .workspace-tab
   height: 32px;
   margin: auto 0;
 }
-body:is(.mod-macos, .adaptive-mode-off):not(.is-mobile).hover-sidedock .mod-sidedock.is-sidedock-collapsed[style*=display] {
-  box-shadow: var(--shadow-s);
-  border-radius: var(--radius-window, var(--radius-m));
-  background-color: var(--modal-background) !important;
-  backdrop-filter: var(--blur-m);
-  height: -webkit-fill-available;
-}
-body:is(.mod-macos, .adaptive-mode-off):not(.is-mobile).hover-sidedock .mod-sidedock.is-sidedock-collapsed[style*=display].mod-left-split {
-  margin: 8px 0 8px 8px;
-  overflow: visible;
-}
-body:is(.mod-macos, .adaptive-mode-off):not(.is-mobile).hover-sidedock .mod-sidedock.is-sidedock-collapsed[style*=display].mod-right-split {
-  margin: 8px 8px 8px 0;
-}
-body:is(.mod-macos, .adaptive-mode-off):not(.is-mobile).hover-sidedock .mod-sidedock.is-sidedock-collapsed[style*=display]::before {
-  background: none;
-  margin-inline: -8px;
-  pointer-events: auto;
-  width: 8px;
-}
 
 body:is(.mod-macos, .adaptive-mode-off):not(.is-mobile) .workspace:not(.is-left-sidedock-open):not(.is-right-sidedock-open) .mod-root {
   padding-bottom: 0;
@@ -3945,34 +3891,39 @@ body:is(.mod-macos, .adaptive-mode-off):not(.is-mobile).show-ribbon .workspace-r
   color: var(--text-normal);
 }
 body:is(.mod-macos, .adaptive-mode-off):not(.is-mobile):not(.is-translucent).theme-dark .mod-sidedock {
-  background-color: hsl(from var(--background-primary) h s calc(l - 2));
+  background-color: var(--background-secondary);
 }
-body:is(.mod-macos, .adaptive-mode-off):not(.is-mobile).is-translucent .mod-sidedock.mod-left-split {
-  background-color: rgba(from var(--background-primary) r g b/50%) !important;
+body:is(.mod-macos, .adaptive-mode-off):not(.is-mobile).is-translucent.theme-dark .mod-sidedock {
+  background-color: var(--background-secondary) !important;
+}
+body:is(.mod-macos, .adaptive-mode-off):not(.is-mobile):not(.is-translucent).theme-light .mod-sidedock {
+  background-color: var(--background-secondary);
+}
+body:is(.mod-macos, .adaptive-mode-off):not(.is-mobile).is-translucent.theme-light .mod-sidedock {
+  background-color: var(--background-secondary) !important;
+}
+body:is(.mod-macos, .adaptive-mode-off):not(.is-mobile) .mod-root {
+  background-color: var(--background-primary);
+}
+body:is(.mod-macos, .adaptive-mode-off):not(.is-mobile) .mod-root .workspace-tab-header-container {
+  background-color: var(--background-secondary) !important;
 }
 body:is(.mod-macos, .adaptive-mode-off):not(.is-mobile) .mod-sidedock {
   transition: var(--anim-duration-moderate), background-color 0s, box-shadow 0s;
 }
 body:is(.mod-macos, .adaptive-mode-off):not(.is-mobile) .mod-sidedock.mod-left-split {
-  corner-shape: var(--corner-shape);
   z-index: var(--layer-sidedock);
-  margin: 8px 0 8px 8px;
-  box-shadow: var(--shadow-surface), var(--shadow-sidedock-spread);
-  border-radius: var(--radius-window, var(--radius-m));
   height: -webkit-fill-available;
   overflow: hidden;
 }
 body:is(.mod-macos, .adaptive-mode-off):not(.is-mobile) .mod-sidedock.mod-left-split .mod-top-left-space .workspace-tab-header-container {
   padding-block: 0px;
+  padding-left: 140px !important;
 }
 body:is(.mod-macos, .adaptive-mode-off):not(.is-mobile) .mod-sidedock.mod-left-split .mod-top-left-space .workspace-tab-header-container,
 body:is(.mod-macos, .adaptive-mode-off):not(.is-mobile) .mod-sidedock.mod-left-split .mod-top-left-space .workspace-tab-header-container .sidebar-toggle-button {
-  min-height: calc(var(--header-height) - 16px);
-  max-height: calc(var(--header-height) - 16px);
-}
-body:is(.mod-macos, .adaptive-mode-off):not(.is-mobile) .mod-sidedock.mod-left-split .mod-top-left-space .workspace-tab-header-container div:is(.workspace-tab-header-inner, .clickable-icon),
-body:is(.mod-macos, .adaptive-mode-off):not(.is-mobile) .mod-sidedock.mod-left-split .mod-top-left-space .workspace-tab-header-container .sidebar-toggle-button div:is(.workspace-tab-header-inner, .clickable-icon) {
-  padding-block: 4px;
+  min-height: var(--header-height);
+  max-height: var(--header-height);
 }
 body:is(.mod-macos, .adaptive-mode-off):not(.is-mobile) .mod-sidedock.mod-right-split > .workspace-leaf-resize-handle {
   border-color: var(--divider-color);
@@ -4034,12 +3985,11 @@ body:is(.mod-macos, .adaptive-mode-off):not(.is-mobile) .mod-root {
 body:is(.mod-macos, .adaptive-mode-off):not(.is-mobile) .workspace-tabs {
   overflow: visible;
 }
-body:is(.mod-macos, .adaptive-mode-off):not(.is-mobile) .mod-sidedock.mod-left-split {
-  margin-right: 8px;
-}
+body:is(.mod-macos, .adaptive-mode-off):not(.is-mobile) .mod-sidedock.mod-left-split,
 body:is(.mod-macos, .adaptive-mode-off):not(.is-mobile) .mod-sidedock.mod-right-split {
   background-color: transparent !important;
 }
+body:is(.mod-macos, .adaptive-mode-off):not(.is-mobile) .mod-sidedock.mod-left-split > .workspace-leaf-resize-handle,
 body:is(.mod-macos, .adaptive-mode-off):not(.is-mobile) .mod-sidedock.mod-right-split > .workspace-leaf-resize-handle {
   border-color: transparent;
 }
@@ -4172,7 +4122,7 @@ body:is(.mod-macos, .adaptive-mode-off) {
   --blur-s: blur(2px) saturate(1.5) brightness(1.025);
   --blur-m: blur(4px) saturate(1.5) brightness(1.025);
   --blur-l: blur(8px) saturate(1.5) brightness(1.025);
-  --clickable-icon-radius: 100vh;
+  --clickable-icon-radius: 100vh !important;
   --button-radius: var(--input-radius);
   --input-radius: var(--radius-s);
   --input-height: 24px;
@@ -4207,6 +4157,23 @@ body:is(.mod-macos, .adaptive-mode-off).is-mobile {
   --input-radius: var(--radius-l);
   --input-height: 48px;
   --input-padding: 0 var(--side-padding);
+}
+body:is(.mod-macos, .adaptive-mode-off) button:focus-visible,
+body:is(.mod-macos, .adaptive-mode-off) .clickable-icon:focus-visible,
+body:is(.mod-macos, .adaptive-mode-off) input:focus-visible,
+body:is(.mod-macos, .adaptive-mode-off) textarea:focus-visible,
+body:is(.mod-macos, .adaptive-mode-off) select:focus-visible,
+body:is(.mod-macos, .adaptive-mode-off) .dropdown:focus-visible,
+body:is(.mod-macos, .adaptive-mode-off) .combobox-button:focus-visible,
+body:is(.mod-macos, .adaptive-mode-off) .checkbox-container:focus-visible,
+body:is(.mod-macos, .adaptive-mode-off) .slider:focus-visible,
+body:is(.mod-macos, .adaptive-mode-off) .nav-file-title:focus-visible,
+body:is(.mod-macos, .adaptive-mode-off) .nav-folder-title:focus-visible,
+body:is(.mod-macos, .adaptive-mode-off) .workspace-tab-header:focus-visible,
+body:is(.mod-macos, .adaptive-mode-off) .menu-item:focus-visible,
+body:is(.mod-macos, .adaptive-mode-off) .search-input-container input:focus-visible {
+  outline: var(--bc-focus-ring-width) var(--bc-focus-ring-style) var(--bc-focus-ring-color);
+  outline-offset: var(--bc-focus-ring-offset);
 }
 body:is(.mod-macos, .adaptive-mode-off).is-phone {
   --nav-item-padding: calc(16px * var(--density-modifier)) var(--side-padding);
@@ -4325,9 +4292,9 @@ body:is(.mod-macos, .adaptive-mode-off).is-mobile .checkbox-container:active:aft
 body:is(.mod-macos, .adaptive-mode-off).is-mobile {
   --dropdown-padding-start: var(--side-padding);
 }
-body:is(.mod-macos, .adaptive-mode-off) select::focus-visible,
-body:is(.mod-macos, .adaptive-mode-off) .combobox-button::focus-visible,
-body:is(.mod-macos, .adaptive-mode-off) .dropdown::focus-visible {
+body:is(.mod-macos, .adaptive-mode-off) select:focus-visible,
+body:is(.mod-macos, .adaptive-mode-off) .combobox-button:focus-visible,
+body:is(.mod-macos, .adaptive-mode-off) .dropdown:focus-visible {
   box-shadow: none;
 }
 body:is(.mod-macos, .adaptive-mode-off) .search-input-container {
@@ -4706,7 +4673,7 @@ body:is(.mod-macos, .adaptive-mode-off) .modal.mod-sidebar-layout.mod-settings .
   --icon-size: var(--icon-xs);
   --icon-stroke: var(--icon-xs-stroke-width);
   box-shadow: inset 0.5px 0.5px 0.5px rgba(255, 255, 255, 0.25), inset -0.5px -0.5px 0.5px rgba(255, 255, 255, 0.25), 0 0 2px rgba(0, 0, 0, 0.25), 0 1px 4px rgba(0, 0, 0, 0.15);
-  border-radius: 6px;
+  border-radius: 50%;
   background-image: linear-gradient(oklch(from var(--setting-nav-icon-background) calc(l * 1.125) c h), oklch(from var(--setting-nav-icon-background) calc(l * 0.975) c h));
   background-color: var(--setting-nav-icon-background);
   padding: 4px;
@@ -4769,7 +4736,7 @@ body:is(.mod-macos, .adaptive-mode-off):not(.is-mobile) .modal.mod-settings .ins
 
 body:is(.mod-macos, .adaptive-mode-off).is-mobile .modal.mod-settings .vertical-tab-nav-item .vertical-tab-nav-item-icon {
   padding: 5px;
-  border-radius: 8px;
+  border-radius: 50%;
   box-shadow: 0 0 0 0.5px var(--background-modifier-border);
   margin-left: -4px;
 }
@@ -5956,7 +5923,7 @@ body.mod-linux:not(.is-android):not(.adaptive-mode-off):not(.is-mobile) .titleba
   -webkit-mask-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' viewBox='0 0 16 16'%3e%3cpath fill='%232E3436' d='M3.988 3.992v8.012H12V3.992H3.988Zm2 2H10v4.012H5.988V5.992Z'/%3e%3c/svg%3e");
 }
 body.mod-linux:not(.is-android):not(.adaptive-mode-off):not(.is-mobile) .titlebar-button.mod-close svg {
-  -webkit-mask-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' viewBox='0 0 16 16'%3e%3cpath fill='%232E3436' d='M4 4h1.031c.254.012.512.129.688.313L8 6.592l2.313-2.28c.265-.231.445-.305.687-.313h1v1c0 .285-.035.55-.25.75L9.469 8.031l2.25 2.25c.187.188.281.453.281.719v1h-1c-.266 0-.531-.094-.719-.281L8 9.438l-2.281 2.28A1.016 1.016 0 0 1 5 12H4v-1c0-.266.094-.531.281-.719l2.282-2.25L4.28 5.75A.904.904 0 0 1 4 5V4Z'/%3e%3c/svg%3e");
+  -webkit-mask-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' viewBox='0 0 16 16'%3e%3cpath fill='%232E3436' d='M4 4h1.031c.254.012.512.129.688.313L8 6.592l2.313-2.28c.265-.231.445-.305.687-.313h1v1c0 .285-.035.55-.25.75L9.469 8.031l2.25 2.25c.187.188.281.453.281.719v1h-1c-.266 0-.531-.094-.719-.281L8 9.438l2.281 2.28A1.016 1.016 0 0 1 5 12H4v-1c0-.266.094-.531.281-.719l2.282-2.25L4.28 5.75A.904.904 0 0 1 4 5V4Z'/%3e%3c/svg%3e");
 }
 body.mod-linux:not(.is-android):not(.adaptive-mode-off):not(.is-mobile).is-maximized .titlebar-button.mod-maximize svg {
   -webkit-mask-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' viewBox='0 0 16 16'%3e%3cpath fill='%232E3434' d='M4.988 4.992v6.012H11V4.992H4.988Zm2 2H9v2.012H6.988V6.992Z'/%3e%3c/svg%3e");
@@ -6000,7 +5967,7 @@ body.mod-linux:not(.is-android):not(.adaptive-mode-off):not(.is-mobile) .modal .
   background-color: currentcolor;
   margin: 0;
   -webkit-mask-size: 100% 100%;
-  -webkit-mask-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' viewBox='0 0 16 16'%3e%3cpath fill='%232E3436' d='M4 4h1.031c.254.012.512.129.688.313L8 6.592l2.313-2.28c.265-.231.445-.305.687-.313h1v1c0 .285-.035.55-.25.75L9.469 8.031l2.25 2.25c.187.188.281.453.281.719v1h-1c-.266 0-.531-.094-.719-.281L8 9.438l-2.281 2.28A1.016 1.016 0 0 1 5 12H4v-1c0-.266.094-.531.281-.719l2.282-2.25L4.28 5.75A.904.904 0 0 1 4 5V4Z'/%3e%3c/svg%3e");
+  -webkit-mask-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' viewBox='0 0 16 16'%3e%3cpath fill='%232E3436' d='M4 4h1.031c.254.012.512.129.688.313L8 6.592l2.313-2.28c.265-.231.445-.305.687-.313h1v1c0 .285-.035.55-.25.75L9.469 8.031l2.25 2.25c.187.188.281.453.281.719v1h-1c-.266 0-.531-.094-.719-.281L8 9.438l2.281 2.28A1.016 1.016 0 0 1 5 12H4v-1c0-.266.094-.531.281-.719l2.282-2.25L4.28 5.75A.904.904 0 0 1 4 5V4Z'/%3e%3c/svg%3e");
 }
 body.mod-linux:not(.is-android):not(.adaptive-mode-off):not(.is-mobile) .modal .modal-close-button:hover,
 body.mod-linux:not(.is-android):not(.adaptive-mode-off):not(.is-mobile) .modal .modal-header-button:hover {
@@ -7499,13 +7466,6 @@ span[src$="#interface"] img {
   border-radius: var(--radius-m);
 }
 
-body:is(.mod-macos, .adaptive-mode-off):not(.is-mobile):not(.is-translucent).colorful-frame.theme-light .mod-sidedock.mod-left-split {
-  background-color: color-mix(in srgb, #fff, var(--color-accent) 2%);
-}
-body:is(.mod-macos, .adaptive-mode-off):not(.is-mobile):not(.is-translucent).colorful-frame.theme-dark .mod-sidedock.mod-left-split {
-  background-color: color-mix(in srgb, var(--background-modifier-cover), var(--color-accent) 2%);
-}
-
 body.focus-view:not(.is-mobile):not(.is-popout-window) .workspace:not(.is-left-sidedock-open):not(.is-right-sidedock-open) .mod-root {
   --view-top-spacing-markdown: var(--header-height);
   --file-margins: calc(var(--file-margins-y) + var(--header-height)) var(--file-margins-y);
@@ -7555,162 +7515,102 @@ body.focus-view:not(.mod-macos):not(.is-mobile):not(.is-popout-window):not(.is-h
 }
 
 body:not(.is-mobile) {
-  --hover-sidedock-width: 320px;
-  --hover-sidedock-delay: 160ms;
-  --hover-sidedock-trigger-area: 4px;
+  --hover-ribbon-delay: 160ms;
+  --hover-ribbon-trigger-area: 4px;
 }
 
-body:not(.is-mobile).hover-sidedock .mod-sidedock.is-sidedock-collapsed.mod-left-split:hover + .mod-root div:is(.workspace-tab-header-container, .workspace-tab-header-container-inner),
-body:not(.is-mobile).hover-sidedock .mod-root:has(+ .mod-sidedock.is-sidedock-collapsed.mod-right-split:hover) div:is(.workspace-tab-header-container, .workspace-tab-header-container-inner),
-body:not(.is-mobile).hover-sidedock .mod-sidedock.is-sidedock-collapsed div:is(.workspace-tab-header-container, .workspace-tab-header-container-inner),
-body:not(.is-mobile).hover-ribbon .workspace-ribbon.mod-left:hover ~ .mod-root div:is(.workspace-tab-header-container, .workspace-tab-header-container-inner) {
+body:not(.is-mobile) .workspace-ribbon.mod-left:hover ~ .mod-root div:is(.workspace-tab-header-container, .workspace-tab-header-container-inner) {
   -webkit-app-region: no-drag;
 }
 
-body:not(.is-mobile).hover-sidedock .mod-sidedock.is-sidedock-collapsed[style*=display] {
-  display: flex !important;
+body:not(.is-mobile).show-ribbon .workspace-ribbon.mod-left::before, body:not(.is-mobile).show-ribbon .workspace-ribbon.mod-left::after {
+  display: none !important;
+  content: none !important;
+}
+body:not(.is-mobile).show-ribbon .sidebar-toggle-button.mod-left,
+body:not(.is-mobile).show-ribbon .workspace-ribbon.mod-left .sidebar-toggle-button,
+body:not(.is-mobile).show-ribbon .workspace-ribbon.mod-left > *:not(.side-dock-actions):not(.side-dock-settings),
+body:not(.is-mobile).show-ribbon .workspace-ribbon.mod-left > .clickable-icon {
+  display: none !important;
+  visibility: hidden !important;
+  width: 0 !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  pointer-events: none !important;
+}
+body:not(.is-mobile).show-ribbon .workspace-ribbon.mod-left {
   position: absolute;
-  opacity: 0;
-  z-index: 11;
-  background-color: transparent;
-  width: var(--hover-sidedock-width) !important;
-}
-body:not(.is-mobile).hover-sidedock .mod-sidedock.is-sidedock-collapsed[style*=display] .workspace-tabs {
-  visibility: visible;
-}
-body:not(.is-mobile).hover-sidedock .mod-sidedock.is-sidedock-collapsed[style*=display].mod-left-split {
-  transform: translateX(calc(-1 * (var(--hover-sidedock-width) - var(--hover-sidedock-trigger-area))));
-}
-body:not(.is-mobile).hover-sidedock .mod-sidedock.is-sidedock-collapsed[style*=display].mod-right-split {
-  transform: translateX(calc(var(--hover-sidedock-width) - var(--hover-sidedock-trigger-area)));
-}
-body:not(.is-mobile).hover-sidedock .mod-sidedock.is-sidedock-collapsed[style*=display].mod-left-split, body:not(.is-mobile).hover-sidedock .mod-sidedock.is-sidedock-collapsed[style*=display].mod-left-split::before {
-  right: auto;
+  top: 0;
   left: 0;
-}
-body:not(.is-mobile).hover-sidedock .mod-sidedock.is-sidedock-collapsed[style*=display].mod-right-split, body:not(.is-mobile).hover-sidedock .mod-sidedock.is-sidedock-collapsed[style*=display].mod-right-split::before {
-  right: 0;
-  left: auto;
-}
-body:not(.is-mobile).hover-sidedock .mod-sidedock.is-sidedock-collapsed[style*=display]::before {
-  position: absolute;
-  z-index: 0;
-  transition: var(--anim-duration-moderate);
-  inset-block: 0;
-  width: 150%;
-  content: "";
-  pointer-events: none;
-}
-body:not(.is-mobile).hover-sidedock .mod-sidedock.is-sidedock-collapsed[style*=display].mod-left-split::before {
-  background: linear-gradient(to right, var(--background-primary) 50%, transparent);
-}
-body:not(.is-mobile).hover-sidedock .mod-sidedock.is-sidedock-collapsed[style*=display].mod-right-split::before {
-  background: linear-gradient(to left, var(--background-primary) 50%, transparent);
-}
-body:not(.is-mobile).hover-sidedock .mod-sidedock.is-sidedock-collapsed[style*=display]:hover, body:not(.is-mobile).hover-sidedock.hover-ribbon .workspace-ribbon.mod-left.is-collapsed:hover + .mod-sidedock, body:not(.is-mobile).hover-sidedock:not(.hover-sidedock-active-off) > .app-container > .horizontal-main-container > .workspace > .mod-sidedock:has(> .workspace-tabs.mod-active) {
-  transition-delay: var(--hover-sidedock-delay);
-  transform: none;
-  opacity: 1;
-}
-body:not(.is-mobile).hover-sidedock .mod-sidedock.is-sidedock-collapsed[style*=display]:hover::before, body:not(.is-mobile).hover-sidedock.hover-ribbon .workspace-ribbon.mod-left.is-collapsed:hover + .mod-sidedock::before, body:not(.is-mobile).hover-sidedock:not(.hover-sidedock-active-off) > .app-container > .horizontal-main-container > .workspace > .mod-sidedock:has(> .workspace-tabs.mod-active)::before {
-  opacity: 1;
-}
-
-body:not(.is-mobile).hover-ribbon.show-ribbon .workspace-ribbon.mod-left {
-  position: absolute;
   z-index: 12;
-  height: -webkit-fill-available;
+  width: var(--ribbon-width);
+  height: 100vh;
+  margin: 0 !important;
+  padding: 0 !important;
   opacity: 0;
-  transform: translateX(calc(-1 * var(--ribbon-width) + var(--hover-sidedock-trigger-area)));
+  transform: translateX(calc(-1 * var(--ribbon-width) + var(--hover-ribbon-trigger-area)));
   background-color: transparent;
+  justify-content: center !important;
+  display: flex;
+  flex-direction: column;
+  overflow: visible;
+  transition: opacity 200ms cubic-bezier(0.16, 1, 0.3, 1) !important, transform 220ms cubic-bezier(0.16, 1, 0.3, 1) 200ms !important;
 }
-body:not(.is-mobile).hover-ribbon.show-ribbon .workspace-ribbon.mod-left:hover {
+body:not(.is-mobile).show-ribbon .workspace-ribbon.mod-left .side-dock-actions,
+body:not(.is-mobile).show-ribbon .workspace-ribbon.mod-left .side-dock-settings {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-self: center;
+  width: max-content;
+  margin: 8px auto !important;
+  box-sizing: border-box;
+  text-align: center;
+}
+body:not(.is-mobile).show-ribbon .workspace-ribbon.mod-left .side-dock-actions:has(.side-dock-ribbon-action),
+body:not(.is-mobile).show-ribbon .workspace-ribbon.mod-left .side-dock-settings:has(.side-dock-ribbon-action) {
+  background-color: rgb(from var(--background-primary) r g b/95%);
+  backdrop-filter: blur(20px) saturate(1.5);
+  -webkit-backdrop-filter: blur(20px) saturate(1.5);
+  border: 1px solid var(--background-modifier-border);
+  border-radius: var(--radius-l, 12px);
+  box-shadow: var(--shadow-s);
+  padding: 6px;
+}
+body:not(.is-mobile).show-ribbon .workspace-ribbon.mod-left:hover {
   opacity: 1;
   transform: none;
+  transition: opacity 220ms cubic-bezier(0.16, 1, 0.3, 1) !important, transform 320ms cubic-bezier(0.16, 1, 0.3, 1) !important;
+  background-color: transparent;
+  justify-content: center !important;
+  padding: 0 !important;
+  overflow: visible;
 }
-body:not(.is-mobile).hover-ribbon.show-ribbon .workspace-ribbon.mod-left:hover + .mod-sidedock {
+@media (prefers-reduced-motion: reduce) {
+  body:not(.is-mobile).show-ribbon .workspace-ribbon.mod-left,
+  body:not(.is-mobile).show-ribbon .workspace-ribbon.mod-left:hover {
+    transform: none !important;
+    transition: opacity 120ms linear !important;
+  }
+}
+body:not(.is-mobile).show-ribbon .workspace-ribbon.mod-left:hover + .mod-sidedock {
   padding-left: calc(var(--ribbon-width) - 8px);
 }
-body:not(.is-mobile).hover-ribbon.show-ribbon .workspace-ribbon.mod-left.is-collapsed:hover,
-body:not(.is-mobile).hover-ribbon.show-ribbon .workspace-ribbon.mod-left.is-collapsed:hover + .mod-sidedock {
-  transition-delay: var(--hover-sidedock-delay) !important;
+body:not(.is-mobile).show-ribbon .workspace-ribbon.mod-left.is-collapsed:hover,
+body:not(.is-mobile).show-ribbon .workspace-ribbon.mod-left.is-collapsed:hover + .mod-sidedock {
+  transition-delay: var(--hover-ribbon-delay) !important;
 }
-body:not(.is-mobile).hover-ribbon.show-ribbon.hover-sidedock .workspace-ribbon.mod-left.is-collapsed {
-  z-index: 13;
-}
-body:not(.is-mobile).hover-ribbon.show-ribbon.mod-macos:not(.is-fullscreen).is-hidden-frameless .mod-sidedock.mod-left-split .mod-top-left-space .workspace-tab-header-container {
+body:not(.is-mobile).show-ribbon.mod-macos:not(.is-fullscreen).is-hidden-frameless .mod-sidedock.mod-left-split .mod-top-left-space .workspace-tab-header-container {
   transition-timing-function: ease;
 }
-body:not(.is-mobile).hover-ribbon.show-ribbon.mod-macos:not(.is-fullscreen).is-hidden-frameless .workspace-ribbon.mod-left:not(.is-collapsed):hover ~ .mod-sidedock.mod-left-split .mod-top-left-space .workspace-tab-header-container {
+body:not(.is-mobile).show-ribbon.mod-macos:not(.is-fullscreen).is-hidden-frameless .workspace-ribbon.mod-left:not(.is-collapsed):hover ~ .mod-sidedock.mod-left-split .mod-top-left-space .workspace-tab-header-container {
   padding-left: 52px;
 }
-body:not(.is-mobile).hover-ribbon.show-ribbon.mod-macos:not(.is-fullscreen).is-hidden-frameless .workspace-ribbon.mod-left:not(.is-collapsed):not(:hover) ~ .mod-sidedock.mod-left-split .mod-top-left-space .workspace-tab-header-container,
-body:not(.is-mobile).hover-ribbon.show-ribbon.mod-macos:not(.is-fullscreen).is-hidden-frameless .workspace-ribbon.mod-left.is-collapsed ~ .mod-root > div:first-of-type .workspace-tab-header-container {
+body:not(.is-mobile).show-ribbon.mod-macos:not(.is-fullscreen).is-hidden-frameless .workspace-ribbon.mod-left:not(.is-collapsed):not(:hover) ~ .mod-sidedock.mod-left-split .mod-top-left-space .workspace-tab-header-container,
+body:not(.is-mobile).show-ribbon.mod-macos:not(.is-fullscreen).is-hidden-frameless .workspace-ribbon.mod-left.is-collapsed ~ .mod-root > div:first-of-type .workspace-tab-header-container {
   padding-left: 88px;
-}
-
-body:not(.is-mobile).ribbon-dock {
-  --dock-icon-size: 44px;
-  --dock-gap: 8px;
-  --dock-padding: 8px;
-  --dock-radius: 14px;
-}
-body:not(.is-mobile).ribbon-dock .workspace-ribbon.mod-left {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--dock-gap);
-  padding: var(--dock-padding) 4px;
-  background: transparent;
-  border: none;
-}
-body:not(.is-mobile).ribbon-dock .workspace-ribbon.mod-left .sidebar-toggle-button {
-  order: 0;
-}
-body:not(.is-mobile).ribbon-dock .workspace-ribbon.mod-left .side-dock-actions {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--dock-gap);
-}
-body:not(.is-mobile).ribbon-dock .workspace-ribbon.mod-left .side-dock-ribbon-action {
-  width: var(--dock-icon-size);
-  height: var(--dock-icon-size);
-  border-radius: var(--dock-radius);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all var(--anim-duration-moderate) var(--anim-motion-baseline);
-  background: transparent;
-  position: relative;
-}
-body:not(.is-mobile).ribbon-dock .workspace-ribbon.mod-left .side-dock-ribbon-action:hover {
-  background: var(--background-modifier-hover);
-  transform: scale(1.12);
-}
-body:not(.is-mobile).ribbon-dock .workspace-ribbon.mod-left .side-dock-ribbon-action.is-active {
-  background: color-mix(in srgb, var(--text-accent), transparent 85%);
-}
-body:not(.is-mobile).ribbon-dock .workspace-ribbon.mod-left .side-dock-ribbon-action.is-active::after {
-  content: "";
-  position: absolute;
-  bottom: 4px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  background: var(--text-accent);
-}
-body:not(.is-mobile).ribbon-dock .workspace-ribbon.mod-left .clickable-icon {
-  width: var(--dock-icon-size);
-  height: var(--dock-icon-size);
-  border-radius: var(--dock-radius);
-  transition: all var(--anim-duration-moderate) var(--anim-motion-baseline);
-}
-body:not(.is-mobile).ribbon-dock .workspace-ribbon.mod-left .clickable-icon:hover {
-  background: var(--background-modifier-hover);
-  transform: scale(1.12);
 }
 
 body.mod-windows:not(.adaptive-mode-off) .nav-files-container > div {
@@ -7902,6 +7802,1189 @@ body:is(.mod-macos, .adaptive-mode-off).theme-dark.is-mobile {
   --text-normal: #fff;
   --text-muted: #8d8d93;
   --text-faint: #47474a;
+}
+
+/*
+Bamboo China — 意境配色（东方色系扩展）
+由 style-settings 的「意境配色」下拉切换，选中即给 body 添加对应 class。
+各方案在 bamboo-china 东方色板基础上，重调宣纸/墨底色调与签名色，营造不同意境。
+选择器特意比 base 多一个 class 以提升优先级，稳定覆盖默认东方色板。
+
+配色策略：主窗口区（--background-primary，即编辑/阅读画布）保持纯白，
+意境氛围通过侧边栏与面板（--background-secondary）的淡染色，以及签名强调色
+（--color-*-rgb）来体现，做到「白纸为心、黛青为框」。
+*/
+/* ============ 竹影 · 宣纸竹青 ============ */
+body:is(.mod-macos, .adaptive-mode-off).cn-zhuyin.theme-light {
+  --color-red-rgb: 200, 70, 70;
+  --color-green-rgb: 70, 150, 104;
+  --interactive-accent: rgb(82, 160, 110);
+  --interactive-accent-hover: rgb(104, 178, 128);
+  --text-accent: rgb(82, 160, 110);
+  --text-accent-hover: rgb(104, 178, 128);
+  --text-on-accent: #ffffff;
+}
+
+body:is(.mod-macos, .adaptive-mode-off).cn-zhuyin.theme-light:not(.is-mobile) {
+  --background-primary: #ffffff;
+  --background-primary-alt: #fcfbf9;
+  --background-secondary: #fcfbf9;
+  --background-secondary-alt: #f6f5f2;
+  --interactive-normal: hsl(0 0% 0% / 5%);
+  --interactive-hover: hsl(0 0% 0% / 5%);
+  --text-normal: #2b2e29;
+  --text-muted: #676c62;
+  --text-faint: #c0c3bb;
+}
+
+body:is(.mod-macos, .adaptive-mode-off).cn-zhuyin.theme-light.is-mobile {
+  --background-primary: #ffffff;
+  --background-primary-alt: #fcfbf9;
+  --background-secondary: #fcfbf9;
+  --background-secondary-alt: #ffffff;
+  --interactive-normal: rgba(118, 118, 128, 12%);
+  --interactive-hover: rgba(120, 120, 120, 20%);
+  --text-normal: #1c1f1a;
+  --text-muted: #676c62;
+  --text-faint: #c4c6bd;
+}
+
+body:is(.mod-macos, .adaptive-mode-off).cn-zhuyin.theme-dark {
+  --color-red-rgb: 220, 90, 90;
+  --color-green-rgb: 96, 170, 120;
+  --interactive-accent: rgb(104, 180, 128);
+  --interactive-accent-hover: rgb(126, 198, 150);
+  --text-accent: rgb(104, 180, 128);
+  --text-accent-hover: rgb(126, 198, 150);
+  --text-on-accent: #ffffff;
+}
+
+body:is(.mod-macos, .adaptive-mode-off).cn-zhuyin.theme-dark:not(.is-mobile) {
+  --background-primary: #14180f;
+  --background-primary-alt: color-mix(in srgb, var(--background-primary), white 3%);
+  --background-secondary: color-mix(in srgb, var(--background-primary), white 5%);
+  --background-secondary-alt: color-mix(in srgb, var(--background-primary), white 8%);
+  --interactive-normal: hsl(0 0% 100% / 5%);
+  --interactive-hover: hsl(0 0% 100% / 5%);
+  --text-normal: #d6dccd;
+  --text-muted: #8e9585;
+  --text-faint: #4a4f44;
+}
+
+body:is(.mod-macos, .adaptive-mode-off).cn-zhuyin.theme-dark.is-mobile {
+  --background-primary: #0e120b;
+  --background-primary-alt: #1a1f15;
+  --background-secondary: #1a1f15;
+  --background-secondary-alt: #2a3022;
+  --interactive-normal: rgba(118, 118, 128, 24%);
+  --interactive-hover: rgba(120, 120, 120, 36%);
+  --text-normal: #e3e8da;
+  --text-muted: #90977f;
+  --text-faint: #3e4436;
+}
+
+/* ============ 墨夜 · 墨黑月白 ============ */
+body:is(.mod-macos, .adaptive-mode-off).cn-moye.theme-light {
+  --color-red-rgb: 198, 68, 66;
+  --color-green-rgb: 96, 140, 106;
+  --interactive-accent: rgb(58, 112, 175);
+  --interactive-accent-hover: rgb(80, 134, 197);
+  --text-accent: rgb(58, 112, 175);
+  --text-accent-hover: rgb(80, 134, 197);
+  --text-on-accent: #ffffff;
+}
+
+body:is(.mod-macos, .adaptive-mode-off).cn-moye.theme-light:not(.is-mobile) {
+  --background-primary: #ffffff;
+  --background-primary-alt: #f3f3f1;
+  --background-secondary: #f3f3f1;
+  --background-secondary-alt: #e9e9e6;
+  --interactive-normal: hsl(0 0% 0% / 5%);
+  --interactive-hover: hsl(0 0% 0% / 5%);
+  --text-normal: #1c1c1a;
+  --text-muted: #6e6e6a;
+  --text-faint: #bcbcb8;
+}
+
+body:is(.mod-macos, .adaptive-mode-off).cn-moye.theme-light.is-mobile {
+  --background-primary: #ffffff;
+  --background-primary-alt: #f3f3f1;
+  --background-secondary: #f3f3f1;
+  --background-secondary-alt: #ffffff;
+  --interactive-normal: rgba(118, 118, 128, 12%);
+  --interactive-hover: rgba(120, 120, 120, 20%);
+  --text-normal: #141412;
+  --text-muted: #6e6e6a;
+  --text-faint: #c0c0bc;
+}
+
+body:is(.mod-macos, .adaptive-mode-off).cn-moye.theme-dark {
+  --color-red-rgb: 214, 84, 82;
+  --color-green-rgb: 110, 160, 120;
+  --interactive-accent: rgb(92, 150, 214);
+  --interactive-accent-hover: rgb(114, 168, 226);
+  --text-accent: rgb(92, 150, 214);
+  --text-accent-hover: rgb(114, 168, 226);
+  --text-on-accent: #ffffff;
+}
+
+body:is(.mod-macos, .adaptive-mode-off).cn-moye.theme-dark:not(.is-mobile) {
+  --background-primary: #121212;
+  --background-primary-alt: color-mix(in srgb, var(--background-primary), white 3%);
+  --background-secondary: color-mix(in srgb, var(--background-primary), white 5%);
+  --background-secondary-alt: color-mix(in srgb, var(--background-primary), white 8%);
+  --interactive-normal: hsl(0 0% 100% / 5%);
+  --interactive-hover: hsl(0 0% 100% / 5%);
+  --text-normal: #e9e9e4;
+  --text-muted: #8c8c86;
+  --text-faint: #44443f;
+}
+
+body:is(.mod-macos, .adaptive-mode-off).cn-moye.theme-dark.is-mobile {
+  --background-primary: #0c0c0c;
+  --background-primary-alt: #1c1c1c;
+  --background-secondary: #1c1c1c;
+  --background-secondary-alt: #2c2c2c;
+  --interactive-normal: rgba(118, 118, 128, 24%);
+  --interactive-hover: rgba(120, 120, 120, 36%);
+  --text-normal: #f0f0ea;
+  --text-muted: #8e8e88;
+  --text-faint: #46463f;
+}
+
+/* ============ 胭脂 · 米色朱砂 ============ */
+body:is(.mod-macos, .adaptive-mode-off).cn-yanzhi.theme-light {
+  --color-red-rgb: 204, 72, 62;
+  --color-pink-rgb: 210, 100, 110;
+  --interactive-accent: rgb(214, 71, 76);
+  --interactive-accent-hover: rgb(228, 98, 102);
+  --text-accent: rgb(214, 71, 76);
+  --text-accent-hover: rgb(228, 98, 102);
+  --text-on-accent: #ffffff;
+}
+
+body:is(.mod-macos, .adaptive-mode-off).cn-yanzhi.theme-light:not(.is-mobile) {
+  --background-primary: #ffffff;
+  --background-primary-alt: #f7f0e8;
+  --background-secondary: #f7f0e8;
+  --background-secondary-alt: #efe6db;
+  --interactive-normal: hsl(0 0% 0% / 5%);
+  --interactive-hover: hsl(0 0% 0% / 5%);
+  --text-normal: #2e2620;
+  --text-muted: #6d6157;
+  --text-faint: #c4b8ac;
+}
+
+body:is(.mod-macos, .adaptive-mode-off).cn-yanzhi.theme-light.is-mobile {
+  --background-primary: #ffffff;
+  --background-primary-alt: #f7f0e8;
+  --background-secondary: #f7f0e8;
+  --background-secondary-alt: #ffffff;
+  --interactive-normal: rgba(118, 118, 128, 12%);
+  --interactive-hover: rgba(120, 120, 120, 20%);
+  --text-normal: #241d18;
+  --text-muted: #6d6157;
+  --text-faint: #c8bdb0;
+}
+
+body:is(.mod-macos, .adaptive-mode-off).cn-yanzhi.theme-dark {
+  --color-red-rgb: 222, 90, 78;
+  --color-pink-rgb: 226, 116, 124;
+  --interactive-accent: rgb(232, 92, 96);
+  --interactive-accent-hover: rgb(244, 118, 122);
+  --text-accent: rgb(232, 92, 96);
+  --text-accent-hover: rgb(244, 118, 122);
+  --text-on-accent: #ffffff;
+}
+
+body:is(.mod-macos, .adaptive-mode-off).cn-yanzhi.theme-dark:not(.is-mobile) {
+  --background-primary: #1a1310;
+  --background-primary-alt: color-mix(in srgb, var(--background-primary), white 3%);
+  --background-secondary: color-mix(in srgb, var(--background-primary), white 5%);
+  --background-secondary-alt: color-mix(in srgb, var(--background-primary), white 8%);
+  --interactive-normal: hsl(0 0% 100% / 5%);
+  --interactive-hover: hsl(0 0% 100% / 5%);
+  --text-normal: #ecdcd0;
+  --text-muted: #9a8678;
+  --text-faint: #46382f;
+}
+
+body:is(.mod-macos, .adaptive-mode-off).cn-yanzhi.theme-dark.is-mobile {
+  --background-primary: #140e0b;
+  --background-primary-alt: #221813;
+  --background-secondary: #221813;
+  --background-secondary-alt: #32241d;
+  --interactive-normal: rgba(118, 118, 128, 24%);
+  --interactive-hover: rgba(120, 120, 120, 36%);
+  --text-normal: #f2e3d8;
+  --text-muted: #9c887a;
+  --text-faint: #48382f;
+}
+
+/* ============ 青绿 · 千里江山 ============ */
+body:is(.mod-macos, .adaptive-mode-off).cn-qinglu.theme-light {
+  --color-green-rgb: 64, 150, 118;
+  --color-cyan-rgb: 60, 176, 170;
+  --color-blue-rgb: 56, 118, 168;
+  --interactive-accent: rgb(56, 170, 162);
+  --interactive-accent-hover: rgb(80, 188, 180);
+  --text-accent: rgb(56, 170, 162);
+  --text-accent-hover: rgb(80, 188, 180);
+  --text-on-accent: #ffffff;
+}
+
+body:is(.mod-macos, .adaptive-mode-off).cn-qinglu.theme-light:not(.is-mobile) {
+  --background-primary: #ffffff;
+  --background-primary-alt: #edf1ec;
+  --background-secondary: #edf1ec;
+  --background-secondary-alt: #e2eae3;
+  --interactive-normal: hsl(0 0% 0% / 5%);
+  --interactive-hover: hsl(0 0% 0% / 5%);
+  --text-normal: #1f2a24;
+  --text-muted: #5c6a60;
+  --text-faint: #b6c0b8;
+}
+
+body:is(.mod-macos, .adaptive-mode-off).cn-qinglu.theme-light.is-mobile {
+  --background-primary: #ffffff;
+  --background-primary-alt: #edf1ec;
+  --background-secondary: #edf1ec;
+  --background-secondary-alt: #ffffff;
+  --interactive-normal: rgba(118, 118, 128, 12%);
+  --interactive-hover: rgba(120, 120, 120, 20%);
+  --text-normal: #18241e;
+  --text-muted: #5c6a60;
+  --text-faint: #bcc4be;
+}
+
+body:is(.mod-macos, .adaptive-mode-off).cn-qinglu.theme-dark {
+  --color-green-rgb: 92, 172, 134;
+  --color-cyan-rgb: 84, 200, 194;
+  --color-blue-rgb: 88, 150, 200;
+  --interactive-accent: rgb(86, 196, 188);
+  --interactive-accent-hover: rgb(108, 212, 204);
+  --text-accent: rgb(86, 196, 188);
+  --text-accent-hover: rgb(108, 212, 204);
+  --text-on-accent: #ffffff;
+}
+
+body:is(.mod-macos, .adaptive-mode-off).cn-qinglu.theme-dark:not(.is-mobile) {
+  --background-primary: #0e1816;
+  --background-primary-alt: color-mix(in srgb, var(--background-primary), white 3%);
+  --background-secondary: color-mix(in srgb, var(--background-primary), white 5%);
+  --background-secondary-alt: color-mix(in srgb, var(--background-primary), white 8%);
+  --interactive-normal: hsl(0 0% 100% / 5%);
+  --interactive-hover: hsl(0 0% 100% / 5%);
+  --text-normal: #d2e0da;
+  --text-muted: #88a097;
+  --text-faint: #3c4a44;
+}
+
+body:is(.mod-macos, .adaptive-mode-off).cn-qinglu.theme-dark.is-mobile {
+  --background-primary: #09110f;
+  --background-primary-alt: #16221f;
+  --background-secondary: #16221f;
+  --background-secondary-alt: #253531;
+  --interactive-normal: rgba(118, 118, 128, 24%);
+  --interactive-hover: rgba(120, 120, 120, 36%);
+  --text-normal: #dce8e3;
+  --text-muted: #8aa398;
+  --text-faint: #3e4c47;
+}
+
+/* ============ 鎏金 · 秋棠金辉（取自插件 --gold / --gold-rgb） ============ */
+body:is(.mod-macos, .adaptive-mode-off).cn-liujin.theme-light {
+  --color-orange-rgb: 214, 150, 60;
+  --color-yellow-rgb: 205, 168, 72;
+  --interactive-accent: rgb(184, 134, 45);
+  --interactive-accent-hover: rgb(206, 156, 66);
+  --text-accent: rgb(184, 134, 45);
+  --text-accent-hover: rgb(206, 156, 66);
+  --text-on-accent: #ffffff;
+}
+
+body:is(.mod-macos, .adaptive-mode-off).cn-liujin.theme-light:not(.is-mobile) {
+  --background-primary: #ffffff;
+  --background-primary-alt: #f7f2e6;
+  --background-secondary: #f7f2e6;
+  --background-secondary-alt: #efe7d6;
+  --interactive-normal: hsl(0 0% 0% / 5%);
+  --interactive-hover: hsl(0 0% 0% / 5%);
+  --text-normal: #2e281d;
+  --text-muted: #6d6151;
+  --text-faint: #c4bba8;
+}
+
+body:is(.mod-macos, .adaptive-mode-off).cn-liujin.theme-light.is-mobile {
+  --background-primary: #ffffff;
+  --background-primary-alt: #f7f2e6;
+  --background-secondary: #f7f2e6;
+  --background-secondary-alt: #ffffff;
+  --interactive-normal: rgba(118, 118, 128, 12%);
+  --interactive-hover: rgba(120, 120, 120, 20%);
+  --text-normal: #241e16;
+  --text-muted: #6d6151;
+  --text-faint: #c8bfac;
+}
+
+body:is(.mod-macos, .adaptive-mode-off).cn-liujin.theme-dark {
+  --color-orange-rgb: 236, 168, 80;
+  --color-yellow-rgb: 226, 188, 96;
+  --interactive-accent: rgb(190, 144, 52);
+  --interactive-accent-hover: rgb(210, 164, 74);
+  --text-accent: rgb(190, 144, 52);
+  --text-accent-hover: rgb(210, 164, 74);
+  --text-on-accent: #ffffff;
+}
+
+body:is(.mod-macos, .adaptive-mode-off).cn-liujin.theme-dark:not(.is-mobile) {
+  --background-primary: #16120a;
+  --background-primary-alt: color-mix(in srgb, var(--background-primary), white 3%);
+  --background-secondary: color-mix(in srgb, var(--background-primary), white 5%);
+  --background-secondary-alt: color-mix(in srgb, var(--background-primary), white 8%);
+  --interactive-normal: hsl(0 0% 100% / 5%);
+  --interactive-hover: hsl(0 0% 100% / 5%);
+  --text-normal: #ecdfca;
+  --text-muted: #9a8a70;
+  --text-faint: #4a3f2f;
+}
+
+body:is(.mod-macos, .adaptive-mode-off).cn-liujin.theme-dark.is-mobile {
+  --background-primary: #100c06;
+  --background-primary-alt: #1d180e;
+  --background-secondary: #1d180e;
+  --background-secondary-alt: #2c2414;
+  --interactive-normal: rgba(118, 118, 128, 24%);
+  --interactive-hover: rgba(120, 120, 120, 36%);
+  --text-normal: #f2e6d2;
+  --text-muted: #9c8c72;
+  --text-faint: #4c4030;
+}
+
+/* ============ 天青 · 雨过天青（取自插件 --sky-azure / --sky-azure-rgb） ============ */
+body:is(.mod-macos, .adaptive-mode-off).cn-tianqing.theme-light {
+  --color-cyan-rgb: 64, 160, 196;
+  --color-blue-rgb: 70, 120, 180;
+  --interactive-accent: rgb(64, 142, 190);
+  --interactive-accent-hover: rgb(86, 162, 208);
+  --text-accent: rgb(64, 142, 190);
+  --text-accent-hover: rgb(86, 162, 208);
+  --text-on-accent: #ffffff;
+}
+
+body:is(.mod-macos, .adaptive-mode-off).cn-tianqing.theme-light:not(.is-mobile) {
+  --background-primary: #ffffff;
+  --background-primary-alt: #eef2f6;
+  --background-secondary: #eef2f6;
+  --background-secondary-alt: #e3eaf1;
+  --interactive-normal: hsl(0 0% 0% / 5%);
+  --interactive-hover: hsl(0 0% 0% / 5%);
+  --text-normal: #1f2530;
+  --text-muted: #5a6675;
+  --text-faint: #b6c0cb;
+}
+
+body:is(.mod-macos, .adaptive-mode-off).cn-tianqing.theme-light.is-mobile {
+  --background-primary: #ffffff;
+  --background-primary-alt: #eef2f6;
+  --background-secondary: #eef2f6;
+  --background-secondary-alt: #ffffff;
+  --interactive-normal: rgba(118, 118, 128, 12%);
+  --interactive-hover: rgba(120, 120, 120, 20%);
+  --text-normal: #181e28;
+  --text-muted: #5a6675;
+  --text-faint: #bcc4cd;
+}
+
+body:is(.mod-macos, .adaptive-mode-off).cn-tianqing.theme-dark {
+  --color-cyan-rgb: 96, 196, 228;
+  --color-blue-rgb: 100, 150, 206;
+  --interactive-accent: rgb(104, 172, 222);
+  --interactive-accent-hover: rgb(126, 188, 234);
+  --text-accent: rgb(104, 172, 222);
+  --text-accent-hover: rgb(126, 188, 234);
+  --text-on-accent: #ffffff;
+}
+
+body:is(.mod-macos, .adaptive-mode-off).cn-tianqing.theme-dark:not(.is-mobile) {
+  --background-primary: #0e151c;
+  --background-primary-alt: color-mix(in srgb, var(--background-primary), white 3%);
+  --background-secondary: color-mix(in srgb, var(--background-primary), white 5%);
+  --background-secondary-alt: color-mix(in srgb, var(--background-primary), white 8%);
+  --interactive-normal: hsl(0 0% 100% / 5%);
+  --interactive-hover: hsl(0 0% 100% / 5%);
+  --text-normal: #d2dde6;
+  --text-muted: #88a0af;
+  --text-faint: #3c4854;
+}
+
+body:is(.mod-macos, .adaptive-mode-off).cn-tianqing.theme-dark.is-mobile {
+  --background-primary: #091019;
+  --background-primary-alt: #16212c;
+  --background-secondary: #16212c;
+  --background-secondary-alt: #25363f;
+  --interactive-normal: rgba(118, 118, 128, 24%);
+  --interactive-hover: rgba(120, 120, 120, 36%);
+  --text-normal: #dce6ee;
+  --text-muted: #8aa2b0;
+  --text-faint: #3e4a54;
+}
+
+/* ============ 黛紫 · 紫烟幽兰（取自插件 --purple / --purple-rgb） ============ */
+body:is(.mod-macos, .adaptive-mode-off).cn-daizi.theme-light {
+  --color-purple-rgb: 150, 98, 176;
+  --interactive-accent: rgb(142, 96, 168);
+  --interactive-accent-hover: rgb(162, 118, 186);
+  --text-accent: rgb(142, 96, 168);
+  --text-accent-hover: rgb(162, 118, 186);
+  --text-on-accent: #ffffff;
+}
+
+body:is(.mod-macos, .adaptive-mode-off).cn-daizi.theme-light:not(.is-mobile) {
+  --background-primary: #ffffff;
+  --background-primary-alt: #f3eef6;
+  --background-secondary: #f3eef6;
+  --background-secondary-alt: #eae2f0;
+  --interactive-normal: hsl(0 0% 0% / 5%);
+  --interactive-hover: hsl(0 0% 0% / 5%);
+  --text-normal: #241e28;
+  --text-muted: #6e6478;
+  --text-faint: #c2b8c8;
+}
+
+body:is(.mod-macos, .adaptive-mode-off).cn-daizi.theme-light.is-mobile {
+  --background-primary: #ffffff;
+  --background-primary-alt: #f3eef6;
+  --background-secondary: #f3eef6;
+  --background-secondary-alt: #ffffff;
+  --interactive-normal: rgba(118, 118, 128, 12%);
+  --interactive-hover: rgba(120, 120, 120, 20%);
+  --text-normal: #1c1720;
+  --text-muted: #6e6478;
+  --text-faint: #c6bccb;
+}
+
+body:is(.mod-macos, .adaptive-mode-off).cn-daizi.theme-dark {
+  --color-purple-rgb: 168, 120, 200;
+  --interactive-accent: rgb(168, 120, 200);
+  --interactive-accent-hover: rgb(186, 142, 214);
+  --text-accent: rgb(168, 120, 200);
+  --text-accent-hover: rgb(186, 142, 214);
+  --text-on-accent: #ffffff;
+}
+
+body:is(.mod-macos, .adaptive-mode-off).cn-daizi.theme-dark:not(.is-mobile) {
+  --background-primary: #14101a;
+  --background-primary-alt: color-mix(in srgb, var(--background-primary), white 3%);
+  --background-secondary: color-mix(in srgb, var(--background-primary), white 5%);
+  --background-secondary-alt: color-mix(in srgb, var(--background-primary), white 8%);
+  --interactive-normal: hsl(0 0% 100% / 5%);
+  --interactive-hover: hsl(0 0% 100% / 5%);
+  --text-normal: #e3dce8;
+  --text-muted: #9a8eaa;
+  --text-faint: #463c52;
+}
+
+body:is(.mod-macos, .adaptive-mode-off).cn-daizi.theme-dark.is-mobile {
+  --background-primary: #0e0a13;
+  --background-primary-alt: #1c1624;
+  --background-secondary: #1c1624;
+  --background-secondary-alt: #2c2436;
+  --interactive-normal: rgba(118, 118, 128, 24%);
+  --interactive-hover: rgba(120, 120, 120, 36%);
+  --text-normal: #ece4f0;
+  --text-muted: #9c90ac;
+  --text-faint: #483c54;
+}
+
+/* ============ 海棠 · 粉颊红晕（取自插件 --pink / --health-pink） ============ */
+body:is(.mod-macos, .adaptive-mode-off).cn-haitang.theme-light {
+  --color-red-rgb: 214, 84, 96;
+  --color-pink-rgb: 214, 110, 142;
+  --interactive-accent: rgb(206, 102, 134);
+  --interactive-accent-hover: rgb(222, 124, 152);
+  --text-accent: rgb(206, 102, 134);
+  --text-accent-hover: rgb(222, 124, 152);
+  --text-on-accent: #ffffff;
+}
+
+body:is(.mod-macos, .adaptive-mode-off).cn-haitang.theme-light:not(.is-mobile) {
+  --background-primary: #ffffff;
+  --background-primary-alt: #f8eef1;
+  --background-secondary: #f8eef1;
+  --background-secondary-alt: #f0e1e6;
+  --interactive-normal: hsl(0 0% 0% / 5%);
+  --interactive-hover: hsl(0 0% 0% / 5%);
+  --text-normal: #2e2228;
+  --text-muted: #6d5f65;
+  --text-faint: #c4b6bc;
+}
+
+body:is(.mod-macos, .adaptive-mode-off).cn-haitang.theme-light.is-mobile {
+  --background-primary: #ffffff;
+  --background-primary-alt: #f8eef1;
+  --background-secondary: #f8eef1;
+  --background-secondary-alt: #ffffff;
+  --interactive-normal: rgba(118, 118, 128, 12%);
+  --interactive-hover: rgba(120, 120, 120, 20%);
+  --text-normal: #261a20;
+  --text-muted: #6d5f65;
+  --text-faint: #c8bcc2;
+}
+
+body:is(.mod-macos, .adaptive-mode-off).cn-haitang.theme-dark {
+  --color-red-rgb: 222, 96, 108;
+  --color-pink-rgb: 226, 124, 154;
+  --interactive-accent: rgb(226, 118, 150);
+  --interactive-accent-hover: rgb(238, 140, 168);
+  --text-accent: rgb(226, 118, 150);
+  --text-accent-hover: rgb(238, 140, 168);
+  --text-on-accent: #ffffff;
+}
+
+body:is(.mod-macos, .adaptive-mode-off).cn-haitang.theme-dark:not(.is-mobile) {
+  --background-primary: #1a1216;
+  --background-primary-alt: color-mix(in srgb, var(--background-primary), white 3%);
+  --background-secondary: color-mix(in srgb, var(--background-primary), white 5%);
+  --background-secondary-alt: color-mix(in srgb, var(--background-primary), white 8%);
+  --interactive-normal: hsl(0 0% 100% / 5%);
+  --interactive-hover: hsl(0 0% 100% / 5%);
+  --text-normal: #ecd8de;
+  --text-muted: #9a868e;
+  --text-faint: #4a3a42;
+}
+
+body:is(.mod-macos, .adaptive-mode-off).cn-haitang.theme-dark.is-mobile {
+  --background-primary: #140d11;
+  --background-primary-alt: #221820;
+  --background-secondary: #221820;
+  --background-secondary-alt: #32242c;
+  --interactive-normal: rgba(118, 118, 128, 24%);
+  --interactive-hover: rgba(120, 120, 120, 36%);
+  --text-normal: #f2e0e6;
+  --text-muted: #9c8890;
+  --text-faint: #4c3c44;
+}
+
+/* ============ 薄荷 · 清凉薄荷（取自插件 --mint-rgb / --teal-rgb） ============ */
+body:is(.mod-macos, .adaptive-mode-off).cn-bohe.theme-light {
+  --color-green-rgb: 56, 180, 150;
+  --color-cyan-rgb: 72, 196, 196;
+  --interactive-accent: rgb(56, 188, 156);
+  --interactive-accent-hover: rgb(82, 206, 176);
+  --text-accent: rgb(56, 188, 156);
+  --text-accent-hover: rgb(82, 206, 176);
+  --text-on-accent: #ffffff;
+}
+
+body:is(.mod-macos, .adaptive-mode-off).cn-bohe.theme-light:not(.is-mobile) {
+  --background-primary: #ffffff;
+  --background-primary-alt: #ecf4f1;
+  --background-secondary: #ecf4f1;
+  --background-secondary-alt: #e1ece9;
+  --interactive-normal: hsl(0 0% 0% / 5%);
+  --interactive-hover: hsl(0 0% 0% / 5%);
+  --text-normal: #1d2a25;
+  --text-muted: #5c716a;
+  --text-faint: #b3c4be;
+}
+
+body:is(.mod-macos, .adaptive-mode-off).cn-bohe.theme-light.is-mobile {
+  --background-primary: #ffffff;
+  --background-primary-alt: #ecf4f1;
+  --background-secondary: #ecf4f1;
+  --background-secondary-alt: #ffffff;
+  --interactive-normal: rgba(118, 118, 128, 12%);
+  --interactive-hover: rgba(120, 120, 120, 20%);
+  --text-normal: #16201c;
+  --text-muted: #5c716a;
+  --text-faint: #bcc6c2;
+}
+
+body:is(.mod-macos, .adaptive-mode-off).cn-bohe.theme-dark {
+  --color-green-rgb: 88, 200, 170;
+  --color-cyan-rgb: 104, 212, 208;
+  --interactive-accent: rgb(96, 206, 176);
+  --interactive-accent-hover: rgb(120, 220, 194);
+  --text-accent: rgb(96, 206, 176);
+  --text-accent-hover: rgb(120, 220, 194);
+  --text-on-accent: #ffffff;
+}
+
+body:is(.mod-macos, .adaptive-mode-off).cn-bohe.theme-dark:not(.is-mobile) {
+  --background-primary: #0c1a16;
+  --background-primary-alt: color-mix(in srgb, var(--background-primary), white 3%);
+  --background-secondary: color-mix(in srgb, var(--background-primary), white 5%);
+  --background-secondary-alt: color-mix(in srgb, var(--background-primary), white 8%);
+  --interactive-normal: hsl(0 0% 100% / 5%);
+  --interactive-hover: hsl(0 0% 100% / 5%);
+  --text-normal: #cfded9;
+  --text-muted: #82a199;
+  --text-faint: #3a4b45;
+}
+
+body:is(.mod-macos, .adaptive-mode-off).cn-bohe.theme-dark.is-mobile {
+  --background-primary: #081310;
+  --background-primary-alt: #14231e;
+  --background-secondary: #14231e;
+  --background-secondary-alt: #20332c;
+  --interactive-normal: rgba(118, 118, 128, 24%);
+  --interactive-hover: rgba(120, 120, 120, 36%);
+  --text-normal: #dbe8e2;
+  --text-muted: #84a39b;
+  --text-faint: #34443e;
+}
+
+/* ============ 琥珀 · 蜜珀流光（取自插件 --amber-rgb） ============ */
+body:is(.mod-macos, .adaptive-mode-off).cn-hupo.theme-light {
+  --color-orange-rgb: 224, 152, 56;
+  --color-yellow-rgb: 222, 184, 96;
+  --interactive-accent: rgb(212, 148, 56);
+  --interactive-accent-hover: rgb(230, 168, 80);
+  --text-accent: rgb(212, 148, 56);
+  --text-accent-hover: rgb(230, 168, 80);
+  --text-on-accent: #ffffff;
+}
+
+body:is(.mod-macos, .adaptive-mode-off).cn-hupo.theme-light:not(.is-mobile) {
+  --background-primary: #ffffff;
+  --background-primary-alt: #f9f2e7;
+  --background-secondary: #f9f2e7;
+  --background-secondary-alt: #f1e8d8;
+  --interactive-normal: hsl(0 0% 0% / 5%);
+  --interactive-hover: hsl(0 0% 0% / 5%);
+  --text-normal: #2e261a;
+  --text-muted: #6f6048;
+  --text-faint: #c6b9a4;
+}
+
+body:is(.mod-macos, .adaptive-mode-off).cn-hupo.theme-light.is-mobile {
+  --background-primary: #ffffff;
+  --background-primary-alt: #f9f2e7;
+  --background-secondary: #f9f2e7;
+  --background-secondary-alt: #ffffff;
+  --interactive-normal: rgba(118, 118, 128, 12%);
+  --interactive-hover: rgba(120, 120, 120, 20%);
+  --text-normal: #241d14;
+  --text-muted: #6f6048;
+  --text-faint: #cabda8;
+}
+
+body:is(.mod-macos, .adaptive-mode-off).cn-hupo.theme-dark {
+  --color-orange-rgb: 236, 168, 80;
+  --color-yellow-rgb: 228, 192, 108;
+  --interactive-accent: rgb(220, 158, 64);
+  --interactive-accent-hover: rgb(234, 178, 88);
+  --text-accent: rgb(220, 158, 64);
+  --text-accent-hover: rgb(234, 178, 88);
+  --text-on-accent: #ffffff;
+}
+
+body:is(.mod-macos, .adaptive-mode-off).cn-hupo.theme-dark:not(.is-mobile) {
+  --background-primary: #1a140c;
+  --background-primary-alt: color-mix(in srgb, var(--background-primary), white 3%);
+  --background-secondary: color-mix(in srgb, var(--background-primary), white 5%);
+  --background-secondary-alt: color-mix(in srgb, var(--background-primary), white 8%);
+  --interactive-normal: hsl(0 0% 100% / 5%);
+  --interactive-hover: hsl(0 0% 100% / 5%);
+  --text-normal: #ecdcc6;
+  --text-muted: #9a8766;
+  --text-faint: #483a26;
+}
+
+body:is(.mod-macos, .adaptive-mode-off).cn-hupo.theme-dark.is-mobile {
+  --background-primary: #140e08;
+  --background-primary-alt: #241a11;
+  --background-secondary: #241a11;
+  --background-secondary-alt: #362717;
+  --interactive-normal: rgba(118, 118, 128, 24%);
+  --interactive-hover: rgba(120, 120, 120, 36%);
+  --text-normal: #f2e2cc;
+  --text-muted: #9c8a68;
+  --text-faint: #4a3a26;
+}
+
+/* ============ 靛蓝 · 群青深蓝（取自插件 --info-blue-rgb） ============ */
+body:is(.mod-macos, .adaptive-mode-off).cn-dianlan.theme-light {
+  --color-blue-rgb: 56, 110, 210;
+  --color-cyan-rgb: 64, 160, 200;
+  --interactive-accent: rgb(50, 104, 214);
+  --interactive-accent-hover: rgb(76, 128, 230);
+  --text-accent: rgb(50, 104, 214);
+  --text-accent-hover: rgb(76, 128, 230);
+  --text-on-accent: #ffffff;
+}
+
+body:is(.mod-macos, .adaptive-mode-off).cn-dianlan.theme-light:not(.is-mobile) {
+  --background-primary: #ffffff;
+  --background-primary-alt: #eef1f8;
+  --background-secondary: #eef1f8;
+  --background-secondary-alt: #e4e9f2;
+  --interactive-normal: hsl(0 0% 0% / 5%);
+  --interactive-hover: hsl(0 0% 0% / 5%);
+  --text-normal: #1c2230;
+  --text-muted: #5b6678;
+  --text-faint: #b4becb;
+}
+
+body:is(.mod-macos, .adaptive-mode-off).cn-dianlan.theme-light.is-mobile {
+  --background-primary: #ffffff;
+  --background-primary-alt: #eef1f8;
+  --background-secondary: #eef1f8;
+  --background-secondary-alt: #ffffff;
+  --interactive-normal: rgba(118, 118, 128, 12%);
+  --interactive-hover: rgba(120, 120, 120, 20%);
+  --text-normal: #161c28;
+  --text-muted: #5b6678;
+  --text-faint: #bcc4cd;
+}
+
+body:is(.mod-macos, .adaptive-mode-off).cn-dianlan.theme-dark {
+  --color-blue-rgb: 92, 142, 226;
+  --color-cyan-rgb: 96, 196, 228;
+  --interactive-accent: rgb(96, 140, 226);
+  --interactive-accent-hover: rgb(120, 162, 238);
+  --text-accent: rgb(96, 140, 226);
+  --text-accent-hover: rgb(120, 162, 238);
+  --text-on-accent: #ffffff;
+}
+
+body:is(.mod-macos, .adaptive-mode-off).cn-dianlan.theme-dark:not(.is-mobile) {
+  --background-primary: #0d1320;
+  --background-primary-alt: color-mix(in srgb, var(--background-primary), white 3%);
+  --background-secondary: color-mix(in srgb, var(--background-primary), white 5%);
+  --background-secondary-alt: color-mix(in srgb, var(--background-primary), white 8%);
+  --interactive-normal: hsl(0 0% 100% / 5%);
+  --interactive-hover: hsl(0 0% 100% / 5%);
+  --text-normal: #d2d9e6;
+  --text-muted: #8492aa;
+  --text-faint: #3a4154;
+}
+
+body:is(.mod-macos, .adaptive-mode-off).cn-dianlan.theme-dark.is-mobile {
+  --background-primary: #080d18;
+  --background-primary-alt: #141c2c;
+  --background-secondary: #141c2c;
+  --background-secondary-alt: #243044;
+  --interactive-normal: rgba(118, 118, 128, 24%);
+  --interactive-hover: rgba(120, 120, 120, 36%);
+  --text-normal: #dce4f0;
+  --text-muted: #8694ac;
+  --text-faint: #3c4354;
+}
+
+/* ============ 丹橘 · 暖橘灯影（取自插件 --health-orange / --warning-orange-rgb） ============ */
+body:is(.mod-macos, .adaptive-mode-off).cn-danju.theme-light {
+  --color-orange-rgb: 240, 140, 50;
+  --color-red-rgb: 220, 88, 60;
+  --interactive-accent: rgb(238, 138, 52);
+  --interactive-accent-hover: rgb(246, 158, 76);
+  --text-accent: rgb(238, 138, 52);
+  --text-accent-hover: rgb(246, 158, 76);
+  --text-on-accent: #ffffff;
+}
+
+body:is(.mod-macos, .adaptive-mode-off).cn-danju.theme-light:not(.is-mobile) {
+  --background-primary: #ffffff;
+  --background-primary-alt: #fbf1e7;
+  --background-secondary: #fbf1e7;
+  --background-secondary-alt: #f4e6d8;
+  --interactive-normal: hsl(0 0% 0% / 5%);
+  --interactive-hover: hsl(0 0% 0% / 5%);
+  --text-normal: #2e2418;
+  --text-muted: #6f5f4c;
+  --text-faint: #c6b8a6;
+}
+
+body:is(.mod-macos, .adaptive-mode-off).cn-danju.theme-light.is-mobile {
+  --background-primary: #ffffff;
+  --background-primary-alt: #fbf1e7;
+  --background-secondary: #fbf1e7;
+  --background-secondary-alt: #ffffff;
+  --interactive-normal: rgba(118, 118, 128, 12%);
+  --interactive-hover: rgba(120, 120, 120, 20%);
+  --text-normal: #261c10;
+  --text-muted: #6f5f4c;
+  --text-faint: #cabbaa;
+}
+
+body:is(.mod-macos, .adaptive-mode-off).cn-danju.theme-dark {
+  --color-orange-rgb: 248, 156, 74;
+  --color-red-rgb: 226, 96, 70;
+  --interactive-accent: rgb(242, 146, 60);
+  --interactive-accent-hover: rgb(250, 166, 84);
+  --text-accent: rgb(242, 146, 60);
+  --text-accent-hover: rgb(250, 166, 84);
+  --text-on-accent: #ffffff;
+}
+
+body:is(.mod-macos, .adaptive-mode-off).cn-danju.theme-dark:not(.is-mobile) {
+  --background-primary: #1c130c;
+  --background-primary-alt: color-mix(in srgb, var(--background-primary), white 3%);
+  --background-secondary: color-mix(in srgb, var(--background-primary), white 5%);
+  --background-secondary-alt: color-mix(in srgb, var(--background-primary), white 8%);
+  --interactive-normal: hsl(0 0% 100% / 5%);
+  --interactive-hover: hsl(0 0% 100% / 5%);
+  --text-normal: #ecd8c8;
+  --text-muted: #9a886c;
+  --text-faint: #4a3826;
+}
+
+body:is(.mod-macos, .adaptive-mode-off).cn-danju.theme-dark.is-mobile {
+  --background-primary: #160e08;
+  --background-primary-alt: #251a11;
+  --background-secondary: #251a11;
+  --background-secondary-alt: #362717;
+  --interactive-normal: rgba(118, 118, 128, 24%);
+  --interactive-hover: rgba(120, 120, 120, 36%);
+  --text-normal: #f3e2d0;
+  --text-muted: #9c8a6e;
+  --text-faint: #4c3a26;
+}
+
+/* ============ 鹅黄 · 缃色初阳（取自插件 --warning-yellow / --gold-bright） ============ */
+body:is(.mod-macos, .adaptive-mode-off).cn-ehuang.theme-light {
+  --color-yellow-rgb: 220, 180, 50;
+  --color-orange-rgb: 226, 160, 60;
+  --interactive-accent: rgb(206, 166, 46);
+  --interactive-accent-hover: rgb(224, 186, 70);
+  --text-accent: rgb(206, 166, 46);
+  --text-accent-hover: rgb(224, 186, 70);
+  --text-on-accent: #ffffff;
+}
+
+body:is(.mod-macos, .adaptive-mode-off).cn-ehuang.theme-light:not(.is-mobile) {
+  --background-primary: #ffffff;
+  --background-primary-alt: #f8f4e3;
+  --background-secondary: #f8f4e3;
+  --background-secondary-alt: #f1ebd6;
+  --interactive-normal: hsl(0 0% 0% / 5%);
+  --interactive-hover: hsl(0 0% 0% / 5%);
+  --text-normal: #2e2a1c;
+  --text-muted: #6f6349;
+  --text-faint: #c6bfa4;
+}
+
+body:is(.mod-macos, .adaptive-mode-off).cn-ehuang.theme-light.is-mobile {
+  --background-primary: #ffffff;
+  --background-primary-alt: #f8f4e3;
+  --background-secondary: #f8f4e3;
+  --background-secondary-alt: #ffffff;
+  --interactive-normal: rgba(118, 118, 128, 12%);
+  --interactive-hover: rgba(120, 120, 120, 20%);
+  --text-normal: #241f12;
+  --text-muted: #6f6349;
+  --text-faint: #c9c2a8;
+}
+
+body:is(.mod-macos, .adaptive-mode-off).cn-ehuang.theme-dark {
+  --color-yellow-rgb: 232, 196, 72;
+  --color-orange-rgb: 236, 174, 82;
+  --interactive-accent: rgb(220, 180, 60);
+  --interactive-accent-hover: rgb(234, 198, 84);
+  --text-accent: rgb(220, 180, 60);
+  --text-accent-hover: rgb(234, 198, 84);
+  --text-on-accent: #1a160c;
+}
+
+body:is(.mod-macos, .adaptive-mode-off).cn-ehuang.theme-dark:not(.is-mobile) {
+  --background-primary: #171307;
+  --background-primary-alt: color-mix(in srgb, var(--background-primary), white 3%);
+  --background-secondary: color-mix(in srgb, var(--background-primary), white 5%);
+  --background-secondary-alt: color-mix(in srgb, var(--background-primary), white 8%);
+  --interactive-normal: hsl(0 0% 100% / 5%);
+  --interactive-hover: hsl(0 0% 100% / 5%);
+  --text-normal: #ecdfc4;
+  --text-muted: #9a8e66;
+  --text-faint: #4a4226;
+}
+
+body:is(.mod-macos, .adaptive-mode-off).cn-ehuang.theme-dark.is-mobile {
+  --background-primary: #120e05;
+  --background-primary-alt: #221b0d;
+  --background-secondary: #221b0d;
+  --background-secondary-alt: #342916;
+  --interactive-normal: rgba(118, 118, 128, 24%);
+  --interactive-hover: rgba(120, 120, 120, 36%);
+  --text-normal: #f2e5c8;
+  --text-muted: #9c9068;
+  --text-faint: #4c4426;
+}
+
+/* ============ 松花 · 橄榄新绿（取自插件 --leaf-green） ============ */
+body:is(.mod-macos, .adaptive-mode-off).cn-songhua.theme-light {
+  --color-green-rgb: 110, 150, 60;
+  --color-yellow-rgb: 180, 190, 90;
+  --interactive-accent: rgb(110, 148, 56);
+  --interactive-accent-hover: rgb(132, 168, 76);
+  --text-accent: rgb(110, 148, 56);
+  --text-accent-hover: rgb(132, 168, 76);
+  --text-on-accent: #ffffff;
+}
+
+body:is(.mod-macos, .adaptive-mode-off).cn-songhua.theme-light:not(.is-mobile) {
+  --background-primary: #ffffff;
+  --background-primary-alt: #f1f3e8;
+  --background-secondary: #f1f3e8;
+  --background-secondary-alt: #e8ecdb;
+  --interactive-normal: hsl(0 0% 0% / 5%);
+  --interactive-hover: hsl(0 0% 0% / 5%);
+  --text-normal: #23271c;
+  --text-muted: #5f644b;
+  --text-faint: #b8c0ac;
+}
+
+body:is(.mod-macos, .adaptive-mode-off).cn-songhua.theme-light.is-mobile {
+  --background-primary: #ffffff;
+  --background-primary-alt: #f1f3e8;
+  --background-secondary: #f1f3e8;
+  --background-secondary-alt: #ffffff;
+  --interactive-normal: rgba(118, 118, 128, 12%);
+  --interactive-hover: rgba(120, 120, 120, 20%);
+  --text-normal: #1a1e12;
+  --text-muted: #5f644b;
+  --text-faint: #bcc4b0;
+}
+
+body:is(.mod-macos, .adaptive-mode-off).cn-songhua.theme-dark {
+  --color-green-rgb: 132, 170, 78;
+  --color-yellow-rgb: 196, 204, 110;
+  --interactive-accent: rgb(134, 172, 78);
+  --interactive-accent-hover: rgb(154, 190, 96);
+  --text-accent: rgb(134, 172, 78);
+  --text-accent-hover: rgb(154, 190, 96);
+  --text-on-accent: #ffffff;
+}
+
+body:is(.mod-macos, .adaptive-mode-off).cn-songhua.theme-dark:not(.is-mobile) {
+  --background-primary: #14180c;
+  --background-primary-alt: color-mix(in srgb, var(--background-primary), white 3%);
+  --background-secondary: color-mix(in srgb, var(--background-primary), white 5%);
+  --background-secondary-alt: color-mix(in srgb, var(--background-primary), white 8%);
+  --interactive-normal: hsl(0 0% 100% / 5%);
+  --interactive-hover: hsl(0 0% 100% / 5%);
+  --text-normal: #d8dcce;
+  --text-muted: #909879;
+  --text-faint: #444a36;
+}
+
+body:is(.mod-macos, .adaptive-mode-off).cn-songhua.theme-dark.is-mobile {
+  --background-primary: #0e1208;
+  --background-primary-alt: #1a1f12;
+  --background-secondary: #1a1f12;
+  --background-secondary-alt: #2a301d;
+  --interactive-normal: rgba(118, 118, 128, 24%);
+  --interactive-hover: rgba(120, 120, 120, 36%);
+  --text-normal: #e0e4d6;
+  --text-muted: #92987b;
+  --text-faint: #3c4230;
+}
+
+/* ============ 赭石 · 茶烟暮霭（取自插件 --amber-brown-rgb） ============ */
+body:is(.mod-macos, .adaptive-mode-off).cn-zheshi.theme-light {
+  --color-orange-rgb: 200, 140, 90;
+  --color-red-rgb: 190, 110, 80;
+  --interactive-accent: rgb(176, 128, 92);
+  --interactive-accent-hover: rgb(194, 148, 112);
+  --text-accent: rgb(176, 128, 92);
+  --text-accent-hover: rgb(194, 148, 112);
+  --text-on-accent: #ffffff;
+}
+
+body:is(.mod-macos, .adaptive-mode-off).cn-zheshi.theme-light:not(.is-mobile) {
+  --background-primary: #ffffff;
+  --background-primary-alt: #f5efe7;
+  --background-secondary: #f5efe7;
+  --background-secondary-alt: #ece3d8;
+  --interactive-normal: hsl(0 0% 0% / 5%);
+  --interactive-hover: hsl(0 0% 0% / 5%);
+  --text-normal: #2e261c;
+  --text-muted: #6f6048;
+  --text-faint: #c6b9a8;
+}
+
+body:is(.mod-macos, .adaptive-mode-off).cn-zheshi.theme-light.is-mobile {
+  --background-primary: #ffffff;
+  --background-primary-alt: #f5efe7;
+  --background-secondary: #f5efe7;
+  --background-secondary-alt: #ffffff;
+  --interactive-normal: rgba(118, 118, 128, 12%);
+  --interactive-hover: rgba(120, 120, 120, 20%);
+  --text-normal: #241c12;
+  --text-muted: #6f6048;
+  --text-faint: #cabdaa;
+}
+
+body:is(.mod-macos, .adaptive-mode-off).cn-zheshi.theme-dark {
+  --color-orange-rgb: 212, 154, 108;
+  --color-red-rgb: 200, 118, 92;
+  --interactive-accent: rgb(190, 142, 104);
+  --interactive-accent-hover: rgb(206, 160, 122);
+  --text-accent: rgb(190, 142, 104);
+  --text-accent-hover: rgb(206, 160, 122);
+  --text-on-accent: #ffffff;
+}
+
+body:is(.mod-macos, .adaptive-mode-off).cn-zheshi.theme-dark:not(.is-mobile) {
+  --background-primary: #1a130c;
+  --background-primary-alt: color-mix(in srgb, var(--background-primary), white 3%);
+  --background-secondary: color-mix(in srgb, var(--background-primary), white 5%);
+  --background-secondary-alt: color-mix(in srgb, var(--background-primary), white 8%);
+  --interactive-normal: hsl(0 0% 100% / 5%);
+  --interactive-hover: hsl(0 0% 100% / 5%);
+  --text-normal: #ecdcc8;
+  --text-muted: #9a866c;
+  --text-faint: #4a3826;
+}
+
+body:is(.mod-macos, .adaptive-mode-off).cn-zheshi.theme-dark.is-mobile {
+  --background-primary: #140d06;
+  --background-primary-alt: #241910;
+  --background-secondary: #241910;
+  --background-secondary-alt: #362617;
+  --interactive-normal: rgba(118, 118, 128, 24%);
+  --interactive-hover: rgba(120, 120, 120, 36%);
+  --text-normal: #f3e2ce;
+  --text-muted: #9c8a6e;
+  --text-faint: #4c3a26;
+}
+
+/* ============ 藕荷 · 浅紫含烟（介于海棠与黛紫之间） ============ */
+body:is(.mod-macos, .adaptive-mode-off).cn-ouhe.theme-light {
+  --color-pink-rgb: 206, 140, 178;
+  --color-purple-rgb: 188, 140, 196;
+  --interactive-accent: rgb(190, 138, 172);
+  --interactive-accent-hover: rgb(206, 158, 190);
+  --text-accent: rgb(190, 138, 172);
+  --text-accent-hover: rgb(206, 158, 190);
+  --text-on-accent: #ffffff;
+}
+
+body:is(.mod-macos, .adaptive-mode-off).cn-ouhe.theme-light:not(.is-mobile) {
+  --background-primary: #ffffff;
+  --background-primary-alt: #f5eef2;
+  --background-secondary: #f5eef2;
+  --background-secondary-alt: #ece2e9;
+  --interactive-normal: hsl(0 0% 0% / 5%);
+  --interactive-hover: hsl(0 0% 0% / 5%);
+  --text-normal: #2a2228;
+  --text-muted: #695c65;
+  --text-faint: #c6b8c2;
+}
+
+body:is(.mod-macos, .adaptive-mode-off).cn-ouhe.theme-light.is-mobile {
+  --background-primary: #ffffff;
+  --background-primary-alt: #f5eef2;
+  --background-secondary: #f5eef2;
+  --background-secondary-alt: #ffffff;
+  --interactive-normal: rgba(118, 118, 128, 12%);
+  --interactive-hover: rgba(120, 120, 120, 20%);
+  --text-normal: #201820;
+  --text-muted: #695c65;
+  --text-faint: #cabdc6;
+}
+
+body:is(.mod-macos, .adaptive-mode-off).cn-ouhe.theme-dark {
+  --color-pink-rgb: 216, 150, 192;
+  --color-purple-rgb: 200, 152, 206;
+  --interactive-accent: rgb(204, 150, 184);
+  --interactive-accent-hover: rgb(218, 168, 200);
+  --text-accent: rgb(204, 150, 184);
+  --text-accent-hover: rgb(218, 168, 200);
+  --text-on-accent: #ffffff;
+}
+
+body:is(.mod-macos, .adaptive-mode-off).cn-ouhe.theme-dark:not(.is-mobile) {
+  --background-primary: #18121a;
+  --background-primary-alt: color-mix(in srgb, var(--background-primary), white 3%);
+  --background-secondary: color-mix(in srgb, var(--background-primary), white 5%);
+  --background-secondary-alt: color-mix(in srgb, var(--background-primary), white 8%);
+  --interactive-normal: hsl(0 0% 100% / 5%);
+  --interactive-hover: hsl(0 0% 100% / 5%);
+  --text-normal: #e8dce6;
+  --text-muted: #9c8e9a;
+  --text-faint: #483c4a;
+}
+
+body:is(.mod-macos, .adaptive-mode-off).cn-ouhe.theme-dark.is-mobile {
+  --background-primary: #120c14;
+  --background-primary-alt: #201820;
+  --background-secondary: #201820;
+  --background-secondary-alt: #302430;
+  --interactive-normal: rgba(118, 118, 128, 24%);
+  --interactive-hover: rgba(120, 120, 120, 36%);
+  --text-normal: #efe2ec;
+  --text-muted: #a0929c;
+  --text-faint: #4a3c4a;
+}
+
+/* ============ 月白 · 清辉素练（冷调极简留白） ============ */
+body:is(.mod-macos, .adaptive-mode-off).cn-yuebai.theme-light {
+  --color-blue-rgb: 110, 150, 180;
+  --color-cyan-rgb: 120, 170, 190;
+  --interactive-accent: rgb(124, 150, 174);
+  --interactive-accent-hover: rgb(144, 168, 190);
+  --text-accent: rgb(124, 150, 174);
+  --text-accent-hover: rgb(144, 168, 190);
+  --text-on-accent: #ffffff;
+}
+
+body:is(.mod-macos, .adaptive-mode-off).cn-yuebai.theme-light:not(.is-mobile) {
+  --background-primary: #ffffff;
+  --background-primary-alt: #f4f7f9;
+  --background-secondary: #f4f7f9;
+  --background-secondary-alt: #eaf0f3;
+  --interactive-normal: hsl(0 0% 0% / 5%);
+  --interactive-hover: hsl(0 0% 0% / 5%);
+  --text-normal: #1e252b;
+  --text-muted: #5d6a76;
+  --text-faint: #b8c2c8;
+}
+
+body:is(.mod-macos, .adaptive-mode-off).cn-yuebai.theme-light.is-mobile {
+  --background-primary: #ffffff;
+  --background-primary-alt: #f4f7f9;
+  --background-secondary: #f4f7f9;
+  --background-secondary-alt: #ffffff;
+  --interactive-normal: rgba(118, 118, 128, 12%);
+  --interactive-hover: rgba(120, 120, 120, 20%);
+  --text-normal: #181e24;
+  --text-muted: #5d6a76;
+  --text-faint: #bcc6cc;
+}
+
+body:is(.mod-macos, .adaptive-mode-off).cn-yuebai.theme-dark {
+  --color-blue-rgb: 140, 172, 198;
+  --color-cyan-rgb: 150, 192, 212;
+  --interactive-accent: rgb(146, 172, 196);
+  --interactive-accent-hover: rgb(166, 188, 210);
+  --text-accent: rgb(146, 172, 196);
+  --text-accent-hover: rgb(166, 188, 210);
+  --text-on-accent: #ffffff;
+}
+
+body:is(.mod-macos, .adaptive-mode-off).cn-yuebai.theme-dark:not(.is-mobile) {
+  --background-primary: #0f1418;
+  --background-primary-alt: color-mix(in srgb, var(--background-primary), white 3%);
+  --background-secondary: color-mix(in srgb, var(--background-primary), white 5%);
+  --background-secondary-alt: color-mix(in srgb, var(--background-primary), white 8%);
+  --interactive-normal: hsl(0 0% 100% / 5%);
+  --interactive-hover: hsl(0 0% 100% / 5%);
+  --text-normal: #d3dce2;
+  --text-muted: #8492a0;
+  --text-faint: #3c454e;
+}
+
+body:is(.mod-macos, .adaptive-mode-off).cn-yuebai.theme-dark.is-mobile {
+  --background-primary: #0a0e12;
+  --background-primary-alt: #151b21;
+  --background-secondary: #151b21;
+  --background-secondary-alt: #252e36;
+  --interactive-normal: rgba(118, 118, 128, 24%);
+  --interactive-hover: rgba(120, 120, 120, 36%);
+  --text-normal: #dde6ec;
+  --text-muted: #86949e;
+  --text-faint: #3e4750;
 }
 
 /*

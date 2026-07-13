@@ -4,13 +4,13 @@
 // Usage:
 //   node scripts/deploy.mjs [vault-themes-dir]
 //
-// The target vault themes directory can be provided three ways (first wins):
+// The target vault themes directory can be provided two ways (first wins):
 //   1. CLI argument:        node scripts/deploy.mjs /path/to/vault/.obsidian/themes
 //   2. Env var:             OBSIDIAN_THEMES_DIR=/path/to/vault/.obsidian/themes
-//   3. Default (hardcoded): the Cupertino vault used during development
+//   If neither is set, the script exits with a usage hint (no hardcoded path).
 //
 // What it does:
-//   - Creates <themes>/Cupertino if missing
+//   - Creates <themes>/Bamboo China if missing
 //   - Backs up the existing theme.css to theme.css.bak.<timestamp> (keeps one only)
 //   - Copies theme.css and manifest.json from the project root
 //   - Verifies the deployed file is non-empty and newer than the backup
@@ -22,12 +22,18 @@ import { fileURLToPath } from "node:url";
 const __dirname = resolve(fileURLToPath(new URL(".", import.meta.url)), "..");
 
 const THEME_NAME = "Bamboo China";
-const DEFAULT_THEMES_DIR = "/Users/pokerhu/Downloads/CJ/obsidian-vault/.obsidian/themes";
 
-const themesDir =
-  process.argv[2] ||
-  process.env.OBSIDIAN_THEMES_DIR ||
-  DEFAULT_THEMES_DIR;
+// Resolve the target vault's themes directory. Provide it via CLI argument or
+// the OBSIDIAN_THEMES_DIR environment variable — no hardcoded personal path is
+// committed, so the script stays portable across machines.
+const themesDir = process.argv[2] || process.env.OBSIDIAN_THEMES_DIR;
+if (!themesDir) {
+  fail(
+    "未指定目标 vault 的 themes 目录。\n" +
+      "  用法: node scripts/deploy.mjs /path/to/vault/.obsidian/themes\n" +
+      "  或设置环境变量: OBSIDIAN_THEMES_DIR=/path/to/vault/.obsidian/themes"
+  );
+}
 
 const targetDir = join(themesDir, THEME_NAME);
 const sourceCss = join(__dirname, "theme.css");
