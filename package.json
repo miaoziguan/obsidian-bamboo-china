@@ -11,7 +11,8 @@
     "test": "node scripts/check-css.mjs && node scripts/check-palette-contrast.mjs",
     "watch": "sass --watch src/theme.scss theme.css --no-source-map --style=expanded",
     "deploy": "node scripts/deploy.mjs",
-    "release": "npm run build && npm run deploy"
+    "release": "npm run build && npm run deploy",
+    "sync": "npm run build:min && npm run deploy"
   },
   "devDependencies": {
     "sass": "^1.69.5"

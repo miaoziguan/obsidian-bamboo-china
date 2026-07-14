@@ -15,7 +15,7 @@
 //   - Copies theme.css and manifest.json from the project root
 //   - Verifies the deployed file is non-empty and newer than the backup
 
-import { existsSync, mkdirSync, copyFileSync, readdirSync, statSync, readFileSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, copyFileSync, readdirSync, statSync, readFileSync, unlinkSync } from "node:fs";
 import { join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -56,14 +56,25 @@ if (!existsSync(sourceManifest)) fail(`找不到 ${sourceManifest}`);
 
 mkdirSync(targetDir, { recursive: true });
 
-// --- Backup existing theme.css (keep history as theme.css.bak.<timestamp>) ---
+// --- Backup existing theme.css (keep ONLY the most recent as theme.css.bak.<timestamp>) ---
 if (existsSync(targetCss)) {
   try {
+    // Drop any previous backups first so only the latest one survives.
+    for (const f of readdirSync(targetDir)) {
+      if (/^theme\.css\.bak\.\d{14}$/.test(f)) {
+        try {
+          unlinkSync(join(targetDir, f));
+        } catch {
+          /* ignore individual cleanup failures */
+        }
+      }
+    }
     const stamp = new Date()
       .toISOString()
       .replace(/[-:T]/g, "")
       .slice(0, 14); // YYYYMMDDHHMMSS in UTC
     copyFileSync(targetCss, join(targetDir, `theme.css.bak.${stamp}`));
+    ok(`已备份上一版 theme.css -> theme.css.bak.${stamp}`);
   } catch (e) {
     fail(`备份失败: ${e.message}`);
   }
