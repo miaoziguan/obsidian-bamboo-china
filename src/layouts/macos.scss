@@ -17,8 +17,8 @@ body#{mx.$bc}:not(.is-mobile) {
     .modal.mod-settings .vertical-tab-header,
     .mod-sidedock.mod-left-split,
     .mod-root .workspace-tabs:not(.mod-stacked) .workspace-tab-header {
-      background-color: var(--background-modifier-hover) !important;
-      box-shadow: none !important;
+      background-color: var(--background-modifier-hover);
+      box-shadow: none;
       transition: none;
     }
   }
@@ -60,14 +60,14 @@ body#{mx.$bc}:not(.is-mobile) {
     background-color: var(--background-secondary);
   }
   &.is-translucent.theme-dark .mod-sidedock {
-    background-color: var(--background-secondary) !important;
+    background-color: var(--background-secondary);
   }
   // 浅色模式同样逻辑：侧边栏框架色，中间编辑区画布色
   &:not(.is-translucent).theme-light .mod-sidedock {
     background-color: var(--background-secondary);
   }
   &.is-translucent.theme-light .mod-sidedock {
-    background-color: var(--background-secondary) !important;
+    background-color: var(--background-secondary);
   }
   // 中间编辑区使用画布色，与两侧边栏框架色形成区分
   .mod-root {
@@ -75,7 +75,7 @@ body#{mx.$bc}:not(.is-mobile) {
   }
   // 编辑器标签页头部也使用框架色，让标题栏区域与侧边栏融为一体
   .mod-root .workspace-tab-header-container {
-    background-color: var(--background-secondary) !important;
+    background-color: var(--background-secondary);
   }
   .mod-sidedock {
     transition:
@@ -91,11 +91,11 @@ body#{mx.$bc}:not(.is-mobile) {
 
   .mod-sidedock.mod-left-split .mod-top-left-space .workspace-tab-header-container {
     padding-block: 0px;
-    // 固定 140px 兜底：macOS 红绿灯延伸到约 92px。用固定值 + !important，
+    // 固定 140px 兜底：macOS 红绿灯延伸到约 92px。用固定值 +，
     // 避免 --frame-left-space 未定义导致 calc()/max() 整条非法。
-    // 必须保留 !important：hover-ribbon 模式对非 macOS 调成了 52/88px，
+    // 必须保留：hover-ribbon 模式对非 macOS 调成了 52/88px，
     // 但 macOS 红绿灯区需要 ~92px+，这里要压过 hover-ribbon 的值而非被它覆盖。
-    padding-left: 140px !important;
+    padding-left: 140px;
   }
   .mod-sidedock.mod-left-split .mod-top-left-space .workspace-tab-header-container,
   .mod-sidedock.mod-left-split .mod-top-left-space .workspace-tab-header-container .sidebar-toggle-button {

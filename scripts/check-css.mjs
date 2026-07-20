@@ -65,16 +65,15 @@ if (existsSync(themeCss)) {
   }
 
   // --- 3. No NEW !important hacks ---
-  // `!important` is sometimes unavoidable when overriding Obsidian's own
-  // styles, but it should never grow unchecked. This guard fails the build if
-  // the count rises above the recorded baseline, forcing any new usage to be
-  // a conscious decision (bump BASELINE_IMPORTANT and explain why).
-  //
-  // Baseline synced to 212: hover-ribbon 改造为内置默认开启功能时，为在悬停
-  // 模式下让左侧折叠按钮始终可见而新增的 `.sidebar-toggle-button` 样式带来了
-  // 一批必要的 `!important`（该块此前已在未提交工作区中，现已随 theme.css 同步）。
+  // Obsidian's theme guidelines explicitly forbid `!important` (it blocks user
+  // CSS snippets from overriding the theme). On 2026-07-20 we aggressively
+  // reduced the count from 213 → 10. The 10 survivors are ALL inside
+  // a11y-protective contexts (prefers-reduced-motion / .reduce-motion toggle /
+  // @supports version warning) and must stay. This guard fails the build if the
+  // count rises above the recorded baseline, forcing any new usage to be a
+  // conscious decision (bump BASELINE_IMPORTANT and explain why).
   const importantCount = (css.match(/!important/g) || []).length;
-  const BASELINE_IMPORTANT = 212;
+  const BASELINE_IMPORTANT = 10;
   if (importantCount > BASELINE_IMPORTANT) {
     fail(
       `theme.css 中 !important 数量为 ${importantCount}，超过基线 ${BASELINE_IMPORTANT}。` +

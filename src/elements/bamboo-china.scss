@@ -58,7 +58,7 @@ body#{mx.$bc} {
   --blur-m: blur(4px) saturate(1.5) brightness(1.025);
   --blur-l: blur(8px) saturate(1.5) brightness(1.025);
 
-  --clickable-icon-radius: 100vh !important;
+  --clickable-icon-radius: 100vh;
   --button-radius: var(--input-radius);
   --input-radius: var(--radius-s);
   --input-height: 24px;
@@ -199,17 +199,17 @@ body#{mx.$bc} {
   }
 
   input[type="range"]::-webkit-slider-thumb {
-    transition: var(--anim-duration-moderate) var(--anim-motion-baseline) !important;
+    transition: var(--anim-duration-moderate) var(--anim-motion-baseline);
     box-shadow:
       0 1px 4px rgba(0, 0, 0, 0.075),
-      0 1px 16px rgba(0, 0, 0, 0.1) !important;
+      0 1px 16px rgba(0, 0, 0, 0.1);
 
     &:active {
       scale: 1.2;
       box-shadow:
         inset 1px 1px 2px -2px rgba(var(--mono-rgb-100), 1),
         inset -1px -1px 2px -2px rgba(var(--mono-rgb-100), 1),
-        var(--shadow-xs) !important;
+        var(--shadow-xs);
       background-color: var(--raised-background);
     }
   }
@@ -243,7 +243,7 @@ body#{mx.$bc} {
     }
 
     &::after {
-      transition: var(--anim-duration-moderate) var(--anim-motion-baseline) !important;
+      transition: var(--anim-duration-moderate) var(--anim-motion-baseline);
       box-shadow:
         0 1px 4px rgba(0, 0, 0, 0.075),
         0 1px 16px rgba(0, 0, 0, 0.1);
@@ -290,14 +290,14 @@ body#{mx.$bc} {
     overflow: visible;
 
     &:before {
-      top: unset !important;
+      top: unset;
       inset-inline-start: calc((var(--input-height) - var(--icon-s)) / 2);
       height: var(--icon-s);
       width: var(--icon-s);
     }
 
     input {
-      padding-inline-start: var(--input-height) !important;
+      padding-inline-start: var(--input-height);
     }
   }
   .mod-sidedock,
@@ -346,7 +346,7 @@ body#{mx.$bc} {
       box-shadow: var(--shadow-xs);
 
       .workspace-tab-header-inner-icon {
-        color: var(--text-normal) !important;
+        color: var(--text-normal);
       }
     }
 
@@ -398,7 +398,7 @@ body#{mx.$bc} {
   .mod-sidedock .workspace-tab-container,
   .mod-sidedock .workspace-leaf,
   .mod-sidedock .workspace-leaf-content {
-    contain: size !important;
+    contain: size;
     overflow: visible;
   }
 

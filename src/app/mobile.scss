@@ -45,7 +45,7 @@ body.is-mobile {
 
   --input-border-width-focus: 0;
 
-  --navbar-max-width: auto !important;
+  --navbar-max-width: auto;
   --navbar-bottom-offset: max(var(--safe-area-inset-bottom), var(--safe-area-inset-side));
   --navbar-side-offset: min(var(--navbar-bottom-offset), 32px);
 
@@ -94,11 +94,11 @@ body.is-mobile {
       border: none;
     }
     .mod-raised::after {
-      content: none !important;
+      content: none;
     }
     .mobile-navbar {
-      background-color: var(--background-secondary) !important;
-      border: var(--border-width) solid var(--background-modifier-border) !important;
+      background-color: var(--background-secondary);
+      border: var(--border-width) solid var(--background-modifier-border);
     }
     .mobile-tab-preview:before {
       content: none;
@@ -116,7 +116,7 @@ body.is-mobile {
     }
 
     .workspace-leaf-content:after {
-      content: none !important;
+      content: none;
     }
 
     .workspace-drawer-inner {
@@ -174,7 +174,7 @@ body.is-mobile {
       padding: 0 var(--safe-area-inset-side);
     }
     .nav-buttons-container::after {
-      content: none !important;
+      content: none;
     }
     .nav-action-button {
       background-color: transparent;
@@ -195,10 +195,10 @@ body.is-mobile {
 
     .workspace-tab-header {
       flex: 1;
-      animation: none !important;
+      animation: none;
     }
     .workspace-tab-header-inner {
-      padding-inline: 0 !important;
+      padding-inline: 0;
     }
     .workspace-tab-header:not(.is-swiping) .workspace-tab-header-inner-title {
       opacity: 0;
@@ -234,7 +234,7 @@ body.is-mobile {
     transition:
       var(--anim-duration-fast),
       opacity var(--anim-duration-slow),
-      transform 0s !important;
+      transform 0s;
 
     @starting-style {
       opacity: 0;
@@ -307,7 +307,7 @@ body.is-phone {
     margin: 0 0 var(--touch-size-m);
   }
   .workspace-drawer .workspace-leaf-content .nav-header ~ div:last-child {
-    padding-top: 16px !important;
+    padding-top: 16px;
 
     // cubic-bezier(0.4, 0, 0.6, 1)
     mask: linear-gradient(to top, hsla(0, 0%, 0%, 0) 0px, hsla(0, 0%, 0%, 0.013) 5px, hsla(0, 0%, 0%, 0.049) 10px, hsla(0, 0%, 0%, 0.104) 14px, hsla(0, 0%, 0%, 0.175) 18px, hsla(0, 0%, 0%, 0.259) 22px, hsla(0, 0%, 0%, 0.352) 26px, hsla(0, 0%, 0%, 0.45) 30px, hsla(0, 0%, 0%, 0.55) 34px, hsla(0, 0%, 0%, 0.648) 38px, hsla(0, 0%, 0%, 0.741) 42px, hsla(0, 0%, 0%, 0.825) 46px, hsla(0, 0%, 0%, 0.896) 50px, hsla(0, 0%, 0%, 0.951) 54px, hsla(0, 0%, 0%, 0.987) 59px, hsl(0, 0%, 0%) 64px, black calc(100% - 16px), transparent);
@@ -318,7 +318,7 @@ body.is-phone {
 
   // Editor panel
   .mod-root {
-    mask-image: none !important;
+    mask-image: none;
 
     .view-header {
       top: 0;
@@ -391,7 +391,7 @@ body.is-phone {
       mask-image: none;
     }
     > .view-content::after {
-      content: none !important;
+      content: none;
     }
   }
 
@@ -403,7 +403,7 @@ body.is-phone {
       right 0s,
       bottom 0s,
       height 0s,
-      opacity 0s !important;
+      opacity 0s;
     margin-right: var(--navbar-side-offset);
     margin-bottom: var(--navbar-bottom-offset);
     bottom: 0;
@@ -460,9 +460,9 @@ body.is-phone {
   }
 
   &:not(.is-floating-nav) .mobile-navbar {
-    border: none !important;
-    background-color: var(--background-primary) !important;
-    transition: var(--anim-duration-moderate) !important;
+    border: none;
+    background-color: var(--background-primary);
+    transition: var(--anim-duration-moderate);
   }
 
   // Toolbar
@@ -497,8 +497,8 @@ body.is-phone {
 }
 
 body.is-tablet {
-  --titlebar-background: var(--background-secondary) !important;
-  --titlebar-background-focused: var(--background-secondary) !important;
+  --titlebar-background: var(--background-secondary);
+  --titlebar-background-focused: var(--background-secondary);
 
   --mobile-sidebar-min-width: unset;
 
@@ -507,7 +507,7 @@ body.is-tablet {
   }
 
   .workspace-tab-header {
-    padding-bottom: 0 !important;
+    padding-bottom: 0;
   }
 
   .workspace-tab-header-new-tab,
@@ -594,6 +594,6 @@ body.is-tablet {
     border: none;
   }
   .workspace-drawer-header-icon::after {
-    content: none !important;
+    content: none;
   }
 }

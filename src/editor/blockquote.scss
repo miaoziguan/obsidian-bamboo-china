@@ -26,7 +26,7 @@
   }
   .markdown-rendered blockquote > blockquote {
     padding-inline-start: calc(16px + var(--blockquote-border-thickness));
-    padding-block: 0 !important;
+    padding-block: 0;
   }
   .markdown-rendered blockquote > blockquote::before {
     top: 0;
@@ -51,7 +51,7 @@
     border-width: 0 16px 0 16px;
     background-color: var(--blockquote-background-color);
     &::before {
-      width: 0 !important;
+      width: 0;
     }
   }
   .HyperMD-quote:first-child,

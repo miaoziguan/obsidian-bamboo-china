@@ -83,10 +83,10 @@
   .view-actions {
     --icon-size: var(--icon-m);
     --icon-stroke: var(--icon-m-stroke-width);
-    gap: 0 !important;
+    gap: 0;
   }
   .view-header-title-container {
-    height: auto !important;
+    height: auto;
   }
   .view-header-title-container > div {
     transition: var(--anim-duration-moderate) var(--anim-motion-baseline);
@@ -106,7 +106,7 @@
 
   .document-search-buttons,
   .document-replace-buttons {
-    flex-grow: 0 !important;
+    flex-grow: 0;
   }
 
   // Active line
@@ -185,7 +185,7 @@
     max-height: 100%;
   }
   .block-language-chart {
-    width: 100% !important;
+    width: 100%;
   }
 
   // Inline title & Headings
@@ -213,7 +213,7 @@
   .inline-title:not([data-level]),
   .markdown-rendered :is(h1, h2, h3, h4, h5, h6),
   .HyperMD-header {
-    letter-spacing: normal !important;
+    letter-spacing: normal;
     text-wrap: pretty;
   }
 

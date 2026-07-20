@@ -19,8 +19,8 @@ body:not(.is-mobile):not(.hover-ribbon-off) {
   .workspace-ribbon.mod-left {
     &::before,
     &::after {
-      display: none !important;
-      content: none !important;
+      display: none;
+      content: none;
     }
   }
   // Hide only stray children / pseudo-elements INSIDE the ribbon so no stray
@@ -29,14 +29,14 @@ body:not(.is-mobile):not(.hover-ribbon-off) {
   // hover-ribbon.
   .workspace-ribbon.mod-left > *:not(.side-dock-actions):not(.side-dock-settings):not(.sidebar-toggle-button),
   .workspace-ribbon.mod-left > .clickable-icon:not(.sidebar-toggle-button) {
-    display: none !important;
-    visibility: hidden !important;
-    width: 0 !important;
-    height: 0 !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    overflow: hidden !important;
-    pointer-events: none !important;
+    display: none;
+    visibility: hidden;
+    width: 0;
+    height: 0;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    pointer-events: none;
   }
 
   // Keep the left sidebar toggle button always visible & clickable, even in
@@ -44,11 +44,11 @@ body:not(.is-mobile):not(.hover-ribbon-off) {
   // does not fade away or leave a stray dot.
   .sidebar-toggle-button.mod-left,
   .workspace-ribbon.mod-left .sidebar-toggle-button {
-    display: flex !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    transform: none !important;
-    pointer-events: auto !important;
+    display: flex;
+    visibility: visible;
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
   }
 
   .workspace-ribbon.mod-left {
@@ -58,12 +58,12 @@ body:not(.is-mobile):not(.hover-ribbon-off) {
     z-index: 12;
     width: var(--ribbon-width);
     height: 100vh;
-    margin: 0 !important;
-    padding: 0 !important;
+    margin: 0;
+    padding: 0;
     opacity: 0;
     transform: translateX(calc(-1 * var(--ribbon-width) + var(--hover-ribbon-trigger-area)));
     background-color: transparent;
-    justify-content: center !important;
+    justify-content: center;
     display: flex;
     flex-direction: column;
     overflow: visible;
@@ -71,8 +71,8 @@ body:not(.is-mobile):not(.hover-ribbon-off) {
     // back to its hidden (left) position AFTER it is fully transparent, so
     // nothing appears to "snap back" or bounce.
     transition:
-      opacity 200ms cubic-bezier(0.16, 1, 0.3, 1) !important,
-      transform 220ms cubic-bezier(0.16, 1, 0.3, 1) 200ms !important;
+      opacity 200ms cubic-bezier(0.16, 1, 0.3, 1),
+      transform 220ms cubic-bezier(0.16, 1, 0.3, 1) 200ms;
 
     // Child icon groups keep the same layout & frosted-glass appearance
     // in BOTH hidden and visible states, so there is zero layout jump on exit.
@@ -85,7 +85,7 @@ body:not(.is-mobile):not(.hover-ribbon-off) {
       align-items: center;
       align-self: center;
       width: max-content;
-      margin: 8px auto !important;
+      margin: 8px auto;
       box-sizing: border-box;
       text-align: center;
     }
@@ -105,13 +105,13 @@ body:not(.is-mobile):not(.hover-ribbon-off) {
     transform: none;
     // Enter: smooth expo slide-in from the left + ease-out fade-in.
     transition:
-      opacity 220ms cubic-bezier(0.16, 1, 0.3, 1) !important,
-      transform 320ms cubic-bezier(0.16, 1, 0.3, 1) !important;
+      opacity 220ms cubic-bezier(0.16, 1, 0.3, 1),
+      transform 320ms cubic-bezier(0.16, 1, 0.3, 1);
     // Ribbon stays full-height and transparent, acting as the hover trigger.
     // The frosted frame is drawn only around the actual icon groups.
     background-color: transparent;
-    justify-content: center !important;
-    padding: 0 !important;
+    justify-content: center;
+    padding: 0;
     overflow: visible;
   }
 
@@ -126,7 +126,7 @@ body:not(.is-mobile):not(.hover-ribbon-off) {
 
   .workspace-ribbon.mod-left.is-collapsed:hover,
   .workspace-ribbon.mod-left.is-collapsed:hover + .mod-sidedock {
-    transition-delay: var(--hover-ribbon-delay) !important;
+    transition-delay: var(--hover-ribbon-delay);
   }
 
   // macOS fix

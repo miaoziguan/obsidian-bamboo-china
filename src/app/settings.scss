@@ -64,11 +64,11 @@ body:not(.is-phone) {
     .setting-item {
       display: flex;
       flex-direction: column;
-      margin: 0px !important;
+      margin: 0px;
       border: none;
-      border-radius: var(--setting-items-radius) !important;
+      border-radius: var(--setting-items-radius);
       background-color: var(--setting-items-background);
-      padding: calc(16px * var(--density-modifier)) !important;
+      padding: calc(16px * var(--density-modifier));
       overflow: hidden;
     }
     .setting-item-info {
@@ -292,7 +292,7 @@ body:not(.is-phone) {
         display: flex;
         flex-direction: column;
         gap: 4px;
-        margin: 0 !important;
+        margin: 0;
         padding: 16px;
         border: 1px solid var(--background-modifier-border);
         border-radius: 12px;

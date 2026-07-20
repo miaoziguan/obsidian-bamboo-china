@@ -111,13 +111,13 @@ body:not(.banner-off) {
       .image-embed[alt="banner"],
       .image-embed[alt="banner"] > .image-wrapper,
       .image-embed[alt="banner"] > .image-resize-container {
-        display: contents !important;
+        display: contents;
 
         &::before,
         &::after,
         .image-resize-corner,
         .image-resize-handle {
-          display: none !important;
+          display: none;
         }
       }
       div:is(.mod-header, .inline-title, .metadata-container) {
@@ -133,17 +133,17 @@ body:not(.banner-off) {
     // Banner icon
     &.banner-icon {
       .cm-callout:has(.callout[data-callout="banner-icon"]) {
-        display: contents !important;
+        display: contents;
       }
 
       .callout[data-callout="banner-icon"] {
         z-index: 1;
         position: absolute;
         top: calc(var(--view-top-spacing-markdown) + var(--banner-image-height) - var(--banner-fade-height) + 1rem);
-        margin: 0 !important;
-        border: none !important;
-        background: none !important;
-        padding: 0 !important;
+        margin: 0;
+        border: none;
+        background: none;
+        padding: 0;
         width: var(--banner-icon-size);
         height: var(--banner-icon-size);
         font-size: var(--banner-icon-size);

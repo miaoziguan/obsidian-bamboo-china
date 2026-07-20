@@ -14,7 +14,7 @@ body#{mx.$bc}:not(.is-mobile) {
 
   .mod-sidedock.mod-left-split,
   .mod-sidedock.mod-right-split {
-    background-color: transparent !important;
+    background-color: transparent;
 
     > .workspace-leaf-resize-handle {
       border-color: transparent;
@@ -88,7 +88,7 @@ body#{mx.$bc}.is-tablet {
   }
   
   .mod-root .workspace-tabs:not(.mod-stacked) .workspace-tab-header.is-active {
-    background-color: var(--raised-background) !important;
+    background-color: var(--raised-background);
     box-shadow: var(--shadow-tab);
   }
 }

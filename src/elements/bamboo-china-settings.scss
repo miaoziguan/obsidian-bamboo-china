@@ -128,7 +128,7 @@ body#{mx.$bc}.is-phone {
     .modal-close-button,
     .modal-header-button {
       top: var(--safe-area-inset-side);
-      inset-inline-end: var(--safe-area-inset-side) !important;
+      inset-inline-end: var(--safe-area-inset-side);
     }
 
     .vertical-tab-header,

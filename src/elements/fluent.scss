@@ -37,8 +37,8 @@ body.mod-windows:not(.adaptive-mode-off) {
     --slider-thumb-height: 24px;
   }
   &.theme-light {
-    --input-shadow: 0px 0px 0px var(--input-border-width) rgba(0, 0, 0, 0.05), 0 -0.5px 0 0 rgba(0, 0, 0, 0.25) inset !important;
-    --input-shadow-hover: var(--input-shadow) !important;
+    --input-shadow: 0px 0px 0px var(--input-border-width) rgba(0, 0, 0, 0.05), 0 -0.5px 0 0 rgba(0, 0, 0, 0.25) inset;
+    --input-shadow-hover: var(--input-shadow);
     --input-shadow-active: inset 0 0 0 1px var(--background-modifier-border);
     --slider-thumb-border-color: var(--color-base-00);
 
@@ -49,8 +49,8 @@ body.mod-windows:not(.adaptive-mode-off) {
     --setting-items-background: var(--background-primary);
   }
   &.theme-dark {
-    --input-shadow: 0px 0px 0px var(--input-border-width) rgba(0, 0, 0, 0.1), 0 0.5px 0 rgba(255, 255, 255, 0.1) inset !important;
-    --input-shadow-hover: var(--input-shadow) !important;
+    --input-shadow: 0px 0px 0px var(--input-border-width) rgba(0, 0, 0, 0.1), 0 0.5px 0 rgba(255, 255, 255, 0.1) inset;
+    --input-shadow-hover: var(--input-shadow);
     --input-shadow-active: inset 0 0 1px var(--background-modifier-border);
     --slider-thumb-border-color: var(--color-base-35);
 
@@ -129,7 +129,7 @@ body.mod-windows:not(.adaptive-mode-off) {
   .modal,
   .cm-tooltip,
   .notice {
-    background-color: var(--modal-background) !important;
+    background-color: var(--modal-background);
     backdrop-filter: var(--blur-l);
     border: none;
   }
@@ -229,7 +229,7 @@ body.mod-windows:not(.adaptive-mode-off):not(.is-mobile) {
 
   .modal-bg {
     background-color: black;
-    opacity: 0.3 !important;
+    opacity: 0.3;
   }
 
   // Menu
@@ -286,7 +286,7 @@ body.mod-windows:not(.adaptive-mode-off):not(.is-mobile) {
   .modal-close-button,
   .modal-header-button {
     top: 0;
-    inset-inline-end: 0 !important;
+    inset-inline-end: 0;
     padding-inline: 16px;
     border-radius: 0;
 
@@ -345,7 +345,7 @@ body.mod-windows:not(.adaptive-mode-off).is-phone {
     backdrop-filter: var(--blur-l);
     box-shadow: var(--shadow-s);
     border-radius: var(--radius-l);
-    background-color: var(--modal-background) !important;
+    background-color: var(--modal-background);
   }
 
   .modal.mod-settings {

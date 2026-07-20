@@ -13,7 +13,7 @@ input[type="checkbox"]:checked::after,
 }
 
 input[type="checkbox"][data-indeterminate="true"]:not(:checked) {
-  --checkbox-color: var(--checkbox-border-color) !important;
+  --checkbox-color: var(--checkbox-border-color);
   background-color: var(--checkbox-color);
 
   &:after {

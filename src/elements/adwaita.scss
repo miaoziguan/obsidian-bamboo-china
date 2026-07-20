@@ -60,7 +60,7 @@ body.mod-linux:not(.is-android):not(.adaptive-mode-off) {
   input[type="range"]::-webkit-slider-thumb {
     box-shadow:
       0 0 0 1px rgba(0, 0, 6, 10%),
-      0 2px 4px rgba(0, 0, 6, 20%) !important;
+      0 2px 4px rgba(0, 0, 6, 20%);
     background-color: var(--toggle-thumb-color);
     transition: none;
   }
@@ -184,7 +184,7 @@ body.mod-linux:not(.is-android):not(.adaptive-mode-off) {
     }
   }
   .installed-plugins-container .setting-items {
-    box-shadow: none !important;
+    box-shadow: none;
     background-color: transparent;
   }
 
@@ -212,7 +212,7 @@ body.mod-linux:not(.is-android):not(.adaptive-mode-off):not(.is-mobile) {
     width: fit-content;
     height: fit-content;
     background-color: rgb(from var(--text-normal) r g b / 10%);
-    border-radius: 100vh !important;
+    border-radius: 100vh;
     padding: 4px;
     flex: 0;
 
@@ -319,7 +319,7 @@ body.mod-linux:not(.is-android):not(.adaptive-mode-off).is-phone {
   // Editor
   .mobile-navbar,
   &:not(.mode-switcher-off) .mod-root .workspace-leaf-content[data-type="markdown"] .view-actions button:nth-last-child(2) {
-    border: none !important;
+    border: none;
   }
   .mod-root .workspace-leaf-content[data-type="markdown"] > .view-content::before,
   .mod-root .workspace-leaf-content[data-type="markdown"] > .view-content::after {

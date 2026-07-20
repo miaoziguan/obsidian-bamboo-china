@@ -3,7 +3,7 @@
 // ── Platform constants ─────────────────────────────────────────────────────
 // These are real OS constraints, not "magic numbers" to be tidied away. Keep
 // them in sync with their definitions; do not fold them into a single token.
-//   140px  macOS traffic-light safe area        (padding-left, macos.scss, !important)
+//   140px  macOS traffic-light safe area        (padding-left, macos.scss,)
 //    92px  macOS traffic-light reach / hover-ribbon overlap guard (macos.scss)
 //   144px  Windows frame right space            (--frame-right-space, below)
 //   124px  Linux frame right space              (--frame-right-space, adwaita.scss)
@@ -165,11 +165,11 @@ body:not(.is-mobile) {
   }
 }
 .is-translucent {
-  --blur-s: none !important;
-  --blur-m: none !important;
-  --blur-l: none !important;
+  --blur-s: none;
+  --blur-m: none;
+  --blur-l: none;
 
-  --divider-color: var(--background-modifier-border) !important;
+  --divider-color: var(--background-modifier-border);
   --tab-outline-color: var(--background-modifier-border);
 }
 
@@ -185,7 +185,7 @@ body.is-frameless:not(.is-translucent, .is-hidden-frameless, .is-fullscreen) .ti
 }
 // 半透明窗口下，标题栏直接涂成框架色，与侧边栏完全融为一体（双保险）
 body.is-frameless.is-translucent:not(.is-hidden-frameless, .is-fullscreen) .titlebar {
-  background-color: var(--background-secondary) !important;
+  background-color: var(--background-secondary);
 }
 body.titlebar-text-off .titlebar-text {
   display: none;
@@ -271,7 +271,7 @@ body.reduce-motion {
 
 // Hide scrollbar (default)
 body {
-  scrollbar-width: none !important;
+  scrollbar-width: none;
 }
 body * {
   -ms-overflow-style: none;
@@ -294,8 +294,8 @@ body ::-webkit-scrollbar-track {
 
 // High contrast code block
 body.high-contrast-code .markdown-rendered pre {
-  background: var(--background-primary-alt) !important;
-  box-shadow: none !important;
+  background: var(--background-primary-alt);
+  box-shadow: none;
 }
 
 // Highlight link colors

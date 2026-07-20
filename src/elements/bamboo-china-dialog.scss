@@ -2,10 +2,10 @@
 
 body#{mx.$bc} {
   --background-modifier-message: var(--modal-background);
-  --modal-background: rgb(from var(--background-secondary) r g b / 75%) !important;
+  --modal-background: rgb(from var(--background-secondary) r g b / 75%);
 
   &.is-translucent {
-    --modal-background: var(--background-primary) !important;
+    --modal-background: var(--background-primary);
   }
 
   .menu,
@@ -197,13 +197,13 @@ body#{mx.$bc}.is-phone {
     --modal-radius: var(--radius-xl);
 
     margin: 0 8px 8px;
-    width: calc(100vw - 16px) !important;
-    left: 0 !important;
+    width: calc(100vw - 16px);
+    left: 0;
 
     .modal-close-button,
     .modal-header-button {
-      top: 16px !important;
-      inset-inline-end: 16px !important;
+      top: 16px;
+      inset-inline-end: 16px;
     }
 
     .modal-content {
@@ -242,17 +242,17 @@ body#{mx.$bc} {
 }
 
 body#{mx.$bc}:not(.is-mobile) .notice {
-  transition: var(--anim-duration-moderate) !important;
+  transition: var(--anim-duration-moderate);
 }
 
 body#{mx.$bc}.is-mobile .notice {
   box-shadow: var(--shadow-xs);
 
   &:last-child {
-    transition: var(--anim-duration-slow) var(--anim-motion-baseline) !important;
+    transition: var(--anim-duration-slow) var(--anim-motion-baseline);
 
     @starting-style {
-      transform: translateY(-50%) scaleX(0.5) !important;
+      transform: translateY(-50%) scaleX(0.5);
       filter: blur(4px);
       opacity: 0;
     }

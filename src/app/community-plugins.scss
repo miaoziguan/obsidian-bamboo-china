@@ -46,10 +46,10 @@ body:not(.is-mobile) .omnisearch-input-container__buttons {
 body#{mx.$bc}.is-phone {
   @media only screen and (max-width: 600px) {
     .omnisearch-modal {
-      --prompt-top: calc(var(--safe-area-inset-top) + var(--header-height)) !important;
-      backdrop-filter: none !important;
-      background-color: transparent !important;
-      height: calc(100vh - var(--prompt-top)) !important;
+      --prompt-top: calc(var(--safe-area-inset-top) + var(--header-height));
+      backdrop-filter: none;
+      background-color: transparent;
+      height: calc(100vh - var(--prompt-top));
 
       &::before {
         position: fixed;
@@ -62,10 +62,10 @@ body#{mx.$bc}.is-phone {
 
       .prompt-results {
         backdrop-filter: var(--blur-l);
-        mask: none !important;
+        mask: none;
         border-radius: var(--modal-radius) var(--modal-radius) 0 0;
         background-color: var(--modal-background);
-        padding-top: var(--safe-area-inset-side) !important;
+        padding-top: var(--safe-area-inset-side);
         padding-bottom: var(--safe-area-inset-bottom);
       }
       .omnisearch-input-container {
@@ -108,7 +108,7 @@ body {
   background-color: transparent;
 }
 body:not(.is-mobile) .view-content.notebook-navigator {
-  padding: 0 !important;
+  padding: 0;
 
   .nn-single-pane .nn-navigation-pane {
     border-right: none;
@@ -137,7 +137,7 @@ body.is-mobile .view-content.notebook-navigator-mobile {
 .hider-sidebar-buttons .sidebar-toggle-button.mod-right {
   display: flex;
   visibility: hidden;
-  width: 0 !important;
+  width: 0;
   opacity: 0;
 }
 body.is-phone.hider-sidebar-buttons {
@@ -145,7 +145,7 @@ body.is-phone.hider-sidebar-buttons {
     display: none;
   }
   .view-header-title-container {
-    margin-left: 8px !important;
+    margin-left: 8px;
   }
 }
 
@@ -168,11 +168,11 @@ body.is-phone.hider-sidebar-buttons {
 
   .status-bar {
     width: 100%;
-    transform: none !important;
-    opacity: 1 !important;
+    transform: none;
+    opacity: 1;
 
     &::before {
-      content: none !important;
+      content: none;
     }
   }
 
@@ -200,7 +200,7 @@ body:not(.is-mobile):not(.nav-action-center) .mod-sidedock .workspace-leaf-conte
     }
   }
   .nav-buttons-container {
-    flex-wrap: nowrap !important;
+    flex-wrap: nowrap;
 
     &::after {
       position: absolute;
@@ -248,7 +248,7 @@ body#{mx.$bc}.is-mobile .workspace-drawer .novel-word-count--active {
 }
 .field-btn-container button.property-metadata-menu,
 .plugin-metadata-menu .status-item-bt {
-  padding: 0 !important;
+  padding: 0;
   background-color: transparent;
   align-self: center;
 }

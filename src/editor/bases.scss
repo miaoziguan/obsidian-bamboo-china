@@ -81,7 +81,7 @@ body {
 .query-toolbar-menu,
 .bases-toolbar-menu,
 .cm-tooltip {
-  animation: none !important;
+  animation: none;
   min-width: unset;
 }
 
@@ -110,9 +110,9 @@ body.is-phone {
   .markdown-preview-sizer > .el-p .bases-embed,
   .cm-content > .bases-embed,
   .cm-content > .cm-lang-base {
-    max-width: 100cqw !important;
-    width: 100cqw !important;
+    max-width: 100cqw;
+    width: 100cqw;
     justify-self: center;
-    margin-inline: calc(-1 * var(--file-margins-x)) !important;
+    margin-inline: calc(-1 * var(--file-margins-x));
   }
 }

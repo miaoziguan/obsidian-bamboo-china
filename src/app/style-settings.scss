@@ -267,21 +267,21 @@ settings:
 }
 .style-settings-heading,
 .style-settings-container {
-  margin-block: 0 !important;
+  margin-block: 0;
   padding-left: 32px;
 }
 .style-settings-heading {
   border-radius: 0;
-  padding: 16px !important;
+  padding: 16px;
 }
 .style-settings-heading .setting-item-name {
-  color: var(--text-normal) !important;
+  color: var(--text-normal);
 }
 
 .style-settings-container .setting-item {
   margin-bottom: 0;
   border-radius: 0;
-  gap: 4px !important;
+  gap: 4px;
 }
 .style-settings-container .setting-item-description > div:last-child {
   display: none;

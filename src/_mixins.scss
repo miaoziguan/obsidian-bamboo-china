@@ -23,8 +23,8 @@ $bc: ":is(.mod-macos, .adaptive-mode-off)";
 // Previously duplicated verbatim in elements/bamboo-china.scss and
 // layouts/macos.scss.
 @mixin ribbon-icon-hover-reset {
-  box-shadow: none !important;
-  background-color: transparent !important;
+  box-shadow: none;
+  background-color: transparent;
   color: var(--text-normal);
 }
 

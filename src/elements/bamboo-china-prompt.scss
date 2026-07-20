@@ -21,7 +21,7 @@ body#{mx.$bc} {
 
   .prompt-input {
     border-bottom: none;
-    padding-inline-start: calc(var(--search-icon-size) + var(--side-padding) + 12px) !important;
+    padding-inline-start: calc(var(--search-icon-size) + var(--side-padding) + 12px);
   }
 
   .prompt .suggestion-item {
@@ -115,8 +115,8 @@ body#{mx.$bc}.is-phone {
 
   // Animation override: Prompt In
   .prompt {
-    transition: var(--anim-duration-moderate) !important;
-    transform: none !important;
+    transition: var(--anim-duration-moderate);
+    transform: none;
     overflow: visible;
     box-shadow: none;
 

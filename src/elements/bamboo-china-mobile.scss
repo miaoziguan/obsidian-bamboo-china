@@ -54,7 +54,7 @@ body#{mx.$bc}.is-mobile {
 
   // HDR element
   &.theme-dark .mod-raised::after {
-    content: none !important;
+    content: none;
   }
   &.mod-macos.theme-light {
     .mod-raised::after,
@@ -183,7 +183,7 @@ body#{mx.$bc}.is-phone {
     .tree-item:has(> .tree-item-self.is-active) {
       &::before,
       + .tree-item::before {
-        content: none !important;
+        content: none;
       }
     }
 
@@ -202,8 +202,8 @@ body#{mx.$bc}.is-phone {
 
   // Navigaition bar
   .mobile-navbar {
-    border: none !important;
-    background-color: var(--raised-background) !important;
+    border: none;
+    background-color: var(--raised-background);
   }
 
   // Tab switcher
@@ -211,7 +211,7 @@ body#{mx.$bc}.is-phone {
   --tab-switcher-preview-background-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
 
   .mobile-tab-switcher {
-    background: linear-gradient(rgba(var(--mono-rgb-0), 0.5), var(--mobile-sidebar-background)) !important;
+    background: linear-gradient(rgba(var(--mono-rgb-0), 0.5), var(--mobile-sidebar-background));
     backdrop-filter: var(--blur-l);
   }
 

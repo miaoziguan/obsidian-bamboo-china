@@ -2,7 +2,7 @@ body {
   --header-height: 48px;
   --tab-max-width: var(--tab-width);
 
-  --tab-radius: var(--radius-s) !important;
+  --tab-radius: var(--radius-s);
   --tab-radius-active: var(--tab-radius) var(--tab-radius) 0 0;
   --tab-curve: calc(var(--tab-radius) + 4px);
 
@@ -31,12 +31,12 @@ body:not(.is-mobile) {
   --tab-action-width: 32px;
 }
 body.is-mobile {
-  --header-height: 44px !important;
+  --header-height: 44px;
   --tab-text-color-active: var(--text-normal);
   --tab-text-color-focused: var(--text-normal);
 }
 body.is-tablet {
-  --header-height: 52px !important;
+  --header-height: 52px;
   --tab-action-width: 44px;
 }
 
@@ -57,7 +57,7 @@ body:not(.is-phone) .workspace-tab-header-container {
   height: fit-content;
 }
 .workspace-tab-header-inner-icon {
-  color: inherit !important;
+  color: inherit;
 }
 
 // Editor panel
@@ -122,11 +122,11 @@ body:not(.is-phone) .workspace .mod-root .workspace-tabs:not(.mod-stacked) {
   }
 }
 body.is-tablet {
-  --header-height: 60px !important;
+  --header-height: 60px;
 
   .mod-root .workspace-tabs:not(.mod-stacked) {
     .workspace-tab-header-container-inner {
-      padding-block: 0 !important;
+      padding-block: 0;
     }
     .workspace-tab-header {
       margin-block: 8px;
@@ -321,8 +321,8 @@ body.is-tablet .workspace .mod-root {
   }
 
   .sidebar-toggle-button {
-    position: relative !important;
-    padding: 0 !important;
+    position: relative;
+    padding: 0;
     height: fit-content;
   }
 

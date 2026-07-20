@@ -6,7 +6,7 @@ body {
   --ribbon-background: transparent;
   --ribbon-background-collapsed: var(--ribbon-background);
 
-  --divider-vertical-height: 100% !important;
+  --divider-vertical-height: 100%;
 }
 
 body.is-mobile {
@@ -77,7 +77,7 @@ body.mod-macos.is-hidden-frameless .workspace-ribbon.mod-left {
 .workspace-ribbon.mod-left {
   border-right: none;
   z-index: 11;
-  transition: var(--anim-duration-moderate) !important;
+  transition: var(--anim-duration-moderate);
   position: relative;
 }
 .workspace-ribbon.mod-left:not(.is-collapsed) {
@@ -162,17 +162,17 @@ body:not(.is-mobile) {
 }
 
 body:not(.nav-action-center) .mod-sidedock .workspace-leaf-content .nav-header:first-child:not(:hover) .nav-buttons-container {
-  gap: 4px !important;
-  padding: 0 !important;
-  background-color: transparent !important;
-  box-shadow: none !important;
+  gap: 4px;
+  padding: 0;
+  background-color: transparent;
+  box-shadow: none;
 
   .nav-action-button {
-    padding: 2px !important;
-    width: 0 !important;
+    padding: 2px;
+    width: 0;
     flex: 0;
     background-color: var(--background-modifier-hover);
-    box-shadow: none !important;
+    box-shadow: none;
     min-width: 0;
 
     &::after {
@@ -181,7 +181,7 @@ body:not(.nav-action-center) .mod-sidedock .workspace-leaf-content .nav-header:f
     }
   }
   .nav-action-button.is-active {
-    background-color: var(--background-modifier-hover) !important;
+    background-color: var(--background-modifier-hover);
   }
   .nav-action-button.clickable-icon[aria-disabled="true"] {
     opacity: var(--icon-opacity);

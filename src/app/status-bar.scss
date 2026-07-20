@@ -86,12 +86,12 @@ body:not(.status-bar-baseline):not(.is-grabbing) .app-container.no-transition .s
   border-color: transparent;
   background-color: var(--color-accent);
   color: var(--text-on-accent);
-  max-width: 100% !important;
-  height: 40px !important;
+  max-width: 100%;
+  height: 40px;
 
   > div {
-    transform: none !important;
-    opacity: 1 !important;
-    filter: none !important;
+    transform: none;
+    opacity: 1;
+    filter: none;
   }
 }

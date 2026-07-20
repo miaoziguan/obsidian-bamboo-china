@@ -7,9 +7,9 @@ body {
   --radius-m: calc(12px * var(--radius-modifier));
   --radius-l: calc(20px * var(--radius-modifier));
   --radius-xl: calc(28px * var(--radius-modifier));
-  --clickable-icon-radius: var(--radius-s) !important;
-  --input-radius: var(--radius-s) !important;
-  --search-input-radius: var(--input-radius) !important;
+  --clickable-icon-radius: var(--radius-s);
+  --input-radius: var(--radius-s);
+  --search-input-radius: var(--input-radius);
   --search-input-corner-shape: var(--corner-shape);
 
   --background-modifier-form-field: var(--interactive-normal);

@@ -76,7 +76,7 @@ body {
       /* Lists */
       > ul {
         width: 100%;
-        margin: 0 auto !important;
+        margin: 0 auto;
       }
       img {
         aspect-ratio: var(--cards-aspect-ratio);
@@ -259,7 +259,7 @@ body {
     --cards-image-fit: cover;
     /* Images */
     tbody > tr > td:first-child {
-      padding: 0 !important;
+      padding: 0;
       background-color: var(--background-secondary);
       display: block;
       margin: calc(var(--cards-padding) * -1) calc(var(--cards-padding) * -1) 0;

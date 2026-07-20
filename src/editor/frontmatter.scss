@@ -11,7 +11,7 @@
     padding: 0;
   }
   .metadata-container {
-    --metadata-divider-width: 0 !important;
+    --metadata-divider-width: 0;
   }
   .metadata-properties-heading {
     padding-inline: 0;
@@ -25,8 +25,8 @@
   }
   .metadata-property-key-input,
   .metadata-input {
-    box-shadow: none !important;
-    border-bottom: none !important;
+    box-shadow: none;
+    border-bottom: none;
   }
 
   .metadata-input-longtext:not(:focus) {
@@ -42,7 +42,7 @@
     padding-block: 0;
   }
   .multi-select-pill {
-    line-height: var(--line-height-tight) !important;
+    line-height: var(--line-height-tight);
   }
 
   // Side panels
@@ -67,8 +67,8 @@
     }
   }
   .mod-root .metadata-content {
-    transform: translateX(-8px) !important;
-    width: calc(100% + 16px) !important;
+    transform: translateX(-8px);
+    width: calc(100% + 16px);
   }
 
   .metadata-properties-heading {
@@ -130,7 +130,7 @@
     }
 
     .workspace-split:not(.mod-root) .metadata-container {
-      padding: 8px !important;
+      padding: 8px;
     }
   }
 
