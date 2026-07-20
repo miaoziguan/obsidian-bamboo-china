@@ -69,8 +69,12 @@ if (existsSync(themeCss)) {
   // styles, but it should never grow unchecked. This guard fails the build if
   // the count rises above the recorded baseline, forcing any new usage to be
   // a conscious decision (bump BASELINE_IMPORTANT and explain why).
+  //
+  // Baseline synced to 212: hover-ribbon 改造为内置默认开启功能时，为在悬停
+  // 模式下让左侧折叠按钮始终可见而新增的 `.sidebar-toggle-button` 样式带来了
+  // 一批必要的 `!important`（该块此前已在未提交工作区中，现已随 theme.css 同步）。
   const importantCount = (css.match(/!important/g) || []).length;
-  const BASELINE_IMPORTANT = 207;
+  const BASELINE_IMPORTANT = 212;
   if (importantCount > BASELINE_IMPORTANT) {
     fail(
       `theme.css 中 !important 数量为 ${importantCount}，超过基线 ${BASELINE_IMPORTANT}。` +

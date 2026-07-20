@@ -21,6 +21,21 @@ import { fileURLToPath } from "node:url";
 
 const __dirname = resolve(fileURLToPath(new URL(".", import.meta.url)), "..");
 
+// Load a local, gitignored .env (if present) so `npm run deploy` syncs to the
+// configured vault without passing / exporting OBSIDIAN_THEMES_DIR each time.
+// Keeps personal absolute paths out of the committed source (portability).
+{
+  const envPath = join(__dirname, ".env");
+  if (existsSync(envPath)) {
+    for (const raw of readFileSync(envPath, "utf8").split("\n")) {
+      const m = raw.match(/^\s*([\w.-]+)\s*=\s*(.*)\s*$/);
+      if (m && !(m[1] in process.env)) {
+        process.env[m[1]] = m[2].replace(/^["']|["']$/g, "");
+      }
+    }
+  }
+}
+
 const THEME_NAME = "Bamboo China";
 
 // Resolve the target vault's themes directory. Provide it via CLI argument or

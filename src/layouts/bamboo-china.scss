@@ -24,7 +24,7 @@ body#{mx.$bc}:not(.is-mobile) {
     padding-bottom: 0;
   }
 
-  &:not(.show-ribbon:not(.hover-ribbon)) .workspace:not(.is-left-sidedock-open).is-right-sidedock-open .mod-root {
+  &:not(.show-ribbon.hover-ribbon-off) .workspace:not(.is-left-sidedock-open).is-right-sidedock-open .mod-root {
     margin-left: 8px;
   }
   .workspace.is-left-sidedock-open:not(.is-right-sidedock-open) .mod-root {

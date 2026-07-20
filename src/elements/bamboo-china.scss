@@ -1,5 +1,51 @@
 @use "../mixins" as mx;
 
+// ── Floating rounded center "paper" panel ──────────────────────────────────
+// The center editing view becomes a rounded canvas card floating on the frame
+// colour. Corner radius is driven by --radius-center (Style Settings
+// 「中间视图圆角」slider). Scoped to desktop bamboo; mobile keeps the native look.
+body#{mx.$bc}:not(.is-mobile) {
+  // Frame-coloured field behind the floating card
+  .workspace-split.mod-root {
+    background-color: var(--background-secondary);
+  }
+  .workspace-split.mod-root .workspace-tab-container {
+    // Canvas card
+    background-color: var(--background-primary);
+    border-radius: var(--radius-center);
+    // Lift the card off the bottom edge so it doesn't hug the window
+    margin-bottom: 12px;
+    overflow: hidden;
+    // Soft elevation so the card visibly floats and rounded corners read clearly.
+    // Driven by --center-elevation (Style Settings 「中间视图阴影」slider):
+    // inset highlight stays constant, only the drop shadow scales (no edge line).
+    box-shadow:
+      inset 0 0 1px 1px rgba(255, 255, 255, 0.8),
+      0 calc(4px * var(--center-elevation)) calc(24px * var(--center-elevation)) rgba(0, 0, 0, calc(0.075 * var(--center-elevation)));
+  }
+}
+
+// ── Right sidebar top icons: hidden until hovered ──────────────────────────
+// The action icons and collapse button at the top of the right sidebar are
+// hidden by default and fade in only when the sidebar is hovered. Scoped to
+// desktop bamboo; mobile keeps the native look.
+body#{mx.$bc}:not(.is-mobile) {
+  .workspace-drawer.mod-right,
+  .mod-sidedock.mod-right-split {
+    .side-dock-actions,
+    .workspace-drawer-header-icon {
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity var(--anim-duration-fast);
+    }
+    &:hover .side-dock-actions,
+    &:hover .workspace-drawer-header-icon {
+      opacity: 1;
+      pointer-events: auto;
+    }
+  }
+}
+
 body#{mx.$bc} {
   --side-padding: 20px;
 

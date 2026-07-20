@@ -97,44 +97,338 @@ body:not(.is-phone) {
     }
   }
 
-  .modal.mod-community-modal {
-    .modal-sidebar {
-      padding: 0;
-    }
-    .community-modal-controls {
-      display: flex;
-      height: auto;
-      align-items: center;
-      padding: 0 8px;
-      width: 100%;
-      flex-wrap: wrap;
-    }
-    .modal-sidebar:not(:only-child) .community-modal-controls .setting-item {
-      width: 100%;
-      margin-right: 0;
-    }
-    .community-modal-controls .setting-item {
-      margin: 0;
-      padding: 8px 0;
-      display: flex;
-      align-items: center;
-    }
-    .community-modal-controls .setting-item:first-child {
-      margin-right: auto;
-    }
-    .community-modal-controls .setting-item.mod-toggle {
-      margin-right: 48px;
-    }
-    .community-modal-controls .setting-item:first-child .setting-item-info,
-    .community-modal-search-summary {
-      display: none;
-    }
+    .modal.mod-community-modal {
+      // The "社区插件" title floats in .modal-header over the toolbar. The
+      // left nav already labels this view, so the title is redundant — hide it
+      // to keep the toolbar as the single top element.
+      .modal-header .modal-title {
+        display: none;
+      }
+
+      .modal-sidebar {
+        padding: 0;
+      }
+
+      // ── Desktop: make room for the absolutely-positioned close button ──
+      // The close button floats at top:8 / inset-inline-end:8 over the modal.
+      // On mobile we shift the header; on desktop we push the content down and
+      // keep the full-width search field clear of the button's hit area.
+      .modal-content {
+        padding-top: calc(var(--icon-l) + 8px);
+      }
+
+      // ── Toolbar ───────────────────────────────────────────────────────────
+      // Four independent but rhythm-matched controls sharing the same 36px
+      // height, 10px radius, and 8px gutters. We deliberately do NOT fuse
+      // the search field with the sort button — a forced seam is uglier than
+      // honest separation. Think Finder: search field, then adjacent icon
+      // buttons, then a count label, then a toggle.
+      .community-modal-controls {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        column-gap: 8px;
+        row-gap: 10px;
+        height: auto;
+        padding: 14px 52px 14px 16px; // right padding clears the close button
+        width: 100%;
+        background-color: var(--background-primary);
+        border-bottom: 1px solid var(--background-modifier-border);
+      }
+
+      // ── Search field ──
+      // Obsidian gives every .setting-item a default `border-top` divider and
+      // .search-input-container its own border+background. To get ONE clean
+      // frame we neutralize ALL of those and draw the single frame on
+      // .search-input-container (the element Obsidian already frames), so
+      // there is no nested/duplicate visual.
+      .community-modal-controls .setting-item:first-child {
+        order: 1;
+        flex: 1 1 240px;
+        min-width: 0;
+        margin: 0;
+        padding: 0;
+        border: none; // kill Obsidian's .setting-item divider line
+        background: transparent;
+      }
+      .community-modal-controls .setting-item:first-child .setting-item-info {
+        display: none; // hide the redundant "Search" label
+      }
+      // The control wrapper is just a transparent pass-through — no frame.
+      .community-modal-controls .setting-item:first-child .setting-item-control {
+        flex: 1 1 auto;
+        min-width: 0;
+        display: flex;
+        align-items: center;
+        margin: 0;
+        padding: 0;
+        border: none;
+        background: transparent;
+        box-shadow: none;
+      }
+      // Single frame lives here.
+      .community-modal-controls .search-input-container {
+        flex: 1 1 auto;
+        min-width: 0;
+        height: 36px;
+        display: flex;
+        align-items: center;
+        padding: 0 12px;
+        border: 1px solid color-mix(in srgb, var(--background-modifier-border) 70%, transparent);
+        border-radius: 10px;
+        background-color: color-mix(in srgb, var(--background-modifier-form-field) 60%, transparent);
+        transition:
+          border-color 160ms ease,
+          background-color 160ms ease,
+          box-shadow 160ms ease;
+      }
+      .community-modal-controls .search-input-container:hover {
+        border-color: color-mix(in srgb, var(--text-muted) 30%, var(--background-modifier-border));
+        background-color: var(--background-modifier-form-field);
+      }
+      // No visual focus state — heavy green border/glow was too loud. Keyboard
+      // users still get the browser's default :focus-visible outline.
+      .community-modal-controls .search-input-container:focus-within {
+        // Intentionally empty: identical to resting state.
+      }
+      .community-modal-controls .search-input-container input {
+        flex: 1 1 auto;
+        min-width: 0;
+        height: 100%;
+        border: none;
+        background: transparent;
+        box-shadow: none;
+        appearance: none;
+        font-size: var(--font-ui-small);
+      }
+      .community-modal-controls .search-input-container input::placeholder {
+        color: var(--text-muted); // was --text-faint: near-invisible on indigo
+        opacity: 1;
+      }
+      .community-modal-controls .search-input-container input:focus {
+        border: none;
+        box-shadow: none;
+        outline: none;
+      }
+
+      // ── Sort button (A↓): sits right after the search field as a peer control
+      .community-modal-controls > button.clickable-icon {
+        order: 2;
+        flex: 0 0 auto;
+        height: 36px;
+        width: 36px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        border: 1px solid color-mix(in srgb, var(--background-modifier-border) 70%, transparent);
+        border-radius: 10px;
+        background-color: color-mix(in srgb, var(--background-modifier-form-field) 60%, transparent);
+        color: var(--text-muted);
+        transition:
+          background-color 140ms ease,
+          color 140ms ease,
+          border-color 140ms ease;
+      }
+      .community-modal-controls > button.clickable-icon:hover {
+        background-color: var(--background-modifier-hover);
+        border-color: color-mix(in srgb, var(--text-muted) 30%, var(--background-modifier-border));
+        color: var(--text-normal);
+      }
+
+      // ── Count read-out: right after the sort button, as a quiet label ──
+      .community-modal-search-summary {
+        order: 3;
+        flex: 0 0 auto;
+        align-self: center;
+        height: 36px;
+        display: inline-flex;
+        align-items: center;
+        padding: 0 6px 0 10px; // closer to sort button, away from toggle
+        background: transparent;
+        color: var(--text-muted);
+        font-size: var(--font-ui-small);
+        font-weight: 500;
+        letter-spacing: 0.01em;
+        white-space: nowrap;
+      }
+
+      // ── Filter toggle: just text + switch, pushed to the far right ──
+      .community-modal-controls .setting-item.mod-toggle {
+        order: 4;
+        flex: 0 0 auto;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        height: 36px;
+        margin: 0 0 0 auto; // push to the right end
+        padding: 0 4px;
+        white-space: nowrap;
+      }
+      .community-modal-controls .setting-item.mod-toggle .setting-item-name {
+        white-space: nowrap;
+        font-size: var(--font-ui-small);
+        color: var(--text-muted);
+      }
+      .community-modal-controls .setting-item.mod-toggle .setting-item-info {
+        margin: 0;
+        flex-grow: 0; // don't let the label area stretch and squeeze the text
+      }
+
+    // ── Plugin grid (card layout) ──────────────────────────────────────
+    // Cards flow in a responsive grid. Each card: icon + name/author/desc on
+    // top, action pinned to the bottom so every button lines up across rows.
+    // Equal-height cards via grid-auto-rows; restrained double shadow on hover.
     .community-modal-search-results {
-      gap: 8px;
-      padding: 8px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      grid-auto-rows: 1fr; // equal-height cards regardless of description length
+      align-content: start;
+      gap: 14px;
+      padding: 20px;
+      overflow-y: auto;
+
+      .community-item {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        margin: 0 !important;
+        padding: 16px;
+        border: 1px solid var(--background-modifier-border);
+        border-radius: 12px;
+        background: linear-gradient(
+          180deg,
+          var(--background-secondary) 0%,
+          color-mix(in srgb, var(--background-secondary) 88%, var(--background-primary)) 100%
+        );
+        transition:
+          transform 220ms cubic-bezier(0.16, 1, 0.3, 1),
+          box-shadow 220ms ease,
+          border-color 220ms ease;
+
+        &:hover {
+          transform: translateY(-2px);
+          border-color: color-mix(in srgb, var(--interactive-accent) 40%, var(--background-modifier-border));
+          box-shadow:
+            0 2px 6px color-mix(in srgb, var(--background-primary) 50%, transparent),
+            0 10px 24px color-mix(in srgb, var(--background-primary) 30%, transparent);
+        }
+        &.is-selected {
+          border-color: var(--interactive-accent);
+          background: linear-gradient(
+            180deg,
+            var(--background-secondary) 0%,
+            color-mix(in srgb, var(--interactive-accent) 8%, var(--background-secondary)) 100%
+          );
+          .community-item-name {
+            color: var(--interactive-accent);
+          }
+        }
+        &:focus-visible {
+          outline: 2px solid var(--interactive-accent);
+          outline-offset: 2px;
+        }
+      }
+
+      .community-item-icon {
+        margin: 0 0 10px;
+        height: auto;
+        img {
+          width: 52px;
+          height: 52px;
+          border-radius: 12px;
+          object-fit: cover;
+          box-shadow: 0 2px 6px color-mix(in srgb, var(--background-primary) 40%, transparent);
+        }
+      }
+      .community-item-info {
+        flex: 1 0 auto;
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        padding: 0;
+        min-width: 0;
+      }
+      .community-item-name {
+        font-size: 15px;
+        font-weight: 600;
+        letter-spacing: -0.012em;
+        line-height: 1.3;
+        color: var(--text-normal);
+      }
+      .community-item-author {
+        // The "作者:" prefix is part of the same text node as the email,
+        // so we cannot style it independently. Treat the whole line as a
+        // refined meta line: italic, small, muted, with a subtle person-glyph
+        // prefix to replace the awkward Chinese "作者:".
+        margin: 0;
+        color: var(--text-muted);
+        font-size: var(--font-ui-smaller);
+        font-weight: 400;
+        font-style: italic;
+        line-height: 1.4;
+        letter-spacing: 0.005em;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        opacity: 0.85;
+
+        // Inject a small "person" icon before the text so "作者:" becomes a
+        // visual prefix instead of a textual one. Base64-encoded SVG to avoid
+        // any character-encoding issues with the data URL.
+        &::before {
+          content: "";
+          display: inline-block;
+          width: 11px;
+          height: 11px;
+          flex-shrink: 0;
+          background-color: currentColor;
+          -webkit-mask: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0iTTEyIDEyYzIuMjEgMCA0LTEuNzkgNC00cy0xLjc5LTQtNC00LTQgMS43OS00IDQgMS43OSA0IDQgNHptMCAyYy0yLjY3IDAtOCAxLjM0LTggNHYyaDE2di0yYzAtMi42Ni01LjMzLTQtOC00eiIvPjwvc3ZnPg==") center/contain no-repeat;
+                  mask: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0iTTEyIDEyYzIuMjEgMCA0LTEuNzkgNC00cy0xLjc5LTQtNC00LTQgMS43OS00IDQgMS43OSA0IDQgNHptMCAyYy0yLjY3IDAtOCAxLjM0LTggNHYyaDE2di0yYzAtMi42Ni01LjMzLTQtOC00eiIvPjwvc3ZnPg==") center/contain no-repeat;
+          opacity: 0.6;
+        }
+      }
+      .community-item-desc {
+        margin-top: 8px;
+        color: var(--text-muted);
+        font-size: var(--font-ui-small);
+        line-height: 1.5;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+      .community-item-meta {
+        display: flex;
+        width: 100%;
+        margin-top: auto; // pin the action buttons to the card bottom
+        padding-top: 14px;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 8px;
+        border-top: 1px solid color-mix(in srgb, var(--background-modifier-border) 60%, transparent);
+
+        button {
+          border-radius: 8px;
+          font-weight: 600;
+          font-size: var(--font-ui-small);
+          padding: 6px 14px;
+          transition: filter 150ms ease, transform 100ms ease, background-color 150ms ease;
+        }
+        button:hover {
+          filter: brightness(1.05);
+        }
+        button:active {
+          transform: scale(0.97);
+        }
+      }
     }
-    .community-item:not(.is-selected) {
-      background-color: var(--setting-items-background);
+
+    // ── Right-hand detail panel ────────────────────────────────────────
+    .community-modal-info {
+      padding: 24px;
+      border-inline-start: 1px solid var(--background-modifier-border);
+      background-color: var(--background-primary);
     }
   }
 }

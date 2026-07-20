@@ -6,6 +6,15 @@ body {
   --tab-radius-active: var(--tab-radius) var(--tab-radius) 0 0;
   --tab-curve: calc(var(--tab-radius) + 4px);
 
+  // Center (main editor) view corner radius — independently adjustable via
+  // the Style Settings "中间视图圆角" slider. Defaults to --radius-s so the
+  // look is unchanged until the user tunes it; works without Style Settings too.
+  --radius-center: var(--radius-s);
+  // Floating center panel elevation — multiplier for the soft drop shadow,
+  // driven by the Style Settings "中间视图阴影" slider. 0 = flat, 1 = theme
+  // default, 2 = stronger float. Works without Style Settings too.
+  --center-elevation: 1;
+
   --tab-outline-width: 0px;
   --tab-divider-color: var(--background-modifier-border);
 

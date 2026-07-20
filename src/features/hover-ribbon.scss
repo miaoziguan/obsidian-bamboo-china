@@ -10,7 +10,9 @@ body:not(.is-mobile) .workspace-ribbon.mod-left:hover ~ .mod-root {
   }
 }
 
-body:not(.is-mobile).show-ribbon {
+// Built-in (theme-native) feature: active by default on desktop.
+// Add `.hover-ribbon-off` to the body to disable it.
+body:not(.is-mobile):not(.hover-ribbon-off) {
   // In hover-ribbon mode only the two icon groups should be visible.
   // Hide the sidebar toggle button and ANY other stray child / pseudo-element
   // so no stray dot is left at the top of the ribbon.
@@ -21,12 +23,12 @@ body:not(.is-mobile).show-ribbon {
       content: none !important;
     }
   }
-  // Hide the sidebar toggle button everywhere (child OR sibling of the ribbon),
-  // plus any other stray child / pseudo-element, so no stray dot is left behind.
-  .sidebar-toggle-button.mod-left,
-  .workspace-ribbon.mod-left .sidebar-toggle-button,
-  .workspace-ribbon.mod-left > *:not(.side-dock-actions):not(.side-dock-settings),
-  .workspace-ribbon.mod-left > .clickable-icon {
+  // Hide only stray children / pseudo-elements INSIDE the ribbon so no stray
+  // dot is left behind when the ribbon fades out. The sidebar toggle button is
+  // intentionally NOT hidden here — it stays visible so it can coexist with the
+  // hover-ribbon.
+  .workspace-ribbon.mod-left > *:not(.side-dock-actions):not(.side-dock-settings):not(.sidebar-toggle-button),
+  .workspace-ribbon.mod-left > .clickable-icon:not(.sidebar-toggle-button) {
     display: none !important;
     visibility: hidden !important;
     width: 0 !important;
@@ -35,6 +37,18 @@ body:not(.is-mobile).show-ribbon {
     padding: 0 !important;
     overflow: hidden !important;
     pointer-events: none !important;
+  }
+
+  // Keep the left sidebar toggle button always visible & clickable, even in
+  // hover-ribbon mode. Pull it out of the ribbon's floating hidden state so it
+  // does not fade away or leave a stray dot.
+  .sidebar-toggle-button.mod-left,
+  .workspace-ribbon.mod-left .sidebar-toggle-button {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    transform: none !important;
+    pointer-events: auto !important;
   }
 
   .workspace-ribbon.mod-left {
@@ -110,9 +124,6 @@ body:not(.is-mobile).show-ribbon {
     }
   }
 
-  .workspace-ribbon.mod-left:hover + .mod-sidedock {
-    padding-left: calc(var(--ribbon-width) - 8px);
-  }
   .workspace-ribbon.mod-left.is-collapsed:hover,
   .workspace-ribbon.mod-left.is-collapsed:hover + .mod-sidedock {
     transition-delay: var(--hover-ribbon-delay) !important;

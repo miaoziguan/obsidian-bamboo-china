@@ -1,227 +1,208 @@
-@use "../mixins" as mx;
-
-// ── High-contrast accent overrides (opt-in via style-settings) ─────────
-// Activated by `body.accent-high-contrast`. Darkens the signature accent
-// (used for links + UI controls) to meet WCAG AA (>=4.5:1) against the
-// canvas, so even the theme's clean underline-less links stay readable.
-// Scoped to the main line (mx.$bc) so Adwaita / Material skins are
-// unaffected. Default (toggle off) keeps the original signature colours.
-//
-// Regenerate after editing palette accents: node scripts/gen-accent-aa.mjs
-
-body.accent-high-contrast#{mx.$bc}.theme-light {
-  --interactive-accent: rgb(46, 132, 59);
-  --interactive-accent-hover: rgb(46, 132, 59);
-  --text-accent: rgb(46, 132, 59);
-  --text-accent-hover: rgb(46, 132, 59);
-}
-body.accent-high-contrast#{mx.$bc}.theme-dark {
-  --interactive-accent: rgb(72, 196, 90);
-  --interactive-accent-hover: rgb(72, 196, 90);
-  --text-accent: rgb(72, 196, 90);
-  --text-accent-hover: rgb(72, 196, 90);
-}
-body.accent-high-contrast#{mx.$bc}.cn-bohe.theme-dark {
-  --interactive-accent: rgb(96, 206, 176);
-  --interactive-accent-hover: rgb(96, 206, 176);
-  --text-accent: rgb(96, 206, 176);
-  --text-accent-hover: rgb(96, 206, 176);
-}
-body.accent-high-contrast#{mx.$bc}.cn-bohe.theme-light {
-  --interactive-accent: rgb(38, 128, 106);
-  --interactive-accent-hover: rgb(38, 128, 106);
-  --text-accent: rgb(38, 128, 106);
-  --text-accent-hover: rgb(38, 128, 106);
-}
-body.accent-high-contrast#{mx.$bc}.cn-daizi.theme-dark {
-  --interactive-accent: rgb(168, 120, 200);
-  --interactive-accent-hover: rgb(168, 120, 200);
-  --text-accent: rgb(168, 120, 200);
-  --text-accent-hover: rgb(168, 120, 200);
-}
-body.accent-high-contrast#{mx.$bc}.cn-daizi.theme-light {
-  --interactive-accent: rgb(142, 96, 168);
-  --interactive-accent-hover: rgb(142, 96, 168);
-  --text-accent: rgb(142, 96, 168);
-  --text-accent-hover: rgb(142, 96, 168);
-}
-body.accent-high-contrast#{mx.$bc}.cn-danju.theme-dark {
-  --interactive-accent: rgb(242, 146, 60);
-  --interactive-accent-hover: rgb(242, 146, 60);
-  --text-accent: rgb(242, 146, 60);
-  --text-accent-hover: rgb(242, 146, 60);
-}
-body.accent-high-contrast#{mx.$bc}.cn-danju.theme-light {
-  --interactive-accent: rgb(171, 99, 37);
-  --interactive-accent-hover: rgb(171, 99, 37);
-  --text-accent: rgb(171, 99, 37);
-  --text-accent-hover: rgb(171, 99, 37);
-}
-body.accent-high-contrast#{mx.$bc}.cn-dianlan.theme-dark {
-  --interactive-accent: rgb(96, 140, 226);
-  --interactive-accent-hover: rgb(96, 140, 226);
-  --text-accent: rgb(96, 140, 226);
-  --text-accent-hover: rgb(96, 140, 226);
-}
-body.accent-high-contrast#{mx.$bc}.cn-dianlan.theme-light {
-  --interactive-accent: rgb(50, 104, 214);
-  --interactive-accent-hover: rgb(50, 104, 214);
-  --text-accent: rgb(50, 104, 214);
-  --text-accent-hover: rgb(50, 104, 214);
-}
-body.accent-high-contrast#{mx.$bc}.cn-ehuang.theme-dark {
-  --interactive-accent: rgb(220, 180, 60);
-  --interactive-accent-hover: rgb(220, 180, 60);
-  --text-accent: rgb(220, 180, 60);
-  --text-accent-hover: rgb(220, 180, 60);
-}
-body.accent-high-contrast#{mx.$bc}.cn-ehuang.theme-light {
-  --interactive-accent: rgb(140, 113, 31);
-  --interactive-accent-hover: rgb(140, 113, 31);
-  --text-accent: rgb(140, 113, 31);
-  --text-accent-hover: rgb(140, 113, 31);
-}
-body.accent-high-contrast#{mx.$bc}.cn-haitang.theme-dark {
-  --interactive-accent: rgb(226, 118, 150);
-  --interactive-accent-hover: rgb(226, 118, 150);
-  --text-accent: rgb(226, 118, 150);
-  --text-accent-hover: rgb(226, 118, 150);
-}
-body.accent-high-contrast#{mx.$bc}.cn-haitang.theme-light {
-  --interactive-accent: rgb(177, 88, 115);
-  --interactive-accent-hover: rgb(177, 88, 115);
-  --text-accent: rgb(177, 88, 115);
-  --text-accent-hover: rgb(177, 88, 115);
-}
-body.accent-high-contrast#{mx.$bc}.cn-hupo.theme-dark {
-  --interactive-accent: rgb(220, 158, 64);
-  --interactive-accent-hover: rgb(220, 158, 64);
-  --text-accent: rgb(220, 158, 64);
-  --text-accent-hover: rgb(220, 158, 64);
-}
-body.accent-high-contrast#{mx.$bc}.cn-hupo.theme-light {
-  --interactive-accent: rgb(153, 107, 40);
-  --interactive-accent-hover: rgb(153, 107, 40);
-  --text-accent: rgb(153, 107, 40);
-  --text-accent-hover: rgb(153, 107, 40);
-}
-body.accent-high-contrast#{mx.$bc}.cn-liujin.theme-dark {
-  --interactive-accent: rgb(190, 144, 52);
-  --interactive-accent-hover: rgb(190, 144, 52);
-  --text-accent: rgb(190, 144, 52);
-  --text-accent-hover: rgb(190, 144, 52);
-}
-body.accent-high-contrast#{mx.$bc}.cn-liujin.theme-light {
-  --interactive-accent: rgb(147, 107, 36);
-  --interactive-accent-hover: rgb(147, 107, 36);
-  --text-accent: rgb(147, 107, 36);
-  --text-accent-hover: rgb(147, 107, 36);
-}
-body.accent-high-contrast#{mx.$bc}.cn-moye.theme-dark {
-  --interactive-accent: rgb(92, 150, 214);
-  --interactive-accent-hover: rgb(92, 150, 214);
-  --text-accent: rgb(92, 150, 214);
-  --text-accent-hover: rgb(92, 150, 214);
-}
-body.accent-high-contrast#{mx.$bc}.cn-moye.theme-light {
-  --interactive-accent: rgb(58, 112, 175);
-  --interactive-accent-hover: rgb(58, 112, 175);
-  --text-accent: rgb(58, 112, 175);
-  --text-accent-hover: rgb(58, 112, 175);
-}
-body.accent-high-contrast#{mx.$bc}.cn-ouhe.theme-dark {
-  --interactive-accent: rgb(204, 150, 184);
-  --interactive-accent-hover: rgb(204, 150, 184);
-  --text-accent: rgb(204, 150, 184);
-  --text-accent-hover: rgb(204, 150, 184);
-}
-body.accent-high-contrast#{mx.$bc}.cn-ouhe.theme-light {
-  --interactive-accent: rgb(144, 105, 131);
-  --interactive-accent-hover: rgb(144, 105, 131);
-  --text-accent: rgb(144, 105, 131);
-  --text-accent-hover: rgb(144, 105, 131);
-}
-body.accent-high-contrast#{mx.$bc}.cn-qinglu.theme-dark {
-  --interactive-accent: rgb(86, 196, 188);
-  --interactive-accent-hover: rgb(86, 196, 188);
-  --text-accent: rgb(86, 196, 188);
-  --text-accent-hover: rgb(86, 196, 188);
-}
-body.accent-high-contrast#{mx.$bc}.cn-qinglu.theme-light {
-  --interactive-accent: rgb(43, 129, 123);
-  --interactive-accent-hover: rgb(43, 129, 123);
-  --text-accent: rgb(43, 129, 123);
-  --text-accent-hover: rgb(43, 129, 123);
-}
-body.accent-high-contrast#{mx.$bc}.cn-songhua.theme-dark {
-  --interactive-accent: rgb(134, 172, 78);
-  --interactive-accent-hover: rgb(134, 172, 78);
-  --text-accent: rgb(134, 172, 78);
-  --text-accent-hover: rgb(134, 172, 78);
-}
-body.accent-high-contrast#{mx.$bc}.cn-songhua.theme-light {
-  --interactive-accent: rgb(95, 127, 48);
-  --interactive-accent-hover: rgb(95, 127, 48);
-  --text-accent: rgb(95, 127, 48);
-  --text-accent-hover: rgb(95, 127, 48);
-}
-body.accent-high-contrast#{mx.$bc}.cn-tianqing.theme-dark {
-  --interactive-accent: rgb(104, 172, 222);
-  --interactive-accent-hover: rgb(104, 172, 222);
-  --text-accent: rgb(104, 172, 222);
-  --text-accent-hover: rgb(104, 172, 222);
-}
-body.accent-high-contrast#{mx.$bc}.cn-tianqing.theme-light {
-  --interactive-accent: rgb(55, 122, 163);
-  --interactive-accent-hover: rgb(55, 122, 163);
-  --text-accent: rgb(55, 122, 163);
-  --text-accent-hover: rgb(55, 122, 163);
-}
-body.accent-high-contrast#{mx.$bc}.cn-yanzhi.theme-dark {
-  --interactive-accent: rgb(232, 92, 96);
-  --interactive-accent-hover: rgb(232, 92, 96);
-  --text-accent: rgb(232, 92, 96);
-  --text-accent-hover: rgb(232, 92, 96);
-}
-body.accent-high-contrast#{mx.$bc}.cn-yanzhi.theme-light {
-  --interactive-accent: rgb(205, 68, 73);
-  --interactive-accent-hover: rgb(205, 68, 73);
-  --text-accent: rgb(205, 68, 73);
-  --text-accent-hover: rgb(205, 68, 73);
-}
-body.accent-high-contrast#{mx.$bc}.cn-yuebai.theme-dark {
-  --interactive-accent: rgb(146, 172, 196);
-  --interactive-accent-hover: rgb(146, 172, 196);
-  --text-accent: rgb(146, 172, 196);
-  --text-accent-hover: rgb(146, 172, 196);
-}
-body.accent-high-contrast#{mx.$bc}.cn-yuebai.theme-light {
-  --interactive-accent: rgb(97, 117, 136);
-  --interactive-accent-hover: rgb(97, 117, 136);
-  --text-accent: rgb(97, 117, 136);
-  --text-accent-hover: rgb(97, 117, 136);
-}
-body.accent-high-contrast#{mx.$bc}.cn-zheshi.theme-dark {
-  --interactive-accent: rgb(190, 142, 104);
-  --interactive-accent-hover: rgb(190, 142, 104);
-  --text-accent: rgb(190, 142, 104);
-  --text-accent-hover: rgb(190, 142, 104);
-}
-body.accent-high-contrast#{mx.$bc}.cn-zheshi.theme-light {
-  --interactive-accent: rgb(148, 108, 77);
-  --interactive-accent-hover: rgb(148, 108, 77);
-  --text-accent: rgb(148, 108, 77);
-  --text-accent-hover: rgb(148, 108, 77);
-}
-body.accent-high-contrast#{mx.$bc}.cn-zhuyin.theme-dark {
-  --interactive-accent: rgb(104, 180, 128);
-  --interactive-accent-hover: rgb(104, 180, 128);
-  --text-accent: rgb(104, 180, 128);
-  --text-accent-hover: rgb(104, 180, 128);
-}
-body.accent-high-contrast#{mx.$bc}.cn-zhuyin.theme-light {
+/* === DEFAULT (hand-maintained, do not regenerate) === */
+body.accent-high-contrast.theme-light {
   --interactive-accent: rgb(66, 128, 88);
   --interactive-accent-hover: rgb(66, 128, 88);
   --text-accent: rgb(66, 128, 88);
-  --text-accent-hover: rgb(66, 128, 88);
+  --accent-aa-rgb: 66, 128, 88;
 }
+body.accent-high-contrast.theme-dark {
+  --interactive-accent: rgb(104, 180, 128);
+  --interactive-accent-hover: rgb(104, 180, 128);
+  --text-accent: rgb(104, 180, 128);
+  --accent-aa-rgb: 104, 180, 128;
+}
+/* === END DEFAULT === */
+/* === GENERATED 意境 BLOCKS (auto — do not edit by hand) === */
+body.accent-high-contrast.cn-moye.theme-light {
+  --interactive-accent: rgb(58, 112, 175);
+  --interactive-accent-hover: rgb(58, 112, 175);
+  --text-accent: rgb(58, 112, 175);
+  --accent-aa-rgb: 58, 112, 175;
+}
+body.accent-high-contrast.cn-moye.theme-dark {
+  --interactive-accent: rgb(92, 150, 214);
+  --interactive-accent-hover: rgb(92, 150, 214);
+  --text-accent: rgb(92, 150, 214);
+  --accent-aa-rgb: 92, 150, 214;
+}
+body.accent-high-contrast.cn-yanzhi.theme-light {
+  --interactive-accent: rgb(214, 71, 76);
+  --interactive-accent-hover: rgb(214, 71, 76);
+  --text-accent: rgb(214, 71, 76);
+  --accent-aa-rgb: 214, 71, 76;
+}
+body.accent-high-contrast.cn-yanzhi.theme-dark {
+  --interactive-accent: rgb(232, 92, 96);
+  --interactive-accent-hover: rgb(232, 92, 96);
+  --text-accent: rgb(232, 92, 96);
+  --accent-aa-rgb: 232, 92, 96;
+}
+body.accent-high-contrast.cn-qinglu.theme-light {
+  --interactive-accent: rgb(50, 164, 156);
+  --interactive-accent-hover: rgb(50, 164, 156);
+  --text-accent: rgb(50, 164, 156);
+  --accent-aa-rgb: 50, 164, 156;
+}
+body.accent-high-contrast.cn-qinglu.theme-dark {
+  --interactive-accent: rgb(86, 196, 188);
+  --interactive-accent-hover: rgb(86, 196, 188);
+  --text-accent: rgb(86, 196, 188);
+  --accent-aa-rgb: 86, 196, 188;
+}
+body.accent-high-contrast.cn-liujin.theme-light {
+  --interactive-accent: rgb(184, 134, 45);
+  --interactive-accent-hover: rgb(184, 134, 45);
+  --text-accent: rgb(184, 134, 45);
+  --accent-aa-rgb: 184, 134, 45;
+}
+body.accent-high-contrast.cn-liujin.theme-dark {
+  --interactive-accent: rgb(190, 144, 52);
+  --interactive-accent-hover: rgb(190, 144, 52);
+  --text-accent: rgb(190, 144, 52);
+  --accent-aa-rgb: 190, 144, 52;
+}
+body.accent-high-contrast.cn-tianqing.theme-light {
+  --interactive-accent: rgb(64, 142, 190);
+  --interactive-accent-hover: rgb(64, 142, 190);
+  --text-accent: rgb(64, 142, 190);
+  --accent-aa-rgb: 64, 142, 190;
+}
+body.accent-high-contrast.cn-tianqing.theme-dark {
+  --interactive-accent: rgb(104, 172, 222);
+  --interactive-accent-hover: rgb(104, 172, 222);
+  --text-accent: rgb(104, 172, 222);
+  --accent-aa-rgb: 104, 172, 222;
+}
+body.accent-high-contrast.cn-daizi.theme-light {
+  --interactive-accent: rgb(142, 96, 168);
+  --interactive-accent-hover: rgb(142, 96, 168);
+  --text-accent: rgb(142, 96, 168);
+  --accent-aa-rgb: 142, 96, 168;
+}
+body.accent-high-contrast.cn-daizi.theme-dark {
+  --interactive-accent: rgb(168, 120, 200);
+  --interactive-accent-hover: rgb(168, 120, 200);
+  --text-accent: rgb(168, 120, 200);
+  --accent-aa-rgb: 168, 120, 200;
+}
+body.accent-high-contrast.cn-haitang.theme-light {
+  --interactive-accent: rgb(206, 102, 134);
+  --interactive-accent-hover: rgb(206, 102, 134);
+  --text-accent: rgb(206, 102, 134);
+  --accent-aa-rgb: 206, 102, 134;
+}
+body.accent-high-contrast.cn-haitang.theme-dark {
+  --interactive-accent: rgb(226, 118, 150);
+  --interactive-accent-hover: rgb(226, 118, 150);
+  --text-accent: rgb(226, 118, 150);
+  --accent-aa-rgb: 226, 118, 150;
+}
+body.accent-high-contrast.cn-bohe.theme-light {
+  --interactive-accent: rgb(35, 167, 135);
+  --interactive-accent-hover: rgb(35, 167, 135);
+  --text-accent: rgb(35, 167, 135);
+  --accent-aa-rgb: 35, 167, 135;
+}
+body.accent-high-contrast.cn-bohe.theme-dark {
+  --interactive-accent: rgb(96, 206, 176);
+  --interactive-accent-hover: rgb(96, 206, 176);
+  --text-accent: rgb(96, 206, 176);
+  --accent-aa-rgb: 96, 206, 176;
+}
+body.accent-high-contrast.cn-hupo.theme-light {
+  --interactive-accent: rgb(199, 135, 43);
+  --interactive-accent-hover: rgb(199, 135, 43);
+  --text-accent: rgb(199, 135, 43);
+  --accent-aa-rgb: 199, 135, 43;
+}
+body.accent-high-contrast.cn-hupo.theme-dark {
+  --interactive-accent: rgb(220, 158, 64);
+  --interactive-accent-hover: rgb(220, 158, 64);
+  --text-accent: rgb(220, 158, 64);
+  --accent-aa-rgb: 220, 158, 64;
+}
+body.accent-high-contrast.cn-dianlan.theme-light {
+  --interactive-accent: rgb(50, 104, 214);
+  --interactive-accent-hover: rgb(50, 104, 214);
+  --text-accent: rgb(50, 104, 214);
+  --accent-aa-rgb: 50, 104, 214;
+}
+body.accent-high-contrast.cn-dianlan.theme-dark {
+  --interactive-accent: rgb(96, 140, 226);
+  --interactive-accent-hover: rgb(96, 140, 226);
+  --text-accent: rgb(96, 140, 226);
+  --accent-aa-rgb: 96, 140, 226;
+}
+body.accent-high-contrast.cn-danju.theme-light {
+  --interactive-accent: rgb(223, 123, 37);
+  --interactive-accent-hover: rgb(223, 123, 37);
+  --text-accent: rgb(223, 123, 37);
+  --accent-aa-rgb: 223, 123, 37;
+}
+body.accent-high-contrast.cn-danju.theme-dark {
+  --interactive-accent: rgb(242, 146, 60);
+  --interactive-accent-hover: rgb(242, 146, 60);
+  --text-accent: rgb(242, 146, 60);
+  --accent-aa-rgb: 242, 146, 60;
+}
+body.accent-high-contrast.cn-ehuang.theme-light {
+  --interactive-accent: rgb(183, 143, 23);
+  --interactive-accent-hover: rgb(183, 143, 23);
+  --text-accent: rgb(183, 143, 23);
+  --accent-aa-rgb: 183, 143, 23;
+}
+body.accent-high-contrast.cn-ehuang.theme-dark {
+  --interactive-accent: rgb(220, 180, 60);
+  --interactive-accent-hover: rgb(220, 180, 60);
+  --text-accent: rgb(220, 180, 60);
+  --accent-aa-rgb: 220, 180, 60;
+}
+body.accent-high-contrast.cn-songhua.theme-light {
+  --interactive-accent: rgb(110, 148, 56);
+  --interactive-accent-hover: rgb(110, 148, 56);
+  --text-accent: rgb(110, 148, 56);
+  --accent-aa-rgb: 110, 148, 56;
+}
+body.accent-high-contrast.cn-songhua.theme-dark {
+  --interactive-accent: rgb(134, 172, 78);
+  --interactive-accent-hover: rgb(134, 172, 78);
+  --text-accent: rgb(134, 172, 78);
+  --accent-aa-rgb: 134, 172, 78;
+}
+body.accent-high-contrast.cn-zheshi.theme-light {
+  --interactive-accent: rgb(176, 128, 92);
+  --interactive-accent-hover: rgb(176, 128, 92);
+  --text-accent: rgb(176, 128, 92);
+  --accent-aa-rgb: 176, 128, 92;
+}
+body.accent-high-contrast.cn-zheshi.theme-dark {
+  --interactive-accent: rgb(190, 142, 104);
+  --interactive-accent-hover: rgb(190, 142, 104);
+  --text-accent: rgb(190, 142, 104);
+  --accent-aa-rgb: 190, 142, 104;
+}
+body.accent-high-contrast.cn-ouhe.theme-light {
+  --interactive-accent: rgb(185, 133, 167);
+  --interactive-accent-hover: rgb(185, 133, 167);
+  --text-accent: rgb(185, 133, 167);
+  --accent-aa-rgb: 185, 133, 167;
+}
+body.accent-high-contrast.cn-ouhe.theme-dark {
+  --interactive-accent: rgb(204, 150, 184);
+  --interactive-accent-hover: rgb(204, 150, 184);
+  --text-accent: rgb(204, 150, 184);
+  --accent-aa-rgb: 204, 150, 184;
+}
+body.accent-high-contrast.cn-yuebai.theme-light {
+  --interactive-accent: rgb(124, 150, 174);
+  --interactive-accent-hover: rgb(124, 150, 174);
+  --text-accent: rgb(124, 150, 174);
+  --accent-aa-rgb: 124, 150, 174;
+}
+body.accent-high-contrast.cn-yuebai.theme-dark {
+  --interactive-accent: rgb(146, 172, 196);
+  --interactive-accent-hover: rgb(146, 172, 196);
+  --text-accent: rgb(146, 172, 196);
+  --accent-aa-rgb: 146, 172, 196;
+}
+/* === END GENERATED === */

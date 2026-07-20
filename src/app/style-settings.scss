@@ -10,6 +10,53 @@ settings:
         type: info-text
         markdown: true
     -
+        id: concept-palette
+        title: 意境配色
+        description: 在 16 套东方意境配色间切换（墨夜、胭脂、青绿…）。选「主题原生」不加 class，即竹影·宣纸竹青默认配色。
+        type: class-select
+        default: "none"
+        options:
+            - label: 竹影 · 宣纸竹青（主题原生）
+              value: "none"
+            - label: 墨夜 · 墨黑月白
+              value: cn-moye
+            - label: 胭脂 · 米色朱砂
+              value: cn-yanzhi
+            - label: 青绿 · 千里江山
+              value: cn-qinglu
+            - label: 鎏金 · 秋棠金辉
+              value: cn-liujin
+            - label: 天青 · 雨过天青
+              value: cn-tianqing
+            - label: 黛紫 · 紫烟幽兰
+              value: cn-daizi
+            - label: 海棠 · 粉颊红晕
+              value: cn-haitang
+            - label: 薄荷 · 清凉薄荷
+              value: cn-bohe
+            - label: 琥珀 · 蜜珀流光
+              value: cn-hupo
+            - label: 靛蓝 · 群青深蓝
+              value: cn-dianlan
+            - label: 丹橘 · 暖橘灯影
+              value: cn-danju
+            - label: 鹅黄 · 缃色初阳
+              value: cn-ehuang
+            - label: 松花 · 橄榄新绿
+              value: cn-songhua
+            - label: 赭石 · 茶烟暮霭
+              value: cn-zheshi
+            - label: 藕荷 · 浅紫含烟
+              value: cn-ouhe
+            - label: 月白 · 清辉素练
+              value: cn-yuebai
+    -
+        id: hover-ribbon-off
+        title: 禁用悬停功能区
+        description: 悬停功能区为主题内置的默认开启功能：隐藏左侧功能区，鼠标移至左侧边缘时浮现，左侧折叠按钮始终可见。开启此选项可禁用该功能（恢复常驻可见的左侧功能区）。
+        type: class-toggle
+        default: false
+    -
         id: system-native-font
         title: 系统原生字体
         description: 使用系统原生中文字体栈，替代默认的 SF Pro。
@@ -35,9 +82,19 @@ settings:
         level: 1
         collapsed: true
     -
-        id: radius-modifier
-        title: 卡片圆角
-        description: 统一调整所有卡片、标注、代码块、弹窗的圆角大小。1 = 主题默认，0 = 直角，2 = 更圆润。
+        id: radius-center
+        title: 中间视图圆角
+        description: 单独调整主编辑区（中间视图）画布的圆角大小，不影响卡片与标签页圆角。0 = 直角，数值越大越圆润。
+        type: variable-number-slider
+        default: 16
+        min: 0
+        max: 48
+        step: 1
+        format: "px"
+    -
+        id: center-elevation
+        title: 中间视图阴影
+        description: 调整主编辑区（中间视图）浮起卡片的投影强度。0 = 无阴影（贴合画布），1 = 主题默认，2 = 更明显的浮起感。
         type: variable-number-slider
         default: 1
         min: 0

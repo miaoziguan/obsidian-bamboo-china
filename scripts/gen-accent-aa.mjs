@@ -1,148 +1,163 @@
-// Generate AA-compliant "high-contrast accent" overrides for Bamboo China.
-// For every 意境 palette + the default green, compute an accent colour that
-// meets WCAG AA (>=4.5:1) against --background-primary, and emit a partial
-// that activates under `body.accent-high-contrast` (scoped to the main line
-// via mx.$bc so Adwaita / Material skins are untouched).
+#!/usr/bin/env node
+// Regenerate the per-意境 high-contrast accent overrides in
+// src/color-schemes/accent-high-contrast.scss.
+//
+// FIX (2026-07-20):
+//   • selector regex now matches `body.cn-NAME.theme-light(:not(.is-mobile))`
+//     (was `body#{mx.$bc}.cn-NAME...`, which parsed 0 → on the next run the
+//     generator wrote only the default block and SILENTLY DELETED every 意境
+//     override);
+//   • scoping dropped to platform-agnostic `body.accent-high-contrast.cn-NAME`
+//     (the palettes themselves are no longer scoped to mx.$bc);
+//   • NON-DESTRUCTIVE: the hand-maintained DEFAULT block (between the sentinels
+//     in the target file) is preserved verbatim; only the GENERATED 意境
+//     section is rewritten;
+//   • each 意境's background is read from its real --background-primary (the
+//     :not(.is-mobile) block) instead of a hardcoded [20,20,20]/[255,255,255].
+import fs from 'node:fs';
+import path from 'node:path';
 
-import { readFileSync, writeFileSync } from "node:fs";
-import { fileURLToPath } from "node:url";
-import { dirname, join } from "node:path";
+const PALETTES = 'src/color-schemes/bamboo-china-palettes.scss';
+const ACCENT = 'src/color-schemes/accent-high-contrast.scss';
+const DEF_START = '/* === DEFAULT (hand-maintained, do not regenerate) === */';
+const DEF_END = '/* === END DEFAULT === */';
+const GEN_START = '/* === GENERATED 意境 BLOCKS (auto — do not edit by hand) === */';
+const GEN_END = '/* === END GENERATED === */';
+const TARGET = 3.0; // WCAG non-text contrast
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
-const root = join(__dirname, "..");
-const palettesPath = join(root, "src/color-schemes/bamboo-china-palettes.scss");
+const palettes = fs.readFileSync(PALETTES, 'utf8');
 
-function parseColor(str) {
-  str = str.trim();
-  const m = str.match(/^rgb\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*\)$/);
-  if (m) return [+m[1], +m[2], +m[3]];
-  const h = str.match(/^#([0-9a-f]{6})$/i);
-  if (h) {
-    const n = parseInt(h[1], 16);
-    return [(n >> 16) & 255, (n >> 8) & 255, n & 255];
+// ── var resolution ─────────────────────────────────────────────────────────
+function buildVarMap() {
+  const map = {};
+  const walk = (d) => {
+    for (const e of fs.readdirSync(d, { withFileTypes: true })) {
+      const p = path.join(d, e.name);
+      if (e.isDirectory()) walk(p);
+      else if (e.name.endsWith('.scss')) {
+        const t = fs.readFileSync(p, 'utf8');
+        for (const m of t.matchAll(/--([\w-]+)\s*:\s*([^;]+);/g)) map[m[1]] = m[2].trim();
+      }
+    }
+  };
+  walk('src');
+  return map;
+}
+const VARMAP = buildVarMap();
+function resolve(value) {
+  let v = String(value).trim();
+  let guard = 0;
+  while (/var\(/.test(v) && guard++ < 10) {
+    v = v.replace(/var\((--[\w-]+)(?:\s*,\s*[^)]+)?\)/g, (_, name) => VARMAP[name] ?? '');
+  }
+  return v.trim();
+}
+function parseColor(value) {
+  const v = resolve(value);
+  const hex = v.match(/^#([0-9a-f]{3}|[0-9a-f]{6})$/i);
+  if (hex) {
+    let h = hex[1];
+    if (h.length === 3) h = h.split('').map((c) => c + c).join('');
+    return [parseInt(h.slice(0, 2), 16), parseInt(h.slice(2, 4), 16), parseInt(h.slice(4, 6), 16)];
+  }
+  const rgb = v.match(/rgba?\(\s*([\d.]+)\s*%?\s*[, ]\s*([\d.]+)\s*%?\s*[, ]\s*([\d.]+)\s*%?/i);
+  if (rgb) {
+    const to255 = (x) => (x.includes('%') ? Math.round((parseFloat(x) / 100) * 255) : Math.round(parseFloat(x)));
+    return [to255(rgb[1]), to255(rgb[2]), to255(rgb[3])];
+  }
+  const cm = v.match(/color-mix\([^,]+,\s*([^,]+?),/i);
+  if (cm) return parseColor(cm[1]);
+  throw new Error(`Unparseable color: ${value}`);
+}
+
+// ── block extraction ────────────────────────────────────────────────────────
+function blockBody(selectorRe) {
+  const m = selectorRe.exec(palettes);
+  if (!m) return null;
+  const open = palettes.indexOf('{', m.index);
+  let depth = 0;
+  for (let i = open; i < palettes.length; i++) {
+    if (palettes[i] === '{') depth++;
+    else if (palettes[i] === '}') {
+      depth--;
+      if (depth === 0) return palettes.slice(open + 1, i);
+    }
   }
   return null;
 }
+function getVar(body, name) {
+  const m = body?.match(new RegExp(`--${name}\\s*:\\s*([^;]+);`));
+  return m ? m[1].trim() : null;
+}
+function accentFor(name, mode) {
+  const accent = getVar(blockBody(new RegExp(`body\\.cn-${name}\\.theme-${mode}\\s*\\{`)), 'interactive-accent');
+  const bg = getVar(
+    blockBody(new RegExp(`body\\.cn-${name}\\.theme-${mode}:not\\(\\.(?:is-mobile)\\)\\s*\\{`)),
+    'background-primary'
+  );
+  return aaAccent(parseColor(accent), parseColor(bg));
+}
 
-function srgbToLin(c) {
-  c /= 255;
-  return c <= 0.03928 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4;
+// ── AA computation ──────────────────────────────────────────────────────────
+function luminance([r, g, b]) {
+  const f = (v) => {
+    v /= 255;
+    return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
+  };
+  return 0.2126 * f(r) + 0.7152 * f(g) + 0.0722 * f(b);
 }
-function relLum([r, g, b]) {
-  return 0.2126 * srgbToLin(r) + 0.7152 * srgbToLin(g) + 0.0722 * srgbToLin(b);
-}
-function contrast(a, b) {
-  const la = relLum(a), lb = relLum(b);
-  const hi = Math.max(la, lb), lo = Math.min(la, lb);
+function ratio(a, b) {
+  const l1 = luminance(a);
+  const l2 = luminance(b);
+  const [hi, lo] = [Math.max(l1, l2), Math.min(l1, l2)];
   return (hi + 0.05) / (lo + 0.05);
 }
-function mix(c, target, amt) {
-  return [
-    Math.round(c[0] * (1 - amt) + target[0] * amt),
-    Math.round(c[1] * (1 - amt) + target[1] * amt),
-    Math.round(c[2] * (1 - amt) + target[2] * amt),
-  ];
-}
-const rgb = ([r, g, b]) => `rgb(${r}, ${g}, ${b})`;
-
-// Pull per-palette accents + per-variant background-primary from the file.
-const src = readFileSync(palettesPath, "utf8");
-const blockRe =
-  /body#\{mx\.\$bc\}\.(cn-[\w-]+)\.theme-(light|dark)(?::not\(\.is-mobile\)|\.is-mobile)?\s*\{([^}]*)\}/g;
-const blocks = {};
-let m;
-while ((m = blockRe.exec(src))) {
-  const [, name, theme, body] = m;
-  const get = (v) => {
-    const d = body.match(new RegExp(`--${v}\\s*:\\s*([^;]+)`));
-    return d ? d[1].trim() : null;
-  };
-  const key = `${name}.${theme}`;
-  blocks[key] ||= {};
-  const accent = get("interactive-accent");
-  const bg = get("background-primary");
-  if (accent) blocks[key].accent = accent;
-  if (bg) blocks[key].bg = bg;
-}
-
-// Default (non-意境) bamboo-china accent from root.scss (light then dark).
-const rootSrc = readFileSync(join(root, "src/app/root.scss"), "utf8");
-const greenRgb = rootSrc.match(/--color-green-rgb:\s*(\d+\s*,\s*\d+\s*,\s*\d+)/g);
-const defLight = greenRgb[0].match(/(\d+\s*,\s*\d+\s*,\s*\d+)/)[0];
-const defDark = greenRgb[1].match(/(\d+\s*,\s*\d+\s*,\s*\d+)/)[0];
-const defaultAccents = {
-  light: parseColor(`rgb(${defLight})`),
-  dark: parseColor(`rgb(${defDark})`),
-};
-// default backgrounds: root sets --background-primary? use white / near-black fallback.
-const defaultBg = { light: [255, 255, 255], dark: [20, 20, 20] };
-
-function toAA(accent, bg) {
-  const bgLum = relLum(bg);
-  const target = bgLum > 0.5 ? [0, 0, 0] : [255, 255, 255]; // darken on light bg, lighten on dark
-  for (let amt = 0; amt <= 1.0001; amt += 0.02) {
-    const c = mix(accent, target, Math.min(amt, 1));
-    if (contrast(c, bg) >= 4.6) return c;
+function aaAccent(accent, bg) {
+  let [r, g, b] = accent;
+  let best = ratio(accent, bg);
+  if (best >= TARGET) return [r, g, b];
+  // Nudge along the grey axis toward the opposite luminance of the background
+  // until the non-text contrast target is met.
+  const step = luminance(bg) > 0.5 ? -1 : 1;
+  let tries = 0;
+  while (best < TARGET && tries++ < 255) {
+    r = Math.max(0, Math.min(255, r + step));
+    g = Math.max(0, Math.min(255, g + step));
+    b = Math.max(0, Math.min(255, b + step));
+    best = ratio([r, g, b], bg);
   }
-  return mix(accent, target, 1);
+  return [r, g, b];
 }
 
-const out = [];
-out.push('@use "../mixins" as mx;');
-out.push("");
-out.push("// ── High-contrast accent overrides (opt-in via style-settings) ─────────");
-out.push("// Activated by `body.accent-high-contrast`. Darkens the signature accent");
-out.push("// (used for links + UI controls) to meet WCAG AA (>=4.5:1) against the");
-out.push("// canvas, so even the theme's clean underline-less links stay readable.");
-out.push("// Scoped to the main line (mx.$bc) so Adwaita / Material skins are");
-out.push("// unaffected. Default (toggle off) keeps the original signature colours.");
-out.push("//");
-out.push("// Regenerate after editing palette accents: node scripts/gen-accent-aa.mjs");
-out.push("");
+// ── generate ────────────────────────────────────────────────────────────────
+const names = [...new Set([...palettes.matchAll(/body\.cn-([\w-]+)\.theme-light\s*\{/g)].map((m) => m[1]))];
 
-// Default (non-意境) main line.
-console.log("defaultAccents:", defaultAccents);
-for (const theme of ["light", "dark"]) {
-  if (!defaultAccents[theme]) {
-    console.log("SKIP default", theme, "null accent");
-    continue;
-  }
-  const aa = toAA(defaultAccents[theme], defaultBg[theme]);
-  const ratio = contrast(aa, defaultBg[theme]).toFixed(2);
-  out.push(`body.accent-high-contrast#{mx.$bc}.theme-${theme} {`);
-  out.push(`  --interactive-accent: ${rgb(aa)};`);
-  out.push(`  --interactive-accent-hover: ${rgb(aa)};`);
-  out.push(`  --text-accent: ${rgb(aa)};`);
-  out.push(`  --text-accent-hover: ${rgb(aa)};`);
-  out.push(`}`);
-  console.log(`default ${theme.padEnd(5)} accent -> ${rgb(aa)}  (${ratio}:1 vs canvas)`);
+let gen = GEN_START + '\n';
+for (const name of names) {
+  const [lr, lg, lb] = accentFor(name, 'light');
+  const [dr, dg, db] = accentFor(name, 'dark');
+  gen += `body.accent-high-contrast.cn-${name}.theme-light {\n`;
+  gen += `  --interactive-accent: rgb(${lr}, ${lg}, ${lb});\n`;
+  gen += `  --interactive-accent-hover: rgb(${lr}, ${lg}, ${lb});\n`;
+  gen += `  --text-accent: rgb(${lr}, ${lg}, ${lb});\n`;
+  gen += `  --accent-aa-rgb: ${lr}, ${lg}, ${lb};\n`;
+  gen += `}\n`;
+  gen += `body.accent-high-contrast.cn-${name}.theme-dark {\n`;
+  gen += `  --interactive-accent: rgb(${dr}, ${dg}, ${db});\n`;
+  gen += `  --interactive-accent-hover: rgb(${dr}, ${dg}, ${db});\n`;
+  gen += `  --text-accent: rgb(${dr}, ${dg}, ${db});\n`;
+  gen += `  --accent-aa-rgb: ${dr}, ${dg}, ${db};\n`;
+  gen += `}\n`;
 }
+gen += GEN_END + '\n';
 
-// 意境 palettes.
-for (const key of Object.keys(blocks).sort()) {
-  const { accent, bg } = blocks[key];
-  if (!accent) {
-    console.log("SKIP (no accent):", key);
-    continue;
-  }
-  const ac = parseColor(accent);
-  const bc = parseColor(bg) || [255, 255, 255];
-  if (!ac) {
-    console.log("SKIP (parse null):", key, "raw=", accent);
-    continue;
-  }
-  const aa = toAA(ac, bc);
-  const ratio = contrast(aa, bc).toFixed(2);
-  const [name, theme] = key.split(".");
-  out.push(`body.accent-high-contrast#{mx.$bc}.${name}.theme-${theme} {`);
-  out.push(`  --interactive-accent: ${rgb(aa)};`);
-  out.push(`  --interactive-accent-hover: ${rgb(aa)};`);
-  out.push(`  --text-accent: ${rgb(aa)};`);
-  out.push(`  --text-accent-hover: ${rgb(aa)};`);
-  out.push(`}`);
-  console.log(`${key.padEnd(22)} accent -> ${rgb(aa)}  (${ratio}:1 vs canvas)`);
+// preserve the hand-maintained default block
+const cur = fs.readFileSync(ACCENT, 'utf8');
+let defaultBlock;
+if (cur.includes(DEF_START) && cur.includes(DEF_END)) {
+  defaultBlock = cur.slice(cur.indexOf(DEF_START), cur.indexOf(DEF_END) + DEF_END.length);
+} else {
+  defaultBlock = `${DEF_START}\n// (default block was missing)\n${DEF_END}`;
 }
-
-const dest = join(root, "src/color-schemes/accent-high-contrast.scss");
-writeFileSync(dest, out.join("\n") + "\n");
-console.log(`\nWrote ${dest}`);
+fs.writeFileSync(ACCENT, defaultBlock + '\n' + gen);
+console.log(`Regenerated ${names.length} 意境 accent blocks (default block preserved).`);

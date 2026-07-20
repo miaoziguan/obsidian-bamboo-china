@@ -139,7 +139,9 @@ body:not(.is-mobile) {
 
   // Sidedock padding
   .mod-sidedock .workspace-leaf-content > .node-insert-event,
-  .mod-sidedock .workspace-leaf-content > .view-content {
+  // 放行自带内部布局的插件视图（如「竹叶飞刃」原子笔记面板），
+  // 否则主题的高优先级 padding 会覆盖插件自身的「版面左右留白」。
+  .mod-sidedock .workspace-leaf-content:not([data-type="atomic-notes-panel"]) > .view-content {
     padding: 2px 8px;
 
     > .node-insert-event {

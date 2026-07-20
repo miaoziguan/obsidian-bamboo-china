@@ -1,18 +1,40 @@
-@use "../mixins" as mx;
-
 /*
 Bamboo China — 意境配色（东方色系扩展）
 由 style-settings 的「意境配色」下拉切换，选中即给 body 添加对应 class。
-各方案在 bamboo-china 东方色板基础上，重调宣纸/墨底色调与签名色，营造不同意境。
-选择器特意比 base 多一个 class 以提升优先级，稳定覆盖默认东方色板。
+选择器直接挂在 body（不再依赖 mx.$bc 的平台作用域），确保任何平台/模式
+下切换都能即时生效。
+首套「竹影 · 宣纸竹青」已提升为主题原生默认（不加 class 即生效，见下方首段
+`body.theme-light/.theme-dark`）；其余各方案在它基础上重调宣纸/墨底色调与签名色，
+营造不同意境。各方案选择器带自身 class，优先级高于原生默认，稳定覆盖之。
 
 配色策略：主窗口区（--background-primary，即编辑/阅读画布）保持纯白，
-意境氛围通过侧边栏与面板（--background-secondary）的淡染色，以及签名强调色
+不同意境通过侧边栏与面板（--background-secondary）的淡染色，以及签名强调色
 （--color-*-rgb）来体现，做到「白纸为心、黛青为框」。
 */
 
+/* ============ 原生彩色覆写（跟随意境配色） ============ */
+/* Obsidian 原生的 --color-accent 与 --color-{red,orange,yellow,green,cyan,blue,
+   purple,pink} 彩虹色默认是固定色，不随本主题的意境配色变化。这里把它们改为
+   跟当前变体的签名强调色 (--interactive-accent) 关联：accent 直接取强调色，
+   8 色则在原生色相基础上染上一定比例的强调色调，既保留语法高亮 / callout /
+   图表所需的色相区分，又让整套 UI 共享同一色彩语言——切换意境配色即整体跟随。
+   未在当前变体显式定义的 --color-*-rgb 会回退到 Obsidian 原生值，同样被染色。 */
+body.theme-light,
+body.theme-dark,
+body[class*="cn-"] {
+  --color-accent: var(--interactive-accent);
+  --color-red: color-mix(in oklch, var(--interactive-accent) 16%, rgb(var(--color-red-rgb)));
+  --color-orange: color-mix(in oklch, var(--interactive-accent) 16%, rgb(var(--color-orange-rgb)));
+  --color-yellow: color-mix(in oklch, var(--interactive-accent) 16%, rgb(var(--color-yellow-rgb)));
+  --color-green: color-mix(in oklch, var(--interactive-accent) 16%, rgb(var(--color-green-rgb)));
+  --color-cyan: color-mix(in oklch, var(--interactive-accent) 16%, rgb(var(--color-cyan-rgb)));
+  --color-blue: color-mix(in oklch, var(--interactive-accent) 16%, rgb(var(--color-blue-rgb)));
+  --color-purple: color-mix(in oklch, var(--interactive-accent) 16%, rgb(var(--color-purple-rgb)));
+  --color-pink: color-mix(in oklch, var(--interactive-accent) 16%, rgb(var(--color-pink-rgb)));
+}
+
 /* ============ 竹影 · 宣纸竹青 ============ */
-body#{mx.$bc}.cn-zhuyin.theme-light {
+body.theme-light {
   --color-red-rgb: 200, 70, 70;
   --color-green-rgb: 70, 150, 104;
 
@@ -23,11 +45,11 @@ body#{mx.$bc}.cn-zhuyin.theme-light {
   --text-accent-hover: rgb(104, 178, 128);
   --text-on-accent: #ffffff;
 }
-body#{mx.$bc}.cn-zhuyin.theme-light:not(.is-mobile) {
+body.theme-light:not(.is-mobile) {
   --background-primary: #ffffff;
-  --background-primary-alt: #fcfbf9;
-  --background-secondary: #fcfbf9;
-  --background-secondary-alt: #f6f5f2;
+  --background-primary-alt: #fefefd;
+  --background-secondary: #fefefd;
+  --background-secondary-alt: #fafaf7;
 
   --interactive-normal: hsl(0 0% 0% / 5%);
   --interactive-hover: hsl(0 0% 0% / 5%);
@@ -36,10 +58,10 @@ body#{mx.$bc}.cn-zhuyin.theme-light:not(.is-mobile) {
   --text-muted: #676c62;
   --text-faint: #c0c3bb;
 }
-body#{mx.$bc}.cn-zhuyin.theme-light.is-mobile {
+body.theme-light.is-mobile {
   --background-primary: #ffffff;
-  --background-primary-alt: #fcfbf9;
-  --background-secondary: #fcfbf9;
+  --background-primary-alt: #fefefd;
+  --background-secondary: #fefefd;
   --background-secondary-alt: #ffffff;
 
   --interactive-normal: rgba(118, 118, 128, 12%);
@@ -49,7 +71,7 @@ body#{mx.$bc}.cn-zhuyin.theme-light.is-mobile {
   --text-muted: #676c62;
   --text-faint: #c4c6bd;
 }
-body#{mx.$bc}.cn-zhuyin.theme-dark {
+body.theme-dark {
   --color-red-rgb: 220, 90, 90;
   --color-green-rgb: 96, 170, 120;
 
@@ -60,7 +82,7 @@ body#{mx.$bc}.cn-zhuyin.theme-dark {
   --text-accent-hover: rgb(126, 198, 150);
   --text-on-accent: #ffffff;
 }
-body#{mx.$bc}.cn-zhuyin.theme-dark:not(.is-mobile) {
+body.theme-dark:not(.is-mobile) {
   --background-primary: #14180f;
   --background-primary-alt: color-mix(in srgb, var(--background-primary), white 3%);
   --background-secondary: color-mix(in srgb, var(--background-primary), white 5%);
@@ -73,7 +95,7 @@ body#{mx.$bc}.cn-zhuyin.theme-dark:not(.is-mobile) {
   --text-muted: #8e9585;
   --text-faint: #4a4f44;
 }
-body#{mx.$bc}.cn-zhuyin.theme-dark.is-mobile {
+body.theme-dark.is-mobile {
   --background-primary: #0e120b;
   --background-primary-alt: #1a1f15;
   --background-secondary: #1a1f15;
@@ -88,7 +110,7 @@ body#{mx.$bc}.cn-zhuyin.theme-dark.is-mobile {
 }
 
 /* ============ 墨夜 · 墨黑月白 ============ */
-body#{mx.$bc}.cn-moye.theme-light {
+body.cn-moye.theme-light {
   --color-red-rgb: 198, 68, 66;
   --color-green-rgb: 96, 140, 106;
 
@@ -99,7 +121,7 @@ body#{mx.$bc}.cn-moye.theme-light {
   --text-accent-hover: rgb(80, 134, 197);
   --text-on-accent: #ffffff;
 }
-body#{mx.$bc}.cn-moye.theme-light:not(.is-mobile) {
+body.cn-moye.theme-light:not(.is-mobile) {
   --background-primary: #ffffff;
   --background-primary-alt: #f3f3f1;
   --background-secondary: #f3f3f1;
@@ -112,7 +134,7 @@ body#{mx.$bc}.cn-moye.theme-light:not(.is-mobile) {
   --text-muted: #6e6e6a;
   --text-faint: #bcbcb8;
 }
-body#{mx.$bc}.cn-moye.theme-light.is-mobile {
+body.cn-moye.theme-light.is-mobile {
   --background-primary: #ffffff;
   --background-primary-alt: #f3f3f1;
   --background-secondary: #f3f3f1;
@@ -125,7 +147,7 @@ body#{mx.$bc}.cn-moye.theme-light.is-mobile {
   --text-muted: #6e6e6a;
   --text-faint: #c0c0bc;
 }
-body#{mx.$bc}.cn-moye.theme-dark {
+body.cn-moye.theme-dark {
   --color-red-rgb: 214, 84, 82;
   --color-green-rgb: 110, 160, 120;
 
@@ -136,7 +158,7 @@ body#{mx.$bc}.cn-moye.theme-dark {
   --text-accent-hover: rgb(114, 168, 226);
   --text-on-accent: #ffffff;
 }
-body#{mx.$bc}.cn-moye.theme-dark:not(.is-mobile) {
+body.cn-moye.theme-dark:not(.is-mobile) {
   --background-primary: #121212;
   --background-primary-alt: color-mix(in srgb, var(--background-primary), white 3%);
   --background-secondary: color-mix(in srgb, var(--background-primary), white 5%);
@@ -149,7 +171,7 @@ body#{mx.$bc}.cn-moye.theme-dark:not(.is-mobile) {
   --text-muted: #8c8c86;
   --text-faint: #44443f;
 }
-body#{mx.$bc}.cn-moye.theme-dark.is-mobile {
+body.cn-moye.theme-dark.is-mobile {
   --background-primary: #0c0c0c;
   --background-primary-alt: #1c1c1c;
   --background-secondary: #1c1c1c;
@@ -164,7 +186,7 @@ body#{mx.$bc}.cn-moye.theme-dark.is-mobile {
 }
 
 /* ============ 胭脂 · 米色朱砂 ============ */
-body#{mx.$bc}.cn-yanzhi.theme-light {
+body.cn-yanzhi.theme-light {
   --color-red-rgb: 204, 72, 62;
   --color-pink-rgb: 210, 100, 110;
 
@@ -175,7 +197,7 @@ body#{mx.$bc}.cn-yanzhi.theme-light {
   --text-accent-hover: rgb(228, 98, 102);
   --text-on-accent: #ffffff;
 }
-body#{mx.$bc}.cn-yanzhi.theme-light:not(.is-mobile) {
+body.cn-yanzhi.theme-light:not(.is-mobile) {
   --background-primary: #ffffff;
   --background-primary-alt: #f7f0e8;
   --background-secondary: #f7f0e8;
@@ -188,7 +210,7 @@ body#{mx.$bc}.cn-yanzhi.theme-light:not(.is-mobile) {
   --text-muted: #6d6157;
   --text-faint: #c4b8ac;
 }
-body#{mx.$bc}.cn-yanzhi.theme-light.is-mobile {
+body.cn-yanzhi.theme-light.is-mobile {
   --background-primary: #ffffff;
   --background-primary-alt: #f7f0e8;
   --background-secondary: #f7f0e8;
@@ -201,7 +223,7 @@ body#{mx.$bc}.cn-yanzhi.theme-light.is-mobile {
   --text-muted: #6d6157;
   --text-faint: #c8bdb0;
 }
-body#{mx.$bc}.cn-yanzhi.theme-dark {
+body.cn-yanzhi.theme-dark {
   --color-red-rgb: 222, 90, 78;
   --color-pink-rgb: 226, 116, 124;
 
@@ -212,7 +234,7 @@ body#{mx.$bc}.cn-yanzhi.theme-dark {
   --text-accent-hover: rgb(244, 118, 122);
   --text-on-accent: #ffffff;
 }
-body#{mx.$bc}.cn-yanzhi.theme-dark:not(.is-mobile) {
+body.cn-yanzhi.theme-dark:not(.is-mobile) {
   --background-primary: #1a1310;
   --background-primary-alt: color-mix(in srgb, var(--background-primary), white 3%);
   --background-secondary: color-mix(in srgb, var(--background-primary), white 5%);
@@ -225,7 +247,7 @@ body#{mx.$bc}.cn-yanzhi.theme-dark:not(.is-mobile) {
   --text-muted: #9a8678;
   --text-faint: #46382f;
 }
-body#{mx.$bc}.cn-yanzhi.theme-dark.is-mobile {
+body.cn-yanzhi.theme-dark.is-mobile {
   --background-primary: #140e0b;
   --background-primary-alt: #221813;
   --background-secondary: #221813;
@@ -240,7 +262,7 @@ body#{mx.$bc}.cn-yanzhi.theme-dark.is-mobile {
 }
 
 /* ============ 青绿 · 千里江山 ============ */
-body#{mx.$bc}.cn-qinglu.theme-light {
+body.cn-qinglu.theme-light {
   --color-green-rgb: 64, 150, 118;
   --color-cyan-rgb: 60, 176, 170;
   --color-blue-rgb: 56, 118, 168;
@@ -252,7 +274,7 @@ body#{mx.$bc}.cn-qinglu.theme-light {
   --text-accent-hover: rgb(80, 188, 180);
   --text-on-accent: #ffffff;
 }
-body#{mx.$bc}.cn-qinglu.theme-light:not(.is-mobile) {
+body.cn-qinglu.theme-light:not(.is-mobile) {
   --background-primary: #ffffff;
   --background-primary-alt: #edf1ec;
   --background-secondary: #edf1ec;
@@ -265,7 +287,7 @@ body#{mx.$bc}.cn-qinglu.theme-light:not(.is-mobile) {
   --text-muted: #5c6a60;
   --text-faint: #b6c0b8;
 }
-body#{mx.$bc}.cn-qinglu.theme-light.is-mobile {
+body.cn-qinglu.theme-light.is-mobile {
   --background-primary: #ffffff;
   --background-primary-alt: #edf1ec;
   --background-secondary: #edf1ec;
@@ -278,7 +300,7 @@ body#{mx.$bc}.cn-qinglu.theme-light.is-mobile {
   --text-muted: #5c6a60;
   --text-faint: #bcc4be;
 }
-body#{mx.$bc}.cn-qinglu.theme-dark {
+body.cn-qinglu.theme-dark {
   --color-green-rgb: 92, 172, 134;
   --color-cyan-rgb: 84, 200, 194;
   --color-blue-rgb: 88, 150, 200;
@@ -290,7 +312,7 @@ body#{mx.$bc}.cn-qinglu.theme-dark {
   --text-accent-hover: rgb(108, 212, 204);
   --text-on-accent: #ffffff;
 }
-body#{mx.$bc}.cn-qinglu.theme-dark:not(.is-mobile) {
+body.cn-qinglu.theme-dark:not(.is-mobile) {
   --background-primary: #0e1816;
   --background-primary-alt: color-mix(in srgb, var(--background-primary), white 3%);
   --background-secondary: color-mix(in srgb, var(--background-primary), white 5%);
@@ -303,7 +325,7 @@ body#{mx.$bc}.cn-qinglu.theme-dark:not(.is-mobile) {
   --text-muted: #88a097;
   --text-faint: #3c4a44;
 }
-body#{mx.$bc}.cn-qinglu.theme-dark.is-mobile {
+body.cn-qinglu.theme-dark.is-mobile {
   --background-primary: #09110f;
   --background-primary-alt: #16221f;
   --background-secondary: #16221f;
@@ -318,7 +340,7 @@ body#{mx.$bc}.cn-qinglu.theme-dark.is-mobile {
 }
 
 /* ============ 鎏金 · 秋棠金辉（取自插件 --gold / --gold-rgb） ============ */
-body#{mx.$bc}.cn-liujin.theme-light {
+body.cn-liujin.theme-light {
   --color-orange-rgb: 214, 150, 60;
   --color-yellow-rgb: 205, 168, 72;
 
@@ -329,7 +351,7 @@ body#{mx.$bc}.cn-liujin.theme-light {
   --text-accent-hover: rgb(206, 156, 66);
   --text-on-accent: #ffffff;
 }
-body#{mx.$bc}.cn-liujin.theme-light:not(.is-mobile) {
+body.cn-liujin.theme-light:not(.is-mobile) {
   --background-primary: #ffffff;
   --background-primary-alt: #f7f2e6;
   --background-secondary: #f7f2e6;
@@ -342,7 +364,7 @@ body#{mx.$bc}.cn-liujin.theme-light:not(.is-mobile) {
   --text-muted: #6d6151;
   --text-faint: #c4bba8;
 }
-body#{mx.$bc}.cn-liujin.theme-light.is-mobile {
+body.cn-liujin.theme-light.is-mobile {
   --background-primary: #ffffff;
   --background-primary-alt: #f7f2e6;
   --background-secondary: #f7f2e6;
@@ -355,7 +377,7 @@ body#{mx.$bc}.cn-liujin.theme-light.is-mobile {
   --text-muted: #6d6151;
   --text-faint: #c8bfac;
 }
-body#{mx.$bc}.cn-liujin.theme-dark {
+body.cn-liujin.theme-dark {
   --color-orange-rgb: 236, 168, 80;
   --color-yellow-rgb: 226, 188, 96;
 
@@ -366,7 +388,7 @@ body#{mx.$bc}.cn-liujin.theme-dark {
   --text-accent-hover: rgb(210, 164, 74);
   --text-on-accent: #ffffff;
 }
-body#{mx.$bc}.cn-liujin.theme-dark:not(.is-mobile) {
+body.cn-liujin.theme-dark:not(.is-mobile) {
   --background-primary: #16120a;
   --background-primary-alt: color-mix(in srgb, var(--background-primary), white 3%);
   --background-secondary: color-mix(in srgb, var(--background-primary), white 5%);
@@ -379,7 +401,7 @@ body#{mx.$bc}.cn-liujin.theme-dark:not(.is-mobile) {
   --text-muted: #9a8a70;
   --text-faint: #4a3f2f;
 }
-body#{mx.$bc}.cn-liujin.theme-dark.is-mobile {
+body.cn-liujin.theme-dark.is-mobile {
   --background-primary: #100c06;
   --background-primary-alt: #1d180e;
   --background-secondary: #1d180e;
@@ -394,7 +416,7 @@ body#{mx.$bc}.cn-liujin.theme-dark.is-mobile {
 }
 
 /* ============ 天青 · 雨过天青（取自插件 --sky-azure / --sky-azure-rgb） ============ */
-body#{mx.$bc}.cn-tianqing.theme-light {
+body.cn-tianqing.theme-light {
   --color-cyan-rgb: 64, 160, 196;
   --color-blue-rgb: 70, 120, 180;
 
@@ -405,7 +427,7 @@ body#{mx.$bc}.cn-tianqing.theme-light {
   --text-accent-hover: rgb(86, 162, 208);
   --text-on-accent: #ffffff;
 }
-body#{mx.$bc}.cn-tianqing.theme-light:not(.is-mobile) {
+body.cn-tianqing.theme-light:not(.is-mobile) {
   --background-primary: #ffffff;
   --background-primary-alt: #eef2f6;
   --background-secondary: #eef2f6;
@@ -418,7 +440,7 @@ body#{mx.$bc}.cn-tianqing.theme-light:not(.is-mobile) {
   --text-muted: #5a6675;
   --text-faint: #b6c0cb;
 }
-body#{mx.$bc}.cn-tianqing.theme-light.is-mobile {
+body.cn-tianqing.theme-light.is-mobile {
   --background-primary: #ffffff;
   --background-primary-alt: #eef2f6;
   --background-secondary: #eef2f6;
@@ -431,7 +453,7 @@ body#{mx.$bc}.cn-tianqing.theme-light.is-mobile {
   --text-muted: #5a6675;
   --text-faint: #bcc4cd;
 }
-body#{mx.$bc}.cn-tianqing.theme-dark {
+body.cn-tianqing.theme-dark {
   --color-cyan-rgb: 96, 196, 228;
   --color-blue-rgb: 100, 150, 206;
 
@@ -442,7 +464,7 @@ body#{mx.$bc}.cn-tianqing.theme-dark {
   --text-accent-hover: rgb(126, 188, 234);
   --text-on-accent: #ffffff;
 }
-body#{mx.$bc}.cn-tianqing.theme-dark:not(.is-mobile) {
+body.cn-tianqing.theme-dark:not(.is-mobile) {
   --background-primary: #0e151c;
   --background-primary-alt: color-mix(in srgb, var(--background-primary), white 3%);
   --background-secondary: color-mix(in srgb, var(--background-primary), white 5%);
@@ -455,7 +477,7 @@ body#{mx.$bc}.cn-tianqing.theme-dark:not(.is-mobile) {
   --text-muted: #88a0af;
   --text-faint: #3c4854;
 }
-body#{mx.$bc}.cn-tianqing.theme-dark.is-mobile {
+body.cn-tianqing.theme-dark.is-mobile {
   --background-primary: #091019;
   --background-primary-alt: #16212c;
   --background-secondary: #16212c;
@@ -470,7 +492,7 @@ body#{mx.$bc}.cn-tianqing.theme-dark.is-mobile {
 }
 
 /* ============ 黛紫 · 紫烟幽兰（取自插件 --purple / --purple-rgb） ============ */
-body#{mx.$bc}.cn-daizi.theme-light {
+body.cn-daizi.theme-light {
   --color-purple-rgb: 150, 98, 176;
 
   // 全局主题强调色（黛紫）
@@ -480,7 +502,7 @@ body#{mx.$bc}.cn-daizi.theme-light {
   --text-accent-hover: rgb(162, 118, 186);
   --text-on-accent: #ffffff;
 }
-body#{mx.$bc}.cn-daizi.theme-light:not(.is-mobile) {
+body.cn-daizi.theme-light:not(.is-mobile) {
   --background-primary: #ffffff;
   --background-primary-alt: #f3eef6;
   --background-secondary: #f3eef6;
@@ -493,7 +515,7 @@ body#{mx.$bc}.cn-daizi.theme-light:not(.is-mobile) {
   --text-muted: #6e6478;
   --text-faint: #c2b8c8;
 }
-body#{mx.$bc}.cn-daizi.theme-light.is-mobile {
+body.cn-daizi.theme-light.is-mobile {
   --background-primary: #ffffff;
   --background-primary-alt: #f3eef6;
   --background-secondary: #f3eef6;
@@ -506,7 +528,7 @@ body#{mx.$bc}.cn-daizi.theme-light.is-mobile {
   --text-muted: #6e6478;
   --text-faint: #c6bccb;
 }
-body#{mx.$bc}.cn-daizi.theme-dark {
+body.cn-daizi.theme-dark {
   --color-purple-rgb: 168, 120, 200;
 
   // 全局主题强调色（黛紫·夜）
@@ -516,7 +538,7 @@ body#{mx.$bc}.cn-daizi.theme-dark {
   --text-accent-hover: rgb(186, 142, 214);
   --text-on-accent: #ffffff;
 }
-body#{mx.$bc}.cn-daizi.theme-dark:not(.is-mobile) {
+body.cn-daizi.theme-dark:not(.is-mobile) {
   --background-primary: #14101a;
   --background-primary-alt: color-mix(in srgb, var(--background-primary), white 3%);
   --background-secondary: color-mix(in srgb, var(--background-primary), white 5%);
@@ -529,7 +551,7 @@ body#{mx.$bc}.cn-daizi.theme-dark:not(.is-mobile) {
   --text-muted: #9a8eaa;
   --text-faint: #463c52;
 }
-body#{mx.$bc}.cn-daizi.theme-dark.is-mobile {
+body.cn-daizi.theme-dark.is-mobile {
   --background-primary: #0e0a13;
   --background-primary-alt: #1c1624;
   --background-secondary: #1c1624;
@@ -544,7 +566,7 @@ body#{mx.$bc}.cn-daizi.theme-dark.is-mobile {
 }
 
 /* ============ 海棠 · 粉颊红晕（取自插件 --pink / --health-pink） ============ */
-body#{mx.$bc}.cn-haitang.theme-light {
+body.cn-haitang.theme-light {
   --color-red-rgb: 214, 84, 96;
   --color-pink-rgb: 214, 110, 142;
 
@@ -555,7 +577,7 @@ body#{mx.$bc}.cn-haitang.theme-light {
   --text-accent-hover: rgb(222, 124, 152);
   --text-on-accent: #ffffff;
 }
-body#{mx.$bc}.cn-haitang.theme-light:not(.is-mobile) {
+body.cn-haitang.theme-light:not(.is-mobile) {
   --background-primary: #ffffff;
   --background-primary-alt: #f8eef1;
   --background-secondary: #f8eef1;
@@ -568,7 +590,7 @@ body#{mx.$bc}.cn-haitang.theme-light:not(.is-mobile) {
   --text-muted: #6d5f65;
   --text-faint: #c4b6bc;
 }
-body#{mx.$bc}.cn-haitang.theme-light.is-mobile {
+body.cn-haitang.theme-light.is-mobile {
   --background-primary: #ffffff;
   --background-primary-alt: #f8eef1;
   --background-secondary: #f8eef1;
@@ -581,7 +603,7 @@ body#{mx.$bc}.cn-haitang.theme-light.is-mobile {
   --text-muted: #6d5f65;
   --text-faint: #c8bcc2;
 }
-body#{mx.$bc}.cn-haitang.theme-dark {
+body.cn-haitang.theme-dark {
   --color-red-rgb: 222, 96, 108;
   --color-pink-rgb: 226, 124, 154;
 
@@ -592,7 +614,7 @@ body#{mx.$bc}.cn-haitang.theme-dark {
   --text-accent-hover: rgb(238, 140, 168);
   --text-on-accent: #ffffff;
 }
-body#{mx.$bc}.cn-haitang.theme-dark:not(.is-mobile) {
+body.cn-haitang.theme-dark:not(.is-mobile) {
   --background-primary: #1a1216;
   --background-primary-alt: color-mix(in srgb, var(--background-primary), white 3%);
   --background-secondary: color-mix(in srgb, var(--background-primary), white 5%);
@@ -605,7 +627,7 @@ body#{mx.$bc}.cn-haitang.theme-dark:not(.is-mobile) {
   --text-muted: #9a868e;
   --text-faint: #4a3a42;
 }
-body#{mx.$bc}.cn-haitang.theme-dark.is-mobile {
+body.cn-haitang.theme-dark.is-mobile {
   --background-primary: #140d11;
   --background-primary-alt: #221820;
   --background-secondary: #221820;
@@ -620,7 +642,7 @@ body#{mx.$bc}.cn-haitang.theme-dark.is-mobile {
 }
 
 /* ============ 薄荷 · 清凉薄荷（取自插件 --mint-rgb / --teal-rgb） ============ */
-body#{mx.$bc}.cn-bohe.theme-light {
+body.cn-bohe.theme-light {
   --color-green-rgb: 56, 180, 150;
   --color-cyan-rgb: 72, 196, 196;
 
@@ -631,7 +653,7 @@ body#{mx.$bc}.cn-bohe.theme-light {
   --text-accent-hover: rgb(82, 206, 176);
   --text-on-accent: #ffffff;
 }
-body#{mx.$bc}.cn-bohe.theme-light:not(.is-mobile) {
+body.cn-bohe.theme-light:not(.is-mobile) {
   --background-primary: #ffffff;
   --background-primary-alt: #ecf4f1;
   --background-secondary: #ecf4f1;
@@ -644,7 +666,7 @@ body#{mx.$bc}.cn-bohe.theme-light:not(.is-mobile) {
   --text-muted: #5c716a;
   --text-faint: #b3c4be;
 }
-body#{mx.$bc}.cn-bohe.theme-light.is-mobile {
+body.cn-bohe.theme-light.is-mobile {
   --background-primary: #ffffff;
   --background-primary-alt: #ecf4f1;
   --background-secondary: #ecf4f1;
@@ -657,7 +679,7 @@ body#{mx.$bc}.cn-bohe.theme-light.is-mobile {
   --text-muted: #5c716a;
   --text-faint: #bcc6c2;
 }
-body#{mx.$bc}.cn-bohe.theme-dark {
+body.cn-bohe.theme-dark {
   --color-green-rgb: 88, 200, 170;
   --color-cyan-rgb: 104, 212, 208;
 
@@ -668,7 +690,7 @@ body#{mx.$bc}.cn-bohe.theme-dark {
   --text-accent-hover: rgb(120, 220, 194);
   --text-on-accent: #ffffff;
 }
-body#{mx.$bc}.cn-bohe.theme-dark:not(.is-mobile) {
+body.cn-bohe.theme-dark:not(.is-mobile) {
   --background-primary: #0c1a16;
   --background-primary-alt: color-mix(in srgb, var(--background-primary), white 3%);
   --background-secondary: color-mix(in srgb, var(--background-primary), white 5%);
@@ -681,7 +703,7 @@ body#{mx.$bc}.cn-bohe.theme-dark:not(.is-mobile) {
   --text-muted: #82a199;
   --text-faint: #3a4b45;
 }
-body#{mx.$bc}.cn-bohe.theme-dark.is-mobile {
+body.cn-bohe.theme-dark.is-mobile {
   --background-primary: #081310;
   --background-primary-alt: #14231e;
   --background-secondary: #14231e;
@@ -696,7 +718,7 @@ body#{mx.$bc}.cn-bohe.theme-dark.is-mobile {
 }
 
 /* ============ 琥珀 · 蜜珀流光（取自插件 --amber-rgb） ============ */
-body#{mx.$bc}.cn-hupo.theme-light {
+body.cn-hupo.theme-light {
   --color-orange-rgb: 224, 152, 56;
   --color-yellow-rgb: 222, 184, 96;
 
@@ -707,7 +729,7 @@ body#{mx.$bc}.cn-hupo.theme-light {
   --text-accent-hover: rgb(230, 168, 80);
   --text-on-accent: #ffffff;
 }
-body#{mx.$bc}.cn-hupo.theme-light:not(.is-mobile) {
+body.cn-hupo.theme-light:not(.is-mobile) {
   --background-primary: #ffffff;
   --background-primary-alt: #f9f2e7;
   --background-secondary: #f9f2e7;
@@ -720,7 +742,7 @@ body#{mx.$bc}.cn-hupo.theme-light:not(.is-mobile) {
   --text-muted: #6f6048;
   --text-faint: #c6b9a4;
 }
-body#{mx.$bc}.cn-hupo.theme-light.is-mobile {
+body.cn-hupo.theme-light.is-mobile {
   --background-primary: #ffffff;
   --background-primary-alt: #f9f2e7;
   --background-secondary: #f9f2e7;
@@ -733,7 +755,7 @@ body#{mx.$bc}.cn-hupo.theme-light.is-mobile {
   --text-muted: #6f6048;
   --text-faint: #cabda8;
 }
-body#{mx.$bc}.cn-hupo.theme-dark {
+body.cn-hupo.theme-dark {
   --color-orange-rgb: 236, 168, 80;
   --color-yellow-rgb: 228, 192, 108;
 
@@ -744,7 +766,7 @@ body#{mx.$bc}.cn-hupo.theme-dark {
   --text-accent-hover: rgb(234, 178, 88);
   --text-on-accent: #ffffff;
 }
-body#{mx.$bc}.cn-hupo.theme-dark:not(.is-mobile) {
+body.cn-hupo.theme-dark:not(.is-mobile) {
   --background-primary: #1a140c;
   --background-primary-alt: color-mix(in srgb, var(--background-primary), white 3%);
   --background-secondary: color-mix(in srgb, var(--background-primary), white 5%);
@@ -757,7 +779,7 @@ body#{mx.$bc}.cn-hupo.theme-dark:not(.is-mobile) {
   --text-muted: #9a8766;
   --text-faint: #483a26;
 }
-body#{mx.$bc}.cn-hupo.theme-dark.is-mobile {
+body.cn-hupo.theme-dark.is-mobile {
   --background-primary: #140e08;
   --background-primary-alt: #241a11;
   --background-secondary: #241a11;
@@ -772,7 +794,7 @@ body#{mx.$bc}.cn-hupo.theme-dark.is-mobile {
 }
 
 /* ============ 靛蓝 · 群青深蓝（取自插件 --info-blue-rgb） ============ */
-body#{mx.$bc}.cn-dianlan.theme-light {
+body.cn-dianlan.theme-light {
   --color-blue-rgb: 56, 110, 210;
   --color-cyan-rgb: 64, 160, 200;
 
@@ -783,7 +805,7 @@ body#{mx.$bc}.cn-dianlan.theme-light {
   --text-accent-hover: rgb(76, 128, 230);
   --text-on-accent: #ffffff;
 }
-body#{mx.$bc}.cn-dianlan.theme-light:not(.is-mobile) {
+body.cn-dianlan.theme-light:not(.is-mobile) {
   --background-primary: #ffffff;
   --background-primary-alt: #eef1f8;
   --background-secondary: #eef1f8;
@@ -796,7 +818,7 @@ body#{mx.$bc}.cn-dianlan.theme-light:not(.is-mobile) {
   --text-muted: #5b6678;
   --text-faint: #b4becb;
 }
-body#{mx.$bc}.cn-dianlan.theme-light.is-mobile {
+body.cn-dianlan.theme-light.is-mobile {
   --background-primary: #ffffff;
   --background-primary-alt: #eef1f8;
   --background-secondary: #eef1f8;
@@ -809,7 +831,7 @@ body#{mx.$bc}.cn-dianlan.theme-light.is-mobile {
   --text-muted: #5b6678;
   --text-faint: #bcc4cd;
 }
-body#{mx.$bc}.cn-dianlan.theme-dark {
+body.cn-dianlan.theme-dark {
   --color-blue-rgb: 92, 142, 226;
   --color-cyan-rgb: 96, 196, 228;
 
@@ -820,7 +842,7 @@ body#{mx.$bc}.cn-dianlan.theme-dark {
   --text-accent-hover: rgb(120, 162, 238);
   --text-on-accent: #ffffff;
 }
-body#{mx.$bc}.cn-dianlan.theme-dark:not(.is-mobile) {
+body.cn-dianlan.theme-dark:not(.is-mobile) {
   --background-primary: #0d1320;
   --background-primary-alt: color-mix(in srgb, var(--background-primary), white 3%);
   --background-secondary: color-mix(in srgb, var(--background-primary), white 5%);
@@ -833,7 +855,7 @@ body#{mx.$bc}.cn-dianlan.theme-dark:not(.is-mobile) {
   --text-muted: #8492aa;
   --text-faint: #3a4154;
 }
-body#{mx.$bc}.cn-dianlan.theme-dark.is-mobile {
+body.cn-dianlan.theme-dark.is-mobile {
   --background-primary: #080d18;
   --background-primary-alt: #141c2c;
   --background-secondary: #141c2c;
@@ -848,7 +870,7 @@ body#{mx.$bc}.cn-dianlan.theme-dark.is-mobile {
 }
 
 /* ============ 丹橘 · 暖橘灯影（取自插件 --health-orange / --warning-orange-rgb） ============ */
-body#{mx.$bc}.cn-danju.theme-light {
+body.cn-danju.theme-light {
   --color-orange-rgb: 240, 140, 50;
   --color-red-rgb: 220, 88, 60;
 
@@ -859,7 +881,7 @@ body#{mx.$bc}.cn-danju.theme-light {
   --text-accent-hover: rgb(246, 158, 76);
   --text-on-accent: #ffffff;
 }
-body#{mx.$bc}.cn-danju.theme-light:not(.is-mobile) {
+body.cn-danju.theme-light:not(.is-mobile) {
   --background-primary: #ffffff;
   --background-primary-alt: #fbf1e7;
   --background-secondary: #fbf1e7;
@@ -872,7 +894,7 @@ body#{mx.$bc}.cn-danju.theme-light:not(.is-mobile) {
   --text-muted: #6f5f4c;
   --text-faint: #c6b8a6;
 }
-body#{mx.$bc}.cn-danju.theme-light.is-mobile {
+body.cn-danju.theme-light.is-mobile {
   --background-primary: #ffffff;
   --background-primary-alt: #fbf1e7;
   --background-secondary: #fbf1e7;
@@ -885,7 +907,7 @@ body#{mx.$bc}.cn-danju.theme-light.is-mobile {
   --text-muted: #6f5f4c;
   --text-faint: #cabbaa;
 }
-body#{mx.$bc}.cn-danju.theme-dark {
+body.cn-danju.theme-dark {
   --color-orange-rgb: 248, 156, 74;
   --color-red-rgb: 226, 96, 70;
 
@@ -896,7 +918,7 @@ body#{mx.$bc}.cn-danju.theme-dark {
   --text-accent-hover: rgb(250, 166, 84);
   --text-on-accent: #ffffff;
 }
-body#{mx.$bc}.cn-danju.theme-dark:not(.is-mobile) {
+body.cn-danju.theme-dark:not(.is-mobile) {
   --background-primary: #1c130c;
   --background-primary-alt: color-mix(in srgb, var(--background-primary), white 3%);
   --background-secondary: color-mix(in srgb, var(--background-primary), white 5%);
@@ -909,7 +931,7 @@ body#{mx.$bc}.cn-danju.theme-dark:not(.is-mobile) {
   --text-muted: #9a886c;
   --text-faint: #4a3826;
 }
-body#{mx.$bc}.cn-danju.theme-dark.is-mobile {
+body.cn-danju.theme-dark.is-mobile {
   --background-primary: #160e08;
   --background-primary-alt: #251a11;
   --background-secondary: #251a11;
@@ -924,7 +946,7 @@ body#{mx.$bc}.cn-danju.theme-dark.is-mobile {
 }
 
 /* ============ 鹅黄 · 缃色初阳（取自插件 --warning-yellow / --gold-bright） ============ */
-body#{mx.$bc}.cn-ehuang.theme-light {
+body.cn-ehuang.theme-light {
   --color-yellow-rgb: 220, 180, 50;
   --color-orange-rgb: 226, 160, 60;
 
@@ -935,7 +957,7 @@ body#{mx.$bc}.cn-ehuang.theme-light {
   --text-accent-hover: rgb(224, 186, 70);
   --text-on-accent: #ffffff;
 }
-body#{mx.$bc}.cn-ehuang.theme-light:not(.is-mobile) {
+body.cn-ehuang.theme-light:not(.is-mobile) {
   --background-primary: #ffffff;
   --background-primary-alt: #f8f4e3;
   --background-secondary: #f8f4e3;
@@ -948,7 +970,7 @@ body#{mx.$bc}.cn-ehuang.theme-light:not(.is-mobile) {
   --text-muted: #6f6349;
   --text-faint: #c6bfa4;
 }
-body#{mx.$bc}.cn-ehuang.theme-light.is-mobile {
+body.cn-ehuang.theme-light.is-mobile {
   --background-primary: #ffffff;
   --background-primary-alt: #f8f4e3;
   --background-secondary: #f8f4e3;
@@ -961,7 +983,7 @@ body#{mx.$bc}.cn-ehuang.theme-light.is-mobile {
   --text-muted: #6f6349;
   --text-faint: #c9c2a8;
 }
-body#{mx.$bc}.cn-ehuang.theme-dark {
+body.cn-ehuang.theme-dark {
   --color-yellow-rgb: 232, 196, 72;
   --color-orange-rgb: 236, 174, 82;
 
@@ -972,7 +994,7 @@ body#{mx.$bc}.cn-ehuang.theme-dark {
   --text-accent-hover: rgb(234, 198, 84);
   --text-on-accent: #1a160c;
 }
-body#{mx.$bc}.cn-ehuang.theme-dark:not(.is-mobile) {
+body.cn-ehuang.theme-dark:not(.is-mobile) {
   --background-primary: #171307;
   --background-primary-alt: color-mix(in srgb, var(--background-primary), white 3%);
   --background-secondary: color-mix(in srgb, var(--background-primary), white 5%);
@@ -985,7 +1007,7 @@ body#{mx.$bc}.cn-ehuang.theme-dark:not(.is-mobile) {
   --text-muted: #9a8e66;
   --text-faint: #4a4226;
 }
-body#{mx.$bc}.cn-ehuang.theme-dark.is-mobile {
+body.cn-ehuang.theme-dark.is-mobile {
   --background-primary: #120e05;
   --background-primary-alt: #221b0d;
   --background-secondary: #221b0d;
@@ -1000,7 +1022,7 @@ body#{mx.$bc}.cn-ehuang.theme-dark.is-mobile {
 }
 
 /* ============ 松花 · 橄榄新绿（取自插件 --leaf-green） ============ */
-body#{mx.$bc}.cn-songhua.theme-light {
+body.cn-songhua.theme-light {
   --color-green-rgb: 110, 150, 60;
   --color-yellow-rgb: 180, 190, 90;
 
@@ -1011,7 +1033,7 @@ body#{mx.$bc}.cn-songhua.theme-light {
   --text-accent-hover: rgb(132, 168, 76);
   --text-on-accent: #ffffff;
 }
-body#{mx.$bc}.cn-songhua.theme-light:not(.is-mobile) {
+body.cn-songhua.theme-light:not(.is-mobile) {
   --background-primary: #ffffff;
   --background-primary-alt: #f1f3e8;
   --background-secondary: #f1f3e8;
@@ -1024,7 +1046,7 @@ body#{mx.$bc}.cn-songhua.theme-light:not(.is-mobile) {
   --text-muted: #5f644b;
   --text-faint: #b8c0ac;
 }
-body#{mx.$bc}.cn-songhua.theme-light.is-mobile {
+body.cn-songhua.theme-light.is-mobile {
   --background-primary: #ffffff;
   --background-primary-alt: #f1f3e8;
   --background-secondary: #f1f3e8;
@@ -1037,7 +1059,7 @@ body#{mx.$bc}.cn-songhua.theme-light.is-mobile {
   --text-muted: #5f644b;
   --text-faint: #bcc4b0;
 }
-body#{mx.$bc}.cn-songhua.theme-dark {
+body.cn-songhua.theme-dark {
   --color-green-rgb: 132, 170, 78;
   --color-yellow-rgb: 196, 204, 110;
 
@@ -1048,7 +1070,7 @@ body#{mx.$bc}.cn-songhua.theme-dark {
   --text-accent-hover: rgb(154, 190, 96);
   --text-on-accent: #ffffff;
 }
-body#{mx.$bc}.cn-songhua.theme-dark:not(.is-mobile) {
+body.cn-songhua.theme-dark:not(.is-mobile) {
   --background-primary: #14180c;
   --background-primary-alt: color-mix(in srgb, var(--background-primary), white 3%);
   --background-secondary: color-mix(in srgb, var(--background-primary), white 5%);
@@ -1061,7 +1083,7 @@ body#{mx.$bc}.cn-songhua.theme-dark:not(.is-mobile) {
   --text-muted: #909879;
   --text-faint: #444a36;
 }
-body#{mx.$bc}.cn-songhua.theme-dark.is-mobile {
+body.cn-songhua.theme-dark.is-mobile {
   --background-primary: #0e1208;
   --background-primary-alt: #1a1f12;
   --background-secondary: #1a1f12;
@@ -1076,7 +1098,7 @@ body#{mx.$bc}.cn-songhua.theme-dark.is-mobile {
 }
 
 /* ============ 赭石 · 茶烟暮霭（取自插件 --amber-brown-rgb） ============ */
-body#{mx.$bc}.cn-zheshi.theme-light {
+body.cn-zheshi.theme-light {
   --color-orange-rgb: 200, 140, 90;
   --color-red-rgb: 190, 110, 80;
 
@@ -1087,7 +1109,7 @@ body#{mx.$bc}.cn-zheshi.theme-light {
   --text-accent-hover: rgb(194, 148, 112);
   --text-on-accent: #ffffff;
 }
-body#{mx.$bc}.cn-zheshi.theme-light:not(.is-mobile) {
+body.cn-zheshi.theme-light:not(.is-mobile) {
   --background-primary: #ffffff;
   --background-primary-alt: #f5efe7;
   --background-secondary: #f5efe7;
@@ -1100,7 +1122,7 @@ body#{mx.$bc}.cn-zheshi.theme-light:not(.is-mobile) {
   --text-muted: #6f6048;
   --text-faint: #c6b9a8;
 }
-body#{mx.$bc}.cn-zheshi.theme-light.is-mobile {
+body.cn-zheshi.theme-light.is-mobile {
   --background-primary: #ffffff;
   --background-primary-alt: #f5efe7;
   --background-secondary: #f5efe7;
@@ -1113,7 +1135,7 @@ body#{mx.$bc}.cn-zheshi.theme-light.is-mobile {
   --text-muted: #6f6048;
   --text-faint: #cabdaa;
 }
-body#{mx.$bc}.cn-zheshi.theme-dark {
+body.cn-zheshi.theme-dark {
   --color-orange-rgb: 212, 154, 108;
   --color-red-rgb: 200, 118, 92;
 
@@ -1124,7 +1146,7 @@ body#{mx.$bc}.cn-zheshi.theme-dark {
   --text-accent-hover: rgb(206, 160, 122);
   --text-on-accent: #ffffff;
 }
-body#{mx.$bc}.cn-zheshi.theme-dark:not(.is-mobile) {
+body.cn-zheshi.theme-dark:not(.is-mobile) {
   --background-primary: #1a130c;
   --background-primary-alt: color-mix(in srgb, var(--background-primary), white 3%);
   --background-secondary: color-mix(in srgb, var(--background-primary), white 5%);
@@ -1137,7 +1159,7 @@ body#{mx.$bc}.cn-zheshi.theme-dark:not(.is-mobile) {
   --text-muted: #9a866c;
   --text-faint: #4a3826;
 }
-body#{mx.$bc}.cn-zheshi.theme-dark.is-mobile {
+body.cn-zheshi.theme-dark.is-mobile {
   --background-primary: #140d06;
   --background-primary-alt: #241910;
   --background-secondary: #241910;
@@ -1152,7 +1174,7 @@ body#{mx.$bc}.cn-zheshi.theme-dark.is-mobile {
 }
 
 /* ============ 藕荷 · 浅紫含烟（介于海棠与黛紫之间） ============ */
-body#{mx.$bc}.cn-ouhe.theme-light {
+body.cn-ouhe.theme-light {
   --color-pink-rgb: 206, 140, 178;
   --color-purple-rgb: 188, 140, 196;
 
@@ -1163,7 +1185,7 @@ body#{mx.$bc}.cn-ouhe.theme-light {
   --text-accent-hover: rgb(206, 158, 190);
   --text-on-accent: #ffffff;
 }
-body#{mx.$bc}.cn-ouhe.theme-light:not(.is-mobile) {
+body.cn-ouhe.theme-light:not(.is-mobile) {
   --background-primary: #ffffff;
   --background-primary-alt: #f5eef2;
   --background-secondary: #f5eef2;
@@ -1176,7 +1198,7 @@ body#{mx.$bc}.cn-ouhe.theme-light:not(.is-mobile) {
   --text-muted: #695c65;
   --text-faint: #c6b8c2;
 }
-body#{mx.$bc}.cn-ouhe.theme-light.is-mobile {
+body.cn-ouhe.theme-light.is-mobile {
   --background-primary: #ffffff;
   --background-primary-alt: #f5eef2;
   --background-secondary: #f5eef2;
@@ -1189,7 +1211,7 @@ body#{mx.$bc}.cn-ouhe.theme-light.is-mobile {
   --text-muted: #695c65;
   --text-faint: #cabdc6;
 }
-body#{mx.$bc}.cn-ouhe.theme-dark {
+body.cn-ouhe.theme-dark {
   --color-pink-rgb: 216, 150, 192;
   --color-purple-rgb: 200, 152, 206;
 
@@ -1200,7 +1222,7 @@ body#{mx.$bc}.cn-ouhe.theme-dark {
   --text-accent-hover: rgb(218, 168, 200);
   --text-on-accent: #ffffff;
 }
-body#{mx.$bc}.cn-ouhe.theme-dark:not(.is-mobile) {
+body.cn-ouhe.theme-dark:not(.is-mobile) {
   --background-primary: #18121a;
   --background-primary-alt: color-mix(in srgb, var(--background-primary), white 3%);
   --background-secondary: color-mix(in srgb, var(--background-primary), white 5%);
@@ -1213,7 +1235,7 @@ body#{mx.$bc}.cn-ouhe.theme-dark:not(.is-mobile) {
   --text-muted: #9c8e9a;
   --text-faint: #483c4a;
 }
-body#{mx.$bc}.cn-ouhe.theme-dark.is-mobile {
+body.cn-ouhe.theme-dark.is-mobile {
   --background-primary: #120c14;
   --background-primary-alt: #201820;
   --background-secondary: #201820;
@@ -1228,7 +1250,7 @@ body#{mx.$bc}.cn-ouhe.theme-dark.is-mobile {
 }
 
 /* ============ 月白 · 清辉素练（冷调极简留白） ============ */
-body#{mx.$bc}.cn-yuebai.theme-light {
+body.cn-yuebai.theme-light {
   --color-blue-rgb: 110, 150, 180;
   --color-cyan-rgb: 120, 170, 190;
 
@@ -1239,7 +1261,7 @@ body#{mx.$bc}.cn-yuebai.theme-light {
   --text-accent-hover: rgb(144, 168, 190);
   --text-on-accent: #ffffff;
 }
-body#{mx.$bc}.cn-yuebai.theme-light:not(.is-mobile) {
+body.cn-yuebai.theme-light:not(.is-mobile) {
   --background-primary: #ffffff;
   --background-primary-alt: #f4f7f9;
   --background-secondary: #f4f7f9;
@@ -1252,7 +1274,7 @@ body#{mx.$bc}.cn-yuebai.theme-light:not(.is-mobile) {
   --text-muted: #5d6a76;
   --text-faint: #b8c2c8;
 }
-body#{mx.$bc}.cn-yuebai.theme-light.is-mobile {
+body.cn-yuebai.theme-light.is-mobile {
   --background-primary: #ffffff;
   --background-primary-alt: #f4f7f9;
   --background-secondary: #f4f7f9;
@@ -1265,7 +1287,7 @@ body#{mx.$bc}.cn-yuebai.theme-light.is-mobile {
   --text-muted: #5d6a76;
   --text-faint: #bcc6cc;
 }
-body#{mx.$bc}.cn-yuebai.theme-dark {
+body.cn-yuebai.theme-dark {
   --color-blue-rgb: 140, 172, 198;
   --color-cyan-rgb: 150, 192, 212;
 
@@ -1276,7 +1298,7 @@ body#{mx.$bc}.cn-yuebai.theme-dark {
   --text-accent-hover: rgb(166, 188, 210);
   --text-on-accent: #ffffff;
 }
-body#{mx.$bc}.cn-yuebai.theme-dark:not(.is-mobile) {
+body.cn-yuebai.theme-dark:not(.is-mobile) {
   --background-primary: #0f1418;
   --background-primary-alt: color-mix(in srgb, var(--background-primary), white 3%);
   --background-secondary: color-mix(in srgb, var(--background-primary), white 5%);
@@ -1289,7 +1311,7 @@ body#{mx.$bc}.cn-yuebai.theme-dark:not(.is-mobile) {
   --text-muted: #8492a0;
   --text-faint: #3c454e;
 }
-body#{mx.$bc}.cn-yuebai.theme-dark.is-mobile {
+body.cn-yuebai.theme-dark.is-mobile {
   --background-primary: #0a0e12;
   --background-primary-alt: #151b21;
   --background-secondary: #151b21;
@@ -1301,4 +1323,41 @@ body#{mx.$bc}.cn-yuebai.theme-dark.is-mobile {
   --text-normal: #dde6ec;
   --text-muted: #86949e;
   --text-faint: #3e4750;
+}
+
+// ── Accessibility fix (2026-07-20) ────────────────────────────────────────
+// The following light-mode accents fell below WCAG 1.4.11 non-text contrast
+// (3:1) against their canvas in the default palette. Their interactive-accent
+// is nudged to a darker, hue-preserving shade so the DEFAULT theme is
+// accessible without relying on the opt-in high-contrast toggle. Derived by
+// scripts/check-palette-contrast.mjs. Re-run the script after any palette edit.
+body.cn-qinglu.theme-light {
+  --interactive-accent: rgb(50, 164, 156);
+  --interactive-accent-hover: rgb(50, 164, 156);
+  --text-accent: rgb(50, 164, 156);
+}
+body.cn-bohe.theme-light {
+  --interactive-accent: rgb(35, 167, 135);
+  --interactive-accent-hover: rgb(35, 167, 135);
+  --text-accent: rgb(35, 167, 135);
+}
+body.cn-hupo.theme-light {
+  --interactive-accent: rgb(176, 116, 32);
+  --interactive-accent-hover: rgb(176, 116, 32);
+  --text-accent: rgb(176, 116, 32);
+}
+body.cn-danju.theme-light {
+  --interactive-accent: rgb(197, 112, 32);
+  --interactive-accent-hover: rgb(197, 112, 32);
+  --text-accent: rgb(197, 112, 32);
+}
+body.cn-ehuang.theme-light {
+  --interactive-accent: rgb(170, 132, 36);
+  --interactive-accent-hover: rgb(170, 132, 36);
+  --text-accent: rgb(170, 132, 36);
+}
+body.cn-ouhe.theme-light {
+  --interactive-accent: rgb(156, 112, 142);
+  --interactive-accent-hover: rgb(156, 112, 142);
+  --text-accent: rgb(156, 112, 142);
 }

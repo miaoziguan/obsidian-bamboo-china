@@ -1,7 +1,10 @@
 @use "../mixins" as mx;
 
 body#{mx.$bc} {
-  --setting-nav-icon-background: var(--color-base-50);
+  // Settings nav icons stay on the active theme accent (one colour family that
+  // follows the current scheme). Each icon gets a gem-like light→dark gradient
+  // overlay within that hue; foreground uses --text-on-accent.
+  --setting-nav-icon-background: var(--interactive-accent);
 
   .modal.mod-sidebar-layout.mod-settings .vertical-tab-nav-item {
     .vertical-tab-nav-item-icon {
@@ -13,26 +16,45 @@ body#{mx.$bc} {
         0 0 2px rgba(0, 0, 0, 0.25),
         0 1px 4px rgba(0, 0, 0, 0.15);
       border-radius: 50%;
-      background-image: linear-gradient(oklch(from var(--setting-nav-icon-background) calc(l * 1.125) c h), oklch(from var(--setting-nav-icon-background) calc(l * 0.975) c h));
+      // 135° linear gradient (lighter top-left → deeper bottom-right) plus a
+      // soft top-left highlight overlay. Gives each icon a gem-like depth that
+      // the original ~15% oklch gradient couldn't convey.
+      background-image:
+        radial-gradient(120% 120% at 0% 0%, rgba(255, 255, 255, 0.22), transparent 55%),
+        linear-gradient(135deg,
+          color-mix(in oklch, var(--setting-nav-icon-background) 78%, white),
+          color-mix(in oklch, var(--setting-nav-icon-background) 88%, black));
       background-color: var(--setting-nav-icon-background);
       padding: 4px;
-      color: var(--setting-nav-icon-color, white);
+      color: var(--text-on-accent);
     }
 
-    &[data-setting-id="canvas"] .vertical-tab-nav-item-icon {
-      --setting-nav-icon-color: var(--color-red);
-      --setting-nav-icon-background: var(--color-base-10);
-    }
-    &[data-setting-id="command-palette"] .vertical-tab-nav-item-icon {
-      --setting-nav-icon-background: #242424;
-    }
-    &[data-setting-id="sync"] .vertical-tab-nav-item-icon {
-      --setting-nav-icon-color: var(--color-green);
-      --setting-nav-icon-background: var(--color-base-10);
-    }
+    // Keep every nav icon on the active theme accent — a single colour family
+    // that follows the current scheme — so the sidebar stays coherent. The
+    // 135° light→dark gradient overlay above is what gives each icon its
+    // gradient depth (all within the same hue). Per-id specificity (0,7,1)
+    // still beats app/settings.scss's macOS rainbow rule.
+    &[data-setting-id="editor"] .vertical-tab-nav-item-icon,
+    &[data-setting-id="mobile"] .vertical-tab-nav-item-icon,
+    &[data-setting-id="file"] .vertical-tab-nav-item-icon,
+    &[data-setting-id="appearance"] .vertical-tab-nav-item-icon,
+    &[data-setting-id="hotkeys"] .vertical-tab-nav-item-icon,
+    &[data-setting-id="keychain"] .vertical-tab-nav-item-icon,
+    &[data-setting-id="plugins"] .vertical-tab-nav-item-icon,
+    &[data-setting-id="community-plugins"] .vertical-tab-nav-item-icon,
+    &[data-setting-id="backlink"] .vertical-tab-nav-item-icon,
+    &[data-setting-id="canvas"] .vertical-tab-nav-item-icon,
+    &[data-setting-id="command-palette"] .vertical-tab-nav-item-icon,
+    &[data-setting-id="daily-notes"] .vertical-tab-nav-item-icon,
+    &[data-setting-id="file-recovery"] .vertical-tab-nav-item-icon,
+    &[data-setting-id="note-composer"] .vertical-tab-nav-item-icon,
+    &[data-setting-id="page-preview"] .vertical-tab-nav-item-icon,
+    &[data-setting-id="switcher"] .vertical-tab-nav-item-icon,
+    &[data-setting-id="sync"] .vertical-tab-nav-item-icon,
+    &[data-setting-id="templates"] .vertical-tab-nav-item-icon,
+    &[data-setting-id="zk-prefixer"] .vertical-tab-nav-item-icon,
     &[data-setting-id="webviewer"] .vertical-tab-nav-item-icon {
-      --setting-nav-icon-color: var(--color-blue);
-      --setting-nav-icon-background: var(--color-base-10);
+      --setting-nav-icon-background: var(--interactive-accent);
     }
   }
 }
