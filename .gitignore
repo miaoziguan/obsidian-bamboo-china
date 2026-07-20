@@ -1,3 +1,8 @@
 .vscode/*
 .DS_Store
 node_modules/
+
+# Local, machine-specific deploy target for `npm run deploy` (never commit).
+.env
+# CodeBuddy local project data (never commit)
+.codebuddy/
