@@ -1,6 +1,12 @@
 body:not(.is-mobile) {
   --hover-ribbon-delay: 100ms;
   --hover-ribbon-trigger-area: 8px;
+
+  // Subtle right-edge highlight on the collapsed ribbon so users know
+  // there's an interactive panel hiding at the screen edge.
+  .workspace-ribbon.mod-left:not(:hover) {
+    box-shadow: inset -1px 0 0 0 var(--background-modifier-border);
+  }
 }
 
 // Window drag fix

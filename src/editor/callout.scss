@@ -4,7 +4,7 @@
   body {
     --callout-blend-mode: normal;
     --callout-border-width: var(--divider-width);
-    --callout-padding: 16px;
+    --callout-padding: var(--space-l);
     --callout-size: var(--font-text-size);
   }
 
@@ -45,6 +45,13 @@
 
     .callout-content {
       margin-left: calc(var(--icon-size) + 8px);
+
+      // Prevent embedded tables from overflowing the callout boundary.
+      // Tables default to min-width: auto in flex/grid contexts, which
+      // pushes the callout wider instead of scrolling horizontally.
+      table {
+        min-width: 0;
+      }
     }
   }
 

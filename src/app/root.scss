@@ -91,6 +91,14 @@ body,
   // elements/baseline.scss, which made every other skin's `calc(... * var(--radius-modifier))`
   // silently depend on Obsidian's default resolution. Now declared once here so
   // the contract is explicit and no skin breaks if that default ever changes.
+  // Spacing scale — canonical source. Replace bare `px` values with these so
+  // density adjustments (Material tight / Fluent relaxed) stay local to the token.
+  --space-xs: 4px;
+  --space-s: 8px;
+  --space-m: 12px;
+  --space-l: 16px;
+  --space-xl: 24px;
+
   --radius-modifier: 1;
   --density-modifier: 1;
   --translucent-light-opacity: 0%;

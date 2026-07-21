@@ -49,6 +49,11 @@ button:where(:not(.clickable-icon, .ant-switch, .workspace-leaf-content:not([dat
   corner-shape: round;
   padding: 8px;
   max-height: 100%;
+
+  // Universal press feedback — subtle scale-down makes every button feel tactile.
+  &:active:not([aria-disabled="true"]) {
+    transform: scale(0.96);
+  }
 }
 
 // Toggle

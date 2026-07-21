@@ -331,6 +331,8 @@ body.is-phone {
       will-change: transform;
       z-index: var(--bc-z-view-header);
       padding-inline: var(--safe-area-inset-side);
+      // Hairline separation so scrolled content doesn't bleed into the header.
+      border-bottom: var(--border-width) solid var(--background-modifier-border);
     }
     .view-actions {
       padding: 0;
@@ -457,6 +459,12 @@ body.is-phone {
   .mobile-navbar-action {
     min-width: 0;
     margin-inline-start: 0;
+
+    // Active tab indicator — the user should know which page they're on.
+    &.is-active {
+      color: var(--interactive-accent);
+      --icon-stroke: var(--icon-l-stroke-width);
+    }
   }
   .mobile-navbar-actions {
     --icon-size: var(--icon-l);

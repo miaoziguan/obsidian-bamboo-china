@@ -38,6 +38,11 @@ body,
   --icon-m-stroke-width: calc(2px * var(--icon-stroke-modifier));
   --icon-l-stroke-width: calc(2px * var(--icon-stroke-modifier));
   --icon-xl-stroke-width: calc(1.25px * var(--icon-stroke-modifier));
+  --space-xs: 4px;
+  --space-s: 8px;
+  --space-m: 12px;
+  --space-l: 16px;
+  --space-xl: 24px;
   --radius-modifier: 1;
   --density-modifier: 1;
   --translucent-light-opacity: 0%;
@@ -2005,6 +2010,7 @@ body.is-phone .mod-root .view-header {
   will-change: transform;
   z-index: var(--bc-z-view-header);
   padding-inline: var(--safe-area-inset-side);
+  border-bottom: var(--border-width) solid var(--background-modifier-border);
 }
 body.is-phone .mod-root .view-actions {
   padding: 0;
@@ -2099,6 +2105,10 @@ body.is-phone.is-floating-nav .mobile-navbar {
 body.is-phone .mobile-navbar-action {
   min-width: 0;
   margin-inline-start: 0;
+}
+body.is-phone .mobile-navbar-action.is-active {
+  color: var(--interactive-accent);
+  --icon-stroke: var(--icon-l-stroke-width);
 }
 body.is-phone .mobile-navbar-actions {
   --icon-size: var(--icon-l);
@@ -2565,7 +2575,7 @@ id: bamboo-china
 settings:
     - 
         id: bamboo-china-desc
-        description: "Bamboo China是专为竹林中国系列插件产品所定制的专业主题。"
+        description: "竹影 · 宣纸竹青 — 东方意境主题。白纸为心、黛青为框，16 套意境配色让每篇笔记都有自己的氛围。"
         type: info-text
         markdown: true
     -
@@ -2577,38 +2587,55 @@ settings:
         options:
             - label: 竹影 · 宣纸竹青（主题原生）
               value: "none"
+              description: "竹青强调 · 宣纸白画布 · 本色侧栏 — 克制的原点"
             - label: 墨夜 · 墨黑月白
               value: cn-moye
+              description: "靛蓝强调 · 月白侧栏 · 墨黑画布 — 深邃冷静"
             - label: 胭脂 · 米色朱砂
               value: cn-yanzhi
+              description: "朱砂红强调 · 米色侧栏 · 暖纸画布 — 温润古典"
             - label: 青绿 · 千里江山
               value: cn-qinglu
+              description: "石青绿强调 · 青灰侧栏 · 山色画布 — 清新生机"
             - label: 鎏金 · 秋棠金辉
               value: cn-liujin
+              description: "金辉强调 · 秋棠侧栏 · 暖灰画布 — 温暖厚重"
             - label: 天青 · 雨过天青
               value: cn-tianqing
+              description: "天蓝强调 · 雨灰侧栏 · 淡青画布 — 晴朗通透"
             - label: 黛紫 · 紫烟幽兰
               value: cn-daizi
+              description: "黛紫强调 · 紫灰侧栏 · 幽兰画布 — 神秘沉静"
             - label: 海棠 · 粉颊红晕
               value: cn-haitang
+              description: "粉色强调 · 粉灰侧栏 · 桃色画布 — 柔和浪漫"
             - label: 薄荷 · 清凉薄荷
               value: cn-bohe
+              description: "薄荷绿强调 · 浅绿侧栏 · 清凉画布 — 清爽宜人"
             - label: 琥珀 · 蜜珀流光
               value: cn-hupo
+              description: "琥珀橙强调 · 暖褐侧栏 · 蜜色画布 — 醇厚温暖"
             - label: 靛蓝 · 群青深蓝
               value: cn-dianlan
+              description: "靛蓝强调 · 蓝灰侧栏 · 深蓝画布 — 沉稳专业"
             - label: 丹橘 · 暖橘灯影
               value: cn-danju
+              description: "暖橘强调 · 暖褐侧栏 · 灯影画布 — 温馨灯下"
             - label: 鹅黄 · 缃色初阳
               value: cn-ehuang
+              description: "鹅黄强调 · 浅黄侧栏 · 初阳画布 — 明媚柔和"
             - label: 松花 · 橄榄新绿
               value: cn-songhua
+              description: "橄榄绿强调 · 绿灰侧栏 · 松色画布 — 自然朴实"
             - label: 赭石 · 茶烟暮霭
               value: cn-zheshi
+              description: "赭石棕强调 · 茶烟侧栏 · 暮霭画布 — 古朴沉稳"
             - label: 藕荷 · 浅紫含烟
               value: cn-ouhe
+              description: "浅紫强调 · 藕灰侧栏 · 含烟画布 — 淡雅朦胧"
             - label: 月白 · 清辉素练
               value: cn-yuebai
+              description: "月白强调 · 浅灰侧栏 · 清辉画布 — 极简素净"
     -
         id: hover-ribbon-off
         title: 禁用悬停功能区
@@ -2810,7 +2837,7 @@ settings:
 */
 .view-content .style-settings-container .style-settings-container .setting-item {
   align-items: center;
-  padding: 16px;
+  padding: var(--space-l);
 }
 .view-content .style-settings-container .style-settings-container .setting-item:not(.setting-item-heading) {
   flex-direction: row;
@@ -2826,12 +2853,12 @@ settings:
 .style-settings-heading,
 .style-settings-container {
   margin-block: 0;
-  padding-left: 32px;
+  padding-left: var(--space-xl);
 }
 
 .style-settings-heading {
   border-radius: 0;
-  padding: 16px;
+  padding: var(--space-l);
 }
 
 .style-settings-heading .setting-item-name {
@@ -3444,7 +3471,7 @@ body:not(.is-android:not(.adaptive-mode-off)) .setting-item[data-id=material-col
   body {
     --callout-blend-mode: normal;
     --callout-border-width: var(--divider-width);
-    --callout-padding: 16px;
+    --callout-padding: var(--space-l);
     --callout-size: var(--font-text-size);
   }
   .callout:not([data-callout=note-toolbar]) {
@@ -3477,6 +3504,9 @@ body:not(.is-android:not(.adaptive-mode-off)) .setting-item[data-id=material-col
   }
   .callout:not([data-callout=note-toolbar]) .callout-content {
     margin-left: calc(var(--icon-size) + 8px);
+  }
+  .callout:not([data-callout=note-toolbar]) .callout-content table {
+    min-width: 0;
   }
   .callout:not([data-callout]) {
     --callout-color: var(--color-accent);
@@ -4418,6 +4448,9 @@ button:where(:not(.clickable-icon, .ant-switch, .workspace-leaf-content:not([dat
   corner-shape: round;
   padding: 8px;
   max-height: 100%;
+}
+.clickable-icon:active:not([aria-disabled=true]) {
+  transform: scale(0.96);
 }
 
 body.obsidian-app .checkbox-container {
@@ -7776,6 +7809,9 @@ body.focus-view:not(.mod-macos):not(.is-mobile):not(.is-popout-window):not(.is-h
 body:not(.is-mobile) {
   --hover-ribbon-delay: 100ms;
   --hover-ribbon-trigger-area: 8px;
+}
+body:not(.is-mobile) .workspace-ribbon.mod-left:not(:hover) {
+  box-shadow: inset -1px 0 0 0 var(--background-modifier-border);
 }
 
 body:not(.is-mobile) .workspace-ribbon.mod-left:hover ~ .mod-root div:is(.workspace-tab-header-container, .workspace-tab-header-container-inner) {
