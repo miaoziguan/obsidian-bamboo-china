@@ -6,7 +6,7 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "build": "sass src/theme.scss theme.css --no-source-map --style=expanded",
+    "build": "sass src/theme.scss theme.css --no-source-map --style=compressed",
     "build:min": "sass src/theme.scss theme.css --no-source-map --style=compressed",
     "test": "node scripts/check-css.mjs && node scripts/check-palette-contrast.mjs && node scripts/check-a11y.mjs && node scripts/audit_cascade.mjs && node scripts/check-size.mjs",
     "test:visual": "playwright test --config scripts/visual-regression/playwright.config.mjs",
