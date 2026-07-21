@@ -1,6 +1,8 @@
 body.mod-windows:not(.adaptive-mode-off) {
-  --font-interface-theme: "Segoe UI Variable Display", "Segoe UI Variable";
-  --font-text-theme: "Segoe UI Variable Text", "Segoe UI Variable";
+  // Brand font(s) → Windows pre-variable → Apple system → generic.
+  --font-interface-theme: "Segoe UI Variable Display", "Segoe UI Display", "Segoe UI Variable", "Segoe UI", -apple-system, BlinkMacSystemFont, sans-serif;
+  // Fluent separates UI and text faces; the fallback discards the distinction gracefully.
+  --font-text-theme: "Segoe UI Variable Text", "Segoe UI Variable", "Segoe UI", -apple-system, BlinkMacSystemFont, sans-serif;
 
   --h1-size: 1.75rem;
   --h2-size: 1.5rem;

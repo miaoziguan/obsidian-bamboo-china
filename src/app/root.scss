@@ -10,8 +10,12 @@
 body,
 .theme-light,
 .theme-dark {
-  --font-interface-theme: "SF Pro";
-  --font-text-theme: "SF Pro";
+  // Default brand font stack: Apple → CJK system → Windows → generic.
+  // Chinese readers automatically get PingFang / Microsoft YaHei on their
+  // platform without needing the .system-native-font class (which is preserved
+  // for backward compatibility but is now redundant for the default path).
+  --font-interface-theme: "SF Pro", -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  --font-text-theme: "SF Pro", -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
 
   --font-ui-modifier: 0px;
 

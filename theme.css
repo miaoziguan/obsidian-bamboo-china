@@ -2,8 +2,8 @@
 body,
 .theme-light,
 .theme-dark {
-  --font-interface-theme: "SF Pro";
-  --font-text-theme: "SF Pro";
+  --font-interface-theme: "SF Pro", -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  --font-text-theme: "SF Pro", -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
   --font-ui-modifier: 0px;
   --bold-modifier: 300;
   --icon-size-modifier: 0px;
@@ -5389,8 +5389,8 @@ body:is(.mod-macos, .adaptive-mode-off).is-phone .mobile-tab .close-button {
 }
 
 body.mod-windows:not(.adaptive-mode-off) {
-  --font-interface-theme: "Segoe UI Variable Display", "Segoe UI Variable";
-  --font-text-theme: "Segoe UI Variable Text", "Segoe UI Variable";
+  --font-interface-theme: "Segoe UI Variable Display", "Segoe UI Display", "Segoe UI Variable", "Segoe UI", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-text-theme: "Segoe UI Variable Text", "Segoe UI Variable", "Segoe UI", -apple-system, BlinkMacSystemFont, sans-serif;
   --h1-size: 1.75rem;
   --h2-size: 1.5rem;
   --h3-size: 1.25rem;
@@ -5689,8 +5689,8 @@ body.mod-windows:not(.adaptive-mode-off).is-phone .modal.mod-settings .vertical-
 }
 
 body.is-android:not(.adaptive-mode-off) {
-  --font-interface-theme: "Google Sans System", "Google Sans Flex", "Google Sans";
-  --font-text-theme: "Google Sans System", "Google Sans Flex", "Google Sans";
+  --font-interface-theme: "Google Sans System", "Google Sans Flex", "Google Sans", "Roboto", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-text-theme: "Google Sans System", "Google Sans Flex", "Google Sans", "Roboto", -apple-system, BlinkMacSystemFont, sans-serif;
   --h1-size: 2.25rem;
   --h1-weight: 400;
   --h2-size: 1.75rem;
@@ -5987,8 +5987,8 @@ body.is-android:not(.adaptive-mode-off).is-phone .prompt .suggestion-item {
 }
 
 body.mod-linux:not(.is-android):not(.adaptive-mode-off) {
-  --font-interface-theme: "Adwaita Sans", "Adwaita Sans Text";
-  --font-text-theme: "Adwaita Sans", "Adwaita Sans Text";
+  --font-interface-theme: "Adwaita Sans", "Adwaita Sans Text", "Cantarell", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-text-theme: "Adwaita Sans", "Adwaita Sans Text", "Cantarell", -apple-system, BlinkMacSystemFont, sans-serif;
   --shadow-s: 0 0 0 1px rgba(0, 0, 6, 3%), 0 1px 3px 1px rgba(0, 0, 6, 7%), 0 2px 6px 2px rgba(0, 0, 6, 3%);
   --shadow-l: 0 0 14px 5px rgba(0, 0, 0, 15%), 0 0 5px 2px rgba(0, 0, 0, 10%), 0 0 0 1px rgba(0, 0, 0, 5%);
   --input-border-width: 0;
