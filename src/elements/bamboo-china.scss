@@ -59,34 +59,16 @@ body#{mx.$bc} {
     --radius-m: calc(24px * var(--radius-modifier));
     --radius-l: calc(32px * var(--radius-modifier));
     --radius-xl: calc(40px * var(--radius-modifier));
+    --radius-xs: calc(4px * var(--radius-modifier));
 
     --input-radius: var(--radius-l);
     --input-height: 48px;
     --input-padding: 0 var(--side-padding);
   }
 
-  // ── Focus ring (unified, keyboard-only) ────────────────────────────────
-  // One token-driven ring for every redrawn interactive control on the
-  // Bamboo China desktop main line, so keyboard users never "lose" focus.
-  // Scoped to :focus-visible — pointer interaction never shows the ring.
-  button,
-  .clickable-icon,
-  input,
-  textarea,
-  select,
-  .dropdown,
-  .combobox-button,
-  .checkbox-container,
-  .slider,
-  .nav-file-title,
-  .nav-folder-title,
-  .workspace-tab-header,
-  .menu-item,
-  .search-input-container input {
-    &:focus-visible {
-      @include mx.focus-ring;
-    }
-  }
+  // Focus ring is applied globally in app/root.scss (token-driven,
+  // :focus-visible only) so every skin shares one consistent indicator.
+  // Bamboo China still tunes it via --bc-focus-ring-width (see palettes).
   &.is-phone {
     --nav-item-padding: calc(16px * var(--density-modifier)) var(--side-padding);
   }

@@ -125,7 +125,7 @@ body.is-android:not(.adaptive-mode-off).theme-light.material-color {
 
   --text-muted: var(--neutral-40);
   --text-faint: var(--neutral-60);
-  --text-accent: var(--color-base-50);
+  --text-accent: var(--mood-text-accent, var(--color-base-50));
 
   --background-primary: var(--neutral-98);
   --background-primary-alt: var(--neutral-100);
@@ -134,8 +134,8 @@ body.is-android:not(.adaptive-mode-off).theme-light.material-color {
 
   --interactive-normal: var(--background-primary);
   --interactive-hover: var(--background-secondary);
-  --interactive-accent: var(--tertiary-40);
-  --interactive-accent-hover: oklch(from var(--tertiary-40) calc(l + 0.05) c h);
+  --interactive-accent: var(--mood-accent, var(--tertiary-40));
+  --interactive-accent-hover: var(--mood-accent-hover, oklch(from var(--tertiary-40) calc(l + 0.05) c h));
   --text-on-accent: var(--tertiary-100);
   --text-on-accent-inverted: var(--tertiary-100);
   --background-modifier-form-field: var(--neutral-90);
@@ -204,8 +204,8 @@ body.is-android:not(.adaptive-mode-off).theme-dark.material-color {
 
   --interactive-normal: var(--background-primary);
   --interactive-hover: var(--background-secondary);
-  --interactive-accent: var(--tertiary-60);
-  --interactive-accent-hover: oklch(from var(--tertiary-80) calc(l + 0.05) c h);
+  --interactive-accent: var(--mood-accent, var(--tertiary-60));
+  --interactive-accent-hover: var(--mood-accent-hover, oklch(from var(--tertiary-80) calc(l + 0.05) c h));
   --text-on-accent: var(--tertiary-20);
   --text-on-accent-inverted: var(--tertiary-20);
   --background-modifier-form-field: var(--neutral-22);

@@ -1,12 +1,14 @@
 body {
   --input-height: 32px;
 
-  --radius-modifier: 1;
+  // --radius-modifier is now defined globally in app/root.scss (canonical
+  // source). Removed here to avoid a duplicate, order-dependent definition.
   --input-radius: var(--radius-s);
   --radius-s: calc(8px * var(--radius-modifier));
   --radius-m: calc(12px * var(--radius-modifier));
   --radius-l: calc(20px * var(--radius-modifier));
   --radius-xl: calc(28px * var(--radius-modifier));
+  --radius-xs: calc(4px * var(--radius-modifier));
   --clickable-icon-radius: var(--radius-s);
   --input-radius: var(--radius-s);
   --search-input-radius: var(--input-radius);
@@ -54,10 +56,8 @@ body.obsidian-app .checkbox-container {
   transition: var(--anim-duration-moderate);
   box-shadow: none;
 
-  &:focus-within {
-    outline: none;
-  }
-
+  // Keyboard focus is drawn by the global `input:focus-visible` ring in
+  // app/root.scss — do not suppress it here.
   &::after {
     transition:
       var(--anim-duration-moderate) var(--anim-motion-baseline),

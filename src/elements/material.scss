@@ -93,7 +93,7 @@ body.is-android:not(.adaptive-mode-off) {
   select,
   .combobox-button,
   .dropdown {
-    transition: var(--anim-duration-fast);
+    transition: var(--anim-duration-fast) var(--anim-motion-baseline);
     box-shadow: inset 0 0 var(--interactive-accent);
     border-width: 0 0 var(--border-width);
     border-style: solid;
@@ -101,7 +101,8 @@ body.is-android:not(.adaptive-mode-off) {
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
 
-    &:focus {
+    // Keyboard-only, matching the global focus-ring policy.
+    &:focus-visible {
       box-shadow: inset 0 -2px var(--interactive-accent);
       border-color: transparent;
       border-bottom-right-radius: 0;
@@ -111,7 +112,9 @@ body.is-android:not(.adaptive-mode-off) {
 
   // Slider
   input[type="range"]::-webkit-slider-thumb {
-    outline: 6px solid var(--setting-items-background);
+    // No `outline` here: a 6px outline painted in the background colour is
+    // invisible AND offsets the thumb. The keyboard focus ring comes from the
+    // global `input:focus-visible` rule in app/root.scss.
     background-color: var(--interactive-accent);
   }
   input[type="range"]:active {

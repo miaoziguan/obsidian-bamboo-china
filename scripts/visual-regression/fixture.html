@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- The real theme under test. Path is relative to this file (scripts/visual-regression/). -->
+  <link rel="stylesheet" href="../../theme.css" />
+  <title>Bamboo China — visual regression fixture</title>
+  <style>
+    /* Minimal scaffolding so the fixture renders like a real Obsidian window.
+       It does NOT define theme tokens — those come from theme.css. */
+    html, body { margin: 0; height: 100%; }
+    .app-container { display: flex; height: 100vh; }
+    .workspace-split { flex: 0 0 260px; border-right: 1px solid var(--background-modifier-border); overflow: auto; }
+    .workspace { flex: 1; display: flex; flex-direction: column; }
+    .workspace-leaf { flex: 1; overflow: auto; padding: 24px; }
+    .modal-bg { position: fixed; inset: 0; background: var(--background-modifier-cover); display: flex; align-items: center; justify-content: center; }
+    .modal { width: 720px; max-width: 92vw; max-height: 86vh; overflow: auto; background: var(--modal-background, var(--background-primary)); border-radius: var(--radius-l); box-shadow: var(--shadow-l); }
+    .vertical-tabs { display: flex; }
+    .vertical-tab-header { padding: 10px 14px; }
+    .vertical-tab-content { flex: 1; padding: 18px; }
+    .setting-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--background-modifier-border); }
+    .setting-item-info { max-width: 60%; }
+    .setting-item-control { display: flex; gap: 8px; align-items: center; }
+    .status-bar { border-top: 1px solid var(--background-modifier-border); padding: 4px 10px; display: flex; gap: 12px; }
+    .community-item { border: 1px solid var(--background-modifier-border); border-radius: var(--radius-m); padding: 12px; margin: 10px 0; }
+  </style>
+</head>
+<body class="theme-light mod-macos">
+  <div class="app-container">
+    <div class="workspace-split">
+      <div class="nav-folder"><div class="nav-folder-title">Vault</div></div>
+      <div class="nav-file"><div class="nav-file-title">Daily Note.md</div></div>
+      <div class="nav-file"><div class="nav-file-title">Projects.md</div></div>
+      <div class="nav-file"><div class="nav-file-title">Reading List.md</div></div>
+    </div>
+
+    <div class="workspace">
+      <div class="workspace-leaf">
+        <div class="markdown-preview-view">
+          <div class="markdown-preview-section">
+            <h1>Bamboo China</h1>
+            <p>A minimal, native Obsidian theme. See the <a href="#">documentation</a> for details.</p>
+            <h2>Lists &amp; quotes</h2>
+            <ul><li>First item</li><li>Second item</li></ul>
+            <blockquote>This is a blockquote with <a href="#">a link</a> inside.</blockquote>
+            <p>Inline <code>code()</code> and a fenced block:</p>
+            <pre><code>const x = 1;</code></pre>
+            <div class="callout" data-callout="info"><div class="callout-title">Note</div><div class="callout-content">A callout body.</div></div>
+            <h2>Controls</h2>
+            <div class="setting-item">
+              <div class="setting-item-info"><div class="setting-item-name">Enable feature</div><div class="setting-item-description">Toggle me.</div></div>
+              <div class="setting-item-control"><div class="checkbox-container"><input type="checkbox" checked><div class="checkbox-toggle"></div></div></div>
+            </div>
+            <div class="setting-item">
+              <div class="setting-item-info"><div class="setting-item-name">Slider</div></div>
+              <div class="setting-item-control"><input type="range" min="0" max="100" value="40" class="slider"></div>
+            </div>
+            <div class="setting-item">
+              <div class="setting-item-info"><div class="setting-item-name">Dropdown</div></div>
+              <div class="setting-item-control"><select class="dropdown"><option>Option A</option><option>Option B</option></select><button class="mod-cta">Apply</button></div>
+            </div>
+            <div class="community-item">
+              <div class="setting-item-name">Community plugin</div>
+              <div class="setting-item-description">An installable item with a focusable card.</div>
+              <button>Install</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Settings modal example -->
+      <div class="modal-bg">
+        <div class="modal mod-settings">
+          <div class="vertical-tabs">
+            <div class="vertical-tab-header is-active">Appearance</div>
+            <div class="vertical-tab-header">Editor</div>
+            <div class="vertical-tab-content">
+              <div class="setting-item"><div class="setting-item-info"><div class="setting-item-name">Base font size</div></div><div class="setting-item-control"><input type="text" value="16"></div></div>
+              <div class="setting-item"><div class="setting-item-info"><div class="setting-item-name">Accent color</div></div><div class="setting-item-control"><div class="checkbox-container"><input type="checkbox"><div class="checkbox-toggle"></div></div></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="status-bar">
+        <span class="status-bar-item">Words: 1,024</span>
+        <span class="status-bar-item">Linter: ok</span>
+        <span class="status-bar-item">Git: synced</span>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

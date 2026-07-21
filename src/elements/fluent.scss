@@ -10,6 +10,7 @@ body.mod-windows:not(.adaptive-mode-off) {
   --radius-m: calc(4px * var(--radius-modifier));
   --radius-l: calc(8px * var(--radius-modifier));
   --radius-xl: calc(8px * var(--radius-modifier));
+  --radius-xs: calc(4px * var(--radius-modifier));
   --input-radius: var(--radius-m);
   --button-radius: var(--input-radius);
   --clickable-icon-radius: var(--radius-m);
@@ -66,9 +67,9 @@ body.mod-windows:not(.adaptive-mode-off) {
 
   // Button
   button:active,
-  select:focus,
-  .combobox-button:focus,
-  .dropdown:focus {
+  select:focus-visible,
+  .combobox-button:focus-visible,
+  .dropdown:focus-visible {
     opacity: 0.75;
     box-shadow: var(--input-shadow-active);
   }
@@ -87,8 +88,9 @@ body.mod-windows:not(.adaptive-mode-off) {
   input:is([type="text"], [type="search"], [type="email"], [type="password"], [type="number"]):not(.prompt-input) {
     box-shadow: 0 -0.5px 0 var(--color-base-50) inset;
 
+    // Keyboard-only (matches the global focus-ring policy): the accent
+    // underline appears on keyboard focus, never on plain pointer focus.
     &:active,
-    &:focus,
     &:focus-visible {
       box-shadow: 0 -2px 0 var(--interactive-accent) inset;
       border-color: var(--background-modifier-border);
@@ -97,7 +99,7 @@ body.mod-windows:not(.adaptive-mode-off) {
 
   // Slider
   input[type="range"]::-webkit-slider-thumb {
-    transition: var(--anim-duration-fast);
+    transition: var(--anim-duration-fast) var(--anim-motion-baseline);
     box-shadow: 0 0.5px 1px 1px rgba(0, 0, 0, 0.1);
     background-color: var(--interactive-accent);
   }

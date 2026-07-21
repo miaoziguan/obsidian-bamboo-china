@@ -50,9 +50,16 @@ body,
   --shadow-s: rgba(0, 0, 0, 0.08) 0px 12px 24px -4px, rgba(0, 0, 0, 0.04) 0px 8px 16px -4px;
   --shadow-l: 0 14px 62px #00000040;
   --shadow-tactile: rgba(0, 0, 0, 0.04) 0px 2px 8px -2px, rgba(var(--mono-rgb-100), 0.04) 0px 2px 4px -2px;
+  // Smallest elevation step — completes the shadow scale so any skin can reach
+  // for a subtle hairline shadow without inventing its own token.
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.06);
 
   --anim-speed-modifier: 1;
   --anim-motion-baseline: cubic-bezier(0.32, 0.72, 0, 1);
+  // Emphasized curve — a snappier ease-out used for the larger enter/exit
+  // slides (hover-ribbon, community cards). Tokenized so the "feel" stays
+  // consistent instead of being copy-pasted as a magic bezier.
+  --anim-motion-emphasized: cubic-bezier(0.16, 1, 0.3, 1);
   --anim-duration-superfast: calc(80ms * var(--anim-speed-modifier));
   --anim-duration-fast: calc(160ms * var(--anim-speed-modifier));
   --anim-duration-moderate: calc(320ms * var(--anim-speed-modifier));
@@ -72,6 +79,11 @@ body,
   --icon-l-stroke-width: calc(2px * var(--icon-stroke-modifier));
   --icon-xl-stroke-width: calc(1.25px * var(--icon-stroke-modifier));
 
+  // Canonical source of the radius scale multiplier. Previously defined only in
+  // elements/baseline.scss, which made every other skin's `calc(... * var(--radius-modifier))`
+  // silently depend on Obsidian's default resolution. Now declared once here so
+  // the contract is explicit and no skin breaks if that default ever changes.
+  --radius-modifier: 1;
   --density-modifier: 1;
   --translucent-light-opacity: 0%;
   --translucent-dark-opacity: 0%;
@@ -86,6 +98,48 @@ body,
   --color-pink: rgb(var(--color-pink-rgb));
 
   --background-modifier-cover: rgba(0, 0, 0, 0.35);
+}
+
+// ── Reduced-transparency preference ───────────────────────────────────────
+// When the OS/user disables translucency, neutralize the blur tokens so
+// surfaces fall back to opaque fills instead of half-transparent blurs.
+// (Backdrop-filter *support* is already guarded by `@supports` below.)
+@media (prefers-reduced-transparency: reduce) {
+  body {
+    --blur-l: none;
+    --blur-m: none;
+    --blur-s: none;
+    --raised-blur: none;
+    --translucent-light-opacity: 0%;
+    --translucent-dark-opacity: 0%;
+  }
+}
+
+// ── Unified keyboard focus ring (every platform skin) ─────────────────────
+// One token-driven outline for every interactive control, shown only for
+// :focus-visible (keyboard). This replaces the per-skin hand-rolled focus
+// styles so focus is always visible and consistent across Bamboo China,
+// Material, Fluent, Adwaita and Baseline. A skin may still tune the ring via
+// --bc-focus-ring-* (e.g. Bamboo China uses a 3px width); the indicator
+// itself is never dropped. Bamboo China's old local copy of this block has
+// been removed in favour of this single source of truth.
+body :is(
+  button,
+  .clickable-icon,
+  input,
+  textarea,
+  select,
+  .dropdown,
+  .combobox-button,
+  .checkbox-container,
+  .slider,
+  .nav-file-title,
+  .nav-folder-title,
+  .workspace-tab-header,
+  .menu-item,
+  .search-input-container input
+):focus-visible {
+  @include mx.focus-ring;
 }
 
 .theme-light {

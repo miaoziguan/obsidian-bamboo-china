@@ -99,9 +99,10 @@ body#{mx.$bc}:not(.is-mobile) {
       padding: var(--setting-items-padding);
     }
 
-    .installed-plugins-container .extra-setting-button {
-      min-width: unset;
-    }
+    // Installed community plugins: keep Obsidian's NATIVE layout untouched.
+    // The theme's card-grid experiment repeatedly broke toggle/button
+    // alignment, so we intentionally do NOT restyle .installed-plugins-container
+    // here — the native list renders correctly and stays functional.
   }
 }
 

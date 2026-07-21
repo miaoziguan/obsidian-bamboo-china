@@ -1,0 +1,1309 @@
+// AUTO-GENERATED from scripts/mood-parity-baseline.json by scripts/gen-mood-tokens.mjs.
+// Single source of truth = the baseline JSON + this generator. Do NOT hand-edit.
+// (The Sass compiler cannot interpolate a whole declaration string, so rules are
+// emitted as plain CSS; the $moods data lives in this generator for a future refactor.)
+
+body.cn-bohe.theme-light {
+  --color-cyan-rgb:72,196,196;
+  --color-green-rgb:56,180,150;
+  --interactive-accent-hover:rgb(35 167 135);
+  --interactive-accent:rgb(35 167 135);
+  --text-accent-hover:#1b8067;
+  --text-accent:#1c846b;
+  --text-faint:#8d9491;
+  --text-on-accent:#ffffff;
+  --mood-accent:rgb(35 167 135);
+  --mood-accent-hover:rgb(35 167 135);
+  --mood-text-accent:#1c846b;
+}
+
+body.cn-bohe.theme-light:not(.is-mobile) {
+  --background-primary-alt:#ecf4f1;
+  --background-primary:#ffffff;
+  --background-secondary-alt:#e1ece9;
+  --background-secondary:#ecf4f1;
+  --interactive-active:hsl(0 0% 0% / 13%);
+  --interactive-hover:hsl(0 0% 0% / 9%);
+  --interactive-normal:hsl(0 0% 0% / 5%);
+  --text-faint:#b3c4be;
+  --text-muted:#5c716a;
+  --text-normal:#1d2a25;
+}
+
+body.cn-bohe.theme-light.is-mobile {
+  --background-primary-alt:#ecf4f1;
+  --background-primary:#ffffff;
+  --background-secondary-alt:#ffffff;
+  --background-secondary:#ecf4f1;
+  --interactive-hover:rgba(120 120 120 20%);
+  --interactive-normal:rgba(118 118 128 12%);
+  --text-faint:#bcc6c2;
+  --text-muted:#5c716a;
+  --text-normal:#16201c;
+}
+
+body.cn-bohe.theme-dark {
+  --color-cyan-rgb:104,212,208;
+  --color-green-rgb:88,200,170;
+  --interactive-accent-hover:rgb(120 220 194);
+  --interactive-accent:rgb(96 206 176);
+  --text-accent-hover:rgb(120 220 194);
+  --text-accent:rgb(96 206 176);
+  --text-faint:#5c6964;
+  --text-on-accent:#ffffff;
+  --mood-accent:rgb(96 206 176);
+  --mood-accent-hover:rgb(120 220 194);
+  --mood-text-accent:rgb(96 206 176);
+}
+
+body.cn-bohe.theme-dark:not(.is-mobile) {
+  --background-primary-alt:#13211d;
+  --background-primary-alt:color-mix(in srgb,var(--background-primary),white 3%);
+  --background-primary:#0c1a16;
+  --background-secondary-alt:#1f2c29;
+  --background-secondary-alt:color-mix(in srgb,var(--background-primary),white 8%);
+  --background-secondary:#182522;
+  --background-secondary:color-mix(in srgb,var(--background-primary),white 5%);
+  --interactive-active:hsl(0 0% 100% / 15%);
+  --interactive-hover:hsl(0 0% 100% / 10%);
+  --interactive-normal:hsl(0 0% 100% / 5%);
+  --text-faint:#3a4b45;
+  --text-muted:#82a199;
+  --text-normal:#cfded9;
+}
+
+body.cn-bohe.theme-dark.is-mobile {
+  --background-primary-alt:#14231e;
+  --background-primary:#081310;
+  --background-secondary-alt:#20332c;
+  --background-secondary:#14231e;
+  --interactive-hover:rgba(120 120 120 36%);
+  --interactive-normal:rgba(118 118 128 24%);
+  --text-faint:#34443e;
+  --text-muted:#84a39b;
+  --text-normal:#dbe8e2;
+}
+
+body.cn-daizi.theme-light {
+  --color-purple-rgb:150,98,176;
+  --interactive-accent-hover:rgb(162 118 186);
+  --interactive-accent:rgb(142 96 168);
+  --text-accent-hover:#8e60a8;
+  --text-accent:#8e60a8;
+  --text-faint:#97909b;
+  --text-on-accent:#ffffff;
+  --mood-accent:rgb(142 96 168);
+  --mood-accent-hover:rgb(162 118 186);
+  --mood-text-accent:#8e60a8;
+}
+
+body.cn-daizi.theme-light:not(.is-mobile) {
+  --background-primary-alt:#f3eef6;
+  --background-primary:#ffffff;
+  --background-secondary-alt:#eae2f0;
+  --background-secondary:#f3eef6;
+  --interactive-active:hsl(0 0% 0% / 13%);
+  --interactive-hover:hsl(0 0% 0% / 9%);
+  --interactive-normal:hsl(0 0% 0% / 5%);
+  --text-faint:#c2b8c8;
+  --text-muted:#6e6478;
+  --text-normal:#241e28;
+}
+
+body.cn-daizi.theme-light.is-mobile {
+  --background-primary-alt:#f3eef6;
+  --background-primary:#ffffff;
+  --background-secondary-alt:#ffffff;
+  --background-secondary:#f3eef6;
+  --interactive-hover:rgba(120 120 120 20%);
+  --interactive-normal:rgba(118 118 128 12%);
+  --text-faint:#c6bccb;
+  --text-muted:#6e6478;
+  --text-normal:#1c1720;
+}
+
+body.cn-daizi.theme-dark {
+  --color-purple-rgb:168,120,200;
+  --interactive-accent-hover:rgb(186 142 214);
+  --interactive-accent:rgb(168 120 200);
+  --text-accent-hover:rgb(186 142 214);
+  --text-accent:rgb(168 120 200);
+  --text-faint:#695f72;
+  --text-on-accent:#ffffff;
+  --mood-accent:rgb(168 120 200);
+  --mood-accent-hover:rgb(186 142 214);
+  --mood-text-accent:rgb(168 120 200);
+}
+
+body.cn-daizi.theme-dark:not(.is-mobile) {
+  --background-primary-alt:#1b1721;
+  --background-primary-alt:color-mix(in srgb,var(--background-primary),white 3%);
+  --background-primary:#14101a;
+  --background-secondary-alt:#27232c;
+  --background-secondary-alt:color-mix(in srgb,var(--background-primary),white 8%);
+  --background-secondary:#201c25;
+  --background-secondary:color-mix(in srgb,var(--background-primary),white 5%);
+  --interactive-active:hsl(0 0% 100% / 15%);
+  --interactive-hover:hsl(0 0% 100% / 10%);
+  --interactive-normal:hsl(0 0% 100% / 5%);
+  --text-faint:#463c52;
+  --text-muted:#9a8eaa;
+  --text-normal:#e3dce8;
+}
+
+body.cn-daizi.theme-dark.is-mobile {
+  --background-primary-alt:#1c1624;
+  --background-primary:#0e0a13;
+  --background-secondary-alt:#2c2436;
+  --background-secondary:#1c1624;
+  --interactive-hover:rgba(120 120 120 36%);
+  --interactive-normal:rgba(118 118 128 24%);
+  --text-faint:#483c54;
+  --text-muted:#9c90ac;
+  --text-normal:#ece4f0;
+}
+
+body.cn-danju.theme-light {
+  --color-orange-rgb:240,140,50;
+  --color-red-rgb:220,88,60;
+  --interactive-accent-hover:rgb(197 112 32);
+  --interactive-accent:rgb(197 112 32);
+  --text-accent-hover:#aa611c;
+  --text-accent:#ad621c;
+  --text-faint:#9c9183;
+  --text-on-accent:#ffffff;
+  --mood-accent:rgb(197 112 32);
+  --mood-accent-hover:rgb(197 112 32);
+  --mood-text-accent:#ad621c;
+}
+
+body.cn-danju.theme-light:not(.is-mobile) {
+  --background-primary-alt:#fbf1e7;
+  --background-primary:#ffffff;
+  --background-secondary-alt:#f4e6d8;
+  --background-secondary:#fbf1e7;
+  --interactive-active:hsl(0 0% 0% / 13%);
+  --interactive-hover:hsl(0 0% 0% / 9%);
+  --interactive-normal:hsl(0 0% 0% / 5%);
+  --text-faint:#c6b8a6;
+  --text-muted:#6f5f4c;
+  --text-normal:#2e2418;
+}
+
+body.cn-danju.theme-light.is-mobile {
+  --background-primary-alt:#fbf1e7;
+  --background-primary:#ffffff;
+  --background-secondary-alt:#ffffff;
+  --background-secondary:#fbf1e7;
+  --interactive-hover:rgba(120 120 120 20%);
+  --interactive-normal:rgba(118 118 128 12%);
+  --text-faint:#cabbaa;
+  --text-muted:#6f5f4c;
+  --text-normal:#261c10;
+}
+
+body.cn-danju.theme-dark {
+  --color-orange-rgb:248,156,74;
+  --color-red-rgb:226,96,70;
+  --interactive-accent-hover:rgb(250 166 84);
+  --interactive-accent:rgb(242 146 60);
+  --text-accent-hover:rgb(250 166 84);
+  --text-accent:rgb(242 146 60);
+  --text-faint:#706252;
+  --text-on-accent:#ffffff;
+  --mood-accent:rgb(242 146 60);
+  --mood-accent-hover:rgb(250 166 84);
+  --mood-text-accent:rgb(242 146 60);
+}
+
+body.cn-danju.theme-dark:not(.is-mobile) {
+  --background-primary-alt:#231a13;
+  --background-primary-alt:color-mix(in srgb,var(--background-primary),white 3%);
+  --background-primary:#1c130c;
+  --background-secondary-alt:#2e261f;
+  --background-secondary-alt:color-mix(in srgb,var(--background-primary),white 8%);
+  --background-secondary:#271f18;
+  --background-secondary:color-mix(in srgb,var(--background-primary),white 5%);
+  --interactive-active:hsl(0 0% 100% / 15%);
+  --interactive-hover:hsl(0 0% 100% / 10%);
+  --interactive-normal:hsl(0 0% 100% / 5%);
+  --text-faint:#4a3826;
+  --text-muted:#9a886c;
+  --text-normal:#ecd8c8;
+}
+
+body.cn-danju.theme-dark.is-mobile {
+  --background-primary-alt:#251a11;
+  --background-primary:#160e08;
+  --background-secondary-alt:#362717;
+  --background-secondary:#251a11;
+  --interactive-hover:rgba(120 120 120 36%);
+  --interactive-normal:rgba(118 118 128 24%);
+  --text-faint:#4c3a26;
+  --text-muted:#9c8a6e;
+  --text-normal:#f3e2d0;
+}
+
+body.cn-dianlan.theme-light {
+  --color-blue-rgb:56,110,210;
+  --color-cyan-rgb:64,160,200;
+  --interactive-accent-hover:rgb(76 128 230);
+  --interactive-accent:rgb(50 104 214);
+  --text-accent-hover:#3268d6;
+  --text-accent:#3268d6;
+  --text-faint:#8d939a;
+  --text-on-accent:#ffffff;
+  --mood-accent:rgb(50 104 214);
+  --mood-accent-hover:rgb(76 128 230);
+  --mood-text-accent:#3268d6;
+}
+
+body.cn-dianlan.theme-light:not(.is-mobile) {
+  --background-primary-alt:#eef1f8;
+  --background-primary:#ffffff;
+  --background-secondary-alt:#e4e9f2;
+  --background-secondary:#eef1f8;
+  --interactive-active:hsl(0 0% 0% / 13%);
+  --interactive-hover:hsl(0 0% 0% / 9%);
+  --interactive-normal:hsl(0 0% 0% / 5%);
+  --text-faint:#b4becb;
+  --text-muted:#5b6678;
+  --text-normal:#1c2230;
+}
+
+body.cn-dianlan.theme-light.is-mobile {
+  --background-primary-alt:#eef1f8;
+  --background-primary:#ffffff;
+  --background-secondary-alt:#ffffff;
+  --background-secondary:#eef1f8;
+  --interactive-hover:rgba(120 120 120 20%);
+  --interactive-normal:rgba(118 118 128 12%);
+  --text-faint:#bcc4cd;
+  --text-muted:#5b6678;
+  --text-normal:#161c28;
+}
+
+body.cn-dianlan.theme-dark {
+  --color-blue-rgb:92,142,226;
+  --color-cyan-rgb:96,196,228;
+  --interactive-accent-hover:rgb(120 162 238);
+  --interactive-accent:rgb(96 140 226);
+  --text-accent-hover:rgb(120 162 238);
+  --text-accent:rgb(96 140 226);
+  --text-faint:#5d6371;
+  --text-on-accent:#ffffff;
+  --mood-accent:rgb(96 140 226);
+  --mood-accent-hover:rgb(120 162 238);
+  --mood-text-accent:rgb(96 140 226);
+}
+
+body.cn-dianlan.theme-dark:not(.is-mobile) {
+  --background-primary-alt:#141a27;
+  --background-primary-alt:color-mix(in srgb,var(--background-primary),white 3%);
+  --background-primary:#0d1320;
+  --background-secondary-alt:#202632;
+  --background-secondary-alt:color-mix(in srgb,var(--background-primary),white 8%);
+  --background-secondary:#191f2b;
+  --background-secondary:color-mix(in srgb,var(--background-primary),white 5%);
+  --interactive-active:hsl(0 0% 100% / 15%);
+  --interactive-hover:hsl(0 0% 100% / 10%);
+  --interactive-normal:hsl(0 0% 100% / 5%);
+  --text-faint:#3a4154;
+  --text-muted:#8492aa;
+  --text-normal:#d2d9e6;
+}
+
+body.cn-dianlan.theme-dark.is-mobile {
+  --background-primary-alt:#141c2c;
+  --background-primary:#080d18;
+  --background-secondary-alt:#243044;
+  --background-secondary:#141c2c;
+  --interactive-hover:rgba(120 120 120 36%);
+  --interactive-normal:rgba(118 118 128 24%);
+  --text-faint:#3c4354;
+  --text-muted:#8694ac;
+  --text-normal:#dce4f0;
+}
+
+body.cn-ehuang.theme-light {
+  --color-orange-rgb:226,160,60;
+  --color-yellow-rgb:220,180,50;
+  --interactive-accent-hover:rgb(170 132 36);
+  --interactive-accent:rgb(170 132 36);
+  --text-accent-hover:#8e6e1e;
+  --text-accent:#91711f;
+  --text-faint:#98927f;
+  --text-on-accent:#ffffff;
+  --mood-accent:rgb(170 132 36);
+  --mood-accent-hover:rgb(170 132 36);
+  --mood-text-accent:#91711f;
+}
+
+body.cn-ehuang.theme-light:not(.is-mobile) {
+  --background-primary-alt:#f8f4e3;
+  --background-primary:#ffffff;
+  --background-secondary-alt:#f1ebd6;
+  --background-secondary:#f8f4e3;
+  --interactive-active:hsl(0 0% 0% / 13%);
+  --interactive-hover:hsl(0 0% 0% / 9%);
+  --interactive-normal:hsl(0 0% 0% / 5%);
+  --text-faint:#c6bfa4;
+  --text-muted:#6f6349;
+  --text-normal:#2e2a1c;
+}
+
+body.cn-ehuang.theme-light.is-mobile {
+  --background-primary-alt:#f8f4e3;
+  --background-primary:#ffffff;
+  --background-secondary-alt:#ffffff;
+  --background-secondary:#f8f4e3;
+  --interactive-hover:rgba(120 120 120 20%);
+  --interactive-normal:rgba(118 118 128 12%);
+  --text-faint:#c9c2a8;
+  --text-muted:#6f6349;
+  --text-normal:#241f12;
+}
+
+body.cn-ehuang.theme-dark {
+  --color-orange-rgb:236,174,82;
+  --color-yellow-rgb:232,196,72;
+  --interactive-accent-hover:rgb(234 198 84);
+  --interactive-accent:rgb(220 180 60);
+  --text-accent-hover:rgb(234 198 84);
+  --text-accent:rgb(220 180 60);
+  --text-faint:#6a634a;
+  --text-on-accent:#1a160c;
+  --mood-accent:rgb(220 180 60);
+  --mood-accent-hover:rgb(234 198 84);
+  --mood-text-accent:rgb(220 180 60);
+}
+
+body.cn-ehuang.theme-dark:not(.is-mobile) {
+  --background-primary-alt:#1e1a0e;
+  --background-primary-alt:color-mix(in srgb,var(--background-primary),white 3%);
+  --background-primary:#171307;
+  --background-secondary-alt:#2a261b;
+  --background-secondary-alt:color-mix(in srgb,var(--background-primary),white 8%);
+  --background-secondary:#231f13;
+  --background-secondary:color-mix(in srgb,var(--background-primary),white 5%);
+  --interactive-active:hsl(0 0% 100% / 15%);
+  --interactive-hover:hsl(0 0% 100% / 10%);
+  --interactive-normal:hsl(0 0% 100% / 5%);
+  --text-faint:#4a4226;
+  --text-muted:#9a8e66;
+  --text-normal:#ecdfc4;
+}
+
+body.cn-ehuang.theme-dark.is-mobile {
+  --background-primary-alt:#221b0d;
+  --background-primary:#120e05;
+  --background-secondary-alt:#342916;
+  --background-secondary:#221b0d;
+  --interactive-hover:rgba(120 120 120 36%);
+  --interactive-normal:rgba(118 118 128 24%);
+  --text-faint:#4c4426;
+  --text-muted:#9c9068;
+  --text-normal:#f2e5c8;
+}
+
+body.cn-haitang.theme-light {
+  --color-pink-rgb:214,110,142;
+  --color-red-rgb:214,84,96;
+  --interactive-accent-hover:rgb(222 124 152);
+  --interactive-accent:rgb(206 102 134);
+  --text-accent-hover:#af5772;
+  --text-accent:#b25874;
+  --text-faint:#999095;
+  --text-on-accent:#ffffff;
+  --mood-accent:rgb(206 102 134);
+  --mood-accent-hover:rgb(222 124 152);
+  --mood-text-accent:#b25874;
+}
+
+body.cn-haitang.theme-light:not(.is-mobile) {
+  --background-primary-alt:#f8eef1;
+  --background-primary:#ffffff;
+  --background-secondary-alt:#f0e1e6;
+  --background-secondary:#f8eef1;
+  --interactive-active:hsl(0 0% 0% / 13%);
+  --interactive-hover:hsl(0 0% 0% / 9%);
+  --interactive-normal:hsl(0 0% 0% / 5%);
+  --text-faint:#c4b6bc;
+  --text-muted:#6d5f65;
+  --text-normal:#2e2228;
+}
+
+body.cn-haitang.theme-light.is-mobile {
+  --background-primary-alt:#f8eef1;
+  --background-primary:#ffffff;
+  --background-secondary-alt:#ffffff;
+  --background-secondary:#f8eef1;
+  --interactive-hover:rgba(120 120 120 20%);
+  --interactive-normal:rgba(118 118 128 12%);
+  --text-faint:#c8bcc2;
+  --text-muted:#6d5f65;
+  --text-normal:#261a20;
+}
+
+body.cn-haitang.theme-dark {
+  --color-pink-rgb:226,124,154;
+  --color-red-rgb:222,96,108;
+  --interactive-accent-hover:rgb(238 140 168);
+  --interactive-accent:rgb(226 118 150);
+  --text-accent-hover:rgb(238 140 168);
+  --text-accent:rgb(226 118 150);
+  --text-faint:#6d6067;
+  --text-on-accent:#ffffff;
+  --mood-accent:rgb(226 118 150);
+  --mood-accent-hover:rgb(238 140 168);
+  --mood-text-accent:rgb(226 118 150);
+}
+
+body.cn-haitang.theme-dark:not(.is-mobile) {
+  --background-primary-alt:#21191d;
+  --background-primary-alt:color-mix(in srgb,var(--background-primary),white 3%);
+  --background-primary:#1a1216;
+  --background-secondary-alt:#2c2529;
+  --background-secondary-alt:color-mix(in srgb,var(--background-primary),white 8%);
+  --background-secondary:#251e22;
+  --background-secondary:color-mix(in srgb,var(--background-primary),white 5%);
+  --interactive-active:hsl(0 0% 100% / 15%);
+  --interactive-hover:hsl(0 0% 100% / 10%);
+  --interactive-normal:hsl(0 0% 100% / 5%);
+  --text-faint:#4a3a42;
+  --text-muted:#9a868e;
+  --text-normal:#ecd8de;
+}
+
+body.cn-haitang.theme-dark.is-mobile {
+  --background-primary-alt:#221820;
+  --background-primary:#140d11;
+  --background-secondary-alt:#32242c;
+  --background-secondary:#221820;
+  --interactive-hover:rgba(120 120 120 36%);
+  --interactive-normal:rgba(118 118 128 24%);
+  --text-faint:#4c3c44;
+  --text-muted:#9c8890;
+  --text-normal:#f2e0e6;
+}
+
+body.cn-hupo.theme-light {
+  --color-orange-rgb:224,152,56;
+  --color-yellow-rgb:222,184,96;
+  --interactive-accent-hover:rgb(176 116 32);
+  --interactive-accent:rgb(176 116 32);
+  --text-accent-hover:#9e681d;
+  --text-accent:#a06a1d;
+  --text-faint:#9b9181;
+  --text-on-accent:#ffffff;
+  --mood-accent:rgb(176 116 32);
+  --mood-accent-hover:rgb(176 116 32);
+  --mood-text-accent:#a06a1d;
+}
+
+body.cn-hupo.theme-light:not(.is-mobile) {
+  --background-primary-alt:#f9f2e7;
+  --background-primary:#ffffff;
+  --background-secondary-alt:#f1e8d8;
+  --background-secondary:#f9f2e7;
+  --interactive-active:hsl(0 0% 0% / 13%);
+  --interactive-hover:hsl(0 0% 0% / 9%);
+  --interactive-normal:hsl(0 0% 0% / 5%);
+  --text-faint:#c6b9a4;
+  --text-muted:#6f6048;
+  --text-normal:#2e261a;
+}
+
+body.cn-hupo.theme-light.is-mobile {
+  --background-primary-alt:#f9f2e7;
+  --background-primary:#ffffff;
+  --background-secondary-alt:#ffffff;
+  --background-secondary:#f9f2e7;
+  --interactive-hover:rgba(120 120 120 20%);
+  --interactive-normal:rgba(118 118 128 12%);
+  --text-faint:#cabda8;
+  --text-muted:#6f6048;
+  --text-normal:#241d14;
+}
+
+body.cn-hupo.theme-dark {
+  --color-orange-rgb:236,168,80;
+  --color-yellow-rgb:228,192,108;
+  --interactive-accent-hover:rgb(234 178 88);
+  --interactive-accent:rgb(220 158 64);
+  --text-accent-hover:rgb(234 178 88);
+  --text-accent:rgb(220 158 64);
+  --text-faint:#6f6252;
+  --text-on-accent:#ffffff;
+  --mood-accent:rgb(220 158 64);
+  --mood-accent-hover:rgb(234 178 88);
+  --mood-text-accent:rgb(220 158 64);
+}
+
+body.cn-hupo.theme-dark:not(.is-mobile) {
+  --background-primary-alt:#211b13;
+  --background-primary-alt:color-mix(in srgb,var(--background-primary),white 3%);
+  --background-primary:#1a140c;
+  --background-secondary-alt:#2c271f;
+  --background-secondary-alt:color-mix(in srgb,var(--background-primary),white 8%);
+  --background-secondary:#252018;
+  --background-secondary:color-mix(in srgb,var(--background-primary),white 5%);
+  --interactive-active:hsl(0 0% 100% / 15%);
+  --interactive-hover:hsl(0 0% 100% / 10%);
+  --interactive-normal:hsl(0 0% 100% / 5%);
+  --text-faint:#483a26;
+  --text-muted:#9a8766;
+  --text-normal:#ecdcc6;
+}
+
+body.cn-hupo.theme-dark.is-mobile {
+  --background-primary-alt:#241a11;
+  --background-primary:#140e08;
+  --background-secondary-alt:#362717;
+  --background-secondary:#241a11;
+  --interactive-hover:rgba(120 120 120 36%);
+  --interactive-normal:rgba(118 118 128 24%);
+  --text-faint:#4a3a26;
+  --text-muted:#9c8a68;
+  --text-normal:#f2e2cc;
+}
+
+body.cn-liujin.theme-light {
+  --color-orange-rgb:214,150,60;
+  --color-yellow-rgb:205,168,72;
+  --interactive-accent-hover:rgb(206 156 66);
+  --interactive-accent:rgb(184 134 45);
+  --text-accent-hover:#936b24;
+  --text-accent:#976e25;
+  --text-faint:#999283;
+  --text-on-accent:#ffffff;
+  --mood-accent:rgb(184 134 45);
+  --mood-accent-hover:rgb(206 156 66);
+  --mood-text-accent:#976e25;
+}
+
+body.cn-liujin.theme-light:not(.is-mobile) {
+  --background-primary-alt:#f7f2e6;
+  --background-primary:#ffffff;
+  --background-secondary-alt:#efe7d6;
+  --background-secondary:#f7f2e6;
+  --interactive-active:hsl(0 0% 0% / 13%);
+  --interactive-hover:hsl(0 0% 0% / 9%);
+  --interactive-normal:hsl(0 0% 0% / 5%);
+  --text-faint:#c4bba8;
+  --text-muted:#6d6151;
+  --text-normal:#2e281d;
+}
+
+body.cn-liujin.theme-light.is-mobile {
+  --background-primary-alt:#f7f2e6;
+  --background-primary:#ffffff;
+  --background-secondary-alt:#ffffff;
+  --background-secondary:#f7f2e6;
+  --interactive-hover:rgba(120 120 120 20%);
+  --interactive-normal:rgba(118 118 128 12%);
+  --text-faint:#c8bfac;
+  --text-muted:#6d6151;
+  --text-normal:#241e16;
+}
+
+body.cn-liujin.theme-dark {
+  --color-orange-rgb:236,168,80;
+  --color-yellow-rgb:226,188,96;
+  --interactive-accent-hover:rgb(210 164 74);
+  --interactive-accent:rgb(190 144 52);
+  --text-accent-hover:rgb(210 164 74);
+  --text-accent:rgb(190 144 52);
+  --text-faint:#6b6254;
+  --text-on-accent:#ffffff;
+  --mood-accent:rgb(190 144 52);
+  --mood-accent-hover:rgb(210 164 74);
+  --mood-text-accent:rgb(190 144 52);
+}
+
+body.cn-liujin.theme-dark:not(.is-mobile) {
+  --background-primary-alt:#1d1911;
+  --background-primary-alt:color-mix(in srgb,var(--background-primary),white 3%);
+  --background-primary:#16120a;
+  --background-secondary-alt:#29251e;
+  --background-secondary-alt:color-mix(in srgb,var(--background-primary),white 8%);
+  --background-secondary:#221e16;
+  --background-secondary:color-mix(in srgb,var(--background-primary),white 5%);
+  --interactive-active:hsl(0 0% 100% / 15%);
+  --interactive-hover:hsl(0 0% 100% / 10%);
+  --interactive-normal:hsl(0 0% 100% / 5%);
+  --text-faint:#4a3f2f;
+  --text-muted:#9a8a70;
+  --text-normal:#ecdfca;
+}
+
+body.cn-liujin.theme-dark.is-mobile {
+  --background-primary-alt:#1d180e;
+  --background-primary:#100c06;
+  --background-secondary-alt:#2c2414;
+  --background-secondary:#1d180e;
+  --interactive-hover:rgba(120 120 120 36%);
+  --interactive-normal:rgba(118 118 128 24%);
+  --text-faint:#4c4030;
+  --text-muted:#9c8c72;
+  --text-normal:#f2e6d2;
+}
+
+body.cn-moye.theme-light {
+  --color-green-rgb:96,140,106;
+  --color-red-rgb:198,68,66;
+  --interactive-accent-hover:rgb(80 134 197);
+  --interactive-accent:rgb(58 112 175);
+  --text-accent-hover:#3a70af;
+  --text-accent:#3a70af;
+  --text-faint:#93938f;
+  --text-on-accent:#ffffff;
+  --mood-accent:rgb(58 112 175);
+  --mood-accent-hover:rgb(80 134 197);
+  --mood-text-accent:#3a70af;
+}
+
+body.cn-moye.theme-light:not(.is-mobile) {
+  --background-primary-alt:#f3f3f1;
+  --background-primary:#ffffff;
+  --background-secondary-alt:#e9e9e6;
+  --background-secondary:#f3f3f1;
+  --interactive-active:hsl(0 0% 0% / 13%);
+  --interactive-hover:hsl(0 0% 0% / 9%);
+  --interactive-normal:hsl(0 0% 0% / 5%);
+  --text-faint:#bcbcb8;
+  --text-muted:#6e6e6a;
+  --text-normal:#1c1c1a;
+}
+
+body.cn-moye.theme-light.is-mobile {
+  --background-primary-alt:#f3f3f1;
+  --background-primary:#ffffff;
+  --background-secondary-alt:#ffffff;
+  --background-secondary:#f3f3f1;
+  --interactive-hover:rgba(120 120 120 20%);
+  --interactive-normal:rgba(118 118 128 12%);
+  --text-faint:#c0c0bc;
+  --text-muted:#6e6e6a;
+  --text-normal:#141412;
+}
+
+body.cn-moye.theme-dark {
+  --color-green-rgb:110,160,120;
+  --color-red-rgb:214,84,82;
+  --interactive-accent-hover:rgb(114 168 226);
+  --interactive-accent:rgb(92 150 214);
+  --text-accent-hover:rgb(114 168 226);
+  --text-accent:rgb(92 150 214);
+  --text-faint:#63635d;
+  --text-on-accent:#ffffff;
+  --mood-accent:rgb(92 150 214);
+  --mood-accent-hover:rgb(114 168 226);
+  --mood-text-accent:rgb(92 150 214);
+}
+
+body.cn-moye.theme-dark:not(.is-mobile) {
+  --background-primary-alt:#191919;
+  --background-primary-alt:color-mix(in srgb,var(--background-primary),white 3%);
+  --background-primary:#121212;
+  --background-secondary-alt:#252525;
+  --background-secondary-alt:color-mix(in srgb,var(--background-primary),white 8%);
+  --background-secondary:#1e1e1e;
+  --background-secondary:color-mix(in srgb,var(--background-primary),white 5%);
+  --interactive-active:hsl(0 0% 100% / 15%);
+  --interactive-hover:hsl(0 0% 100% / 10%);
+  --interactive-normal:hsl(0 0% 100% / 5%);
+  --text-faint:#44443f;
+  --text-muted:#8c8c86;
+  --text-normal:#e9e9e4;
+}
+
+body.cn-moye.theme-dark.is-mobile {
+  --background-primary-alt:#1c1c1c;
+  --background-primary:#0c0c0c;
+  --background-secondary-alt:#2c2c2c;
+  --background-secondary:#1c1c1c;
+  --interactive-hover:rgba(120 120 120 36%);
+  --interactive-normal:rgba(118 118 128 24%);
+  --text-faint:#46463f;
+  --text-muted:#8e8e88;
+  --text-normal:#f0f0ea;
+}
+
+body.cn-ouhe.theme-light {
+  --color-pink-rgb:206,140,178;
+  --color-purple-rgb:188,140,196;
+  --interactive-accent-hover:rgb(156 112 142);
+  --interactive-accent:rgb(156 112 142);
+  --text-accent-hover:#916884;
+  --text-accent:#926985;
+  --text-faint:#9a9096;
+  --text-on-accent:#ffffff;
+  --mood-accent:rgb(156 112 142);
+  --mood-accent-hover:rgb(156 112 142);
+  --mood-text-accent:#926985;
+}
+
+body.cn-ouhe.theme-light:not(.is-mobile) {
+  --background-primary-alt:#f5eef2;
+  --background-primary:#ffffff;
+  --background-secondary-alt:#ece2e9;
+  --background-secondary:#f5eef2;
+  --interactive-active:hsl(0 0% 0% / 13%);
+  --interactive-hover:hsl(0 0% 0% / 9%);
+  --interactive-normal:hsl(0 0% 0% / 5%);
+  --text-faint:#c6b8c2;
+  --text-muted:#695c65;
+  --text-normal:#2a2228;
+}
+
+body.cn-ouhe.theme-light.is-mobile {
+  --background-primary-alt:#f5eef2;
+  --background-primary:#ffffff;
+  --background-secondary-alt:#ffffff;
+  --background-secondary:#f5eef2;
+  --interactive-hover:rgba(120 120 120 20%);
+  --interactive-normal:rgba(118 118 128 12%);
+  --text-faint:#cabdc6;
+  --text-muted:#695c65;
+  --text-normal:#201820;
+}
+
+body.cn-ouhe.theme-dark {
+  --color-pink-rgb:216,150,192;
+  --color-purple-rgb:200,152,206;
+  --interactive-accent-hover:rgb(218 168 200);
+  --interactive-accent:rgb(204 150 184);
+  --text-accent-hover:rgb(218 168 200);
+  --text-accent:rgb(204 150 184);
+  --text-faint:#6c606c;
+  --text-on-accent:#ffffff;
+  --mood-accent:rgb(204 150 184);
+  --mood-accent-hover:rgb(218 168 200);
+  --mood-text-accent:rgb(204 150 184);
+}
+
+body.cn-ouhe.theme-dark:not(.is-mobile) {
+  --background-primary-alt:#1f1921;
+  --background-primary-alt:color-mix(in srgb,var(--background-primary),white 3%);
+  --background-primary:#18121a;
+  --background-secondary-alt:#2a252c;
+  --background-secondary-alt:color-mix(in srgb,var(--background-primary),white 8%);
+  --background-secondary:#241e25;
+  --background-secondary:color-mix(in srgb,var(--background-primary),white 5%);
+  --interactive-active:hsl(0 0% 100% / 15%);
+  --interactive-hover:hsl(0 0% 100% / 10%);
+  --interactive-normal:hsl(0 0% 100% / 5%);
+  --text-faint:#483c4a;
+  --text-muted:#9c8e9a;
+  --text-normal:#e8dce6;
+}
+
+body.cn-ouhe.theme-dark.is-mobile {
+  --background-primary-alt:#201820;
+  --background-primary:#120c14;
+  --background-secondary-alt:#302430;
+  --background-secondary:#201820;
+  --interactive-hover:rgba(120 120 120 36%);
+  --interactive-normal:rgba(118 118 128 24%);
+  --text-faint:#4a3c4a;
+  --text-muted:#a0929c;
+  --text-normal:#efe2ec;
+}
+
+body.cn-qinglu.theme-light {
+  --color-blue-rgb:56,118,168;
+  --color-cyan-rgb:60,176,170;
+  --color-green-rgb:64,150,118;
+  --interactive-accent-hover:rgb(50 164 156);
+  --interactive-accent:rgb(50 164 156);
+  --text-accent-hover:#267e78;
+  --text-accent:#28827c;
+  --text-faint:#8e948f;
+  --text-on-accent:#ffffff;
+  --mood-accent:rgb(50 164 156);
+  --mood-accent-hover:rgb(50 164 156);
+  --mood-text-accent:#28827c;
+}
+
+body.cn-qinglu.theme-light:not(.is-mobile) {
+  --background-primary-alt:#edf1ec;
+  --background-primary:#ffffff;
+  --background-secondary-alt:#e2eae3;
+  --background-secondary:#edf1ec;
+  --interactive-active:hsl(0 0% 0% / 13%);
+  --interactive-hover:hsl(0 0% 0% / 9%);
+  --interactive-normal:hsl(0 0% 0% / 5%);
+  --text-faint:#b6c0b8;
+  --text-muted:#5c6a60;
+  --text-normal:#1f2a24;
+}
+
+body.cn-qinglu.theme-light.is-mobile {
+  --background-primary-alt:#edf1ec;
+  --background-primary:#ffffff;
+  --background-secondary-alt:#ffffff;
+  --background-secondary:#edf1ec;
+  --interactive-hover:rgba(120 120 120 20%);
+  --interactive-normal:rgba(118 118 128 12%);
+  --text-faint:#bcc4be;
+  --text-muted:#5c6a60;
+  --text-normal:#18241e;
+}
+
+body.cn-qinglu.theme-dark {
+  --color-blue-rgb:88,150,200;
+  --color-cyan-rgb:84,200,194;
+  --color-green-rgb:92,172,134;
+  --interactive-accent-hover:rgb(108 212 204);
+  --interactive-accent:rgb(86 196 188);
+  --text-accent-hover:rgb(108 212 204);
+  --text-accent:rgb(86 196 188);
+  --text-faint:#5c6863;
+  --text-on-accent:#ffffff;
+  --mood-accent:rgb(86 196 188);
+  --mood-accent-hover:rgb(108 212 204);
+  --mood-text-accent:rgb(86 196 188);
+}
+
+body.cn-qinglu.theme-dark:not(.is-mobile) {
+  --background-primary-alt:#151f1d;
+  --background-primary-alt:color-mix(in srgb,var(--background-primary),white 3%);
+  --background-primary:#0e1816;
+  --background-secondary-alt:#212a29;
+  --background-secondary-alt:color-mix(in srgb,var(--background-primary),white 8%);
+  --background-secondary:#1a2422;
+  --background-secondary:color-mix(in srgb,var(--background-primary),white 5%);
+  --interactive-active:hsl(0 0% 100% / 15%);
+  --interactive-hover:hsl(0 0% 100% / 10%);
+  --interactive-normal:hsl(0 0% 100% / 5%);
+  --text-faint:#3c4a44;
+  --text-muted:#88a097;
+  --text-normal:#d2e0da;
+}
+
+body.cn-qinglu.theme-dark.is-mobile {
+  --background-primary-alt:#16221f;
+  --background-primary:#09110f;
+  --background-secondary-alt:#253531;
+  --background-secondary:#16221f;
+  --interactive-hover:rgba(120 120 120 36%);
+  --interactive-normal:rgba(118 118 128 24%);
+  --text-faint:#3e4c47;
+  --text-muted:#8aa398;
+  --text-normal:#dce8e3;
+}
+
+body.cn-songhua.theme-light {
+  --color-green-rgb:110,150,60;
+  --color-yellow-rgb:180,190,90;
+  --interactive-accent-hover:rgb(132 168 76);
+  --interactive-accent:rgb(110 148 56);
+  --text-accent-hover:#5d7d2f;
+  --text-accent:#5e7f30;
+  --text-faint:#8f9585;
+  --text-on-accent:#ffffff;
+  --mood-accent:rgb(110 148 56);
+  --mood-accent-hover:rgb(132 168 76);
+  --mood-text-accent:#5e7f30;
+}
+
+body.cn-songhua.theme-light:not(.is-mobile) {
+  --background-primary-alt:#f1f3e8;
+  --background-primary:#ffffff;
+  --background-secondary-alt:#e8ecdb;
+  --background-secondary:#f1f3e8;
+  --interactive-active:hsl(0 0% 0% / 13%);
+  --interactive-hover:hsl(0 0% 0% / 9%);
+  --interactive-normal:hsl(0 0% 0% / 5%);
+  --text-faint:#b8c0ac;
+  --text-muted:#5f644b;
+  --text-normal:#23271c;
+}
+
+body.cn-songhua.theme-light.is-mobile {
+  --background-primary-alt:#f1f3e8;
+  --background-primary:#ffffff;
+  --background-secondary-alt:#ffffff;
+  --background-secondary:#f1f3e8;
+  --interactive-hover:rgba(120 120 120 20%);
+  --interactive-normal:rgba(118 118 128 12%);
+  --text-faint:#bcc4b0;
+  --text-muted:#5f644b;
+  --text-normal:#1a1e12;
+}
+
+body.cn-songhua.theme-dark {
+  --color-green-rgb:132,170,78;
+  --color-yellow-rgb:196,204,110;
+  --interactive-accent-hover:rgb(154 190 96);
+  --interactive-accent:rgb(134 172 78);
+  --text-accent-hover:rgb(154 190 96);
+  --text-accent:rgb(134 172 78);
+  --text-faint:#626759;
+  --text-on-accent:#ffffff;
+  --mood-accent:rgb(134 172 78);
+  --mood-accent-hover:rgb(154 190 96);
+  --mood-text-accent:rgb(134 172 78);
+}
+
+body.cn-songhua.theme-dark:not(.is-mobile) {
+  --background-primary-alt:#1b1f13;
+  --background-primary-alt:color-mix(in srgb,var(--background-primary),white 3%);
+  --background-primary:#14180c;
+  --background-secondary-alt:#272a1f;
+  --background-secondary-alt:color-mix(in srgb,var(--background-primary),white 8%);
+  --background-secondary:#202418;
+  --background-secondary:color-mix(in srgb,var(--background-primary),white 5%);
+  --interactive-active:hsl(0 0% 100% / 15%);
+  --interactive-hover:hsl(0 0% 100% / 10%);
+  --interactive-normal:hsl(0 0% 100% / 5%);
+  --text-faint:#444a36;
+  --text-muted:#909879;
+  --text-normal:#d8dcce;
+}
+
+body.cn-songhua.theme-dark.is-mobile {
+  --background-primary-alt:#1a1f12;
+  --background-primary:#0e1208;
+  --background-secondary-alt:#2a301d;
+  --background-secondary:#1a1f12;
+  --interactive-hover:rgba(120 120 120 36%);
+  --interactive-normal:rgba(118 118 128 24%);
+  --text-faint:#3c4230;
+  --text-muted:#92987b;
+  --text-normal:#e0e4d6;
+}
+
+body.cn-tianqing.theme-light {
+  --color-blue-rgb:70,120,180;
+  --color-cyan-rgb:64,160,196;
+  --interactive-accent-hover:rgb(86 162 208);
+  --interactive-accent:rgb(64 142 190);
+  --text-accent-hover:#3779a2;
+  --text-accent:#387ba5;
+  --text-faint:#8d939a;
+  --text-on-accent:#ffffff;
+  --mood-accent:rgb(64 142 190);
+  --mood-accent-hover:rgb(86 162 208);
+  --mood-text-accent:#387ba5;
+}
+
+body.cn-tianqing.theme-light:not(.is-mobile) {
+  --background-primary-alt:#eef2f6;
+  --background-primary:#ffffff;
+  --background-secondary-alt:#e3eaf1;
+  --background-secondary:#eef2f6;
+  --interactive-active:hsl(0 0% 0% / 13%);
+  --interactive-hover:hsl(0 0% 0% / 9%);
+  --interactive-normal:hsl(0 0% 0% / 5%);
+  --text-faint:#b6c0cb;
+  --text-muted:#5a6675;
+  --text-normal:#1f2530;
+}
+
+body.cn-tianqing.theme-light.is-mobile {
+  --background-primary-alt:#eef2f6;
+  --background-primary:#ffffff;
+  --background-secondary-alt:#ffffff;
+  --background-secondary:#eef2f6;
+  --interactive-hover:rgba(120 120 120 20%);
+  --interactive-normal:rgba(118 118 128 12%);
+  --text-faint:#bcc4cd;
+  --text-muted:#5a6675;
+  --text-normal:#181e28;
+}
+
+body.cn-tianqing.theme-dark {
+  --color-blue-rgb:100,150,206;
+  --color-cyan-rgb:96,196,228;
+  --interactive-accent-hover:rgb(126 188 234);
+  --interactive-accent:rgb(104 172 222);
+  --text-accent-hover:rgb(126 188 234);
+  --text-accent:rgb(104 172 222);
+  --text-faint:#5b656e;
+  --text-on-accent:#ffffff;
+  --mood-accent:rgb(104 172 222);
+  --mood-accent-hover:rgb(126 188 234);
+  --mood-text-accent:rgb(104 172 222);
+}
+
+body.cn-tianqing.theme-dark:not(.is-mobile) {
+  --background-primary-alt:#151c23;
+  --background-primary-alt:color-mix(in srgb,var(--background-primary),white 3%);
+  --background-primary:#0e151c;
+  --background-secondary-alt:#21282e;
+  --background-secondary-alt:color-mix(in srgb,var(--background-primary),white 8%);
+  --background-secondary:#1a2127;
+  --background-secondary:color-mix(in srgb,var(--background-primary),white 5%);
+  --interactive-active:hsl(0 0% 100% / 15%);
+  --interactive-hover:hsl(0 0% 100% / 10%);
+  --interactive-normal:hsl(0 0% 100% / 5%);
+  --text-faint:#3c4854;
+  --text-muted:#88a0af;
+  --text-normal:#d2dde6;
+}
+
+body.cn-tianqing.theme-dark.is-mobile {
+  --background-primary-alt:#16212c;
+  --background-primary:#091019;
+  --background-secondary-alt:#25363f;
+  --background-secondary:#16212c;
+  --interactive-hover:rgba(120 120 120 36%);
+  --interactive-normal:rgba(118 118 128 24%);
+  --text-faint:#3e4a54;
+  --text-muted:#8aa2b0;
+  --text-normal:#dce6ee;
+}
+
+body.cn-yanzhi.theme-light {
+  --color-pink-rgb:210,100,110;
+  --color-red-rgb:204,72,62;
+  --interactive-accent-hover:rgb(228 98 102);
+  --interactive-accent:rgb(214 71 76);
+  --text-accent-hover:#cd4449;
+  --text-accent:#ce4449;
+  --text-faint:#9a9187;
+  --text-on-accent:#ffffff;
+  --mood-accent:rgb(214 71 76);
+  --mood-accent-hover:rgb(228 98 102);
+  --mood-text-accent:#ce4449;
+}
+
+body.cn-yanzhi.theme-light:not(.is-mobile) {
+  --background-primary-alt:#f7f0e8;
+  --background-primary:#ffffff;
+  --background-secondary-alt:#efe6db;
+  --background-secondary:#f7f0e8;
+  --interactive-active:hsl(0 0% 0% / 13%);
+  --interactive-hover:hsl(0 0% 0% / 9%);
+  --interactive-normal:hsl(0 0% 0% / 5%);
+  --text-faint:#c4b8ac;
+  --text-muted:#6d6157;
+  --text-normal:#2e2620;
+}
+
+body.cn-yanzhi.theme-light.is-mobile {
+  --background-primary-alt:#f7f0e8;
+  --background-primary:#ffffff;
+  --background-secondary-alt:#ffffff;
+  --background-secondary:#f7f0e8;
+  --interactive-hover:rgba(120 120 120 20%);
+  --interactive-normal:rgba(118 118 128 12%);
+  --text-faint:#c8bdb0;
+  --text-muted:#6d6157;
+  --text-normal:#241d18;
+}
+
+body.cn-yanzhi.theme-dark {
+  --color-pink-rgb:226,116,124;
+  --color-red-rgb:222,90,78;
+  --interactive-accent-hover:rgb(244 118 122);
+  --interactive-accent:rgb(232 92 96);
+  --text-accent-hover:rgb(244 118 122);
+  --text-accent:rgb(232 92 96);
+  --text-faint:#6e625a;
+  --text-on-accent:#ffffff;
+  --mood-accent:rgb(232 92 96);
+  --mood-accent-hover:rgb(244 118 122);
+  --mood-text-accent:rgb(232 92 96);
+}
+
+body.cn-yanzhi.theme-dark:not(.is-mobile) {
+  --background-primary-alt:#211a17;
+  --background-primary-alt:color-mix(in srgb,var(--background-primary),white 3%);
+  --background-primary:#1a1310;
+  --background-secondary-alt:#2c2623;
+  --background-secondary-alt:color-mix(in srgb,var(--background-primary),white 8%);
+  --background-secondary:#251f1c;
+  --background-secondary:color-mix(in srgb,var(--background-primary),white 5%);
+  --interactive-active:hsl(0 0% 100% / 15%);
+  --interactive-hover:hsl(0 0% 100% / 10%);
+  --interactive-normal:hsl(0 0% 100% / 5%);
+  --text-faint:#46382f;
+  --text-muted:#9a8678;
+  --text-normal:#ecdcd0;
+}
+
+body.cn-yanzhi.theme-dark.is-mobile {
+  --background-primary-alt:#221813;
+  --background-primary:#140e0b;
+  --background-secondary-alt:#32241d;
+  --background-secondary:#221813;
+  --interactive-hover:rgba(120 120 120 36%);
+  --interactive-normal:rgba(118 118 128 24%);
+  --text-faint:#48382f;
+  --text-muted:#9c887a;
+  --text-normal:#f2e3d8;
+}
+
+body.cn-yuebai.theme-light {
+  --background-modifier-border:#b3b3b3;
+  --bc-focus-ring-width:3px;
+  --color-blue-rgb:110,150,180;
+  --color-cyan-rgb:120,170,190;
+  --divider-color:#b3b3b3;
+  --interactive-accent-hover:rgb(144 168 190);
+  --interactive-accent:rgb(124 150 174);
+  --text-accent-hover:#607486;
+  --text-accent:#63788b;
+  --text-faint:#595959;
+  --text-muted:#595959;
+  --text-on-accent:#ffffff;
+  --mood-accent:rgb(124 150 174);
+  --mood-accent-hover:rgb(144 168 190);
+  --mood-text-accent:#63788b;
+}
+
+body.cn-yuebai.theme-light:not(.is-mobile) {
+  --background-primary-alt:#f4f7f9;
+  --background-primary:#ffffff;
+  --background-secondary-alt:#eaf0f3;
+  --background-secondary:#f4f7f9;
+  --interactive-active:hsl(0 0% 0% / 13%);
+  --interactive-hover:hsl(0 0% 0% / 9%);
+  --interactive-normal:hsl(0 0% 0% / 5%);
+  --text-faint:#b8c2c8;
+  --text-muted:#5d6a76;
+  --text-normal:#1e252b;
+}
+
+body.cn-yuebai.theme-light.is-mobile {
+  --background-primary-alt:#f4f7f9;
+  --background-primary:#ffffff;
+  --background-secondary-alt:#ffffff;
+  --background-secondary:#f4f7f9;
+  --interactive-hover:rgba(120 120 120 20%);
+  --interactive-normal:rgba(118 118 128 12%);
+  --text-faint:#bcc6cc;
+  --text-muted:#5d6a76;
+  --text-normal:#181e24;
+}
+
+body.cn-yuebai.theme-dark {
+  --background-modifier-border:#5c5c5c;
+  --bc-focus-ring-width:3px;
+  --color-blue-rgb:140,172,198;
+  --color-cyan-rgb:150,192,212;
+  --divider-color:#5c5c5c;
+  --interactive-accent-hover:rgb(166 188 210);
+  --interactive-accent:rgb(146 172 196);
+  --text-accent-hover:rgb(166 188 210);
+  --text-accent:rgb(146 172 196);
+  --text-faint:#a6a6a6;
+  --text-muted:#c4c4c4;
+  --text-on-accent:#ffffff;
+  --mood-accent:rgb(146 172 196);
+  --mood-accent-hover:rgb(166 188 210);
+  --mood-text-accent:rgb(146 172 196);
+}
+
+body.cn-yuebai.theme-dark:not(.is-mobile) {
+  --background-primary-alt:#161b1f;
+  --background-primary-alt:color-mix(in srgb,var(--background-primary),white 3%);
+  --background-primary:#0f1418;
+  --background-secondary-alt:#22272a;
+  --background-secondary-alt:color-mix(in srgb,var(--background-primary),white 8%);
+  --background-secondary:#1b2024;
+  --background-secondary:color-mix(in srgb,var(--background-primary),white 5%);
+  --interactive-active:hsl(0 0% 100% / 15%);
+  --interactive-hover:hsl(0 0% 100% / 10%);
+  --interactive-normal:hsl(0 0% 100% / 5%);
+  --text-faint:#3c454e;
+  --text-muted:#8492a0;
+  --text-normal:#d3dce2;
+}
+
+body.cn-yuebai.theme-dark.is-mobile {
+  --background-primary-alt:#151b21;
+  --background-primary:#0a0e12;
+  --background-secondary-alt:#252e36;
+  --background-secondary:#151b21;
+  --interactive-hover:rgba(120 120 120 36%);
+  --interactive-normal:rgba(118 118 128 24%);
+  --text-faint:#3e4750;
+  --text-muted:#86949e;
+  --text-normal:#dde6ec;
+}
+
+body.cn-zheshi.theme-light {
+  --color-orange-rgb:200,140,90;
+  --color-red-rgb:190,110,80;
+  --interactive-accent-hover:rgb(194 148 112);
+  --interactive-accent:rgb(176 128 92);
+  --text-accent-hover:#926a4c;
+  --text-accent:#956d4e;
+  --text-faint:#9b9182;
+  --text-on-accent:#ffffff;
+  --mood-accent:rgb(176 128 92);
+  --mood-accent-hover:rgb(194 148 112);
+  --mood-text-accent:#956d4e;
+}
+
+body.cn-zheshi.theme-light:not(.is-mobile) {
+  --background-primary-alt:#f5efe7;
+  --background-primary:#ffffff;
+  --background-secondary-alt:#ece3d8;
+  --background-secondary:#f5efe7;
+  --interactive-active:hsl(0 0% 0% / 13%);
+  --interactive-hover:hsl(0 0% 0% / 9%);
+  --interactive-normal:hsl(0 0% 0% / 5%);
+  --text-faint:#c6b9a8;
+  --text-muted:#6f6048;
+  --text-normal:#2e261c;
+}
+
+body.cn-zheshi.theme-light.is-mobile {
+  --background-primary-alt:#f5efe7;
+  --background-primary:#ffffff;
+  --background-secondary-alt:#ffffff;
+  --background-secondary:#f5efe7;
+  --interactive-hover:rgba(120 120 120 20%);
+  --interactive-normal:rgba(118 118 128 12%);
+  --text-faint:#cabdaa;
+  --text-muted:#6f6048;
+  --text-normal:#241c12;
+}
+
+body.cn-zheshi.theme-dark {
+  --color-orange-rgb:212,154,108;
+  --color-red-rgb:200,118,92;
+  --interactive-accent-hover:rgb(206 160 122);
+  --interactive-accent:rgb(190 142 104);
+  --text-accent-hover:rgb(206 160 122);
+  --text-accent:rgb(190 142 104);
+  --text-faint:#706252;
+  --text-on-accent:#ffffff;
+  --mood-accent:rgb(190 142 104);
+  --mood-accent-hover:rgb(206 160 122);
+  --mood-text-accent:rgb(190 142 104);
+}
+
+body.cn-zheshi.theme-dark:not(.is-mobile) {
+  --background-primary-alt:#211a13;
+  --background-primary-alt:color-mix(in srgb,var(--background-primary),white 3%);
+  --background-primary:#1a130c;
+  --background-secondary-alt:#2c261f;
+  --background-secondary-alt:color-mix(in srgb,var(--background-primary),white 8%);
+  --background-secondary:#251f18;
+  --background-secondary:color-mix(in srgb,var(--background-primary),white 5%);
+  --interactive-active:hsl(0 0% 100% / 15%);
+  --interactive-hover:hsl(0 0% 100% / 10%);
+  --interactive-normal:hsl(0 0% 100% / 5%);
+  --text-faint:#4a3826;
+  --text-muted:#9a866c;
+  --text-normal:#ecdcc8;
+}
+
+body.cn-zheshi.theme-dark.is-mobile {
+  --background-primary-alt:#241910;
+  --background-primary:#140d06;
+  --background-secondary-alt:#362617;
+  --background-secondary:#241910;
+  --interactive-hover:rgba(120 120 120 36%);
+  --interactive-normal:rgba(118 118 128 24%);
+  --text-faint:#4c3a26;
+  --text-muted:#9c8a6e;
+  --text-normal:#f3e2ce;
+}
+
