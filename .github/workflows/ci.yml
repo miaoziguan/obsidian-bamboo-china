@@ -1,0 +1,32 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  guard:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Static guards (contrast / a11y / cascade / size / !important)
+        run: npm test
+
+      - name: Mood parity (96 rules token-for-token vs baseline)
+        run: node scripts/verify-mood-parity.mjs
+
+      - name: Build-sync guard (theme.css committed == SCSS built)
+        run: node scripts/verify_build.mjs
