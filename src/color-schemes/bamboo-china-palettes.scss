@@ -52,7 +52,8 @@ body.theme-light:not(.is-mobile) {
   --background-secondary-alt: #fafaf7;
 
   --interactive-normal: hsl(0 0% 0% / 5%);
-  --interactive-hover: hsl(0 0% 0% / 5%);
+  --interactive-hover: hsl(0 0% 0% / 9%);
+  --interactive-active: hsl(0 0% 0% / 13%);
 
   --text-normal: #2b2e29;
   --text-muted: #676c62;
@@ -84,12 +85,16 @@ body.theme-dark {
 }
 body.theme-dark:not(.is-mobile) {
   --background-primary: #14180f;
+  --background-primary-alt: #1b1f16;  /* static fallback for --background-primary-alt (pre-color-mix browsers) */
   --background-primary-alt: color-mix(in srgb, var(--background-primary), white 3%);
+  --background-secondary: #20241b;  /* static fallback for --background-secondary (pre-color-mix browsers) */
   --background-secondary: color-mix(in srgb, var(--background-primary), white 5%);
+  --background-secondary-alt: #272a22;  /* static fallback for --background-secondary-alt (pre-color-mix browsers) */
   --background-secondary-alt: color-mix(in srgb, var(--background-primary), white 8%);
 
   --interactive-normal: hsl(0 0% 100% / 5%);
-  --interactive-hover: hsl(0 0% 100% / 5%);
+  --interactive-hover: hsl(0 0% 100% / 10%);
+  --interactive-active: hsl(0 0% 100% / 15%);
 
   --text-normal: #d6dccd;
   --text-muted: #8e9585;
@@ -128,7 +133,8 @@ body.cn-moye.theme-light:not(.is-mobile) {
   --background-secondary-alt: #e9e9e6;
 
   --interactive-normal: hsl(0 0% 0% / 5%);
-  --interactive-hover: hsl(0 0% 0% / 5%);
+  --interactive-hover: hsl(0 0% 0% / 9%);
+  --interactive-active: hsl(0 0% 0% / 13%);
 
   --text-normal: #1c1c1a;
   --text-muted: #6e6e6a;
@@ -160,12 +166,16 @@ body.cn-moye.theme-dark {
 }
 body.cn-moye.theme-dark:not(.is-mobile) {
   --background-primary: #121212;
+  --background-primary-alt: #191919;  /* static fallback for --background-primary-alt (pre-color-mix browsers) */
   --background-primary-alt: color-mix(in srgb, var(--background-primary), white 3%);
+  --background-secondary: #1e1e1e;  /* static fallback for --background-secondary (pre-color-mix browsers) */
   --background-secondary: color-mix(in srgb, var(--background-primary), white 5%);
+  --background-secondary-alt: #252525;  /* static fallback for --background-secondary-alt (pre-color-mix browsers) */
   --background-secondary-alt: color-mix(in srgb, var(--background-primary), white 8%);
 
   --interactive-normal: hsl(0 0% 100% / 5%);
-  --interactive-hover: hsl(0 0% 100% / 5%);
+  --interactive-hover: hsl(0 0% 100% / 10%);
+  --interactive-active: hsl(0 0% 100% / 15%);
 
   --text-normal: #e9e9e4; // 月白
   --text-muted: #8c8c86;
@@ -204,7 +214,8 @@ body.cn-yanzhi.theme-light:not(.is-mobile) {
   --background-secondary-alt: #efe6db;
 
   --interactive-normal: hsl(0 0% 0% / 5%);
-  --interactive-hover: hsl(0 0% 0% / 5%);
+  --interactive-hover: hsl(0 0% 0% / 9%);
+  --interactive-active: hsl(0 0% 0% / 13%);
 
   --text-normal: #2e2620;
   --text-muted: #6d6157;
@@ -236,12 +247,16 @@ body.cn-yanzhi.theme-dark {
 }
 body.cn-yanzhi.theme-dark:not(.is-mobile) {
   --background-primary: #1a1310;
+  --background-primary-alt: #211a17;  /* static fallback for --background-primary-alt (pre-color-mix browsers) */
   --background-primary-alt: color-mix(in srgb, var(--background-primary), white 3%);
+  --background-secondary: #251f1c;  /* static fallback for --background-secondary (pre-color-mix browsers) */
   --background-secondary: color-mix(in srgb, var(--background-primary), white 5%);
+  --background-secondary-alt: #2c2623;  /* static fallback for --background-secondary-alt (pre-color-mix browsers) */
   --background-secondary-alt: color-mix(in srgb, var(--background-primary), white 8%);
 
   --interactive-normal: hsl(0 0% 100% / 5%);
-  --interactive-hover: hsl(0 0% 100% / 5%);
+  --interactive-hover: hsl(0 0% 100% / 10%);
+  --interactive-active: hsl(0 0% 100% / 15%);
 
   --text-normal: #ecdcd0;
   --text-muted: #9a8678;
@@ -281,7 +296,8 @@ body.cn-qinglu.theme-light:not(.is-mobile) {
   --background-secondary-alt: #e2eae3;
 
   --interactive-normal: hsl(0 0% 0% / 5%);
-  --interactive-hover: hsl(0 0% 0% / 5%);
+  --interactive-hover: hsl(0 0% 0% / 9%);
+  --interactive-active: hsl(0 0% 0% / 13%);
 
   --text-normal: #1f2a24;
   --text-muted: #5c6a60;
@@ -314,12 +330,16 @@ body.cn-qinglu.theme-dark {
 }
 body.cn-qinglu.theme-dark:not(.is-mobile) {
   --background-primary: #0e1816;
+  --background-primary-alt: #151f1d;  /* static fallback for --background-primary-alt (pre-color-mix browsers) */
   --background-primary-alt: color-mix(in srgb, var(--background-primary), white 3%);
+  --background-secondary: #1a2422;  /* static fallback for --background-secondary (pre-color-mix browsers) */
   --background-secondary: color-mix(in srgb, var(--background-primary), white 5%);
+  --background-secondary-alt: #212a29;  /* static fallback for --background-secondary-alt (pre-color-mix browsers) */
   --background-secondary-alt: color-mix(in srgb, var(--background-primary), white 8%);
 
   --interactive-normal: hsl(0 0% 100% / 5%);
-  --interactive-hover: hsl(0 0% 100% / 5%);
+  --interactive-hover: hsl(0 0% 100% / 10%);
+  --interactive-active: hsl(0 0% 100% / 15%);
 
   --text-normal: #d2e0da;
   --text-muted: #88a097;
@@ -358,7 +378,8 @@ body.cn-liujin.theme-light:not(.is-mobile) {
   --background-secondary-alt: #efe7d6;
 
   --interactive-normal: hsl(0 0% 0% / 5%);
-  --interactive-hover: hsl(0 0% 0% / 5%);
+  --interactive-hover: hsl(0 0% 0% / 9%);
+  --interactive-active: hsl(0 0% 0% / 13%);
 
   --text-normal: #2e281d;
   --text-muted: #6d6151;
@@ -390,12 +411,16 @@ body.cn-liujin.theme-dark {
 }
 body.cn-liujin.theme-dark:not(.is-mobile) {
   --background-primary: #16120a;
+  --background-primary-alt: #1d1911;  /* static fallback for --background-primary-alt (pre-color-mix browsers) */
   --background-primary-alt: color-mix(in srgb, var(--background-primary), white 3%);
+  --background-secondary: #221e16;  /* static fallback for --background-secondary (pre-color-mix browsers) */
   --background-secondary: color-mix(in srgb, var(--background-primary), white 5%);
+  --background-secondary-alt: #29251e;  /* static fallback for --background-secondary-alt (pre-color-mix browsers) */
   --background-secondary-alt: color-mix(in srgb, var(--background-primary), white 8%);
 
   --interactive-normal: hsl(0 0% 100% / 5%);
-  --interactive-hover: hsl(0 0% 100% / 5%);
+  --interactive-hover: hsl(0 0% 100% / 10%);
+  --interactive-active: hsl(0 0% 100% / 15%);
 
   --text-normal: #ecdfca;
   --text-muted: #9a8a70;
@@ -434,7 +459,8 @@ body.cn-tianqing.theme-light:not(.is-mobile) {
   --background-secondary-alt: #e3eaf1;
 
   --interactive-normal: hsl(0 0% 0% / 5%);
-  --interactive-hover: hsl(0 0% 0% / 5%);
+  --interactive-hover: hsl(0 0% 0% / 9%);
+  --interactive-active: hsl(0 0% 0% / 13%);
 
   --text-normal: #1f2530;
   --text-muted: #5a6675;
@@ -466,12 +492,16 @@ body.cn-tianqing.theme-dark {
 }
 body.cn-tianqing.theme-dark:not(.is-mobile) {
   --background-primary: #0e151c;
+  --background-primary-alt: #151c23;  /* static fallback for --background-primary-alt (pre-color-mix browsers) */
   --background-primary-alt: color-mix(in srgb, var(--background-primary), white 3%);
+  --background-secondary: #1a2127;  /* static fallback for --background-secondary (pre-color-mix browsers) */
   --background-secondary: color-mix(in srgb, var(--background-primary), white 5%);
+  --background-secondary-alt: #21282e;  /* static fallback for --background-secondary-alt (pre-color-mix browsers) */
   --background-secondary-alt: color-mix(in srgb, var(--background-primary), white 8%);
 
   --interactive-normal: hsl(0 0% 100% / 5%);
-  --interactive-hover: hsl(0 0% 100% / 5%);
+  --interactive-hover: hsl(0 0% 100% / 10%);
+  --interactive-active: hsl(0 0% 100% / 15%);
 
   --text-normal: #d2dde6;
   --text-muted: #88a0af;
@@ -509,7 +539,8 @@ body.cn-daizi.theme-light:not(.is-mobile) {
   --background-secondary-alt: #eae2f0;
 
   --interactive-normal: hsl(0 0% 0% / 5%);
-  --interactive-hover: hsl(0 0% 0% / 5%);
+  --interactive-hover: hsl(0 0% 0% / 9%);
+  --interactive-active: hsl(0 0% 0% / 13%);
 
   --text-normal: #241e28;
   --text-muted: #6e6478;
@@ -540,12 +571,16 @@ body.cn-daizi.theme-dark {
 }
 body.cn-daizi.theme-dark:not(.is-mobile) {
   --background-primary: #14101a;
+  --background-primary-alt: #1b1721;  /* static fallback for --background-primary-alt (pre-color-mix browsers) */
   --background-primary-alt: color-mix(in srgb, var(--background-primary), white 3%);
+  --background-secondary: #201c25;  /* static fallback for --background-secondary (pre-color-mix browsers) */
   --background-secondary: color-mix(in srgb, var(--background-primary), white 5%);
+  --background-secondary-alt: #27232c;  /* static fallback for --background-secondary-alt (pre-color-mix browsers) */
   --background-secondary-alt: color-mix(in srgb, var(--background-primary), white 8%);
 
   --interactive-normal: hsl(0 0% 100% / 5%);
-  --interactive-hover: hsl(0 0% 100% / 5%);
+  --interactive-hover: hsl(0 0% 100% / 10%);
+  --interactive-active: hsl(0 0% 100% / 15%);
 
   --text-normal: #e3dce8;
   --text-muted: #9a8eaa;
@@ -584,7 +619,8 @@ body.cn-haitang.theme-light:not(.is-mobile) {
   --background-secondary-alt: #f0e1e6;
 
   --interactive-normal: hsl(0 0% 0% / 5%);
-  --interactive-hover: hsl(0 0% 0% / 5%);
+  --interactive-hover: hsl(0 0% 0% / 9%);
+  --interactive-active: hsl(0 0% 0% / 13%);
 
   --text-normal: #2e2228;
   --text-muted: #6d5f65;
@@ -616,12 +652,16 @@ body.cn-haitang.theme-dark {
 }
 body.cn-haitang.theme-dark:not(.is-mobile) {
   --background-primary: #1a1216;
+  --background-primary-alt: #21191d;  /* static fallback for --background-primary-alt (pre-color-mix browsers) */
   --background-primary-alt: color-mix(in srgb, var(--background-primary), white 3%);
+  --background-secondary: #251e22;  /* static fallback for --background-secondary (pre-color-mix browsers) */
   --background-secondary: color-mix(in srgb, var(--background-primary), white 5%);
+  --background-secondary-alt: #2c2529;  /* static fallback for --background-secondary-alt (pre-color-mix browsers) */
   --background-secondary-alt: color-mix(in srgb, var(--background-primary), white 8%);
 
   --interactive-normal: hsl(0 0% 100% / 5%);
-  --interactive-hover: hsl(0 0% 100% / 5%);
+  --interactive-hover: hsl(0 0% 100% / 10%);
+  --interactive-active: hsl(0 0% 100% / 15%);
 
   --text-normal: #ecd8de;
   --text-muted: #9a868e;
@@ -660,7 +700,8 @@ body.cn-bohe.theme-light:not(.is-mobile) {
   --background-secondary-alt: #e1ece9;
 
   --interactive-normal: hsl(0 0% 0% / 5%);
-  --interactive-hover: hsl(0 0% 0% / 5%);
+  --interactive-hover: hsl(0 0% 0% / 9%);
+  --interactive-active: hsl(0 0% 0% / 13%);
 
   --text-normal: #1d2a25;
   --text-muted: #5c716a;
@@ -692,12 +733,16 @@ body.cn-bohe.theme-dark {
 }
 body.cn-bohe.theme-dark:not(.is-mobile) {
   --background-primary: #0c1a16;
+  --background-primary-alt: #13211d;  /* static fallback for --background-primary-alt (pre-color-mix browsers) */
   --background-primary-alt: color-mix(in srgb, var(--background-primary), white 3%);
+  --background-secondary: #182522;  /* static fallback for --background-secondary (pre-color-mix browsers) */
   --background-secondary: color-mix(in srgb, var(--background-primary), white 5%);
+  --background-secondary-alt: #1f2c29;  /* static fallback for --background-secondary-alt (pre-color-mix browsers) */
   --background-secondary-alt: color-mix(in srgb, var(--background-primary), white 8%);
 
   --interactive-normal: hsl(0 0% 100% / 5%);
-  --interactive-hover: hsl(0 0% 100% / 5%);
+  --interactive-hover: hsl(0 0% 100% / 10%);
+  --interactive-active: hsl(0 0% 100% / 15%);
 
   --text-normal: #cfded9;
   --text-muted: #82a199;
@@ -736,7 +781,8 @@ body.cn-hupo.theme-light:not(.is-mobile) {
   --background-secondary-alt: #f1e8d8;
 
   --interactive-normal: hsl(0 0% 0% / 5%);
-  --interactive-hover: hsl(0 0% 0% / 5%);
+  --interactive-hover: hsl(0 0% 0% / 9%);
+  --interactive-active: hsl(0 0% 0% / 13%);
 
   --text-normal: #2e261a;
   --text-muted: #6f6048;
@@ -768,12 +814,16 @@ body.cn-hupo.theme-dark {
 }
 body.cn-hupo.theme-dark:not(.is-mobile) {
   --background-primary: #1a140c;
+  --background-primary-alt: #211b13;  /* static fallback for --background-primary-alt (pre-color-mix browsers) */
   --background-primary-alt: color-mix(in srgb, var(--background-primary), white 3%);
+  --background-secondary: #252018;  /* static fallback for --background-secondary (pre-color-mix browsers) */
   --background-secondary: color-mix(in srgb, var(--background-primary), white 5%);
+  --background-secondary-alt: #2c271f;  /* static fallback for --background-secondary-alt (pre-color-mix browsers) */
   --background-secondary-alt: color-mix(in srgb, var(--background-primary), white 8%);
 
   --interactive-normal: hsl(0 0% 100% / 5%);
-  --interactive-hover: hsl(0 0% 100% / 5%);
+  --interactive-hover: hsl(0 0% 100% / 10%);
+  --interactive-active: hsl(0 0% 100% / 15%);
 
   --text-normal: #ecdcc6;
   --text-muted: #9a8766;
@@ -812,7 +862,8 @@ body.cn-dianlan.theme-light:not(.is-mobile) {
   --background-secondary-alt: #e4e9f2;
 
   --interactive-normal: hsl(0 0% 0% / 5%);
-  --interactive-hover: hsl(0 0% 0% / 5%);
+  --interactive-hover: hsl(0 0% 0% / 9%);
+  --interactive-active: hsl(0 0% 0% / 13%);
 
   --text-normal: #1c2230;
   --text-muted: #5b6678;
@@ -844,12 +895,16 @@ body.cn-dianlan.theme-dark {
 }
 body.cn-dianlan.theme-dark:not(.is-mobile) {
   --background-primary: #0d1320;
+  --background-primary-alt: #141a27;  /* static fallback for --background-primary-alt (pre-color-mix browsers) */
   --background-primary-alt: color-mix(in srgb, var(--background-primary), white 3%);
+  --background-secondary: #191f2b;  /* static fallback for --background-secondary (pre-color-mix browsers) */
   --background-secondary: color-mix(in srgb, var(--background-primary), white 5%);
+  --background-secondary-alt: #202632;  /* static fallback for --background-secondary-alt (pre-color-mix browsers) */
   --background-secondary-alt: color-mix(in srgb, var(--background-primary), white 8%);
 
   --interactive-normal: hsl(0 0% 100% / 5%);
-  --interactive-hover: hsl(0 0% 100% / 5%);
+  --interactive-hover: hsl(0 0% 100% / 10%);
+  --interactive-active: hsl(0 0% 100% / 15%);
 
   --text-normal: #d2d9e6;
   --text-muted: #8492aa;
@@ -888,7 +943,8 @@ body.cn-danju.theme-light:not(.is-mobile) {
   --background-secondary-alt: #f4e6d8;
 
   --interactive-normal: hsl(0 0% 0% / 5%);
-  --interactive-hover: hsl(0 0% 0% / 5%);
+  --interactive-hover: hsl(0 0% 0% / 9%);
+  --interactive-active: hsl(0 0% 0% / 13%);
 
   --text-normal: #2e2418;
   --text-muted: #6f5f4c;
@@ -920,12 +976,16 @@ body.cn-danju.theme-dark {
 }
 body.cn-danju.theme-dark:not(.is-mobile) {
   --background-primary: #1c130c;
+  --background-primary-alt: #231a13;  /* static fallback for --background-primary-alt (pre-color-mix browsers) */
   --background-primary-alt: color-mix(in srgb, var(--background-primary), white 3%);
+  --background-secondary: #271f18;  /* static fallback for --background-secondary (pre-color-mix browsers) */
   --background-secondary: color-mix(in srgb, var(--background-primary), white 5%);
+  --background-secondary-alt: #2e261f;  /* static fallback for --background-secondary-alt (pre-color-mix browsers) */
   --background-secondary-alt: color-mix(in srgb, var(--background-primary), white 8%);
 
   --interactive-normal: hsl(0 0% 100% / 5%);
-  --interactive-hover: hsl(0 0% 100% / 5%);
+  --interactive-hover: hsl(0 0% 100% / 10%);
+  --interactive-active: hsl(0 0% 100% / 15%);
 
   --text-normal: #ecd8c8;
   --text-muted: #9a886c;
@@ -964,7 +1024,8 @@ body.cn-ehuang.theme-light:not(.is-mobile) {
   --background-secondary-alt: #f1ebd6;
 
   --interactive-normal: hsl(0 0% 0% / 5%);
-  --interactive-hover: hsl(0 0% 0% / 5%);
+  --interactive-hover: hsl(0 0% 0% / 9%);
+  --interactive-active: hsl(0 0% 0% / 13%);
 
   --text-normal: #2e2a1c;
   --text-muted: #6f6349;
@@ -996,12 +1057,16 @@ body.cn-ehuang.theme-dark {
 }
 body.cn-ehuang.theme-dark:not(.is-mobile) {
   --background-primary: #171307;
+  --background-primary-alt: #1e1a0e;  /* static fallback for --background-primary-alt (pre-color-mix browsers) */
   --background-primary-alt: color-mix(in srgb, var(--background-primary), white 3%);
+  --background-secondary: #231f13;  /* static fallback for --background-secondary (pre-color-mix browsers) */
   --background-secondary: color-mix(in srgb, var(--background-primary), white 5%);
+  --background-secondary-alt: #2a261b;  /* static fallback for --background-secondary-alt (pre-color-mix browsers) */
   --background-secondary-alt: color-mix(in srgb, var(--background-primary), white 8%);
 
   --interactive-normal: hsl(0 0% 100% / 5%);
-  --interactive-hover: hsl(0 0% 100% / 5%);
+  --interactive-hover: hsl(0 0% 100% / 10%);
+  --interactive-active: hsl(0 0% 100% / 15%);
 
   --text-normal: #ecdfc4;
   --text-muted: #9a8e66;
@@ -1040,7 +1105,8 @@ body.cn-songhua.theme-light:not(.is-mobile) {
   --background-secondary-alt: #e8ecdb;
 
   --interactive-normal: hsl(0 0% 0% / 5%);
-  --interactive-hover: hsl(0 0% 0% / 5%);
+  --interactive-hover: hsl(0 0% 0% / 9%);
+  --interactive-active: hsl(0 0% 0% / 13%);
 
   --text-normal: #23271c;
   --text-muted: #5f644b;
@@ -1072,12 +1138,16 @@ body.cn-songhua.theme-dark {
 }
 body.cn-songhua.theme-dark:not(.is-mobile) {
   --background-primary: #14180c;
+  --background-primary-alt: #1b1f13;  /* static fallback for --background-primary-alt (pre-color-mix browsers) */
   --background-primary-alt: color-mix(in srgb, var(--background-primary), white 3%);
+  --background-secondary: #202418;  /* static fallback for --background-secondary (pre-color-mix browsers) */
   --background-secondary: color-mix(in srgb, var(--background-primary), white 5%);
+  --background-secondary-alt: #272a1f;  /* static fallback for --background-secondary-alt (pre-color-mix browsers) */
   --background-secondary-alt: color-mix(in srgb, var(--background-primary), white 8%);
 
   --interactive-normal: hsl(0 0% 100% / 5%);
-  --interactive-hover: hsl(0 0% 100% / 5%);
+  --interactive-hover: hsl(0 0% 100% / 10%);
+  --interactive-active: hsl(0 0% 100% / 15%);
 
   --text-normal: #d8dcce;
   --text-muted: #909879;
@@ -1116,7 +1186,8 @@ body.cn-zheshi.theme-light:not(.is-mobile) {
   --background-secondary-alt: #ece3d8;
 
   --interactive-normal: hsl(0 0% 0% / 5%);
-  --interactive-hover: hsl(0 0% 0% / 5%);
+  --interactive-hover: hsl(0 0% 0% / 9%);
+  --interactive-active: hsl(0 0% 0% / 13%);
 
   --text-normal: #2e261c;
   --text-muted: #6f6048;
@@ -1148,12 +1219,16 @@ body.cn-zheshi.theme-dark {
 }
 body.cn-zheshi.theme-dark:not(.is-mobile) {
   --background-primary: #1a130c;
+  --background-primary-alt: #211a13;  /* static fallback for --background-primary-alt (pre-color-mix browsers) */
   --background-primary-alt: color-mix(in srgb, var(--background-primary), white 3%);
+  --background-secondary: #251f18;  /* static fallback for --background-secondary (pre-color-mix browsers) */
   --background-secondary: color-mix(in srgb, var(--background-primary), white 5%);
+  --background-secondary-alt: #2c261f;  /* static fallback for --background-secondary-alt (pre-color-mix browsers) */
   --background-secondary-alt: color-mix(in srgb, var(--background-primary), white 8%);
 
   --interactive-normal: hsl(0 0% 100% / 5%);
-  --interactive-hover: hsl(0 0% 100% / 5%);
+  --interactive-hover: hsl(0 0% 100% / 10%);
+  --interactive-active: hsl(0 0% 100% / 15%);
 
   --text-normal: #ecdcc8;
   --text-muted: #9a866c;
@@ -1192,7 +1267,8 @@ body.cn-ouhe.theme-light:not(.is-mobile) {
   --background-secondary-alt: #ece2e9;
 
   --interactive-normal: hsl(0 0% 0% / 5%);
-  --interactive-hover: hsl(0 0% 0% / 5%);
+  --interactive-hover: hsl(0 0% 0% / 9%);
+  --interactive-active: hsl(0 0% 0% / 13%);
 
   --text-normal: #2a2228;
   --text-muted: #695c65;
@@ -1224,12 +1300,16 @@ body.cn-ouhe.theme-dark {
 }
 body.cn-ouhe.theme-dark:not(.is-mobile) {
   --background-primary: #18121a;
+  --background-primary-alt: #1f1921;  /* static fallback for --background-primary-alt (pre-color-mix browsers) */
   --background-primary-alt: color-mix(in srgb, var(--background-primary), white 3%);
+  --background-secondary: #241e25;  /* static fallback for --background-secondary (pre-color-mix browsers) */
   --background-secondary: color-mix(in srgb, var(--background-primary), white 5%);
+  --background-secondary-alt: #2a252c;  /* static fallback for --background-secondary-alt (pre-color-mix browsers) */
   --background-secondary-alt: color-mix(in srgb, var(--background-primary), white 8%);
 
   --interactive-normal: hsl(0 0% 100% / 5%);
-  --interactive-hover: hsl(0 0% 100% / 5%);
+  --interactive-hover: hsl(0 0% 100% / 10%);
+  --interactive-active: hsl(0 0% 100% / 15%);
 
   --text-normal: #e8dce6;
   --text-muted: #9c8e9a;
@@ -1268,7 +1348,8 @@ body.cn-yuebai.theme-light:not(.is-mobile) {
   --background-secondary-alt: #eaf0f3;
 
   --interactive-normal: hsl(0 0% 0% / 5%);
-  --interactive-hover: hsl(0 0% 0% / 5%);
+  --interactive-hover: hsl(0 0% 0% / 9%);
+  --interactive-active: hsl(0 0% 0% / 13%);
 
   --text-normal: #1e252b;
   --text-muted: #5d6a76;
@@ -1300,12 +1381,16 @@ body.cn-yuebai.theme-dark {
 }
 body.cn-yuebai.theme-dark:not(.is-mobile) {
   --background-primary: #0f1418;
+  --background-primary-alt: #161b1f;  /* static fallback for --background-primary-alt (pre-color-mix browsers) */
   --background-primary-alt: color-mix(in srgb, var(--background-primary), white 3%);
+  --background-secondary: #1b2024;  /* static fallback for --background-secondary (pre-color-mix browsers) */
   --background-secondary: color-mix(in srgb, var(--background-primary), white 5%);
+  --background-secondary-alt: #22272a;  /* static fallback for --background-secondary-alt (pre-color-mix browsers) */
   --background-secondary-alt: color-mix(in srgb, var(--background-primary), white 8%);
 
   --interactive-normal: hsl(0 0% 100% / 5%);
-  --interactive-hover: hsl(0 0% 100% / 5%);
+  --interactive-hover: hsl(0 0% 100% / 10%);
+  --interactive-active: hsl(0 0% 100% / 15%);
 
   --text-normal: #d3dce2;
   --text-muted: #8492a0;
@@ -1360,4 +1445,225 @@ body.cn-ouhe.theme-light {
   --interactive-accent: rgb(156, 112, 142);
   --interactive-accent-hover: rgb(156, 112, 142);
   --text-accent: rgb(156, 112, 142);
+}
+
+/* Phase 3 a11y overrides (palettes) — text-faint ≥3:1, text-accent (links) ≥4.5:1 vs canvas. Appended 2026-07-21 */
+body.theme-light {
+  --text-faint: #92938c;
+  --text-accent: #438259;
+  --text-accent-hover: #417e57;
+}
+
+body.theme-dark {
+  --text-faint: #62675c;
+}
+
+body.cn-moye.theme-light {
+  --text-faint: #93938f;
+  --text-accent: #3a70af;
+  --text-accent-hover: #3a70af;
+}
+
+body.cn-moye.theme-dark {
+  --text-faint: #63635d;
+}
+
+body.cn-yanzhi.theme-light {
+  --text-faint: #9a9187;
+  --text-accent: #ce4449;
+  --text-accent-hover: #cd4449;
+}
+
+body.cn-yanzhi.theme-dark {
+  --text-faint: #6e625a;
+}
+
+body.cn-qinglu.theme-light {
+  --text-faint: #8e948f;
+  --text-accent: #28827c;
+  --text-accent-hover: #267e78;
+}
+
+body.cn-qinglu.theme-dark {
+  --text-faint: #5c6863;
+}
+
+body.cn-liujin.theme-light {
+  --text-faint: #999283;
+  --text-accent: #976e25;
+  --text-accent-hover: #936b24;
+}
+
+body.cn-liujin.theme-dark {
+  --text-faint: #6b6254;
+}
+
+body.cn-tianqing.theme-light {
+  --text-faint: #8d939a;
+  --text-accent: #387ba5;
+  --text-accent-hover: #3779a2;
+}
+
+body.cn-tianqing.theme-dark {
+  --text-faint: #5b656e;
+}
+
+body.cn-daizi.theme-light {
+  --text-faint: #97909b;
+  --text-accent: #8e60a8;
+  --text-accent-hover: #8e60a8;
+}
+
+body.cn-daizi.theme-dark {
+  --text-faint: #695f72;
+}
+
+body.cn-haitang.theme-light {
+  --text-faint: #999095;
+  --text-accent: #b25874;
+  --text-accent-hover: #af5772;
+}
+
+body.cn-haitang.theme-dark {
+  --text-faint: #6d6067;
+}
+
+body.cn-bohe.theme-light {
+  --text-faint: #8d9491;
+  --text-accent: #1c846b;
+  --text-accent-hover: #1b8067;
+}
+
+body.cn-bohe.theme-dark {
+  --text-faint: #5c6964;
+}
+
+body.cn-hupo.theme-light {
+  --text-faint: #9b9181;
+  --text-accent: #a06a1d;
+  --text-accent-hover: #9e681d;
+}
+
+body.cn-hupo.theme-dark {
+  --text-faint: #6f6252;
+}
+
+body.cn-dianlan.theme-light {
+  --text-faint: #8d939a;
+  --text-accent: #3268d6;
+  --text-accent-hover: #3268d6;
+}
+
+body.cn-dianlan.theme-dark {
+  --text-faint: #5d6371;
+}
+
+body.cn-danju.theme-light {
+  --text-faint: #9c9183;
+  --text-accent: #ad621c;
+  --text-accent-hover: #aa611c;
+}
+
+body.cn-danju.theme-dark {
+  --text-faint: #706252;
+}
+
+body.cn-ehuang.theme-light {
+  --text-faint: #98927f;
+  --text-accent: #91711f;
+  --text-accent-hover: #8e6e1e;
+}
+
+body.cn-ehuang.theme-dark {
+  --text-faint: #6a634a;
+}
+
+body.cn-songhua.theme-light {
+  --text-faint: #8f9585;
+  --text-accent: #5e7f30;
+  --text-accent-hover: #5d7d2f;
+}
+
+body.cn-songhua.theme-dark {
+  --text-faint: #626759;
+}
+
+body.cn-zheshi.theme-light {
+  --text-faint: #9b9182;
+  --text-accent: #956d4e;
+  --text-accent-hover: #926a4c;
+}
+
+body.cn-zheshi.theme-dark {
+  --text-faint: #706252;
+}
+
+body.cn-ouhe.theme-light {
+  --text-faint: #9a9096;
+  --text-accent: #926985;
+  --text-accent-hover: #916884;
+}
+
+body.cn-ouhe.theme-dark {
+  --text-faint: #6c606c;
+}
+
+body.cn-yuebai.theme-light {
+  --text-faint: #8c9498;
+  --text-accent: #63788b;
+  --text-accent-hover: #607486;
+}
+
+body.cn-yuebai.theme-dark {
+  --text-faint: #5d646c;
+}
+
+/* Phase 3 prefers-contrast (palettes) — boost contrast for prefers-contrast: more. Appended 2026-07-21 */
+@media (prefers-contrast: more) {
+    body.theme-light,
+    body.cn-moye.theme-light,
+    body.cn-yanzhi.theme-light,
+    body.cn-qinglu.theme-light,
+    body.cn-liujin.theme-light,
+    body.cn-tianqing.theme-light,
+    body.cn-daizi.theme-light,
+    body.cn-haitang.theme-light,
+    body.cn-bohe.theme-light,
+    body.cn-hupo.theme-light,
+    body.cn-dianlan.theme-light,
+    body.cn-danju.theme-light,
+    body.cn-ehuang.theme-light,
+    body.cn-songhua.theme-light,
+    body.cn-zheshi.theme-light,
+    body.cn-ouhe.theme-light,
+    body.cn-yuebai.theme-light {
+    --text-faint: #595959;
+    --text-muted: #595959;
+    --background-modifier-border: #b3b3b3;
+    --divider-color: #b3b3b3;
+    --bc-focus-ring-width: 3px;
+  }
+    body.theme-dark,
+    body.cn-moye.theme-dark,
+    body.cn-yanzhi.theme-dark,
+    body.cn-qinglu.theme-dark,
+    body.cn-liujin.theme-dark,
+    body.cn-tianqing.theme-dark,
+    body.cn-daizi.theme-dark,
+    body.cn-haitang.theme-dark,
+    body.cn-bohe.theme-dark,
+    body.cn-hupo.theme-dark,
+    body.cn-dianlan.theme-dark,
+    body.cn-danju.theme-dark,
+    body.cn-ehuang.theme-dark,
+    body.cn-songhua.theme-dark,
+    body.cn-zheshi.theme-dark,
+    body.cn-ouhe.theme-dark,
+    body.cn-yuebai.theme-dark {
+    --text-faint: #a6a6a6;
+    --text-muted: #c4c4c4;
+    --background-modifier-border: #5c5c5c;
+    --divider-color: #5c5c5c;
+    --bc-focus-ring-width: 3px;
+  }
 }

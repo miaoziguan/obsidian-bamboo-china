@@ -180,16 +180,24 @@ body:not(.is-phone) {
         transition:
           border-color 160ms ease,
           background-color 160ms ease,
-          box-shadow 160ms ease;
+          box-shadow 200ms ease; // softer ease-in for the focus ring (小动效)
       }
       .community-modal-controls .search-input-container:hover {
         border-color: color-mix(in srgb, var(--text-muted) 30%, var(--background-modifier-border));
         background-color: var(--background-modifier-form-field);
       }
-      // No visual focus state — heavy green border/glow was too loud. Keyboard
-      // users still get the browser's default :focus-visible outline.
+      // On-brand, gentle focus state. Replaces the loud default green border +
+      // glow with the theme accent (--interactive-accent — the same token the
+      // global `focus-ring` mixin uses) at low alpha, so it reads as a soft
+      // ring rather than a shout. The container's box-shadow transition above
+      // eases it in as a subtle 小动效. :focus-within fires for both mouse and
+      // keyboard focus, so the indicator is always visible (a11y preserved).
       .community-modal-controls .search-input-container:focus-within {
-        // Intentionally empty: identical to resting state.
+        border-color: var(--interactive-accent);
+        // static fallback for old Electron without color-mix(); the accent at
+        // full alpha is a slightly stronger but still soft ring.
+        box-shadow: 0 0 0 3px var(--interactive-accent);
+        box-shadow: 0 0 0 3px color-mix(in srgb, var(--interactive-accent) 22%, transparent);
       }
       .community-modal-controls .search-input-container input {
         flex: 1 1 auto;
@@ -208,7 +216,7 @@ body:not(.is-phone) {
       .community-modal-controls .search-input-container input:focus {
         border: none;
         box-shadow: none;
-        outline: none;
+        outline: none; // native outline suppressed; the accent ring above is the indicator
       }
 
       // ── Sort button (A↓): sits right after the search field as a peer control

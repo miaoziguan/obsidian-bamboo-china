@@ -236,7 +236,7 @@ body:not(.is-mobile) .mod-sidedock.mod-left-split {
   }
 
   .workspace-leaf-content > .node-insert-event,
-  .workspace-leaf-content > .view-content {
+  .workspace-leaf-content:not([data-type="atomic-notes-panel"]) > .view-content {
     padding-bottom: 64px;
   }
 }

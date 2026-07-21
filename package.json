@@ -8,7 +8,7 @@
   "scripts": {
     "build": "sass src/theme.scss theme.css --no-source-map --style=expanded",
     "build:min": "sass src/theme.scss theme.css --no-source-map --style=compressed",
-    "test": "node scripts/check-css.mjs && node scripts/check-palette-contrast.mjs",
+    "test": "node scripts/check-css.mjs && node scripts/check-palette-contrast.mjs && node scripts/check-a11y.mjs",
     "watch": "sass --watch src/theme.scss theme.css --no-source-map --style=expanded",
     "deploy": "node scripts/deploy.mjs",
     "release": "npm run build && npm run deploy",

@@ -1,27 +1,28 @@
 #!/usr/bin/env node
-// WCAG non-text contrast guardrail for Bamboo China 意境 palettes.
+// WCAG contrast guardrail for Bamboo China 意境 palettes (extended 2026-07-21).
 //
-// FIX (2026-07-20): the previous version matched the OLD selector shape
-// `body#{mx.$bc}.cn-NAME.theme-...`, which no longer exists after the
-// palettes were refactored to `body.cn-NAME.theme-light(:not(.is-mobile))`.
-// That made it "Parsed 0 palettes" and pass on zero samples — a silent no-op.
+// For every palette (the default `body.theme-*` scheme + each `cn-*` 意境 scheme)
+// and each mode (light/dark), validates the contrast of key design tokens against
+// the canvas (--background-primary, i.e. the editor/reading surface):
 //
-// Now it:
-//   • matches the current `body.cn-NAME.theme-light(:not(.is-mobile))` blocks,
-//   • resolves `var()` / `rgb()` / `hex` colors (the 意境 accent + bg are all
-//     of these forms; the `color-mix(in oklch ...)` re-tint in the top block is
-//     out of scope for accent/bg and ignored),
-//   • treats "0 palettes parsed" as a HARD FAIL so the guardrail can never
-//     silently pass again.
+//   • --interactive-accent  vs bg  ≥ 3.0   (WCAG 1.4.11 — UI / non-text contrast)
+//   • --text-accent         vs bg  ≥ 4.5   (WCAG 1.4.3 — links are text, not glyphs)
+//   • --text-normal         vs bg  ≥ 4.5   (WCAG 1.4.3 — body text)
+//   • --text-muted          vs bg  ≥ 4.5   (WCAG 1.4.3 — secondary text)
+//   • --text-faint          vs bg  ≥ 3.0   (WCAG 1.4.11 — non-text / metadata)
 //
-// Threshold: 3.0 — WCAG 1.4.11 (non-text contrast) for UI components, which is
-// the correct bar for an interactive accent vs its background (not 4.5, which is
-// for body text).
+// "0 tokens parsed" is a HARD FAIL so the guardrail can never silently pass on a
+// selector/regex drift (this happened once before the 2026-07-20 fix).
+//
+// Resolution: builds a global var() map from every .scss source, then evaluates
+// the LAST declaration for each selector so later, same-specificity override
+// blocks (e.g. the accessibility fixes appended at the end of the palettes file)
+// win the cascade exactly as the browser would.
 import fs from 'node:fs';
 import path from 'node:path';
 
 const PALETTES = 'src/color-schemes/bamboo-china-palettes.scss';
-const THRESHOLD = 3.0;
+const T = { nonText: 3.0, text: 4.5, faint: 3.0 };
 
 const text = fs.readFileSync(PALETTES, 'utf8');
 
@@ -65,6 +66,8 @@ function parseColor(value) {
     const to255 = (x) => (x.includes('%') ? Math.round((parseFloat(x) / 100) * 255) : Math.round(parseFloat(x)));
     return [to255(rgb[1]), to255(rgb[2]), to255(rgb[3])];
   }
+  const hsl = v.match(/hsla?\(\s*[\d.]+\s*[, ]\s*[\d.]+%\s*[, ]\s*([\d.]+)%/i);
+  if (hsl) return [Math.round((parseFloat(hsl[1]) / 100) * 255), Math.round((parseFloat(hsl[1]) / 100) * 255), Math.round((parseFloat(hsl[1]) / 100) * 255)];
   // color-mix — best-effort: take the first component.
   const cm = v.match(/color-mix\([^,]+,\s*([^,]+?),/i);
   if (cm) return parseColor(cm[1]);
@@ -72,9 +75,6 @@ function parseColor(value) {
 }
 
 // ── resolve the EFFECTIVE (last-defined) declaration for a selector ────────
-// We take the last match in the file so that later, same-specificity override
-// blocks (e.g. the accessibility fixes appended at the end of the palettes
-// file) win the cascade exactly as the browser would resolve them.
 function lastDecl(selectorPrefix, varName) {
   const re = new RegExp(selectorPrefix + '[^}]*?--' + varName + ':\\s*([^;]+);', 'g');
   let m;
@@ -98,44 +98,62 @@ function contrast(c1, c2) {
   return (hi + 0.05) / (lo + 0.05);
 }
 
-// ── run ───────────────────────────────────────────────────────────────────
-const names = [...new Set([...text.matchAll(/body\.cn-([\w-]+)\.theme-light\s*\{/g)].map((m) => m[1]))];
+// ── collect schemes: default + every cn-* ─────────────────────────────────
+const cnNames = [...new Set([...text.matchAll(/body\.cn-([\w-]+)\.theme-light\s*\{/g)].map((m) => m[1]))];
+const schemes = [];
+schemes.push({
+  label: 'default',
+  lightAcc: 'body\\.theme-light', lightBg: 'body\\.theme-light:not\\(\\.(?:is-mobile)\\)',
+  darkAcc: 'body\\.theme-dark', darkBg: 'body\\.theme-dark:not\\(\\.(?:is-mobile)\\)',
+});
+for (const n of cnNames) {
+  schemes.push({
+    label: n,
+    lightAcc: `body\\.cn-${n}\\.theme-light`, lightBg: `body\\.cn-${n}\\.theme-light:not\\(\\.(?:is-mobile)\\)`,
+    darkAcc: `body\\.cn-${n}\\.theme-dark`, darkBg: `body\\.cn-${n}\\.theme-dark:not\\(\\.(?:is-mobile)\\)`,
+  });
+}
 
 let failures = 0;
 let checked = 0;
 const lines = [];
-for (const name of names) {
+function checkToken(label, sel, varName, bg, threshold, name) {
+  const raw = lastDecl(sel, varName);
+  if (!raw) { lines.push(`⚠  ${label}: missing --${varName}`); return; }
+  let c, ratio;
+  try { c = parseColor(raw); ratio = contrast(c, bg); }
+  catch (e) { lines.push(`⚠  ${label}: ${e.message}`); return; }
+  checked++;
+  const ok = ratio >= threshold;
+  if (!ok) failures++;
+  lines.push(`${ok ? '✓' : '✗'}  ${label.padEnd(22)} ${name}: ${ratio.toFixed(2)}:1 ${ok ? '' : `< AA ${threshold}:1`}`);
+}
+
+for (const s of schemes) {
   for (const mode of ['light', 'dark']) {
-    const accent = lastDecl(`body\\.cn-${name}\\.theme-${mode}`, 'interactive-accent');
-    const bg = lastDecl(`body\\.cn-${name}\\.theme-${mode}:not\\(\\.(?:is-mobile)\\)`, 'background-primary');
-    if (!accent || !bg) {
-      lines.push(`⚠  ${name}/${mode}: missing --interactive-accent or --background-primary`);
-      continue;
-    }
-    let ac, bc, ratio;
-    try {
-      ac = parseColor(accent);
-      bc = parseColor(bg);
-      ratio = contrast(ac, bc);
-    } catch (e) {
-      lines.push(`⚠  ${name}/${mode}: ${e.message}`);
-      continue;
-    }
-    checked++;
-    const ok = ratio >= THRESHOLD;
-    if (!ok) failures++;
-    lines.push(`${ok ? '✓' : '✗'}  ${name}/${mode}: ${ratio.toFixed(2)}:1 ${ok ? '' : `< AA ${THRESHOLD}:1`}`);
+    const accSel = mode === 'light' ? s.lightAcc : s.darkAcc;
+    const bgSel = mode === 'light' ? s.lightBg : s.darkBg;
+    const bgRaw = lastDecl(bgSel, 'background-primary');
+    if (!bgRaw) { lines.push(`⚠  ${s.label}/${mode}: missing --background-primary`); continue; }
+    let bg;
+    try { bg = parseColor(bgRaw); } catch (e) { lines.push(`⚠  ${s.label}/${mode}: ${e.message}`); continue; }
+    const p = `${s.label}/${mode}`;
+    checkToken(p, accSel, 'interactive-accent', bg, T.nonText, 'accent≥3.0');
+    checkToken(p, accSel, 'text-accent', bg, T.text, 'text-accent≥4.5');
+    checkToken(p, accSel, 'text-normal', bg, T.text, 'text-normal≥4.5');
+    checkToken(p, accSel, 'text-muted', bg, T.text, 'text-muted≥4.5');
+    checkToken(p, accSel, 'text-faint', bg, T.faint, 'text-faint≥3.0');
   }
 }
 
 console.log(lines.join('\n'));
 
 if (checked === 0) {
-  console.error('\n✗ No palettes parsed — the guardrail is misconfigured (regex/selector drift).');
+  console.error('\n✗ No tokens parsed — the guardrail is misconfigured (regex/selector drift).');
   process.exit(1);
 }
 if (failures > 0) {
-  console.error(`\n✗ ${failures}/${checked} 意境 palette(s) fail WCAG non-text contrast (${THRESHOLD}:1).`);
+  console.error(`\n✗ ${failures}/${checked} token checks fail WCAG thresholds.`);
   process.exit(1);
 }
-console.log(`\n✓ All ${checked} 意境 palettes pass WCAG non-text contrast (${THRESHOLD}:1).`);
+console.log(`\n✓ All ${checked} token checks pass WCAG thresholds.`);
