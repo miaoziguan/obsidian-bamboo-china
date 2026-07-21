@@ -64,6 +64,10 @@ body,
   // slides (hover-ribbon, community cards). Tokenized so the "feel" stays
   // consistent instead of being copy-pasted as a magic bezier.
   --anim-motion-emphasized: cubic-bezier(0.16, 1, 0.3, 1);
+  // Brand curve — gentle overshoot returns (~5%), like unrolling a scroll.
+  // Reserved for the 2–3 most brand-visible moments: mood switch, Bamboo China
+  // modal entrance, prompt bounce.
+  --anim-motion-brand: cubic-bezier(0.34, 1.56, 0.64, 1);
   --anim-duration-superfast: calc(80ms * var(--anim-speed-modifier));
   --anim-duration-fast: calc(160ms * var(--anim-speed-modifier));
   --anim-duration-moderate: calc(320ms * var(--anim-speed-modifier));

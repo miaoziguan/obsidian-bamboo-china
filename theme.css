@@ -23,6 +23,7 @@ body,
   --anim-speed-modifier: 1;
   --anim-motion-baseline: cubic-bezier(0.32, 0.72, 0, 1);
   --anim-motion-emphasized: cubic-bezier(0.16, 1, 0.3, 1);
+  --anim-motion-brand: cubic-bezier(0.34, 1.56, 0.64, 1);
   --anim-duration-superfast: calc(80ms * var(--anim-speed-modifier));
   --anim-duration-fast: calc(160ms * var(--anim-speed-modifier));
   --anim-duration-moderate: calc(320ms * var(--anim-speed-modifier));
@@ -9531,6 +9532,7 @@ body[class*=cn-] {
   --color-blue: color-mix(in oklch, var(--interactive-accent) 16%, rgb(var(--color-blue-rgb)));
   --color-purple: color-mix(in oklch, var(--interactive-accent) 16%, rgb(var(--color-purple-rgb)));
   --color-pink: color-mix(in oklch, var(--interactive-accent) 16%, rgb(var(--color-pink-rgb)));
+  transition: background-color var(--anim-duration-moderate) var(--anim-motion-brand), color var(--anim-duration-moderate) var(--anim-motion-brand);
 }
 
 /* ============ 竹影 · 宣纸竹青 ============ */

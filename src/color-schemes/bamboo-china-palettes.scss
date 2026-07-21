@@ -33,6 +33,9 @@ body[class*="cn-"] {
   --color-blue: color-mix(in oklch, var(--interactive-accent) 16%, rgb(var(--color-blue-rgb)));
   --color-purple: color-mix(in oklch, var(--interactive-accent) 16%, rgb(var(--color-purple-rgb)));
   --color-pink: color-mix(in oklch, var(--interactive-accent) 16%, rgb(var(--color-pink-rgb)));
+  // 意境切换 crossfade — ink washes over the canvas.
+  transition: background-color var(--anim-duration-moderate) var(--anim-motion-brand),
+              color var(--anim-duration-moderate) var(--anim-motion-brand);
 }
 
 /* ============ 竹影 · 宣纸竹青 ============ */
