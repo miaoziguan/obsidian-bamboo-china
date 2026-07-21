@@ -381,13 +381,37 @@ body * {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+// ── Semantic colour overrides (native Obsidian rainbow → mood-driven) ─────
+// Obsidian's --color-accent and --color-{red…pink} are fixed colours by
+// default and don't follow the 意境 mood.  This block ties them to the
+// current mood's accent so that syntax-highlighting, callouts, and community
+// plugins (e.g. 竹林修仙传) all shift together when the mood changes.
+// Moved from bamboo-china-palettes.scss in S2 because the `@use` chain
+// there caused the `body[class*="cn-"]` selector to be dropped.
+body.theme-light,
+body.theme-dark,
+body[class*="cn-"] {
+  --color-accent: var(--interactive-accent);
+  --color-red: color-mix(in oklch, var(--interactive-accent) 16%, rgb(var(--color-red-rgb)));
+  --color-orange: color-mix(in oklch, var(--interactive-accent) 16%, rgb(var(--color-orange-rgb)));
+  --color-yellow: color-mix(in oklch, var(--interactive-accent) 16%, rgb(var(--color-yellow-rgb)));
+  --color-green: color-mix(in oklch, var(--interactive-accent) 16%, rgb(var(--color-green-rgb)));
+  --color-cyan: color-mix(in oklch, var(--interactive-accent) 16%, rgb(var(--color-cyan-rgb)));
+  --color-blue: color-mix(in oklch, var(--interactive-accent) 16%, rgb(var(--color-blue-rgb)));
+  --color-purple: color-mix(in oklch, var(--interactive-accent) 16%, rgb(var(--color-purple-rgb)));
+  --color-pink: color-mix(in oklch, var(--interactive-accent) 16%, rgb(var(--color-pink-rgb)));
+  // Mood-switch crossfade.
+  transition: background-color var(--anim-duration-moderate) var(--anim-motion-brand),
+              color var(--anim-duration-moderate) var(--anim-motion-brand);
+}
+
 body ::-webkit-scrollbar,
 body::-webkit-scrollbar {
   width: 0;
   height: 0;
 }
 body ::-webkit-scrollbar-thumb,
-body ::-webkit-scrollbar-track {
+body::-webkit-scrollbar-track {
   background-color: transparent;
 }
 // System native font (Chinese)

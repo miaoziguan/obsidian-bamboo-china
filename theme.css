@@ -282,6 +282,21 @@ body * {
   scrollbar-width: none;
 }
 
+body.theme-light,
+body.theme-dark,
+body[class*=cn-] {
+  --color-accent: var(--interactive-accent);
+  --color-red: color-mix(in oklch, var(--interactive-accent) 16%, rgb(var(--color-red-rgb)));
+  --color-orange: color-mix(in oklch, var(--interactive-accent) 16%, rgb(var(--color-orange-rgb)));
+  --color-yellow: color-mix(in oklch, var(--interactive-accent) 16%, rgb(var(--color-yellow-rgb)));
+  --color-green: color-mix(in oklch, var(--interactive-accent) 16%, rgb(var(--color-green-rgb)));
+  --color-cyan: color-mix(in oklch, var(--interactive-accent) 16%, rgb(var(--color-cyan-rgb)));
+  --color-blue: color-mix(in oklch, var(--interactive-accent) 16%, rgb(var(--color-blue-rgb)));
+  --color-purple: color-mix(in oklch, var(--interactive-accent) 16%, rgb(var(--color-purple-rgb)));
+  --color-pink: color-mix(in oklch, var(--interactive-accent) 16%, rgb(var(--color-pink-rgb)));
+  transition: background-color var(--anim-duration-moderate) var(--anim-motion-brand), color var(--anim-duration-moderate) var(--anim-motion-brand);
+}
+
 body ::-webkit-scrollbar,
 body::-webkit-scrollbar {
   width: 0;
@@ -289,7 +304,7 @@ body::-webkit-scrollbar {
 }
 
 body ::-webkit-scrollbar-thumb,
-body ::-webkit-scrollbar-track {
+body::-webkit-scrollbar-track {
   background-color: transparent;
 }
 
@@ -9568,28 +9583,6 @@ Bamboo China — 意境配色（东方色系扩展）
 不同意境通过侧边栏与面板（--background-secondary）的淡染色，以及签名强调色
 （--color-*-rgb）来体现，做到「白纸为心、黛青为框」。
 */
-/* ============ 原生彩色覆写（跟随意境配色） ============ */
-/* Obsidian 原生的 --color-accent 与 --color-{red,orange,yellow,green,cyan,blue,
-   purple,pink} 彩虹色默认是固定色，不随本主题的意境配色变化。这里把它们改为
-   跟当前变体的签名强调色 (--interactive-accent) 关联：accent 直接取强调色，
-   8 色则在原生色相基础上染上一定比例的强调色调，既保留语法高亮 / callout /
-   图表所需的色相区分，又让整套 UI 共享同一色彩语言——切换意境配色即整体跟随。
-   未在当前变体显式定义的 --color-*-rgb 会回退到 Obsidian 原生值，同样被染色。 */
-body.theme-light,
-body.theme-dark,
-body[class*=cn-] {
-  --color-accent: var(--interactive-accent);
-  --color-red: color-mix(in oklch, var(--interactive-accent) 16%, rgb(var(--color-red-rgb)));
-  --color-orange: color-mix(in oklch, var(--interactive-accent) 16%, rgb(var(--color-orange-rgb)));
-  --color-yellow: color-mix(in oklch, var(--interactive-accent) 16%, rgb(var(--color-yellow-rgb)));
-  --color-green: color-mix(in oklch, var(--interactive-accent) 16%, rgb(var(--color-green-rgb)));
-  --color-cyan: color-mix(in oklch, var(--interactive-accent) 16%, rgb(var(--color-cyan-rgb)));
-  --color-blue: color-mix(in oklch, var(--interactive-accent) 16%, rgb(var(--color-blue-rgb)));
-  --color-purple: color-mix(in oklch, var(--interactive-accent) 16%, rgb(var(--color-purple-rgb)));
-  --color-pink: color-mix(in oklch, var(--interactive-accent) 16%, rgb(var(--color-pink-rgb)));
-  transition: background-color var(--anim-duration-moderate) var(--anim-motion-brand), color var(--anim-duration-moderate) var(--anim-motion-brand);
-}
-
 /* ============ 竹影 · 宣纸竹青 ============ */
 body.theme-light {
   --color-red-rgb: 200, 70, 70;
