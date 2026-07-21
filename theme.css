@@ -43,6 +43,9 @@ body,
   --space-m: 12px;
   --space-l: 16px;
   --space-xl: 24px;
+  --color-danger: rgb(220, 50, 50);
+  --interactive-danger: var(--color-danger);
+  --text-danger: var(--color-danger);
   --radius-modifier: 1;
   --density-modifier: 1;
   --translucent-light-opacity: 0%;
@@ -1699,7 +1702,12 @@ body:not(.status-bar-baseline):not(.is-grabbing) .app-container.no-transition .s
   max-height: unset;
 }
 .workspace-leaf-content[data-type=empty] .empty-state-title {
-  display: none;
+  font-size: var(--font-ui-medium);
+  font-weight: var(--font-medium);
+  color: var(--text-muted);
+  text-align: center;
+  max-width: 340px;
+  margin: 0 auto;
 }
 .workspace-leaf-content[data-type=empty] .empty-state-action-list {
   margin-top: 0;
@@ -4451,6 +4459,17 @@ button:where(:not(.clickable-icon, .ant-switch, .workspace-leaf-content:not([dat
 }
 .clickable-icon:active:not([aria-disabled=true]) {
   transform: scale(0.96);
+}
+
+[aria-disabled=true],
+.is-disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.mod-danger {
+  --interactive-accent: var(--interactive-danger);
 }
 
 body.obsidian-app .checkbox-container {

@@ -99,6 +99,13 @@ body,
   --space-l: 16px;
   --space-xl: 24px;
 
+  // Danger / destructive-action tokens — currently absent from Obsidian's
+  // default palette. Explicitly defined here so confirmation dialogs, delete
+  // buttons, and validation errors speak a consistent visual language.
+  --color-danger: rgb(220, 50, 50);
+  --interactive-danger: var(--color-danger);
+  --text-danger: var(--color-danger);
+
   --radius-modifier: 1;
   --density-modifier: 1;
   --translucent-light-opacity: 0%;

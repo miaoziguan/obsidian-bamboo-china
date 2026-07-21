@@ -56,6 +56,23 @@ button:where(:not(.clickable-icon, .ant-switch, .workspace-leaf-content:not([dat
   }
 }
 
+// ── Disabled state — universal ──────────────────────────────────────────────
+// Applied whenever `aria-disabled="true"` or `.is-disabled` is present.
+// Consistent opacity + cursor across buttons, toggles, sliders, and inputs.
+[aria-disabled="true"],
+.is-disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+// ── Destructive actions ─────────────────────────────────────────────────────
+// Obsidian attaches .mod-danger to buttons that perform irreversible actions
+// (delete vault, remove plugin, etc.). Dangerous buttons should turn red.
+.mod-danger {
+  --interactive-accent: var(--interactive-danger);
+}
+
 // Toggle
 body.obsidian-app .checkbox-container {
   transition: var(--anim-duration-moderate);
