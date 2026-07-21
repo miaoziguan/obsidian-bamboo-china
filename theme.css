@@ -25,6 +25,10 @@ body,
   --anim-duration-fast: calc(160ms * var(--anim-speed-modifier));
   --anim-duration-moderate: calc(320ms * var(--anim-speed-modifier));
   --anim-duration-slow: calc(480ms * var(--anim-speed-modifier));
+  --bc-z-base: 1;
+  --bc-z-drawer-options: 2;
+  --bc-z-view-header: 3;
+  --bc-z-hover-ribbon: 12;
   --icon-stroke-modifier: 1;
   --icon-xs-stroke-width: calc(2.25px * var(--icon-stroke-modifier));
   --icon-s-stroke-width: calc(2px * var(--icon-stroke-modifier));
@@ -105,17 +109,17 @@ body:not(.is-mobile) {
   --icon-xl: calc(32px + var(--icon-size-modifier));
 }
 body:not(.is-mobile) .app-container {
-  transition: var(--anim-duration-moderate);
+  transition: background-color var(--anim-duration-moderate) var(--anim-motion-baseline);
   align-items: center;
 }
 body:not(.is-mobile):not(.is-translucent) .workspace {
   background: var(--background-secondary);
 }
 body:not(.is-mobile) .workspace {
-  transition: var(--anim-duration-moderate);
+  transition: background-color var(--anim-duration-moderate) var(--anim-motion-baseline);
 }
 body:not(.is-mobile) .workspace-split {
-  transition: var(--anim-duration-moderate);
+  transition: background-color var(--anim-duration-moderate) var(--anim-motion-baseline);
   background-color: transparent;
 }
 
@@ -217,6 +221,16 @@ body.reduce-motion.is-mobile .modal-bg {
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
     scroll-behavior: auto !important;
+  }
+}
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  :root {
+    --blur-l: none;
+    --blur-m: none;
+    --blur-s: none;
+    --raised-blur: none;
+    --modal-background: var(--background-primary);
+    --raised-background: var(--background-secondary);
   }
 }
 body {
@@ -1122,10 +1136,6 @@ body:not(.is-phone) .modal.mod-sidebar-layout .vertical-tab-header {
 body:not(.is-phone) .modal.mod-sidebar-layout .vertical-tab-nav-item-icon {
   color: inherit;
 }
-body:not(.is-phone) .modal.mod-sidebar-layout .vertical-tab-header-group-container:hover,
-body:not(.is-phone) .modal.mod-sidebar-layout .vertical-tab-content:hover {
-  will-change: transform;
-}
 body:not(.is-phone) .modal.mod-sidebar-layout .vertical-tab-header-group-title,
 body:not(.is-phone) .modal.mod-sidebar-layout .vertical-tab-nav-item {
   padding: calc(8px * var(--density-modifier)) 12px;
@@ -1784,7 +1794,7 @@ body.is-mobile .workspace-drawer .workspace-drawer-inner {
 body.is-mobile .workspace-drawer .workspace-drawer-header {
   padding-top: 8px;
   padding-inline: var(--safe-area-inset-side);
-  z-index: 1;
+  z-index: var(--bc-z-base);
   min-height: var(--touch-size-m);
   box-sizing: content-box;
 }
@@ -1800,8 +1810,8 @@ body.is-mobile .workspace-drawer .workspace-drawer-tab-options.is-collapsed::bef
 }
 body.is-mobile .workspace-drawer .workspace-drawer-tab-options::before {
   position: fixed;
-  z-index: 1;
-  transition: var(--anim-duration-fast);
+  z-index: var(--bc-z-base);
+  transition: background-color var(--anim-duration-fast);
   inset: 0;
   background-color: var(--mobile-sidebar-background);
   content: "";
@@ -1903,7 +1913,7 @@ body.is-phone .workspace-drawer {
   width: var(--mobile-sidebar-width-override, var(--mobile-sidebar-width));
 }
 body.is-phone .workspace-drawer-header {
-  z-index: 1;
+  z-index: var(--bc-z-base);
   justify-content: flex-end;
 }
 body.is-phone .workspace-drawer-header-left {
@@ -1927,7 +1937,7 @@ body.is-phone .workspace-drawer-header-info {
 body.is-phone .workspace-drawer-tab-options {
   position: fixed;
   bottom: var(--navbar-bottom-offset);
-  z-index: 2;
+  z-index: var(--bc-z-drawer-options);
   width: stretch;
   margin-inline: var(--safe-area-inset-side);
   height: var(--touch-size-m);
@@ -1960,9 +1970,10 @@ body.is-phone .mod-root {
 }
 body.is-phone .mod-root .view-header {
   top: 0;
-  transition: var(--anim-duration-moderate) var(--anim-motion-baseline);
-  will-change: top;
-  z-index: 3;
+  transform: translateY(0);
+  transition: transform var(--anim-duration-moderate) var(--anim-motion-baseline);
+  will-change: transform;
+  z-index: var(--bc-z-view-header);
   padding-inline: var(--safe-area-inset-side);
 }
 body.is-phone .mod-root .view-actions {
@@ -1976,8 +1987,8 @@ body.is-phone:not(.mode-switcher-off) .mod-root .view-actions {
   backdrop-filter: none;
 }
 body.is-phone.auto-full-screen.is-hidden-nav .mod-root .view-header {
-  transform: none;
-  top: -32px;
+  top: 0;
+  transform: translateY(-32px);
 }
 body.is-phone.auto-full-screen.is-hidden-nav .mobile-navbar, body.is-phone.auto-full-screen.is-hidden-nav:not(.mode-switcher-off) .mod-root .workspace-leaf-content[data-type=markdown] .view-header .view-actions button:nth-last-child(2) {
   transform: none;
@@ -1989,12 +2000,12 @@ body.is-phone.auto-full-screen.is-hidden-nav .mod-root .workspace-leaf-content[d
 }
 body.is-phone.is-floating-nav:not(.mod-toolbar-open) .mod-root .workspace-leaf-content[data-type=markdown] > .view-content::before, body.is-phone.is-floating-nav:not(.mod-toolbar-open) .mod-root .workspace-leaf-content[data-type=markdown] > .view-content::after {
   position: absolute;
-  z-index: 1;
+  z-index: var(--bc-z-base);
   backdrop-filter: blur(2px);
   inset-inline: 0;
   pointer-events: none;
   content: "";
-  transition: var(--anim-duration-moderate);
+  transition: opacity var(--anim-duration-moderate);
 }
 body.is-phone.is-floating-nav:not(.mod-toolbar-open) .mod-root .workspace-leaf-content[data-type=markdown] > .view-content::before {
   top: 0;
@@ -2018,7 +2029,7 @@ body.is-phone:not(html:where([style*="--keyboard-height: 0px"], :not([style*="--
 }
 body.is-phone:not(.mode-switcher-off) .mod-root .workspace-leaf-content[data-type=markdown] .view-actions button:nth-last-child(2) {
   position: fixed;
-  transition: var(--anim-duration-moderate) var(--anim-motion-baseline), right 0s, bottom 0s, height 0s, opacity 0s;
+  transition: background-color var(--anim-duration-moderate), transform var(--anim-duration-moderate) var(--anim-motion-baseline), width 0s, height 0s, right 0s, bottom 0s, opacity 0s;
   margin-right: var(--navbar-side-offset);
   margin-bottom: var(--navbar-bottom-offset);
   bottom: 0;
@@ -2053,7 +2064,7 @@ body.is-phone.is-floating-nav .mobile-navbar {
   width: auto;
   margin: auto calc(8px + var(--touch-size-l) + var(--navbar-side-offset)) var(--navbar-bottom-offset) var(--navbar-side-offset);
   padding: 8px;
-  transition: var(--anim-duration-moderate) var(--anim-motion-baseline), background-color var(--anim-duration-moderate);
+  transition: transform var(--anim-duration-moderate) var(--anim-motion-baseline), background-color var(--anim-duration-moderate);
 }
 body.is-phone .mobile-navbar-action {
   min-width: 0;
@@ -2069,7 +2080,7 @@ body.is-phone .mobile-navbar-tabs-action {
 body.is-phone:not(.is-floating-nav) .mobile-navbar {
   border: none;
   background-color: var(--background-primary);
-  transition: var(--anim-duration-moderate);
+  transition: background-color var(--anim-duration-moderate);
 }
 body.is-phone.mode-switcher-off.mod-toolbar-open .mobile-toolbar {
   padding-right: var(--keyboard-spacing);
@@ -7818,8 +7829,8 @@ body.focus-view:not(.mod-macos):not(.is-mobile):not(.is-popout-window):not(.is-h
 }
 
 body:not(.is-mobile) {
-  --hover-ribbon-delay: 160ms;
-  --hover-ribbon-trigger-area: 4px;
+  --hover-ribbon-delay: 100ms;
+  --hover-ribbon-trigger-area: 8px;
 }
 
 body:not(.is-mobile) .workspace-ribbon.mod-left:hover ~ .mod-root div:is(.workspace-tab-header-container, .workspace-tab-header-container-inner) {
@@ -7853,7 +7864,7 @@ body:not(.is-mobile):not(.hover-ribbon-off) .workspace-ribbon.mod-left {
   position: absolute;
   top: 0;
   left: 0;
-  z-index: 12;
+  z-index: var(--bc-z-hover-ribbon);
   width: var(--ribbon-width);
   height: 100vh;
   margin: 0;

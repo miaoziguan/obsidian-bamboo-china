@@ -22,10 +22,7 @@ body:not(.is-phone) {
     .vertical-tab-nav-item-icon {
       color: inherit;
     }
-    .vertical-tab-header-group-container:hover,
-    .vertical-tab-content:hover {
-      will-change: transform;
-    }
+
     .vertical-tab-header-group-title,
     .vertical-tab-nav-item {
       padding: calc(8px * var(--density-modifier)) 12px;

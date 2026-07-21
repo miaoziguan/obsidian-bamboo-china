@@ -1,6 +1,6 @@
 body:not(.is-mobile) {
-  --hover-ribbon-delay: 160ms;
-  --hover-ribbon-trigger-area: 4px;
+  --hover-ribbon-delay: 100ms;
+  --hover-ribbon-trigger-area: 8px;
 }
 
 // Window drag fix
@@ -55,7 +55,7 @@ body:not(.is-mobile):not(.hover-ribbon-off) {
     position: absolute;
     top: 0;
     left: 0;
-    z-index: 12;
+    z-index: var(--bc-z-hover-ribbon);
     width: var(--ribbon-width);
     height: 100vh;
     margin: 0;
