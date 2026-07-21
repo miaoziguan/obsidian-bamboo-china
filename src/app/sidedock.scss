@@ -161,35 +161,32 @@ body:not(.is-mobile) {
     background-color var(--anim-duration-fast);
 }
 
+// 静态态：按钮行淡出（opacity 不占布局，按钮始终原位，无空胶囊占位）。
 body:not(.nav-action-center) .mod-sidedock .workspace-leaf-content .nav-header:first-child:not(:hover) .nav-buttons-container {
-  gap: 4px;
-  padding: 0;
-  background-color: transparent;
-  box-shadow: none;
+  opacity: 0;
+  pointer-events: none;
+}
 
-  .nav-action-button {
-    padding: 2px;
-    width: 0;
-    flex: 0;
-    background-color: var(--background-modifier-hover);
-    box-shadow: none;
-    min-width: 0;
+// hover 进出仅动画 opacity，平滑淡入淡出。
+body:not(.nav-action-center) .mod-sidedock .workspace-leaf-content .nav-header:first-child .nav-buttons-container {
+  transition: opacity var(--anim-duration-fast) var(--anim-motion-baseline);
+}
 
-    &::after {
-      font-size: 0;
-      opacity: 0;
-    }
+// 左右栏顶部 tab header（面板标签 + 「展开/收起」图标）：默认隐藏，进入对应
+// 侧栏时整条淡入。容器 opacity 同时涵括内部 tab 文本与 .sidebar-toggle-button。
+// 以左栏为标准统一：右栏 (.mod-right-split / .mod-top-right-space) 复用与左栏
+// 完全一致的整条隐藏 + 悬停淡入逻辑，两侧行为镜像。
+body:not(.is-mobile) {
+  .mod-sidedock.mod-left-split .mod-top-left-space .workspace-tab-header-container,
+  .mod-sidedock.mod-right-split .mod-top-right-space .workspace-tab-header-container {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--anim-duration-moderate) var(--anim-motion-baseline);
   }
-  .nav-action-button.is-active {
-    background-color: var(--background-modifier-hover);
-  }
-  .nav-action-button.clickable-icon[aria-disabled="true"] {
-    opacity: var(--icon-opacity);
-  }
-
-  svg {
-    width: 0px;
-    height: 0px;
+  .mod-sidedock.mod-left-split:hover .mod-top-left-space .workspace-tab-header-container,
+  .mod-sidedock.mod-right-split:hover .mod-top-right-space .workspace-tab-header-container {
+    opacity: 1;
+    pointer-events: auto;
   }
 }
 

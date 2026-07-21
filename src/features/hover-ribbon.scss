@@ -131,15 +131,13 @@ body:not(.is-mobile):not(.hover-ribbon-off) {
 
   // macOS fix
   &.mod-macos:not(.is-fullscreen).is-hidden-frameless {
-    .mod-sidedock.mod-left-split .mod-top-left-space .workspace-tab-header-container {
-      transition-timing-function: ease;
-    }
-    .workspace-ribbon.mod-left:not(.is-collapsed):hover ~ .mod-sidedock.mod-left-split .mod-top-left-space .workspace-tab-header-container {
-      padding-left: 52px;
-    }
+    // 交通灯（红绿灯）留白：hover 与非 hover 保持同一 padding-left，避免
+    // 悬停 ribbon 时 tab-header-container 横向收缩，让「文件列表」漂移。
+    // ribbon 是 absolute 覆盖层，浮出时无需为它腾挪内容位置。
+    .workspace-ribbon.mod-left:not(.is-collapsed):hover ~ .mod-sidedock.mod-left-split .mod-top-left-space .workspace-tab-header-container,
     .workspace-ribbon.mod-left:not(.is-collapsed):not(:hover) ~ .mod-sidedock.mod-left-split .mod-top-left-space .workspace-tab-header-container,
     .workspace-ribbon.mod-left.is-collapsed ~ .mod-root > div:first-of-type .workspace-tab-header-container {
-      padding-left: 88px;
+      padding-left: 100px;
     }
   }
 }

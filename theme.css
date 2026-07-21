@@ -390,6 +390,10 @@ body:not(.is-phone) .workspace-tab-header-container {
   align-items: center;
 }
 
+.mod-sidedock .workspace-tab-header-container .sidebar-toggle-button {
+  padding-bottom: 0;
+}
+
 .sidebar-toggle-button .clickable-icon {
   width: fit-content;
   height: fit-content;
@@ -590,11 +594,6 @@ body.is-tablet .workspace .mod-root .workspace-tab-header-new-tab .clickable-ico
   gap: calc(8px * var(--density-modifier));
   height: 100%;
 }
-.workspace .mod-sidedock .sidebar-toggle-button {
-  position: relative;
-  padding: 0;
-  height: fit-content;
-}
 .workspace .mod-sidedock .workspace-tab-header {
   height: calc-size(auto, size);
   line-height: normal;
@@ -635,6 +634,59 @@ body.mod-macos.is-frameless:not(.is-popout-window) .workspace .workspace-tabs.mo
 body.mod-macos.is-frameless:not(.is-popout-window) .workspace .mod-root .sidebar-toggle-button.mod-right {
   position: relative;
   padding-right: 0;
+}
+
+body:is(.mod-macos, .adaptive-mode-off):not(.is-mobile) .mod-sidedock .workspace-tabs .workspace-tab-header-container-inner {
+  -webkit-app-region: no-drag;
+  gap: 0px;
+  transition: var(--anim-duration-moderate);
+  border-radius: var(--clickable-icon-radius);
+  padding: 0;
+  outline: 2px solid transparent;
+  background-clip: content-box;
+  height: auto;
+  z-index: 1;
+}
+body:is(.mod-macos, .adaptive-mode-off):not(.is-mobile) .mod-sidedock .workspace-tabs .workspace-tab-header-container-inner:hover {
+  background-color: var(--background-modifier-hover);
+  outline-color: var(--background-modifier-hover);
+}
+body:is(.mod-macos, .adaptive-mode-off):not(.is-mobile) .mod-sidedock .workspace-tabs .workspace-tab-header-container-inner:hover .workspace-tab-header.is-active {
+  background-color: var(--background-primary);
+  box-shadow: var(--shadow-xs);
+}
+body:is(.mod-macos, .adaptive-mode-off):not(.is-mobile) .mod-sidedock .workspace-tabs .workspace-tab-header-container-inner:hover .workspace-tab-header.is-active .workspace-tab-header-inner-icon {
+  color: var(--text-normal);
+}
+body:is(.mod-macos, .adaptive-mode-off):not(.is-mobile) .mod-sidedock .workspace-tabs .workspace-tab-header {
+  border-radius: var(--clickable-icon-radius);
+}
+body:is(.mod-macos, .adaptive-mode-off):not(.is-mobile) .mod-sidedock .workspace-tabs .workspace-tab-header-inner {
+  padding: 8px;
+}
+body:is(.mod-macos, .adaptive-mode-off):not(.is-mobile) .mod-sidedock .workspace-tabs .workspace-tab-header:not(.is-active):hover .workspace-tab-header-inner {
+  background-color: var(--background-modifier-hover);
+}
+body:is(.mod-macos, .adaptive-mode-off):not(.is-mobile) .mod-sidedock .workspace-tabs .sidebar-toggle-button,
+body:is(.mod-macos, .adaptive-mode-off):not(.is-mobile) .mod-sidedock .workspace-tabs .workspace-tab-header-inner {
+  border-radius: var(--clickable-icon-radius);
+  width: var(--tab-action-width);
+  height: fit-content;
+  z-index: 1;
+  align-self: center;
+  margin: 0;
+}
+body:is(.mod-macos, .adaptive-mode-off):not(.is-mobile) .mod-sidedock .workspace-tabs .workspace-tab-header-status-container {
+  margin-left: -8px;
+}
+body:is(.mod-macos, .adaptive-mode-off):not(.is-mobile) .mod-sidedock .workspace-tabs .workspace-tab-header-status-icon,
+body:is(.mod-macos, .adaptive-mode-off):not(.is-mobile) .mod-sidedock .workspace-tabs .workspace-tab-header-inner-close-button {
+  --icon-size: 12px;
+  color: var(--text-muted);
+}
+
+body:is(.mod-macos, .adaptive-mode-off):not(.tab-icon) .mod-sidedock .workspace-tabs:not(.mod-top) .workspace-tab-header-container:not(:hover) .workspace-tab-header-container-inner {
+  gap: calc(8px * var(--density-modifier));
 }
 
 body {
@@ -799,32 +851,24 @@ body:not(.is-mobile) .mod-sidedock .workspace-leaf-content:not([data-type=atomic
 }
 
 body:not(.nav-action-center) .mod-sidedock .workspace-leaf-content .nav-header:first-child:not(:hover) .nav-buttons-container {
-  gap: 4px;
-  padding: 0;
-  background-color: transparent;
-  box-shadow: none;
-}
-body:not(.nav-action-center) .mod-sidedock .workspace-leaf-content .nav-header:first-child:not(:hover) .nav-buttons-container .nav-action-button {
-  padding: 2px;
-  width: 0;
-  flex: 0;
-  background-color: var(--background-modifier-hover);
-  box-shadow: none;
-  min-width: 0;
-}
-body:not(.nav-action-center) .mod-sidedock .workspace-leaf-content .nav-header:first-child:not(:hover) .nav-buttons-container .nav-action-button::after {
-  font-size: 0;
   opacity: 0;
+  pointer-events: none;
 }
-body:not(.nav-action-center) .mod-sidedock .workspace-leaf-content .nav-header:first-child:not(:hover) .nav-buttons-container .nav-action-button.is-active {
-  background-color: var(--background-modifier-hover);
+
+body:not(.nav-action-center) .mod-sidedock .workspace-leaf-content .nav-header:first-child .nav-buttons-container {
+  transition: opacity var(--anim-duration-fast) var(--anim-motion-baseline);
 }
-body:not(.nav-action-center) .mod-sidedock .workspace-leaf-content .nav-header:first-child:not(:hover) .nav-buttons-container .nav-action-button.clickable-icon[aria-disabled=true] {
-  opacity: var(--icon-opacity);
+
+body:not(.is-mobile) .mod-sidedock.mod-left-split .mod-top-left-space .workspace-tab-header-container,
+body:not(.is-mobile) .mod-sidedock.mod-right-split .mod-top-right-space .workspace-tab-header-container {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--anim-duration-moderate) var(--anim-motion-baseline);
 }
-body:not(.nav-action-center) .mod-sidedock .workspace-leaf-content .nav-header:first-child:not(:hover) .nav-buttons-container svg {
-  width: 0px;
-  height: 0px;
+body:not(.is-mobile) .mod-sidedock.mod-left-split:hover .mod-top-left-space .workspace-tab-header-container,
+body:not(.is-mobile) .mod-sidedock.mod-right-split:hover .mod-top-right-space .workspace-tab-header-container {
+  opacity: 1;
+  pointer-events: auto;
 }
 
 body:not(.is-mobile) .workspace-split.mod-left-split .workspace-drawer-vault-actions .clickable-icon:first-child {
@@ -4425,21 +4469,6 @@ body:is(.mod-macos, .adaptive-mode-off):not(.is-mobile) .workspace-split.mod-roo
   box-shadow: inset 0 0 1px 1px rgba(255, 255, 255, 0.8), 0 calc(4px * var(--center-elevation)) calc(24px * var(--center-elevation)) rgba(0, 0, 0, calc(0.075 * var(--center-elevation)));
 }
 
-body:is(.mod-macos, .adaptive-mode-off):not(.is-mobile) .workspace-drawer.mod-right .side-dock-actions,
-body:is(.mod-macos, .adaptive-mode-off):not(.is-mobile) .workspace-drawer.mod-right .workspace-drawer-header-icon,
-body:is(.mod-macos, .adaptive-mode-off):not(.is-mobile) .mod-sidedock.mod-right-split .side-dock-actions,
-body:is(.mod-macos, .adaptive-mode-off):not(.is-mobile) .mod-sidedock.mod-right-split .workspace-drawer-header-icon {
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity var(--anim-duration-fast);
-}
-body:is(.mod-macos, .adaptive-mode-off):not(.is-mobile) .workspace-drawer.mod-right:hover .side-dock-actions, body:is(.mod-macos, .adaptive-mode-off):not(.is-mobile) .workspace-drawer.mod-right:hover .workspace-drawer-header-icon,
-body:is(.mod-macos, .adaptive-mode-off):not(.is-mobile) .mod-sidedock.mod-right-split:hover .side-dock-actions,
-body:is(.mod-macos, .adaptive-mode-off):not(.is-mobile) .mod-sidedock.mod-right-split:hover .workspace-drawer-header-icon {
-  opacity: 1;
-  pointer-events: auto;
-}
-
 body:is(.mod-macos, .adaptive-mode-off) {
   --side-padding: 20px;
   --p-spacing: 1rem;
@@ -4661,52 +4690,6 @@ body:is(.mod-macos, .adaptive-mode-off) .workspace-ribbon.mod-left .side-dock-ac
   background-color: transparent;
   color: var(--text-normal);
 }
-body:is(.mod-macos, .adaptive-mode-off):not(.is-mobile) .mod-sidedock .workspace-tabs .workspace-tab-header-container-inner {
-  -webkit-app-region: no-drag;
-  gap: 0px;
-  transition: var(--anim-duration-moderate);
-  border-radius: var(--clickable-icon-radius);
-  padding: 0;
-  outline: 2px solid transparent;
-  background-clip: content-box;
-  height: auto;
-  z-index: 1;
-}
-body:is(.mod-macos, .adaptive-mode-off):not(.is-mobile) .mod-sidedock .workspace-tabs .workspace-tab-header-container-inner:hover {
-  background-color: var(--background-modifier-hover);
-  outline-color: var(--background-modifier-hover);
-}
-body:is(.mod-macos, .adaptive-mode-off):not(.is-mobile) .mod-sidedock .workspace-tabs .workspace-tab-header-container-inner:hover .workspace-tab-header.is-active {
-  background-color: var(--background-primary);
-  box-shadow: var(--shadow-xs);
-}
-body:is(.mod-macos, .adaptive-mode-off):not(.is-mobile) .mod-sidedock .workspace-tabs .workspace-tab-header-container-inner:hover .workspace-tab-header.is-active .workspace-tab-header-inner-icon {
-  color: var(--text-normal);
-}
-body:is(.mod-macos, .adaptive-mode-off):not(.is-mobile) .mod-sidedock .workspace-tabs .workspace-tab-header {
-  border-radius: var(--clickable-icon-radius);
-}
-body:is(.mod-macos, .adaptive-mode-off):not(.is-mobile) .mod-sidedock .workspace-tabs .workspace-tab-header-inner {
-  padding: 8px;
-}
-body:is(.mod-macos, .adaptive-mode-off):not(.is-mobile) .mod-sidedock .workspace-tabs .workspace-tab-header:not(.is-active):hover .workspace-tab-header-inner {
-  background-color: var(--background-modifier-hover);
-}
-body:is(.mod-macos, .adaptive-mode-off):not(.is-mobile) .mod-sidedock .workspace-tabs .sidebar-toggle-button,
-body:is(.mod-macos, .adaptive-mode-off):not(.is-mobile) .mod-sidedock .workspace-tabs .workspace-tab-header-inner {
-  border-radius: var(--clickable-icon-radius);
-  width: var(--tab-action-width);
-  height: fit-content;
-  z-index: 1;
-}
-body:is(.mod-macos, .adaptive-mode-off):not(.is-mobile) .mod-sidedock .workspace-tabs .workspace-tab-header-status-container {
-  margin-left: -8px;
-}
-body:is(.mod-macos, .adaptive-mode-off):not(.is-mobile) .mod-sidedock .workspace-tabs .workspace-tab-header-status-icon,
-body:is(.mod-macos, .adaptive-mode-off):not(.is-mobile) .mod-sidedock .workspace-tabs .workspace-tab-header-inner-close-button {
-  --icon-size: 12px;
-  color: var(--text-muted);
-}
 body:is(.mod-macos, .adaptive-mode-off):not(.nav-action-center) .mod-sidedock .workspace-leaf-content .nav-header:first-child .nav-buttons-container {
   border-radius: var(--clickable-icon-radius);
   background-color: var(--background-modifier-hover);
@@ -4744,9 +4727,6 @@ body:is(.mod-macos, .adaptive-mode-off):not(.mode-switcher-off) .mod-root .works
   background-color: rgb(from var(--interactive-accent) r g b/95%);
   color: oklch(from var(--interactive-accent) 0.95 c h);
   box-shadow: var(--shadow-xs);
-}
-body:is(.mod-macos, .adaptive-mode-off):not(.tab-icon) .mod-sidedock .workspace-tabs:not(.mod-top) .workspace-tab-header-container:not(:hover) .workspace-tab-header-container-inner {
-  gap: calc(8px * var(--density-modifier));
 }
 
 body:is(.mod-macos, .adaptive-mode-off) {
@@ -7919,15 +7899,10 @@ body:not(.is-mobile):not(.hover-ribbon-off) .workspace-ribbon.mod-left.is-collap
 body:not(.is-mobile):not(.hover-ribbon-off) .workspace-ribbon.mod-left.is-collapsed:hover + .mod-sidedock {
   transition-delay: var(--hover-ribbon-delay);
 }
-body:not(.is-mobile):not(.hover-ribbon-off).mod-macos:not(.is-fullscreen).is-hidden-frameless .mod-sidedock.mod-left-split .mod-top-left-space .workspace-tab-header-container {
-  transition-timing-function: ease;
-}
-body:not(.is-mobile):not(.hover-ribbon-off).mod-macos:not(.is-fullscreen).is-hidden-frameless .workspace-ribbon.mod-left:not(.is-collapsed):hover ~ .mod-sidedock.mod-left-split .mod-top-left-space .workspace-tab-header-container {
-  padding-left: 52px;
-}
+body:not(.is-mobile):not(.hover-ribbon-off).mod-macos:not(.is-fullscreen).is-hidden-frameless .workspace-ribbon.mod-left:not(.is-collapsed):hover ~ .mod-sidedock.mod-left-split .mod-top-left-space .workspace-tab-header-container,
 body:not(.is-mobile):not(.hover-ribbon-off).mod-macos:not(.is-fullscreen).is-hidden-frameless .workspace-ribbon.mod-left:not(.is-collapsed):not(:hover) ~ .mod-sidedock.mod-left-split .mod-top-left-space .workspace-tab-header-container,
 body:not(.is-mobile):not(.hover-ribbon-off).mod-macos:not(.is-fullscreen).is-hidden-frameless .workspace-ribbon.mod-left.is-collapsed ~ .mod-root > div:first-of-type .workspace-tab-header-container {
-  padding-left: 88px;
+  padding-left: 100px;
 }
 
 body.mod-windows:not(.adaptive-mode-off) .nav-files-container > div {
