@@ -1234,8 +1234,8 @@ body:not(.is-phone) .installed-plugins-container .setting-items .setting-item-de
 body:not(.is-phone) .installed-plugins-container .setting-items .setting-item-control {
   flex: none;
   flex-wrap: wrap;
-  align-self: flex-end;
   width: 100%;
+  margin-top: auto;
 }
 body:not(.is-phone) .installed-plugins-container .setting-items .setting-item-control button.mod-cta {
   flex-grow: 1;
