@@ -8104,6 +8104,9 @@ body.cn-bohe.theme-light {
   --color-green-rgb:56,180,150;
   --interactive-accent-hover:rgb(35 167 135);
   --interactive-accent:rgb(35 167 135);
+  --mood-accent-hover:rgb(35 167 135);
+  --mood-accent:rgb(35 167 135);
+  --mood-text-accent:#1c846b;
   --text-accent-hover:#1b8067;
   --text-accent:#1c846b;
   --text-faint:#8d9491;
@@ -8143,6 +8146,9 @@ body.cn-bohe.theme-dark {
   --color-green-rgb:88,200,170;
   --interactive-accent-hover:rgb(120 220 194);
   --interactive-accent:rgb(96 206 176);
+  --mood-accent-hover:rgb(120 220 194);
+  --mood-accent:rgb(96 206 176);
+  --mood-text-accent:rgb(96 206 176);
   --text-accent-hover:rgb(120 220 194);
   --text-accent:rgb(96 206 176);
   --text-faint:#5c6964;
@@ -8184,6 +8190,9 @@ body.cn-daizi.theme-light {
   --color-purple-rgb:150,98,176;
   --interactive-accent-hover:rgb(162 118 186);
   --interactive-accent:rgb(142 96 168);
+  --mood-accent-hover:rgb(162 118 186);
+  --mood-accent:rgb(142 96 168);
+  --mood-text-accent:#8e60a8;
   --text-accent-hover:#8e60a8;
   --text-accent:#8e60a8;
   --text-faint:#97909b;
@@ -8222,6 +8231,9 @@ body.cn-daizi.theme-dark {
   --color-purple-rgb:168,120,200;
   --interactive-accent-hover:rgb(186 142 214);
   --interactive-accent:rgb(168 120 200);
+  --mood-accent-hover:rgb(186 142 214);
+  --mood-accent:rgb(168 120 200);
+  --mood-text-accent:rgb(168 120 200);
   --text-accent-hover:rgb(186 142 214);
   --text-accent:rgb(168 120 200);
   --text-faint:#695f72;
@@ -8264,6 +8276,9 @@ body.cn-danju.theme-light {
   --color-red-rgb:220,88,60;
   --interactive-accent-hover:rgb(197 112 32);
   --interactive-accent:rgb(197 112 32);
+  --mood-accent-hover:rgb(197 112 32);
+  --mood-accent:rgb(197 112 32);
+  --mood-text-accent:#ad621c;
   --text-accent-hover:#aa611c;
   --text-accent:#ad621c;
   --text-faint:#9c9183;
@@ -8303,6 +8318,9 @@ body.cn-danju.theme-dark {
   --color-red-rgb:226,96,70;
   --interactive-accent-hover:rgb(250 166 84);
   --interactive-accent:rgb(242 146 60);
+  --mood-accent-hover:rgb(250 166 84);
+  --mood-accent:rgb(242 146 60);
+  --mood-text-accent:rgb(242 146 60);
   --text-accent-hover:rgb(250 166 84);
   --text-accent:rgb(242 146 60);
   --text-faint:#706252;
@@ -8345,6 +8363,9 @@ body.cn-dianlan.theme-light {
   --color-cyan-rgb:64,160,200;
   --interactive-accent-hover:rgb(76 128 230);
   --interactive-accent:rgb(50 104 214);
+  --mood-accent-hover:rgb(76 128 230);
+  --mood-accent:rgb(50 104 214);
+  --mood-text-accent:#3268d6;
   --text-accent-hover:#3268d6;
   --text-accent:#3268d6;
   --text-faint:#8d939a;
@@ -8384,6 +8405,9 @@ body.cn-dianlan.theme-dark {
   --color-cyan-rgb:96,196,228;
   --interactive-accent-hover:rgb(120 162 238);
   --interactive-accent:rgb(96 140 226);
+  --mood-accent-hover:rgb(120 162 238);
+  --mood-accent:rgb(96 140 226);
+  --mood-text-accent:rgb(96 140 226);
   --text-accent-hover:rgb(120 162 238);
   --text-accent:rgb(96 140 226);
   --text-faint:#5d6371;
@@ -8426,6 +8450,9 @@ body.cn-ehuang.theme-light {
   --color-yellow-rgb:220,180,50;
   --interactive-accent-hover:rgb(170 132 36);
   --interactive-accent:rgb(170 132 36);
+  --mood-accent-hover:rgb(170 132 36);
+  --mood-accent:rgb(170 132 36);
+  --mood-text-accent:#91711f;
   --text-accent-hover:#8e6e1e;
   --text-accent:#91711f;
   --text-faint:#98927f;
@@ -8465,6 +8492,9 @@ body.cn-ehuang.theme-dark {
   --color-yellow-rgb:232,196,72;
   --interactive-accent-hover:rgb(234 198 84);
   --interactive-accent:rgb(220 180 60);
+  --mood-accent-hover:rgb(234 198 84);
+  --mood-accent:rgb(220 180 60);
+  --mood-text-accent:rgb(220 180 60);
   --text-accent-hover:rgb(234 198 84);
   --text-accent:rgb(220 180 60);
   --text-faint:#6a634a;
@@ -8507,6 +8537,9 @@ body.cn-haitang.theme-light {
   --color-red-rgb:214,84,96;
   --interactive-accent-hover:rgb(222 124 152);
   --interactive-accent:rgb(206 102 134);
+  --mood-accent-hover:rgb(222 124 152);
+  --mood-accent:rgb(206 102 134);
+  --mood-text-accent:#b25874;
   --text-accent-hover:#af5772;
   --text-accent:#b25874;
   --text-faint:#999095;
@@ -8546,6 +8579,9 @@ body.cn-haitang.theme-dark {
   --color-red-rgb:222,96,108;
   --interactive-accent-hover:rgb(238 140 168);
   --interactive-accent:rgb(226 118 150);
+  --mood-accent-hover:rgb(238 140 168);
+  --mood-accent:rgb(226 118 150);
+  --mood-text-accent:rgb(226 118 150);
   --text-accent-hover:rgb(238 140 168);
   --text-accent:rgb(226 118 150);
   --text-faint:#6d6067;
@@ -8588,6 +8624,9 @@ body.cn-hupo.theme-light {
   --color-yellow-rgb:222,184,96;
   --interactive-accent-hover:rgb(176 116 32);
   --interactive-accent:rgb(176 116 32);
+  --mood-accent-hover:rgb(176 116 32);
+  --mood-accent:rgb(176 116 32);
+  --mood-text-accent:#a06a1d;
   --text-accent-hover:#9e681d;
   --text-accent:#a06a1d;
   --text-faint:#9b9181;
@@ -8627,6 +8666,9 @@ body.cn-hupo.theme-dark {
   --color-yellow-rgb:228,192,108;
   --interactive-accent-hover:rgb(234 178 88);
   --interactive-accent:rgb(220 158 64);
+  --mood-accent-hover:rgb(234 178 88);
+  --mood-accent:rgb(220 158 64);
+  --mood-text-accent:rgb(220 158 64);
   --text-accent-hover:rgb(234 178 88);
   --text-accent:rgb(220 158 64);
   --text-faint:#6f6252;
@@ -8669,6 +8711,9 @@ body.cn-liujin.theme-light {
   --color-yellow-rgb:205,168,72;
   --interactive-accent-hover:rgb(206 156 66);
   --interactive-accent:rgb(184 134 45);
+  --mood-accent-hover:rgb(206 156 66);
+  --mood-accent:rgb(184 134 45);
+  --mood-text-accent:#976e25;
   --text-accent-hover:#936b24;
   --text-accent:#976e25;
   --text-faint:#999283;
@@ -8708,6 +8753,9 @@ body.cn-liujin.theme-dark {
   --color-yellow-rgb:226,188,96;
   --interactive-accent-hover:rgb(210 164 74);
   --interactive-accent:rgb(190 144 52);
+  --mood-accent-hover:rgb(210 164 74);
+  --mood-accent:rgb(190 144 52);
+  --mood-text-accent:rgb(190 144 52);
   --text-accent-hover:rgb(210 164 74);
   --text-accent:rgb(190 144 52);
   --text-faint:#6b6254;
@@ -8750,6 +8798,9 @@ body.cn-moye.theme-light {
   --color-red-rgb:198,68,66;
   --interactive-accent-hover:rgb(80 134 197);
   --interactive-accent:rgb(58 112 175);
+  --mood-accent-hover:rgb(80 134 197);
+  --mood-accent:rgb(58 112 175);
+  --mood-text-accent:#3a70af;
   --text-accent-hover:#3a70af;
   --text-accent:#3a70af;
   --text-faint:#93938f;
@@ -8789,6 +8840,9 @@ body.cn-moye.theme-dark {
   --color-red-rgb:214,84,82;
   --interactive-accent-hover:rgb(114 168 226);
   --interactive-accent:rgb(92 150 214);
+  --mood-accent-hover:rgb(114 168 226);
+  --mood-accent:rgb(92 150 214);
+  --mood-text-accent:rgb(92 150 214);
   --text-accent-hover:rgb(114 168 226);
   --text-accent:rgb(92 150 214);
   --text-faint:#63635d;
@@ -8831,6 +8885,9 @@ body.cn-ouhe.theme-light {
   --color-purple-rgb:188,140,196;
   --interactive-accent-hover:rgb(156 112 142);
   --interactive-accent:rgb(156 112 142);
+  --mood-accent-hover:rgb(156 112 142);
+  --mood-accent:rgb(156 112 142);
+  --mood-text-accent:#926985;
   --text-accent-hover:#916884;
   --text-accent:#926985;
   --text-faint:#9a9096;
@@ -8870,6 +8927,9 @@ body.cn-ouhe.theme-dark {
   --color-purple-rgb:200,152,206;
   --interactive-accent-hover:rgb(218 168 200);
   --interactive-accent:rgb(204 150 184);
+  --mood-accent-hover:rgb(218 168 200);
+  --mood-accent:rgb(204 150 184);
+  --mood-text-accent:rgb(204 150 184);
   --text-accent-hover:rgb(218 168 200);
   --text-accent:rgb(204 150 184);
   --text-faint:#6c606c;
@@ -8913,6 +8973,9 @@ body.cn-qinglu.theme-light {
   --color-green-rgb:64,150,118;
   --interactive-accent-hover:rgb(50 164 156);
   --interactive-accent:rgb(50 164 156);
+  --mood-accent-hover:rgb(50 164 156);
+  --mood-accent:rgb(50 164 156);
+  --mood-text-accent:#28827c;
   --text-accent-hover:#267e78;
   --text-accent:#28827c;
   --text-faint:#8e948f;
@@ -8953,6 +9016,9 @@ body.cn-qinglu.theme-dark {
   --color-green-rgb:92,172,134;
   --interactive-accent-hover:rgb(108 212 204);
   --interactive-accent:rgb(86 196 188);
+  --mood-accent-hover:rgb(108 212 204);
+  --mood-accent:rgb(86 196 188);
+  --mood-text-accent:rgb(86 196 188);
   --text-accent-hover:rgb(108 212 204);
   --text-accent:rgb(86 196 188);
   --text-faint:#5c6863;
@@ -8995,6 +9061,9 @@ body.cn-songhua.theme-light {
   --color-yellow-rgb:180,190,90;
   --interactive-accent-hover:rgb(132 168 76);
   --interactive-accent:rgb(110 148 56);
+  --mood-accent-hover:rgb(132 168 76);
+  --mood-accent:rgb(110 148 56);
+  --mood-text-accent:#5e7f30;
   --text-accent-hover:#5d7d2f;
   --text-accent:#5e7f30;
   --text-faint:#8f9585;
@@ -9034,6 +9103,9 @@ body.cn-songhua.theme-dark {
   --color-yellow-rgb:196,204,110;
   --interactive-accent-hover:rgb(154 190 96);
   --interactive-accent:rgb(134 172 78);
+  --mood-accent-hover:rgb(154 190 96);
+  --mood-accent:rgb(134 172 78);
+  --mood-text-accent:rgb(134 172 78);
   --text-accent-hover:rgb(154 190 96);
   --text-accent:rgb(134 172 78);
   --text-faint:#626759;
@@ -9076,6 +9148,9 @@ body.cn-tianqing.theme-light {
   --color-cyan-rgb:64,160,196;
   --interactive-accent-hover:rgb(86 162 208);
   --interactive-accent:rgb(64 142 190);
+  --mood-accent-hover:rgb(86 162 208);
+  --mood-accent:rgb(64 142 190);
+  --mood-text-accent:#387ba5;
   --text-accent-hover:#3779a2;
   --text-accent:#387ba5;
   --text-faint:#8d939a;
@@ -9115,6 +9190,9 @@ body.cn-tianqing.theme-dark {
   --color-cyan-rgb:96,196,228;
   --interactive-accent-hover:rgb(126 188 234);
   --interactive-accent:rgb(104 172 222);
+  --mood-accent-hover:rgb(126 188 234);
+  --mood-accent:rgb(104 172 222);
+  --mood-text-accent:rgb(104 172 222);
   --text-accent-hover:rgb(126 188 234);
   --text-accent:rgb(104 172 222);
   --text-faint:#5b656e;
@@ -9157,6 +9235,9 @@ body.cn-yanzhi.theme-light {
   --color-red-rgb:204,72,62;
   --interactive-accent-hover:rgb(228 98 102);
   --interactive-accent:rgb(214 71 76);
+  --mood-accent-hover:rgb(228 98 102);
+  --mood-accent:rgb(214 71 76);
+  --mood-text-accent:#ce4449;
   --text-accent-hover:#cd4449;
   --text-accent:#ce4449;
   --text-faint:#9a9187;
@@ -9196,6 +9277,9 @@ body.cn-yanzhi.theme-dark {
   --color-red-rgb:222,90,78;
   --interactive-accent-hover:rgb(244 118 122);
   --interactive-accent:rgb(232 92 96);
+  --mood-accent-hover:rgb(244 118 122);
+  --mood-accent:rgb(232 92 96);
+  --mood-text-accent:rgb(232 92 96);
   --text-accent-hover:rgb(244 118 122);
   --text-accent:rgb(232 92 96);
   --text-faint:#6e625a;
@@ -9241,6 +9325,9 @@ body.cn-yuebai.theme-light {
   --divider-color:#b3b3b3;
   --interactive-accent-hover:rgb(144 168 190);
   --interactive-accent:rgb(124 150 174);
+  --mood-accent-hover:rgb(144 168 190);
+  --mood-accent:rgb(124 150 174);
+  --mood-text-accent:#63788b;
   --text-accent-hover:#607486;
   --text-accent:#63788b;
   --text-faint:#595959;
@@ -9284,6 +9371,9 @@ body.cn-yuebai.theme-dark {
   --divider-color:#5c5c5c;
   --interactive-accent-hover:rgb(166 188 210);
   --interactive-accent:rgb(146 172 196);
+  --mood-accent-hover:rgb(166 188 210);
+  --mood-accent:rgb(146 172 196);
+  --mood-text-accent:rgb(146 172 196);
   --text-accent-hover:rgb(166 188 210);
   --text-accent:rgb(146 172 196);
   --text-faint:#a6a6a6;
@@ -9327,6 +9417,9 @@ body.cn-zheshi.theme-light {
   --color-red-rgb:190,110,80;
   --interactive-accent-hover:rgb(194 148 112);
   --interactive-accent:rgb(176 128 92);
+  --mood-accent-hover:rgb(194 148 112);
+  --mood-accent:rgb(176 128 92);
+  --mood-text-accent:#956d4e;
   --text-accent-hover:#926a4c;
   --text-accent:#956d4e;
   --text-faint:#9b9182;
@@ -9366,6 +9459,9 @@ body.cn-zheshi.theme-dark {
   --color-red-rgb:200,118,92;
   --interactive-accent-hover:rgb(206 160 122);
   --interactive-accent:rgb(190 142 104);
+  --mood-accent-hover:rgb(206 160 122);
+  --mood-accent:rgb(190 142 104);
+  --mood-text-accent:rgb(190 142 104);
   --text-accent-hover:rgb(206 160 122);
   --text-accent:rgb(190 142 104);
   --text-faint:#706252;

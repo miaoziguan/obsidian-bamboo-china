@@ -242,13 +242,24 @@ for (const scheme of SCHEMES) {
 
   lines.push(`\n── ${scheme.name} (${scheme.strict ? 'STRICT' : 'ADVISORY'}) ──`);
   for (const e of entries) {
-    const bgRaw = lastDecl(text, e.sel, 'background-primary') || VARMAP['background-primary'];
+    // Mood entries define --background-primary in the :not(.is-mobile) sub-block;
+    // route bg resolution there so the contrast is computed against the real canvas.
+    const bgSel = e.tag.startsWith('cn-') ? e.sel + ':not\\(\\.is-mobile\\)' : e.sel;
+    const bgRaw = lastDecl(text, bgSel, 'background-primary') || VARMAP['background-primary'];
     if (!bgRaw) { lines.push(`⚠  ${e.tag}: missing --background-primary`); continue; }
     let bg;
     try { bg = parseColor(bgRaw); }
     catch (err) { lines.push(`⚠  ${e.tag}: bg ${err.message}`); continue; }
     for (const [varName, name, thr] of TOKENS) {
-      const raw = lastDecl(text, e.sel, varName) || VARMAP[varName];
+      // The parent selector `body.cn-xxx.theme-light` also matches the sub-block
+      // prefixes `:not(.is-mobile)` / `.is-mobile`. Use a negative lookahead so
+      // `lastDecl` resolves the token from the parent block, not a sub-block.
+      // If the parent doesn't define the token (e.g. --text-normal lives in the
+      // desktop sub-block), fall back to the desktop block.
+      const tokenSel = e.tag.startsWith('cn-') ? e.sel + '(?![.:])' : e.sel;
+      const raw = lastDecl(text, tokenSel, varName)
+        || (tokenSel !== e.sel ? lastDecl(text, bgSel, varName) : undefined)
+        || VARMAP[varName];
       if (!raw) { lines.push(`⚠  ${e.tag}: missing --${varName} (inherited, unresolvable)`); continue; }
       let c, ratio;
       try { c = parseColor(raw); ratio = contrast(c, bg); }
@@ -256,12 +267,8 @@ for (const scheme of SCHEMES) {
       checked++;
       const ok = ratio >= thr;
       if (!ok) {
-        // Mood text-faint is inherently decorative/low-contrast by design; a
-        // hard gate on it would lock in a palette-engineering pass unrelated to
-        // the S2/S1 refactor. Treat it as advisory for mood (cn-*) entries.
-        const moodAdvisory = varName === 'text-faint' && e.tag.startsWith('cn-');
-        if (scheme.strict && !moodAdvisory) failures++;
-        else { advisoryWarn++; lines.push(`⚠  ${e.tag.padEnd(20)} ${name}: ${ratio.toFixed(2)}:1 < AA ${thr}:1${moodAdvisory ? ' (mood advisory)' : ' (advisory)'}`); continue; }
+        if (scheme.strict) failures++;
+        else { advisoryWarn++; lines.push(`⚠  ${e.tag.padEnd(20)} ${name}: ${ratio.toFixed(2)}:1 < AA ${thr}:1 (advisory)`); continue; }
       }
       lines.push(`${ok ? '✓' : '✗'}  ${e.tag.padEnd(20)} ${name}: ${ratio.toFixed(2)}:1`);
     }
