@@ -13,7 +13,7 @@
 
   .menu-item,
   .suggestion-item {
-    padding: calc(6px * var(--density-modifier)) 8px;
+    padding: calc(var(--space-6) * var(--density-modifier)) 8px;
     border-radius: calc(var(--menu-radius) - var(--menu-padding));
     margin-bottom: 0;
   }
@@ -140,8 +140,8 @@ body {
     height: unset;
     width: unset;
     padding: 8px;
-    line-height: 12px;
-    z-index: 1;
+    line-height: var(--line-height-12);
+    z-index: var(--z-content);
 
     &:empty::before {
       content: "\2715";

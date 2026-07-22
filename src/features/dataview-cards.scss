@@ -138,7 +138,7 @@ body {
     thead > tr {
       transition: var(--anim-duration-moderate) var(--anim-motion-baseline);
       position: absolute;
-      z-index: 1;
+      z-index: var(--z-content);
       border: 1px solid var(--background-modifier-border-hover);
       background-color: var(--background-secondary);
       box-shadow: var(--shadow-s);
@@ -159,7 +159,7 @@ body {
     }
     thead > tr > th {
       display: block;
-      padding: 6px 8px;
+      padding: var(--space-6) 8px;
       border-radius: var(--radius-s);
       font-weight: var(--font-normal);
       color: var(--text-normal);

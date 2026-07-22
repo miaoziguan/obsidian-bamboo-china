@@ -307,7 +307,7 @@ body.minimal-theme .workspace::before {
   inset: 0;
   color: var(--text-muted);
   font-size: var(--font-ui-medium);
-  z-index: 49;
+  z-index: var(--z-modal);
   pointer-events: none;
   background-color: var(--background-primary);
   align-self: center;

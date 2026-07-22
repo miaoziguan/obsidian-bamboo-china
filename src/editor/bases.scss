@@ -35,7 +35,9 @@ body {
 }
 
 .bases-table-cell > * {
+  white-space: nowrap;
   text-overflow: ellipsis;
+  min-width: 0;  /* design-loop: 允许 flex/grid 子项正确截断 */
   overflow: hidden;
 }
 

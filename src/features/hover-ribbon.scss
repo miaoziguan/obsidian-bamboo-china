@@ -103,7 +103,7 @@ body:not(.is-mobile):not(.hover-ribbon-off) {
       border: 1px solid var(--background-modifier-border);
       border-radius: var(--radius-l, 12px);
       box-shadow: var(--shadow-s);
-      padding: 6px;
+      padding: var(--space-6);
     }
   }
   .workspace-ribbon.mod-left:hover {

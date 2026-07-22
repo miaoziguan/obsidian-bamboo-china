@@ -47,7 +47,7 @@ body#{mx.$bc}:not(.is-mobile) {
       min-height: 32px;
     }
     .menu-separator {
-      margin: 6px 8px;
+      margin: var(--space-6) 8px;
     }
   }
 
@@ -183,7 +183,7 @@ body#{mx.$bc}.is-mobile {
   .modal-close-button,
   .modal-header-button {
     --icon-size: var(--icon-xl);
-    padding: 6px;
+    padding: var(--space-6);
   }
 }
 

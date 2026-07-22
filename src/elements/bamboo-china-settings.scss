@@ -79,7 +79,7 @@ body#{mx.$bc}:not(.is-mobile) {
     }
     .vertical-tab-header-group-title,
     .vertical-tab-nav-item {
-      padding: 6px 8px;
+      padding: var(--space-6) 8px;
     }
 
     .setting-group-search + .setting-items {
@@ -108,7 +108,7 @@ body#{mx.$bc}:not(.is-mobile) {
 
 body#{mx.$bc}.is-mobile {
   .modal.mod-settings .vertical-tab-nav-item .vertical-tab-nav-item-icon {
-    padding: 5px;
+    padding: var(--space-5);
     border-radius: 50%;
     box-shadow: 0 0 0 0.5px var(--background-modifier-border);
     margin-left: -4px;

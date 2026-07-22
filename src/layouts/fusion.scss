@@ -3,7 +3,7 @@
 body#{mx.$bc}:not(.is-mobile) {
   // Editor panel
   .mod-root {
-    z-index: 5;
+    z-index: var(--z-fusion);
   }
   .workspace-tabs {
     overflow: visible;

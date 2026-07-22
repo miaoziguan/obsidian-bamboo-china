@@ -7,7 +7,7 @@ body:not(.is-mobile):not(.zoom-off) .markdown-preview-view {
   .image-embed:not(.canvas-node-content, [alt="banner"]):active img,
   img[referrerpolicy="no-referrer"]:not([alt="banner"]):active {
     position: fixed;
-    z-index: 1000;
+    z-index: var(--z-overlay);
     cursor: zoom-out;
     inset: 0;
     background-color: var(--background-primary);

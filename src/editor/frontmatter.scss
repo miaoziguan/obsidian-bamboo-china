@@ -30,6 +30,7 @@
   }
 
   .metadata-input-longtext:not(:focus) {
+    min-width: 0;  /* design-loop: 允许 flex/grid 子项正确截断 */
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: pre;

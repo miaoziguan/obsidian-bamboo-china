@@ -76,7 +76,7 @@ body.mod-macos.is-hidden-frameless .workspace-ribbon.mod-left {
 }
 .workspace-ribbon.mod-left {
   border-right: none;
-  z-index: 11;
+  z-index: var(--z-sidedock);
   transition: var(--anim-duration-moderate);
   position: relative;
 }
@@ -97,12 +97,12 @@ body.mod-macos.is-hidden-frameless .workspace-ribbon.mod-left {
 }
 .workspace-ribbon.mod-left .sidebar-toggle-button .clickable-icon {
   pointer-events: auto;
-  z-index: 1;
+  z-index: var(--z-content);
 }
 .workspace-ribbon.mod-left .side-dock-actions {
   gap: 4px;
   transition: var(--anim-duration-moderate);
-  z-index: 1;
+  z-index: var(--z-content);
   color: var(--icon-color);
 }
 .workspace-ribbon.mod-left .sidebar-toggle-button .clickable-icon,
@@ -202,7 +202,7 @@ body:not(.is-mobile) .mod-sidedock.mod-left-split {
     border-top: none;
     position: absolute;
     inset: auto 0 0;
-    z-index: 1;
+    z-index: var(--z-content);
     align-items: unset;
     width: auto;
 

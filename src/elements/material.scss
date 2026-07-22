@@ -192,7 +192,7 @@ body.is-android:not(.adaptive-mode-off) {
     .vertical-tab-nav-item .vertical-tab-nav-item-icon {
       --icon-size: 20px;
       --setting-nav-icon-background: var(--color-base-50);
-      padding: 10px;
+      padding: var(--space-10);
       border-radius: var(--clickable-icon-radius);
       color: hsl(from var(--setting-nav-icon-background) h calc(s * 1.05) calc(l * 0.35));
       background-color: hsl(from var(--setting-nav-icon-background) h calc(s * 0.9) calc(l * 1.15));

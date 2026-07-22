@@ -121,7 +121,7 @@ body:not(.banner-off) {
         }
       }
       div:is(.mod-header, .inline-title, .metadata-container) {
-        z-index: 1;
+        z-index: var(--z-content);
       }
     }
 
@@ -137,7 +137,7 @@ body:not(.banner-off) {
       }
 
       .callout[data-callout="banner-icon"] {
-        z-index: 1;
+        z-index: var(--z-content);
         position: absolute;
         top: calc(var(--view-top-spacing-markdown) + var(--banner-image-height) - var(--banner-fade-height) + 1rem);
         margin: 0;
@@ -203,6 +203,7 @@ body:not(.banner-off) {
         width: calc(var(--file-line-width) - var(--banner-icon-size) - 1rem);
         max-width: calc(100% - var(--file-margins-x) * 2 - var(--banner-icon-size) - 1rem);
         height: var(--banner-icon-size);
+        min-width: 0;  /* design-loop: 允许 flex/grid 子项正确截断 */
         overflow: hidden;
         line-height: var(--banner-icon-size);
         text-overflow: ellipsis;

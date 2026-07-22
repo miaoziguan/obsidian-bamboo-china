@@ -537,7 +537,7 @@ body.is-tablet {
   .view-header .clickable-icon,
   .workspace-drawer-header-icon {
     border-radius: 100vh;
-    padding: 10px;
+    padding: var(--space-10);
     position: relative;
     margin-left: 0;
   }

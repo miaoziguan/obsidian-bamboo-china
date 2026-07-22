@@ -394,7 +394,7 @@ body#{mx.$bc}:not(.is-mobile) {
       outline: 2px solid transparent;
       background-clip: content-box;
       height: auto;
-      z-index: 1;
+      z-index: var(--z-content);
     }
 
     .workspace-tab-header-container-inner:hover {
@@ -424,7 +424,7 @@ body#{mx.$bc}:not(.is-mobile) {
       border-radius: var(--clickable-icon-radius);
       width: var(--tab-action-width);
       height: fit-content;
-      z-index: 1;
+      z-index: var(--z-content);
       // 与同行 tab 图标严格垂直居中：覆盖 Obsidian 默认可能施加在
       // .sidebar-toggle-button 上的 align-self / margin 偏移，否则「收起」
       // 图标会在同行偏低（偏下）。

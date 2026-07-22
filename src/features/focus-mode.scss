@@ -30,7 +30,7 @@ body.focus-view:not(.is-mobile):not(.is-popout-window) .workspace:not(.is-left-s
   .sidebar-toggle-button {
     position: absolute;
     height: var(--header-height);
-    z-index: 1;
+    z-index: var(--z-content);
 
     &.mod-left {
       left: calc(var(--frame-left-space) + 8px);

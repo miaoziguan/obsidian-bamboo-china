@@ -71,7 +71,7 @@ body#{mx.$bc}.is-mobile {
     .modal-header-button::after,
     .notice::after {
       position: absolute;
-      z-index: 1;
+      z-index: var(--z-content);
       backdrop-filter: brightness(var(--blur-brightness));
       mask: var(--raised-mask);
       mask-composite: var(--raised-mask-composite);

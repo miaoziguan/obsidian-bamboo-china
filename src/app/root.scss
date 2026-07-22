@@ -68,6 +68,33 @@ body,
   // Reserved for the 2–3 most brand-visible moments: mood switch, Bamboo China
   // modal entrance, prompt bounce.
   --anim-motion-brand: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  // ── Stacking order (z-index) scale ─────────────────────────────────────────
+  // Previously scattered magic numbers (1 / 5 / 11 / 49 / 1000) across many
+  // files. Centralized here so the global layering contract is legible and
+  // tunable in one place. Values are intentionally non-uniform — they encode
+  // the real hierarchy: content < fusion bar < side dock < modal < overlay.
+  --z-content: 1;     // default above-auto content (buttons, tabs, cards, banners…)
+  --z-fusion: 5;      // macOS Fusion top bar, above content
+  --z-sidedock: 11;   // left/right side dock, above the fusion bar
+  --z-modal: 49;      // community-plugins / modal content, above the docks
+  --z-overlay: 1000;  // image-zoom and other topmost overlays
+
+  // ── Off-grid spacing safelist (magic-spacing 离栅值 token 化) ───────────────
+  // 这些像素值刻意不落在 4px 栅格上：多数来自 Adwaita / Material / 各原生套件
+  // 尺寸的还原，或刻意的非栅格微调（如 5/6/10/14/17px）。集中登记为具名 token，
+  // 数值保持不变——既消除「魔法间距」的审计噪音，又保留设计意图与平台保真度。
+  --space-5: 5px;
+  --space-6: 6px;
+  --space-10: 10px;
+  --space-14: 14px;
+  --space-17: 17px;
+
+  // ── Typography safelist (font-size / line-height 裸 px token 化) ─────────────
+  // 与上面的 spacing safelist 同理：这些裸 px 是刻意定尺寸（关闭按钮定高、
+  // 插件名强调字号），集中登记为具名 token，数值不变，消除审计噪音且便于管控。
+  --font-size-15: 15px;     // settings 插件名强调字号
+  --line-height-12: 12px;   // dialog 关闭按钮定高（配合 padding:8px 撑出尺寸）
   --anim-duration-superfast: calc(80ms * var(--anim-speed-modifier));
   --anim-duration-fast: calc(160ms * var(--anim-speed-modifier));
   --anim-duration-moderate: calc(320ms * var(--anim-speed-modifier));
