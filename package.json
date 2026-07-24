@@ -10,13 +10,15 @@
     "build:min": "node scripts/gen-mood-tokens.mjs && sass src/theme.scss theme.css --no-source-map --style=compressed && node scripts/verify-mood-parity.mjs",
     "test": "node scripts/check-css.mjs && node scripts/check-palette-contrast.mjs && node scripts/check-a11y.mjs && node scripts/check-size.mjs",
     "test:visual": "playwright test --config scripts/visual-regression/playwright.config.mjs",
+    "test:visual:update": "playwright test --config scripts/visual-regression/playwright.config.mjs --update-snapshots",
+    "audit:cascade": "node scripts/audit_cascade.mjs",
     "watch": "sass --watch src/theme.scss theme.css --no-source-map --style=expanded",
     "deploy": "node scripts/deploy.mjs",
     "release": "npm run build && npm run deploy",
     "sync": "npm run build:min && npm run deploy"
   },
   "devDependencies": {
-    "@playwright/test": "^1.48.0",
+    "@playwright/test": "^1.61.1",
     "sass": "^1.69.5"
   }
 }

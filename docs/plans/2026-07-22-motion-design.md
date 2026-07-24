@@ -1,7 +1,19 @@
 # Motion Design System
 
 Date: 2026-07-22
-Status: Design document (no code, documenting the existing system + prescribing future direction)
+Status: 已盘点归档（2026-07-24）。Roadmap 处置如下；§1.2/§3 的
+Material/Fluent/Adwaita/Baseline 内容因单皮肤重构失效，仅存历史参考。
+
+> **Roadmap 处置（2026-07-24）**
+> - P1 `--anim-motion-brand` ✅ 已落地（`root.scss:72`），并已用于
+>   `modalInBambooChina`（`bamboo-china-dialog.scss`）。
+> - P1 mood-switch crossfade ✅ 已落地（`root.scss` body 的
+>   background-color/color transition，走 brand 曲线）。
+> - P2 硬编码 200ms/220ms → **决策：保留，关闭**。`settings.scss` 现存的
+>   200/220ms 带有"softer ease-in for the focus ring (小动效)"注释，是介于
+>   fast(160) 与 moderate(320) 之间的有意微调，非欠账。
+> - P3 per-skin 曲线覆盖 → **废弃**（平台皮肤已全部删除）。
+> - P3 modal dismiss 退场动画 → **搁置**（纯 polish，无用户反馈不做）。
 
 ## 1. Current Inventory
 

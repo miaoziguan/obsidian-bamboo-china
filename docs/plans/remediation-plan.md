@@ -1,5 +1,14 @@
 # Bamboo China — 官方合规整改计划（2026-07-20）
 
+> **状态（2026-07-24 盘点）：已完成，归档。** 12 项任务全部落地，DoD 逐条核实：
+> README/LICENSE.txt/cupertino.png 已不存在，LICENSE 含双版权，versions.json 全为
+> 合法 semver，manifest 含 authorUrl，对比度/accent 脚本已修复（后随单皮肤重构进一步
+> 清理），`!important` 削减至 14 处且全部为 a11y/版本兜底（见 docs/important-audit.md，
+> 基线 = 14）。两点后续演化：(1) 任务 10 的 `screenshot.png` 未采用——商店截图以
+> `img/hero.png` 等命名存放，提交商店时在 community-css-themes.json 里指定即可；
+> (2) "暂不处理 CI"的决策已被推翻——`.github/workflows/ci.yml` 已建（但仍无 remote，
+> 见项目欠账清单 P0）。
+
 > 目标：对照 Obsidian 官方三份规则（Submit your theme / Theme guidelines / Developer policies），
 > 修复复盘文档 `docs/REVIEW-2026-07-20.md` 中全部剩余问题，使主题达到"可提交、护栏有效、与官方对齐"。
 > 用户已决策：(1) 删除 README，暂不重写；(2) `!important` **激进削减到接近 0**；(3) **暂不处理 CI**（无 git remote）。

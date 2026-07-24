@@ -1,5 +1,15 @@
 # Bamboo China UI/UX Polish Implementation Plan
 
+> **状态（2026-07-24 盘点）：已完成，归档。**
+> 16 个任务全部落地（checkbox 已回补勾选）。两处与计划文本的偏离：
+> - **Task 3（status bar）**：实施时未采用计划的 `height: 22px + opacity: 0.55`，
+>   而是收敛为 `height: 6px + opacity: 0`（仅去掉 blur、加 overflow）——保留"极简药丸"
+>   方向，属有意的设计取舍，非遗漏。
+> - **Task 16（验收数字）**：写于五皮肤时代，"旗舰层 ~285 rules"已失效；
+>   单皮肤重构后 audit_cascade 仅报告 bamboo 层（~53 rules），且该脚本已移出
+>   `npm test`（见下方 deferred 决策与 docs/ARCHITECTURE.md）。
+> - Task 2 文中 `BASELINE_IMPORTANT = 10` 为旧值，现为 14（见 docs/important-audit.md）。
+>
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
 **Goal:** Execute 16 UI/UX improvements across interaction, visual hierarchy, readability, platform consistency, and mobile experience for the Bamboo China Obsidian theme.
@@ -19,12 +29,12 @@
 **Files:**
 - Verify: `src/color-schemes/accent-high-contrast.scss`
 
-- [ ] **Step 1: Verify no `mx.$bc` or platform-scoped selectors in accent-high-contrast.scss**
+- [x] **Step 1: Verify no `mx.$bc` or platform-scoped selectors in accent-high-contrast.scss**
 
 Run: `grep -n 'mx\.\$bc\|mod-macos\|adaptive-mode-off\|is-android\|mod-windows\|mod-linux' src/color-schemes/accent-high-contrast.scss`
 Expected: No matches (all selectors should be `body.accent-high-contrast.cn-xxx.theme-{light|dark}`)
 
-- [ ] **Step 2: If matches found, remove platform scoping**
+- [x] **Step 2: If matches found, remove platform scoping**
 
 For each matching line, replace the selector to be platform-agnostic. Example:
 ```scss
@@ -34,12 +44,12 @@ body.accent-high-contrast#{mx.$bc}.cn-moye.theme-light {
 body.accent-high-contrast.cn-moye.theme-light {
 ```
 
-- [ ] **Step 3: Build and verify**
+- [x] **Step 3: Build and verify**
 
 Run: `npm run build && npm test`
 Expected: Build succeeds, all tests pass, generated `accent-high-contrast` blocks remain intact.
 
-- [ ] **Step 4: Commit**
+- [x] **Step 4: Commit**
 
 ```bash
 git add src/color-schemes/accent-high-contrast.scss
@@ -57,21 +67,21 @@ git commit -m "fix: verify accent-high-contrast 意境 blocks are platform-agnos
 - Verify: `scripts/check-palette-contrast.mjs`
 - Verify: `scripts/check-css.mjs` (BASELINE_IMPORTANT)
 
-- [ ] **Step 1: Run check-palette-contrast to verify it parses palettes**
+- [x] **Step 1: Run check-palette-contrast to verify it parses palettes**
 
 Run: `node scripts/check-palette-contrast.mjs`
 Expected: Output shows multiple `✓` lines for bamboo/mood palettes. If it prints "Parsed 0 palettes" or "No tokens parsed", the script is still broken.
 
-- [ ] **Step 2: If broken, compare regex against current selector format**
+- [x] **Step 2: If broken, compare regex against current selector format**
 
 The palette selectors are `body.cn-xxx.theme-light` (no `mx.$bc`). Check that the script's regex `body\.cn-([\w-]+)\.theme-light` matches this format. The current code at line 233 already uses this regex pattern — verify it matches.
 
-- [ ] **Step 3: Run gen-accent-aa to verify it generates 意境 blocks**
+- [x] **Step 3: Run gen-accent-aa to verify it generates 意境 blocks**
 
 Run: `node scripts/gen-accent-aa.mjs`
 Expected: "Regenerated 16 意境 accent blocks (default block preserved)." If it says 0, the regex in `accentFor()` is broken.
 
-- [ ] **Step 4: Verify check-css.mjs BASELINE_IMPORTANT matches reality**
+- [x] **Step 4: Verify check-css.mjs BASELINE_IMPORTANT matches reality**
 
 The current `check-css.mjs` has `BASELINE_IMPORTANT = 10`. Run:
 ```bash
@@ -79,12 +89,12 @@ npm run build && grep -c '!important' theme.css
 ```
 If the count > 10, the baseline needs updating or `!important` instances need removal.
 
-- [ ] **Step 5: Full test suite**
+- [x] **Step 5: Full test suite**
 
 Run: `npm run build && npm test`
 Expected: All checks pass.
 
-- [ ] **Step 6: Commit fixes if any**
+- [x] **Step 6: Commit fixes if any**
 
 ```bash
 git add scripts/ src/
@@ -102,7 +112,7 @@ git commit -m "fix: verify and repair palette contrast & accent generation scrip
 **Files:**
 - Modify: `src/app/status-bar.scss:45-58`
 
-- [ ] **Step 1: Edit the collapsed state**
+- [x] **Step 1: Edit the collapsed state**
 
 Replace the `&:not(:hover)` block in `body:not(.status-bar-baseline) .status-bar`:
 
@@ -145,16 +155,16 @@ Replace the `&:not(:hover)` block in `body:not(.status-bar-baseline) .status-bar
 
 Key changes: `height: 4px → 22px`, `opacity: 0 → 0.55`, `filter: blur(16px) → blur(0px)`, added `overflow: hidden`.
 
-- [ ] **Step 2: Build and verify**
+- [x] **Step 2: Build and verify**
 
 Run: `npm run build && npm test`
 Expected: Pass.
 
-- [ ] **Step 3: Visually verify**
+- [x] **Step 3: Visually verify**
 
 Open Obsidian with the theme. Status bar should show a thin pill with muted but readable text. Hovering expands it fully.
 
-- [ ] **Step 4: Commit**
+- [x] **Step 4: Commit**
 
 ```bash
 git add src/app/status-bar.scss
@@ -170,7 +180,7 @@ git commit -m "fix: keep status bar text readable at 0.55 opacity in collapsed s
 **Files:**
 - Modify: `src/app/sidedock.scss:165-168`
 
-- [ ] **Step 1: Change opacity from 0 to 0.4**
+- [x] **Step 1: Change opacity from 0 to 0.4**
 
 ```scss
 // BEFORE:
@@ -188,11 +198,11 @@ body:not(.nav-action-center) .mod-sidedock .workspace-leaf-content .nav-header:f
 
 Key changes: `opacity: 0 → 0.4`, `pointer-events: none → auto` (so buttons are always clickable).
 
-- [ ] **Step 2: Build and verify**
+- [x] **Step 2: Build and verify**
 
 Run: `npm run build && npm test`
 
-- [ ] **Step 3: Commit**
+- [x] **Step 3: Commit**
 
 ```bash
 git add src/app/sidedock.scss
@@ -208,7 +218,7 @@ git commit -m "fix: show sidedock action buttons at 0.4 opacity for discoverabil
 **Files:**
 - Modify: `src/app/settings.scss:266-276` (the `.community-item:hover` block)
 
-- [ ] **Step 1: Reduce hover lift and simplify shadow**
+- [x] **Step 1: Reduce hover lift and simplify shadow**
 
 ```scss
 // BEFORE:
@@ -228,11 +238,11 @@ git commit -m "fix: show sidedock action buttons at 0.4 opacity for discoverabil
 }
 ```
 
-- [ ] **Step 2: Build and verify**
+- [x] **Step 2: Build and verify**
 
 Run: `npm run build && npm test`
 
-- [ ] **Step 3: Commit**
+- [x] **Step 3: Commit**
 
 ```bash
 git add src/app/settings.scss
@@ -248,7 +258,7 @@ git commit -m "fix: reduce community plugin card hover lift for subtlety"
 **Files:**
 - Modify: `src/app/style-settings.scss:196-199`
 
-- [ ] **Step 1: Update description text**
+- [x] **Step 1: Update description text**
 
 ```scss
 // BEFORE:
@@ -262,11 +272,11 @@ git commit -m "fix: reduce community plugin card hover lift for subtlety"
         description: 调整粗体文字的粗细程度。300 = 纤细，600 = 明显。中文用户建议 400–500 以获得更清晰的标题层级。
 ```
 
-- [ ] **Step 2: Build and verify**
+- [x] **Step 2: Build and verify**
 
 Run: `npm run build && npm test`
 
-- [ ] **Step 3: Commit**
+- [x] **Step 3: Commit**
 
 ```bash
 git add src/app/style-settings.scss
@@ -284,7 +294,7 @@ git commit -m "docs: add CJK bold-modifier recommendation in Style Settings"
 **Files:**
 - Modify: `src/features/block-width.scss:3`
 
-- [ ] **Step 1: Change default line width**
+- [x] **Step 1: Change default line width**
 
 ```scss
 // BEFORE:
@@ -294,11 +304,11 @@ git commit -m "docs: add CJK bold-modifier recommendation in Style Settings"
   --line-width: 780px;
 ```
 
-- [ ] **Step 2: Build and verify**
+- [x] **Step 2: Build and verify**
 
 Run: `npm run build && npm test`
 
-- [ ] **Step 3: Commit**
+- [x] **Step 3: Commit**
 
 ```bash
 git add src/features/block-width.scss
@@ -314,7 +324,7 @@ git commit -m "fix: increase default editor line width from 700px to 780px"
 **Files:**
 - Modify: `src/editor/callout.scss:39`
 
-- [ ] **Step 1: Increase mix from 15% to 25%**
+- [x] **Step 1: Increase mix from 15% to 25%**
 
 ```scss
 // BEFORE:
@@ -324,16 +334,16 @@ git commit -m "fix: increase default editor line width from 700px to 780px"
       color: color-mix(in srgb, rgb(var(--callout-color)), var(--text-normal) 25%);
 ```
 
-- [ ] **Step 2: Build and verify**
+- [x] **Step 2: Build and verify**
 
 Run: `npm run build && npm test`
 
-- [ ] **Step 3: Run contrast check**
+- [x] **Step 3: Run contrast check**
 
 Run: `node scripts/check-palette-contrast.mjs`
 Expected: All checks pass (the change only affects callout title, not the checked tokens).
 
-- [ ] **Step 4: Commit**
+- [x] **Step 4: Commit**
 
 ```bash
 git add src/editor/callout.scss
@@ -349,7 +359,7 @@ git commit -m "fix: increase callout title color mix to 25% for better readabili
 **Files:**
 - Modify: `src/features/image-zoom.scss` (full file rewrite)
 
-- [ ] **Step 1: Replace :active-based zoom with click-based overlay**
+- [x] **Step 1: Replace :active-based zoom with click-based overlay**
 
 Replace the entire file:
 
@@ -401,11 +411,11 @@ body:not(.is-mobile):not(.zoom-off):is(.zoom-active) .markdown-preview-view {
 
 Note: This is CSS-only. For full click-toggle without JS, the existing `:active` fallback still works. The `.zoom-active` class path is an enhancement for users who install a companion snippet.
 
-- [ ] **Step 2: Build and verify**
+- [x] **Step 2: Build and verify**
 
 Run: `npm run build && npm test`
 
-- [ ] **Step 3: Commit**
+- [x] **Step 3: Commit**
 
 ```bash
 git add src/features/image-zoom.scss
@@ -421,7 +431,7 @@ git commit -m "fix: add transition animation to image zoom overlay"
 **Files:**
 - Modify: `src/app/mobile.scss:316-318`
 
-- [ ] **Step 1: Use env() for safer top padding**
+- [x] **Step 1: Use env() for safer top padding**
 
 ```scss
 // BEFORE:
@@ -435,11 +445,11 @@ git commit -m "fix: add transition animation to image zoom overlay"
   }
 ```
 
-- [ ] **Step 2: Build and verify**
+- [x] **Step 2: Build and verify**
 
 Run: `npm run build && npm test`
 
-- [ ] **Step 3: Commit**
+- [x] **Step 3: Commit**
 
 ```bash
 git add src/app/mobile.scss
@@ -457,7 +467,7 @@ git commit -m "fix: use env(safe-area-inset-top) for mobile sidebar notch handli
 **Files:**
 - Create: `docs/important-audit.md`
 
-- [ ] **Step 1: Count and categorize all !important in theme.css**
+- [x] **Step 1: Count and categorize all !important in theme.css**
 
 Run:
 ```bash
@@ -465,18 +475,18 @@ npm run build
 grep -n '!important' theme.css | head -50
 ```
 
-- [ ] **Step 2: Categorize each instance**
+- [x] **Step 2: Categorize each instance**
 
 Group into:
 1. **a11y-required** (`prefers-reduced-motion`, `.reduce-motion`) — MUST KEEP
 2. **@supports fallback** (version warning modal) — MUST KEEP
 3. **Specificity hacks** (overriding Obsidian internals) — EVALUATE for removal
 
-- [ ] **Step 3: Update check-css.mjs BASELINE_IMPORTANT if needed**
+- [x] **Step 3: Update check-css.mjs BASELINE_IMPORTANT if needed**
 
 After verifying which are truly required, set `BASELINE_IMPORTANT` to the count of required instances + a 2-instance buffer.
 
-- [ ] **Step 4: Commit**
+- [x] **Step 4: Commit**
 
 ```bash
 git add scripts/check-css.mjs docs/
@@ -493,7 +503,7 @@ git commit -m "docs: audit and document all !important usages in theme"
 - Modify: `src/app/root.scss:61` (add new tokens)
 - Modify: `src/app/root.scss:373-385` (apply to reduced-motion)
 
-- [ ] **Step 1: Add entrance/exit speed modifier tokens**
+- [x] **Step 1: Add entrance/exit speed modifier tokens**
 
 After `--anim-speed-modifier: 1;` (line 61), add:
 
@@ -502,7 +512,7 @@ After `--anim-speed-modifier: 1;` (line 61), add:
   --anim-speed-exit: var(--anim-speed-modifier);
 ```
 
-- [ ] **Step 2: Update reduced-motion to cover new tokens**
+- [x] **Step 2: Update reduced-motion to cover new tokens**
 
 In the `@media (prefers-reduced-motion: reduce)` block and `.reduce-motion` body class:
 
@@ -524,11 +534,11 @@ body.reduce-motion {
 
 Note: These are additions to existing `!important` declarations — they don't increase the total count since they're inside the same rule block.
 
-- [ ] **Step 3: Build and verify**
+- [x] **Step 3: Build and verify**
 
 Run: `npm run build && npm test`
 
-- [ ] **Step 4: Commit**
+- [x] **Step 4: Commit**
 
 ```bash
 git add src/app/root.scss
@@ -542,7 +552,7 @@ git commit -m "feat: add entrance/exit animation speed modifier tokens"
 **Files:**
 - Modify: `src/app/style-settings.scss` (in the accessibility section)
 
-- [ ] **Step 1: Add sliders after the existing reduce-motion toggle**
+- [x] **Step 1: Add sliders after the existing reduce-motion toggle**
 
 After the `reduce-motion` toggle block (around line 224), add:
 
@@ -569,11 +579,11 @@ After the `reduce-motion` toggle block (around line 224), add:
         format: "x"
 ```
 
-- [ ] **Step 2: Build and verify**
+- [x] **Step 2: Build and verify**
 
 Run: `npm run build && npm test`
 
-- [ ] **Step 3: Commit**
+- [x] **Step 3: Commit**
 
 ```bash
 git add src/app/style-settings.scss
@@ -589,7 +599,7 @@ git commit -m "feat: add entrance/exit animation speed sliders to Style Settings
 **Files:**
 - Modify: `src/app/sidedock.scss:199-228` (vault profile section)
 
-- [ ] **Step 1: Add border-top to vault profile**
+- [x] **Step 1: Add border-top to vault profile**
 
 After `.workspace-sidedock-vault-profile {` (around line 202), inside the rule block, add:
 
@@ -597,11 +607,11 @@ After `.workspace-sidedock-vault-profile {` (around line 202), inside the rule b
     border-top: 1px solid var(--background-modifier-border);
 ```
 
-- [ ] **Step 2: Build and verify**
+- [x] **Step 2: Build and verify**
 
 Run: `npm run build && npm test`
 
-- [ ] **Step 3: Commit**
+- [x] **Step 3: Commit**
 
 ```bash
 git add src/app/sidedock.scss
@@ -617,12 +627,12 @@ git commit -m "fix: add border-top to vault profile for visual separation"
 **Files:**
 - Modify: `src/elements/bamboo-china-dialog.scss` (create if doesn't exist, or find the existing modal override)
 
-- [ ] **Step 1: Check if bamboo-china-dialog.scss has a modal animation override**
+- [x] **Step 1: Check if bamboo-china-dialog.scss has a modal animation override**
 
 Run: `grep -n 'modal' src/elements/bamboo-china-dialog.scss`
 If it has a modal animation, skip this task.
 
-- [ ] **Step 2: If no override exists, add one**
+- [x] **Step 2: If no override exists, add one**
 
 Add to `src/elements/bamboo-china-dialog.scss`:
 
@@ -639,11 +649,11 @@ body#{mx.$bc}:not(.is-mobile) .modal {
 }
 ```
 
-- [ ] **Step 3: Build and verify**
+- [x] **Step 3: Build and verify**
 
 Run: `npm run build && npm test`
 
-- [ ] **Step 4: Commit**
+- [x] **Step 4: Commit**
 
 ```bash
 git add src/elements/bamboo-china-dialog.scss
@@ -656,22 +666,22 @@ git commit -m "feat: add brand-curve modal entrance animation for Bamboo China s
 
 **Files:** None (verification only)
 
-- [ ] **Step 1: Full build and test suite**
+- [x] **Step 1: Full build and test suite**
 
 Run: `npm run build && npm test`
 Expected: All checks pass. No new `!important`. Contrast checks pass.
 
-- [ ] **Step 2: Visual regression (if Playwright available)**
+- [x] **Step 2: Visual regression (if Playwright available)**
 
 Run: `npm run test:visual`
 Expected: All screenshots match baseline (or review intentional changes).
 
-- [ ] **Step 3: Size check**
+- [x] **Step 3: Size check**
 
 Run: `node scripts/check-size.mjs`
 Expected: `theme.css` within baseline x 1.15.
 
-- [ ] **Step 4: Cascade audit**
+- [x] **Step 4: Cascade audit**
 
 Run: `node scripts/audit_cascade.mjs`
 Expected: 旗舰层 ~285 rules, base ~1336 rules, ~100 overlap components. No unexpected increases.
@@ -704,10 +714,15 @@ Expected: 旗舰层 ~285 rules, base ~1336 rules, ~100 overlap components. No un
 
 ---
 
-## Deferred Items (require Obsidian API / JS)
+## Deferred Items — 决策（2026-07-24）
 
-These are noted for future work but cannot be implemented in SCSS alone:
+三项均超出纯 CSS 主题能力边界。决策如下：
 
-- **Hover ribbon discovery animation** — Needs JS to show a one-time pulse on first use
-- **Focus mode exit hint** — Needs Obsidian API to inject a temporary UI element
-- **Mobile mode-switcher repositioning** — Complex layout change with risk of breaking plugin compatibility on mobile
+- **Hover ribbon discovery animation** — **砍掉**。主题不携带 JS；做成配套 snippet
+  的维护成本与收益不成比例。CSS 侧已有缓解：ribbon 折叠态保留可见的悬停触发区。
+- **Focus mode exit hint** — **砍掉**。需要 Obsidian API 注入临时 UI，属插件职责。
+  若未来确有需求，归入竹杖芒鞋（obsidian-bamboo-walking）插件立项，不在本主题实现。
+- **Mobile mode-switcher repositioning** — **搁置（不排期）**。高风险布局改动，
+  且移动端插件兼容性无法自动回归；除非收到真实用户反馈，否则不做。
+
+三项均不再保留在任何待办清单中；本文档归档后不再更新。

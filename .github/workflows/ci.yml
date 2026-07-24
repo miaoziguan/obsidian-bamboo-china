@@ -22,8 +22,11 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Static guards (contrast / a11y / cascade / size / !important)
+      - name: Static guards (contrast / a11y / size / !important)
         run: npm test
+
+      - name: Cascade report (informational, never fails)
+        run: node scripts/audit_cascade.mjs || true
 
       - name: Mood parity (96 rules token-for-token vs baseline)
         run: node scripts/verify-mood-parity.mjs

@@ -1,7 +1,10 @@
 # Design: 意境 Mood 单一来源 + 跨皮肤注入
 
 Date: 2026-07-22
-Status: Approved (设计决策已通过 ask_followup 确认)
+Status: 已实现并归档（2026-07-24）。S2（单一来源 + parity 门禁）已落地；
+S1（跨皮肤注入 `--mood-accent`）因五套平台皮肤在单皮肤重构中删除而**废弃**——
+文中所有 Material/Adwaita/Fluent/Baseline 相关内容仅具历史参考价值，
+现状以 docs/ARCHITECTURE.md 为准。
 
 ## 1. 目标 / 非目标
 

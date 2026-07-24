@@ -1,5 +1,14 @@
 # Plan: 意境 Mood 单一来源 + 跨皮肤注入
 
+> **状态（2026-07-24 盘点）：S2 已完成；S1 因单皮肤重构而失去意义。归档。**
+> - T1/T2/T3/T5/T6 ✅：`_mood-tokens.scss` 单一来源已落地，`verify-mood-parity.mjs`
+>   已挂入 `npm run build`（每次构建强制 parity，96 rules）。实现与设计有一处偏离：
+>   实际引入了 `scripts/gen-mood-tokens.mjs` 生成步骤（设计原定纯 Sass `@each`），
+>   属实现细节替换，验收等价。
+> - T4（Material/Adwaita 注入 `--mood-accent`）❌ **废弃**：这两套皮肤已在
+>   2026-07-24 单皮肤重构中整体删除，"mood 统御所有皮肤"命题自动成立
+>   （只剩 Bamboo China 一套，mood 天然生效）。
+
 Date: 2026-07-22
 Design: ./2026-07-22-mood-tokens-design.md (Approved)
 Workflow: superpowers — Manual TDD (环境无 sessions_spawn，手动遵循 Red→Green→Commit)
