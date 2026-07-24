@@ -48,13 +48,14 @@ body:not(.status-bar-baseline) .status-bar {
     background-color: rgba(var(--mono-rgb-100), 0.2);
     padding-block: 0;
     max-width: 160px;
-    height: 4px;
+    height: 6px;
 
     > div {
       transform: scale(0.9);
       opacity: 0;
-      filter: blur(16px);
+      filter: blur(0px);
       white-space: nowrap;
+      overflow: hidden;
     }
   }
   &:hover {

@@ -32,30 +32,31 @@ Bamboo China speaks in **ink and paper**.
 - **Typography**: `SF Pro` on Apple, falling back through `PingFang SC` / `Hiragino Sans GB` / `Microsoft YaHei` — a font stack that prioritises CJK readability without losing Latin refinement.
 - **Radius / density**: modest rounding (radius-modifier at `1`, density at `1`), keeping the UI crisp but not cold — the same restraint as a well-cut brush.
 
-## Relationship to platform skins
+## Relationship to platform nuance
 
-Bamboo China is the **default**. The platform skins (Material, Fluent, Adwaita) are
-deferential — they override shape, density, and font, but they **do not own colour**:
+Bamboo China is now the **only** skin, on every platform. The former platform skins
+(Material, Fluent, Adwaita, Baseline) have been **removed** — see
+[`ARCHITECTURE.md`](./ARCHITECTURE.md) §1. What remains is a small set of
+**platform nuance** branches *inside* Bamboo China:
 
-| Skin | Owns | Inherits from Bamboo China |
-|------|------|---------------------------|
-| Material | Shape, density, font-family, component sizing | **All colour tokens** (routed through `var(--mood-accent, …)` since S1) |
-| Fluent | Shape, font-family | **All colour tokens** |
-| Adwaita | Shape, font-family, some component layout | **All colour tokens** (with `var(--mood-accent, …)` since S1) |
-| Baseline | (universal base layer) | Brings its own shape tokens; colour wholly from Bamboo China |
+- On **macOS** (or when **Adaptive Mode is OFF** on any platform), Bamboo China shows
+  its Cupertino details — traffic-light window controls, tab-header chrome, frameless
+  layout.
+- On other platforms, the same Bamboo China surface uses a neutral cross-platform
+  chrome. Colour never changes by platform — the selected 意境 mood owns colour
+  everywhere.
 
-When **Adaptive Mode** is ON (default), the platform skin picks the shape, and the
-selected 意境 mood picks the colour. When Adaptive Mode is OFF, both shape and colour
-fall back to Bamboo China — the full brand experience.
+In short: **shape has a tiny mac ↔ non-mac split; colour is 100% mood-driven and
+platform-agnostic.**
 
 ## Tone of voice (for UX copy)
 
 - **Calm, not clinical.** Use natural-sounding Chinese/English, not robotic "please select an option".
 - **Seasonal, not arbitrary.** Mood names are poetic but grounded（墨夜 = ink night，胭脂 = rouge）. A new mood must earn its name.
-- **Respectful of platform.** On macOS the UI speaks mac-ish; on Android it speaks Material-ish. Bamboo China wraps them, never fights them.
+- **Respectful of platform.** On macOS the UI leans into Cupertino details; elsewhere it stays neutral. Bamboo China adapts its chrome without changing its voice.
 
 ## What this theme is NOT
 
 - **Not a "dark mode only" theme.** The default is light (宣纸/base). Dark is a mode, not the personality.
 - **Not a "Chinese only" theme.** The 东方意境 system is the heritage, but the theme works equally well in English, Japanese, Korean, and any other script.
-- **Not a "one-off" theme.** The architecture (5 skins × 16 moods × 2 modes × 4 layouts) is designed for sustainable contribution — the single-source `$moods` map added in S2 means adding a new mood is a data change, not a code change.
+- **Not a "one-off" theme.** The architecture (16 moods × 2 modes × 3 layouts, one skin) is designed for sustainable contribution — the single-source mood baseline (`mood-parity-baseline.json`) means adding a new mood is a data change, not a code change.

@@ -1,4 +1,3 @@
-@use "../mixins" as mx;
 
 // Omnisearch https://github.com/scambier/obsidian-omnisearch
 @media only screen and (max-width: 600px) {
@@ -43,7 +42,7 @@
 body:not(.is-mobile) .omnisearch-input-container__buttons {
   display: none;
 }
-body#{mx.$bc}.is-phone {
+body.is-phone {
   @media only screen and (max-width: 600px) {
     .omnisearch-modal {
       --prompt-top: calc(var(--safe-area-inset-top) + var(--header-height));
@@ -212,7 +211,7 @@ body:not(.is-mobile):not(.nav-action-center) .mod-sidedock .workspace-leaf-conte
   }
 }
 
-body#{mx.$bc}.is-mobile .workspace-drawer .novel-word-count--active {
+body.is-mobile .workspace-drawer .novel-word-count--active {
   .nav-buttons-container {
     overflow: visible;
   }

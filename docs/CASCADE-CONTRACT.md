@@ -1,8 +1,19 @@
 # 级联契约（Cascade Contract）
 
-> 状态：草案 · 创建于 2026-07-21 · **修订于 2026-07-21（修正审计数据，见 §2）**
+> 状态：草案 · 创建于 2026-07-21 · 修订于 2026-07-21（修正审计数据，见 §2）· **现状修订 2026-07（单皮肤重构，见 §0.1）**
 > 目的：把「为什么总在修一个又坏一个 / 改了不生效」的根因固化成可查、可守的契约。
 > 关联事件：2026-07-21 统一左右栏 tab header 交互，连续 3 轮才在正确层修好（base 层改动在 mac 上零效果）。
+
+---
+
+## 0.1 现状修订（2026-07 单皮肤重构后 · 先读这条）
+
+本文档下面的 §1–§6 记录的是**五皮肤时代**的调试与契约。3.x 已把主题收敛为**单皮肤 Bamboo China**，请按以下要点理解现状（历史内容保留供追溯，未逐条重写）：
+
+1. **其它设计语言皮肤已删除**：`elements/{material,fluent,adwaita,baseline}.scss` 与对应色板已从 `src/` 移除；`theme.scss` 只导入 Bamboo China 一套。§1 表格最后一行「其它设计语言（可选）」**已不复存在**。
+2. **`mx.$bc` mixin 已退役**：旧的 `:is(.mod-macos, .adaptive-mode-off)` 复合作用域不再由 mixin 统一提供，改为在各文件内直接写 `body.mod-macos …` / `body:not(.mod-macos) …`（少数规则仍保留 `:is(.mod-macos, .adaptive-mode-off)` 以维持「关闭自适应＝走 mac 外观」）。部分源码注释仍写着 `mx.$bc`，属历史遗留。
+3. **双层模型已弱化为「base 为主 + 少量 mac 分支」**：编译产物中 base ≈ 1342 条规则，mac 分支约 71 处 `mod-macos` / 10 处 `adaptive-mode-off`；Android/Windows 各 1–2 处零星适配。核心铁律仍成立：**改 mac 外观 → `elements/bamboo-china*` 的 mac 分支；改全平台 → `app/*`**。
+4. **审计脚本口径过时**：`audit_cascade.mjs` 仍用正则找 `:is(.mod-macos, .adaptive-mode-off)`，与新写法 `body.mod-macos` 不匹配，故 `bamboo split` 现报 0（并非真的无 mac 覆盖）；`material/fluent/adwaita` 分层也只解析到 0–2 条残留。脚本待更新为按 `mod-macos` 直接匹配。
 
 ---
 
@@ -24,7 +35,7 @@
 |---|---|---|---|
 | **Base / 回退层** | `app/*.scss`、`editor/*.scss` | 无作用域，或 `body:not(.is-phone)` 等弱限定 | 所有平台的基础样式；Windows/Linux（自适应开启）下的实际外观 |
 | **Cupertino 旗舰层（mac 默认）** | `elements/bamboo-china.scss`、`elements/bamboo-china-dialog.scss`、`-settings.scss`、`-prompt.scss`、`-mobile.scss`、`layouts/bamboo-china.scss`、`color-schemes/bamboo-china*.scss` | `body:is(.mod-macos, .adaptive-mode-off):not(.is-mobile)`（由 `mx.$bc` 定义，见 `src/_mixins.scss:$bc`） | **macOS 或自适应关闭**时生效，且在 mac 上整体压过 base 层 |
-| 其它设计语言（可选） | `elements/fluent.scss`、`material.scss`、`adwaita.scss` | 各自的激活作用域（经 Style Settings 切换，未在本文逐一核验） | 用户主动切换时才生效，非 mac 默认体验 |
+| ~~其它设计语言（可选）~~ | ~~`elements/fluent.scss`、`material.scss`、`adwaita.scss`~~ | — | **已于 3.x 移除**（见 §0.1），此行仅存档 |
 
 > 关键事实：`mx.$bc` 的真实值是 `:is(.mod-macos, .adaptive-mode-off)`（非「仅 mac」）。所以「旗舰层」在 **mac 与自适应关闭** 两种情形下都会命中；在 Windows/Linux + 自适应开启时整体不命中，此时 base 才是活动样式。
 

@@ -1,10 +1,9 @@
-@use "../mixins" as mx;
 
 /*
 Bamboo China color scheme
 */
 
-body#{mx.$bc}.theme-light {
+body.theme-light {
   --color-red-rgb: 255, 56, 60;
   --color-orange-rgb: 255, 141, 40;
   --color-yellow-rgb: 255, 204, 0;
@@ -14,7 +13,7 @@ body#{mx.$bc}.theme-light {
   --color-purple-rgb: 203, 48, 224;
   --color-pink-rgb: 255, 45, 85;
 }
-body#{mx.$bc}.theme-light:not(.is-mobile) {
+body.theme-light:not(.is-mobile) {
   --background-primary: #fff;
   --background-primary-alt: #f7f7f7;  /* static fallback for --background-primary-alt (pre-color-mix browsers) */
   --background-primary-alt: color-mix(in srgb, var(--background-primary), black 3%);
@@ -31,7 +30,7 @@ body#{mx.$bc}.theme-light:not(.is-mobile) {
   --text-muted: #737373; // rgba(var(--mono-rgb-100), 55%)
   --text-faint: #bfbfbf; // rgba(var(--mono-rgb-100), 25%)
 }
-body#{mx.$bc}.theme-light.is-mobile {
+body.theme-light.is-mobile {
   --background-primary: #fff;
   --background-primary-alt: #f2f2f7;
   --background-secondary: #f2f2f7;
@@ -45,7 +44,7 @@ body#{mx.$bc}.theme-light.is-mobile {
   --text-faint: #c4c4c7; // rgba(60, 60, 67, 30%)
 }
 
-body#{mx.$bc}.theme-dark {
+body.theme-dark {
   --color-red-rgb: 255, 66, 69;
   --color-orange-rgb: 255, 146, 48;
   --color-yellow-rgb: 255, 214, 0;
@@ -55,7 +54,7 @@ body#{mx.$bc}.theme-dark {
   --color-purple-rgb: 107, 52, 242;
   --color-pink-rgb: 255, 55, 95;
 }
-body#{mx.$bc}.theme-dark:not(.is-mobile) {
+body.theme-dark:not(.is-mobile) {
   --background-primary: #1e1e1e;
   --background-primary-alt: #252525;  /* static fallback for --background-primary-alt (pre-color-mix browsers) */
   --background-primary-alt: color-mix(in srgb, var(--background-primary), white 3%);
@@ -72,7 +71,7 @@ body#{mx.$bc}.theme-dark:not(.is-mobile) {
   --text-muted: #9a9a9a; // rgba(var(--mono-rgb-100), 55%)
   --text-faint: #565656; // rgba(var(--mono-rgb-100), 25%)
 }
-body#{mx.$bc}.theme-dark.is-mobile {
+body.theme-dark.is-mobile {
   --background-primary: #000;
   --background-primary-alt: #1c1c1e;
   --background-secondary: #1c1c1e;
@@ -88,25 +87,25 @@ body#{mx.$bc}.theme-dark.is-mobile {
 
 /* Phase 3 a11y overrides (base cn) — text-faint ≥3:1, text-accent (links) ≥4.5:1
    vs canvas. Appended 2026-07-21 */
-body#{mx.$bc}.theme-light {
+body.theme-light {
   --text-faint: #929292;
   --text-accent: #438259;
   --text-accent-hover: #417e57;
 }
-body#{mx.$bc}.theme-dark {
+body.theme-dark {
   --text-faint: #6a6a6a;
 }
 
 /* Phase 3 prefers-contrast (base cn) — boost contrast for prefers-contrast: more. Appended 2026-07-21 */
 @media (prefers-contrast: more) {
-  body#{mx.$bc}.theme-light {
+  body.theme-light {
     --text-faint: #595959;
     --text-muted: #595959;
     --background-modifier-border: #b3b3b3;
     --divider-color: #b3b3b3;
     --bc-focus-ring-width: 3px;
   }
-  body#{mx.$bc}.theme-dark {
+  body.theme-dark {
     --text-faint: #a6a6a6;
     --text-muted: #c4c4c4;
     --background-modifier-border: #5c5c5c;

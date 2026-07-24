@@ -29,8 +29,8 @@ body.theme-light {
 body.theme-light:not(.is-mobile) {
   --background-primary: #ffffff;
   --background-primary-alt: #fefefd;
-  --background-secondary: #fefefd;
-  --background-secondary-alt: #fafaf7;
+  --background-secondary: #f0f2ee;
+  --background-secondary-alt: #e8eae4;
 
   --interactive-normal: hsl(0 0% 0% / 5%);
   --interactive-hover: hsl(0 0% 0% / 9%);
@@ -43,8 +43,8 @@ body.theme-light:not(.is-mobile) {
 body.theme-light.is-mobile {
   --background-primary: #ffffff;
   --background-primary-alt: #fefefd;
-  --background-secondary: #fefefd;
-  --background-secondary-alt: #ffffff;
+  --background-secondary: #f4f5f2;
+  --background-secondary-alt: #eeeeef;
 
   --interactive-normal: rgba(118, 118, 128, 12%);
   --interactive-hover: rgba(120, 120, 120, 20%);

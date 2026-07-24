@@ -59,6 +59,8 @@ body,
   --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.06);
 
   --anim-speed-modifier: 1;
+  --anim-speed-entrance: var(--anim-speed-modifier);
+  --anim-speed-exit: var(--anim-speed-modifier);
   --anim-motion-baseline: cubic-bezier(0.32, 0.72, 0, 1);
   // Emphasized curve — a snappier ease-out used for the larger enter/exit
   // slides (hover-ribbon, community cards). Tokenized so the "feel" stays
@@ -354,6 +356,8 @@ body.styled-scrollbars div:not(:hover)::-webkit-scrollbar-thumb {
 // Style Settings
 body.reduce-motion {
   --anim-speed-modifier: 0 !important;
+  --anim-speed-entrance: 0 !important;
+  --anim-speed-exit: 0 !important;
 
   &.is-mobile {
     .mobile-tab-switcher,
@@ -373,6 +377,8 @@ body.reduce-motion {
 @media (prefers-reduced-motion: reduce) {
   body {
     --anim-speed-modifier: 0 !important;
+    --anim-speed-entrance: 0 !important;
+    --anim-speed-exit: 0 !important;
   }
   *,
   *::before,

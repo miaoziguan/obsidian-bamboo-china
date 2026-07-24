@@ -1,6 +1,5 @@
-@use "../mixins" as mx;
 
-body#{mx.$bc} {
+body {
   --background-modifier-message: var(--modal-background);
   --modal-background: rgb(from var(--background-secondary) r g b / 75%);
 
@@ -30,7 +29,7 @@ body#{mx.$bc} {
 }
 
 // Menu
-body#{mx.$bc}:not(.is-mobile) {
+body:not(.is-mobile) {
   .menu,
   .suggestion-container {
     animation: none;
@@ -64,7 +63,7 @@ body#{mx.$bc}:not(.is-mobile) {
   }
 }
 
-body#{mx.$bc}.is-mobile {
+body.is-mobile {
   .menu,
   .suggestion-container {
     .menu-scroll {
@@ -84,7 +83,7 @@ body#{mx.$bc}.is-mobile {
     }
   }
 }
-body#{mx.$bc}.is-phone {
+body.is-phone {
   --menu-shadow: var(--shadow-s);
   --menu-padding: 32px var(--safe-area-inset-side);
 
@@ -132,7 +131,7 @@ body#{mx.$bc}.is-phone {
     border-radius: var(--radius-m);
   }
 }
-body#{mx.$bc}.is-tablet {
+body.is-tablet {
   --menu-shadow: var(--shadow-l);
 
   .menu,
@@ -153,16 +152,15 @@ body#{mx.$bc}.is-tablet {
 }
 
 // Modal
-body#{mx.$bc}:not(.is-mobile) {
+body:not(.is-mobile) {
   @keyframes modalInBambooChina {
     from {
-      opacity: 1;
-      filter: none;
-      transform: scale(0.99);
+      opacity: 0;
+      transform: scale(0.97) translateY(8px);
     }
   }
   .modal {
-    animation: modalInBambooChina var(--anim-duration-moderate) var(--anim-motion-baseline) forwards;
+    animation: modalInBambooChina var(--anim-duration-moderate) var(--anim-motion-brand) forwards;
   }
 
   .modal:not(.mod-sidebar-layout) {
@@ -178,7 +176,7 @@ body#{mx.$bc}:not(.is-mobile) {
   }
 }
 
-body#{mx.$bc}.is-mobile {
+body.is-mobile {
   .modal-setting-back-button,
   .modal-close-button,
   .modal-header-button {
@@ -187,7 +185,7 @@ body#{mx.$bc}.is-mobile {
   }
 }
 
-body#{mx.$bc}.is-phone {
+body.is-phone {
   --modal-radius: var(--radius-xl);
 
   .modal-container.mod-confirmation .modal {
@@ -221,7 +219,7 @@ body#{mx.$bc}.is-phone {
 }
 
 // Notice & Tooltip
-body#{mx.$bc} {
+body {
   .notice {
     box-shadow: var(--shadow-l);
     border-radius: var(--radius-m);
@@ -241,11 +239,11 @@ body#{mx.$bc} {
   }
 }
 
-body#{mx.$bc}:not(.is-mobile) .notice {
+body:not(.is-mobile) .notice {
   transition: var(--anim-duration-moderate);
 }
 
-body#{mx.$bc}.is-mobile .notice {
+body.is-mobile .notice {
   box-shadow: var(--shadow-xs);
 
   &:last-child {
@@ -260,7 +258,7 @@ body#{mx.$bc}.is-mobile .notice {
 }
 
 // Drag ghost
-body#{mx.$bc}:not(.is-mobile) {
+body:not(.is-mobile) {
   --drag-ghost-background: var(--background-primary);
   --drag-ghost-text-color: var(--text-normal);
 

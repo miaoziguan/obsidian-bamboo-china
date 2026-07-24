@@ -1,6 +1,5 @@
-@use "../mixins" as mx;
 
-body#{mx.$bc} {
+body {
   .prompt-input-container {
     align-items: center;
   }
@@ -33,7 +32,7 @@ body#{mx.$bc} {
     border-top: none;
   }
 }
-body#{mx.$bc}:not(.is-phone) {
+body:not(.is-phone) {
   --prompt-input-height: 56px;
 
   @keyframes bounceInScale {
@@ -60,7 +59,7 @@ body#{mx.$bc}:not(.is-phone) {
     pointer-events: none;
   }
 }
-body#{mx.$bc}.is-phone {
+body.is-phone {
   --prompt-input-height: 48px;
 
   .prompt {
@@ -139,6 +138,6 @@ body#{mx.$bc}.is-phone {
   }
 }
 
-body#{mx.$bc}.is-tablet .prompt {
+body.is-tablet .prompt {
   border-radius: var(--radius-l);
 }

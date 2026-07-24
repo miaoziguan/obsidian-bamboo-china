@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// WCAG contrast guardrail for every SHIPPED skin (extended 2026-07-22).
+// WCAG contrast guardrail for the shipped palette (single-skin, 2026-07).
 //
 // For every palette/mode and each of the 5 key design tokens, validates the
 // contrast against the canvas (--background-primary, the editor/reading surface):
@@ -10,20 +10,12 @@
 //   • --text-muted          vs bg  ≥ 4.5   (WCAG 1.4.3 — secondary text)
 //   • --text-faint          vs bg  ≥ 3.0   (WCAG 1.4.11 — non-text / metadata)
 //
-// Skins covered:
-//   • bamboo  (default + every `cn-*` 意境 mood)  — STRICT  (palette is self-contained hex/rgb)
-//   • adwaita (light/dark)                        — STRICT  (palette is self-contained hex)
-//   • material (light/dark, .material-color)      — ADVISORY
-//       Material's colors are derived from the RUNTIME `--color-accent-hsl`
-//       (OKLCH `from hsl(var(--color-accent-hsl)) …`), which is chosen per user and
-//       unknown at build time. We approximate it with RUNTIME_DEFAULTS below and
-//       report Material as advisory (⚠) rather than hard-failing CI — a static gate
-//       cannot be authoritative for a user-dependent accent. It still catches
-//       structural regressions (e.g. a token silently dropping to transparent).
-//
-// NOT separately checked (intentionally):
-//   • fluent / baseline are PURE-SHAPE skins — they redefine NO color tokens, so they
-//     inherit Bamboo China's palette, which the STRICT bamboo check already guards.
+// Scope (3.x single-skin — see docs/ARCHITECTURE.md §1):
+//   • bamboo  (default 宣纸竹青 + every `cn-*` 意境 mood, light/dark) — STRICT
+//       The palette is fully self-contained (hex/rgb), attached directly to <body>
+//       with no platform scope, so a static gate is authoritative. This is the ONLY
+//       scheme now; the former material / fluent / adwaita / baseline skins have been
+//       removed.
 //
 // "0 tokens parsed" is a HARD FAIL so the guardrail can never silently pass on a
 // selector/regex drift.
@@ -37,9 +29,10 @@ import path from 'node:path';
 
 const T = { nonText: 3.0, text: 4.5, faint: 3.0 };
 
-// Runtime-only vars Obsidian injects but our sources don't define. Approximations
-// used so OKLCH `from …` derivations can be evaluated. Material is advisory, so the
-// exact hue here only affects Material's regression baseline, not a hard gate.
+// Runtime-only vars Obsidian injects but our sources don't define. Kept as a
+// resolution fallback so any stray OKLCH `from …` / runtime-accent reference can
+// still be evaluated. The bamboo palette is self-contained (hex/rgb), so in
+// practice these are rarely hit now that the runtime-accent skins are gone.
 const RUNTIME_DEFAULTS = {
   'color-accent-hsl': '212, 100%, 50%',
   'accent-h': '212',
@@ -215,10 +208,6 @@ const TOKENS = [
 const SCHEMES = [
   { name: 'bamboo', strict: true, file: 'src/color-schemes/bamboo-china-palettes.scss', extraFile: 'src/color-schemes/_mood-tokens.scss', cn: true,
     modeSel: (m) => `body\\.theme-${m}` },
-  { name: 'adwaita', strict: true, file: 'src/color-schemes/adwaita.scss', cn: false,
-    modeSel: (m) => `body\\.mod-linux:not\\(\\.(?:is-android)\\):not\\(\\.(?:adaptive-mode-off)\\)\\.theme-${m}` },
-  { name: 'material', strict: false, file: 'src/color-schemes/material.scss', cn: false,
-    modeSel: (m) => `body\\.is-android:not\\(\\.(?:adaptive-mode-off)\\)\\.theme-${m}\\.material-color` },
 ];
 
 let failures = 0;
@@ -286,5 +275,4 @@ if (failures > 0) {
   process.exit(1);
 }
 const msg = `\n✓ All ${checked} token checks evaluated (${failures} hard failures).`;
-if (advisoryWarn > 0) console.log(`${msg} ${advisoryWarn} advisory warning(s) — Material depends on the runtime accent; verify visually.`);
-else console.log(msg);
+console.log(advisoryWarn > 0 ? `${msg} ${advisoryWarn} advisory warning(s) — verify visually.` : msg);

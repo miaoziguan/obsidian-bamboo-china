@@ -1,6 +1,5 @@
-@use "../mixins" as mx;
 
-body#{mx.$bc} {
+body {
   // Settings nav icons stay on the active theme accent (one colour family that
   // follows the current scheme). Each icon gets a gem-like light→dark gradient
   // overlay within that hue; foreground uses --text-on-accent.
@@ -59,7 +58,7 @@ body#{mx.$bc} {
   }
 }
 
-body#{mx.$bc}:not(.is-mobile) {
+body:not(.is-mobile) {
   --setting-items-padding: calc(12px * var(--density-modifier)) var(--side-padding);
   --setting-group-heading-color: var(--text-normal);
 
@@ -106,7 +105,7 @@ body#{mx.$bc}:not(.is-mobile) {
   }
 }
 
-body#{mx.$bc}.is-mobile {
+body.is-mobile {
   .modal.mod-settings .vertical-tab-nav-item .vertical-tab-nav-item-icon {
     padding: var(--space-5);
     border-radius: 50%;
@@ -115,7 +114,7 @@ body#{mx.$bc}.is-mobile {
   }
 }
 
-body#{mx.$bc}.is-phone {
+body.is-phone {
   --setting-items-radius: var(--radius-m);
   --setting-group-heading-size: var(--font-ui-medium);
 
@@ -164,7 +163,7 @@ body#{mx.$bc}.is-phone {
   }
 }
 
-body#{mx.$bc}.is-tablet {
+body.is-tablet {
   --setting-items-padding: calc(16px * var(--density-modifier)) var(--side-padding);
 
   .modal.mod-settings {

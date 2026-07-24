@@ -1,6 +1,5 @@
-@use "../mixins" as mx;
 
-body#{mx.$bc}.is-mobile {
+body.is-mobile {
   // Liquid Glass
   &:where(.is-phone):not(.mode-switcher-off) .mod-root .workspace-leaf-content[data-type="markdown"] .view-actions button:nth-last-child(2),
   &:where(.is-phone) .prompt-input,
@@ -106,7 +105,7 @@ body#{mx.$bc}.is-mobile {
   }
 }
 
-body#{mx.$bc}.is-phone {
+body.is-phone {
   // Editor panel
   .mod-root {
     .view-header-left,

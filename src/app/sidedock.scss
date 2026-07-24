@@ -161,10 +161,10 @@ body:not(.is-mobile) {
     background-color var(--anim-duration-fast);
 }
 
-// 静态态：按钮行淡出（opacity 不占布局，按钮始终原位，无空胶囊占位）。
+// 静态态：按钮行半透明（保持可发现性，hover 时恢复全不透明）。
 body:not(.nav-action-center) .mod-sidedock .workspace-leaf-content .nav-header:first-child:not(:hover) .nav-buttons-container {
-  opacity: 0;
-  pointer-events: none;
+  opacity: 0.4;
+  pointer-events: auto;
 }
 
 // hover 进出仅动画 opacity，平滑淡入淡出。
@@ -195,11 +195,11 @@ body:not(.is-mobile) .workspace-split.mod-left-split .workspace-drawer-vault-act
   display: none;
 }
 body:not(.is-mobile) .mod-sidedock.mod-left-split .workspace-sidedock-vault-profile {
-  background-color: transparent;
-}
+    background-color: transparent;
+    border-top: 1px solid var(--background-modifier-border);
+  }
 body:not(.is-mobile) .mod-sidedock.mod-left-split {
   .workspace-sidedock-vault-profile {
-    border-top: none;
     position: absolute;
     inset: auto 0 0;
     z-index: var(--z-content);

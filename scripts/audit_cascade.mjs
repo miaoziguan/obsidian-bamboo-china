@@ -1,21 +1,21 @@
-// 级联碎片化审计：解析编译后的 theme.css，对「每个皮肤作用域 vs 全局 base 层」
+// 级联碎片化审计：解析编译后的 theme.css，对「mac 分支作用域 vs 全局 base 层」
 // 统计：
-//   - 各皮肤作用域规则数 / base 层规则数
+//   - mac 分支作用域规则数 / base 层规则数
 //   - 在两者都有样式的「分裂组件」清单
-//   - 「跨层同属性覆盖」：同一组件在皮肤层与 base 层都声明了同一 CSS 属性但取值不同
-//     ——这是契约 §2 的核心风险：在 base 改了某属性，皮肤层命中更具体的覆盖值，
-//       表现为「改了不生效」。本检测把每个皮肤的点精准列成审查清单（非硬性失败）。
+//   - 「跨层同属性覆盖」：同一组件在 mac 分支与 base 层都声明了同一 CSS 属性但取值不同
+//     ——这是契约 §2 的核心风险：在 base 改了某属性，mac 分支命中更具体的覆盖值，
+//       表现为「改了不生效」。本检测把每个点精准列成审查清单（非硬性失败）。
 //
-// 皮肤作用域由编译后选择器中的激活标记识别：
-//   bamboo  : :is(.mod-macos, .adaptive-mode-off)   （mac 布局 / 自适应关闭 → 旗舰 Bamboo China）
-//   material: is-android:not(.adaptive-mode-off)    （Android + 自适应开启）
-//   fluent  : mod-windows:not(.adaptive-mode-off)   （Windows + 自适应开启）
-//   adwaita : mod-linux:not(.is-android):not(.adaptive-mode-off) （Linux + 自适应开启）
-//   base    : 不含上述任何标记的规则（默认基底，由 baseline.scss 的 body{} 提供）
+// 现状（3.x 单皮肤重构后，见 docs/CASCADE-CONTRACT.md §0.1）：
+//   material / fluent / adwaita / baseline 皮肤已删除，主题只剩单皮肤 Bamboo China。
+//   平台差异退化为 Bamboo China 内部的少量 mac 分支。作用域标记随之简化为：
+//   bamboo : 选择器含 .mod-macos 或 .adaptive-mode-off
+//            （mac 平台，或任意平台关闭自适应 → 走 mac / Cupertino 外观）
+//   base   : 不含上述标记的规则（全平台默认基底）
 //
-// Fluent / Baseline 是「纯形状」皮肤（不重定义任何颜色 token，继承 Bamboo China 调色板），
-// 因此它们命中 base 层的颜色声明与 Bamboo 一致；其分裂/覆盖清单同样在此审计，便于发现
-// 形状层对 base 层属性的意外覆盖。
+//   注意：旧版旗舰层统一用复合作用域 :is(.mod-macos, .adaptive-mode-off)，现多数改为
+//   直接写 body.mod-macos …，故此处正则按「含 .mod-macos 或 .adaptive-mode-off」匹配，
+//   两种写法都能捕获（旧正则只认复合写法，会把 mac 分支误报为 0）。
 //
 // 用法：node scripts/audit_cascade.mjs
 //
@@ -33,12 +33,11 @@ const __dir = dirname(fileURLToPath(import.meta.url));
 const cssPath = resolve(__dir, '..', 'theme.css');
 const css = readFileSync(cssPath, 'utf8');
 
-// 皮肤激活标记（编译后选择器）。顺序即输出顺序。
+// mac 分支激活标记（编译后选择器）。单皮肤重构后只剩 bamboo 一层。
+// 匹配 .mod-macos（新写法 body.mod-macos …）或 .adaptive-mode-off
+// （少数保留的 :is(.mod-macos, .adaptive-mode-off) 复合写法）。
 const SKINS = [
-  { name: 'bamboo', re: /:is\(\.mod-macos,\s*\.adaptive-mode-off\)/ },
-  { name: 'material', re: /is-android:not\(\.adaptive-mode-off\)/ },
-  { name: 'fluent', re: /mod-windows:not\(\.adaptive-mode-off\)/ },
-  { name: 'adwaita', re: /mod-linux:not\(\.is-android\):not\(\.adaptive-mode-off\)/ },
+  { name: 'bamboo', re: /\.mod-macos\b|\.adaptive-mode-off\b/ },
 ];
 const SKIN_NAMES = [...SKINS.map((s) => s.name), 'base'];
 

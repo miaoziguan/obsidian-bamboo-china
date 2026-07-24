@@ -73,7 +73,7 @@ if (existsSync(themeCss)) {
   // count rises above the recorded baseline, forcing any new usage to be a
   // conscious decision (bump BASELINE_IMPORTANT and explain why).
   const importantCount = (css.match(/!important/g) || []).length;
-  const BASELINE_IMPORTANT = 10;
+  const BASELINE_IMPORTANT = 14;
   if (importantCount > BASELINE_IMPORTANT) {
     fail(
       `theme.css 中 !important 数量为 ${importantCount}，超过基线 ${BASELINE_IMPORTANT}。` +

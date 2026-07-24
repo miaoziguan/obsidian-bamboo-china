@@ -1,10 +1,44 @@
 @use "../mixins" as mx;
 
+// ── Universal element base (merged from former baseline.scss) ───────────────
+// These rules apply regardless of Bamboo China toggle; they form the
+// non-negotiable interaction foundation.
+
+// Button / clickable-icon / select / dropdown transition baseline.
+button,
+.clickable-icon,
+select,
+.dropdown {
+  transition:
+    var(--anim-duration-moderate) var(--anim-motion-baseline),
+    background-color var(--anim-duration-fast);
+}
+
+// Press feedback — subtle scale-down makes every button feel tactile.
+.clickable-icon {
+  &:active:not([aria-disabled="true"]) {
+    transform: scale(0.96);
+  }
+}
+
+// Disabled state — universal
+[aria-disabled="true"],
+.is-disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+// Destructive actions — apply danger token to mod-danger buttons
+.mod-danger {
+  --interactive-accent: var(--interactive-danger);
+}
+
 // ── Floating rounded center "paper" panel ──────────────────────────────────
 // The center editing view becomes a rounded canvas card floating on the frame
 // colour. Corner radius is driven by --radius-center (Style Settings
 // 「中间视图圆角」slider). Scoped to desktop bamboo; mobile keeps the native look.
-body#{mx.$bc}:not(.is-mobile) {
+body:not(.is-mobile) {
   // Frame-coloured field behind the floating card
   .workspace-split.mod-root {
     background-color: var(--background-secondary);
@@ -20,15 +54,15 @@ body#{mx.$bc}:not(.is-mobile) {
     // Driven by --center-elevation (Style Settings 「中间视图阴影」slider):
     // inset highlight stays constant, only the drop shadow scales (no edge line).
     box-shadow:
-      inset 0 0 1px 1px rgba(255, 255, 255, 0.8),
-      0 calc(4px * var(--center-elevation)) calc(24px * var(--center-elevation)) rgba(0, 0, 0, calc(0.075 * var(--center-elevation)));
+      inset 0 0 1px 1px rgba(0, 0, 0, 0.04),
+      0 calc(4px * var(--center-elevation)) calc(24px * var(--center-elevation)) rgba(0, 0, 0, calc(0.1 * var(--center-elevation)));
   }
 }
 
 // 右侧栏顶部 tab header 的「整条隐藏 + 悬停淡入」逻辑已统一到 app/sidedock.scss，
 // 与左栏 (.mod-left-split) 完全镜像，故此处不再单独处理右栏图标显隐。
 
-body#{mx.$bc} {
+body {
   --side-padding: 20px;
 
   --p-spacing: 1rem;

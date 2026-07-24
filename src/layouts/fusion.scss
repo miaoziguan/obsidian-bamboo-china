@@ -1,6 +1,5 @@
-@use "../mixins" as mx;
 
-body#{mx.$bc}:not(.is-mobile) {
+body:not(.is-mobile) {
   // Editor panel
   .mod-root {
     z-index: var(--z-fusion);
@@ -22,7 +21,7 @@ body#{mx.$bc}:not(.is-mobile) {
   }
 }
 
-body#{mx.$bc}:not(.is-phone) {
+body:not(.is-phone) {
   // Editor panel
   &.theme-light {
     --shadow-tab: var(--shadow-base), 0 0 1px rgba(0, 0, 0, 0.2), inset 0 -8px 48px rgba(0, 0, 0, 0.02), 0 2px 4px rgba(0, 0, 0, 0.025), 0 2px 4px rgba(0, 0, 0, 0.025);
@@ -44,7 +43,7 @@ body#{mx.$bc}:not(.is-phone) {
   }
 
   // Editor panel: Tab style
-  &#{mx.$bc} {
+  & {
     .mod-root .workspace-tabs:not(.mod-stacked) {
       .workspace-tab-header {
         @starting-style {
@@ -82,7 +81,7 @@ body#{mx.$bc}:not(.is-phone) {
   }
 }
 
-body#{mx.$bc}.is-tablet {
+body.is-tablet {
   .workspace-drawer.mod-left.is-pinned {
     margin-right: 8px;
   }

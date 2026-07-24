@@ -79,16 +79,6 @@ settings:
         description: 使用系统原生中文字体栈，替代默认的 SF Pro。
         type: class-toggle
     -
-        id: material-color
-        title: 动态颜色
-        description: 根据强调色应用动态主题。
-        type: class-toggle
-    -
-        id: adaptive-mode-off
-        title: 固定平台样式
-        description: 禁止根据操作系统自动调整样式。
-        type: class-toggle
-    -
         id: tab-floating
         title: 左对齐标签页
         type: class-toggle
@@ -194,7 +184,7 @@ settings:
     -
         id: bold-modifier
         title: 粗体字重
-        description: 调整粗体文字的粗细程度。300 = 纤细，600 = 明显。
+        description: 调整粗体文字的粗细程度。300 = 纤细，600 = 明显。中文用户建议 400–500 以获得更清晰的标题层级。
         type: variable-number-slider
         default: 300
         min: 100
@@ -225,6 +215,26 @@ settings:
         title: 减少动画效果
         description: 减少界面动画效果。
         type: class-toggle
+    -
+        id: anim-speed-entrance
+        title: 入场动画速度
+        description: 调整面板、对话框等入场动画的速度倍率。0 = 无动画，1 = 主题默认，2 = 双倍速。
+        type: variable-number-slider
+        default: 1
+        min: 0
+        max: 2
+        step: 0.1
+        format: "x"
+    -
+        id: anim-speed-exit
+        title: 退场动画速度
+        description: 调整面板、对话框等退场动画的速度倍率。
+        type: variable-number-slider
+        default: 1
+        min: 0
+        max: 2
+        step: 0.1
+        format: "x"
     -
         id: dynamic-type-off
         title: 标准字号
@@ -314,6 +324,4 @@ settings:
   border-bottom-right-radius: var(--setting-items-radius);
   border-bottom-left-radius: var(--setting-items-radius);
 }
-body:not(.is-android:not(.adaptive-mode-off)) .setting-item[data-id="material-color"] {
-  display: none;
-}
+
