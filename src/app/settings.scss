@@ -147,9 +147,7 @@ body:not(.is-phone) {
       // keyboard focus, so the indicator is always visible (a11y preserved).
       .community-modal-controls .search-input-container:focus-within {
         border-color: var(--interactive-accent);
-        // static fallback for old Electron without color-mix(); the accent at
-        // full alpha is a slightly stronger but still soft ring.
-        box-shadow: 0 0 0 3px var(--interactive-accent);
+        // soft focus ring via color-mix(); supported on our minAppVersion 1.5.0.
         box-shadow: 0 0 0 3px color-mix(in srgb, var(--interactive-accent) 22%, transparent);
       }
       .community-modal-controls .search-input-container input {
