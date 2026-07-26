@@ -1,8 +1,10 @@
 # Bamboo China（竹林中国）
 
-> 以墨与纸为语言的 Obsidian 主题 —— 白纸为心，黛青为框。
+> Bamboo China is a native, minimal Obsidian theme built around the language of ink and paper — a rice-paper white canvas at the heart, an indigo-green frame around it.
 
-Bamboo China 是一套原生、克制的 Obsidian 主题。编辑器画布保持纯净的「宣纸」底色，侧栏与面板承托意境配色的「框架」；在明/暗两种基底之上，提供 16 套命名的东方意境配色（墨夜、胭脂、青绿……），每一套都共享同一套结构骨架，却各有情绪基调。
+（中文：以墨与纸为语言的 Obsidian 主题 —— 白纸为心，黛青为框。）
+
+Bamboo China is a native, minimal Obsidian theme. The editor canvas keeps a clean "rice-paper" base while sidebars and panels carry the mood-tinted frame; across both light and dark bases it ships 16 named Eastern mood palettes (Ink Night, Rouge, Verdant…), each sharing the same structural skeleton yet with its own emotional tone.
 
 ## 预览
 ![alt text](image-1.png)
