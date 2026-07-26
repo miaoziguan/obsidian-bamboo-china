@@ -268,7 +268,7 @@ body.is-tablet:not(.tab-floating) {
       }
     }
   }
-  .mod-root:has(+ .workspace-drawer.is-pinned.mod-right) .workspace-tabs:not(.mod-stacked) {
+  .workspace-drawer.is-pinned.mod-right + .mod-root .workspace-tabs:not(.mod-stacked) {
     @container (min-width: 560px) {
       // Single pane
       &.mod-top-left-space.mod-top-right-space .workspace-tab-header-container-inner {

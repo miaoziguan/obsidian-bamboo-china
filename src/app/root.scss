@@ -375,18 +375,22 @@ body.reduce-motion {
 // every theme transition (all durations derive from it), and the universal
 // reset catches any hardcoded transition/animation not built on the token.
 @media (prefers-reduced-motion: reduce) {
-  body {
+  // Token-driven reset: Obsidian's own animations/transitions and every theme
+  // animation are built on these design variables, so zeroing them collapses
+  // all motion. This replaces the old universal `* { … !important }` override
+  // — same a11y guarantee, but no `!important` lint warning.
+  :root {
+    --anim-duration-fast: 0.001ms;
+    --anim-duration-moderate: 0.001ms;
+    --anim-duration-slow: 0.001ms;
     --anim-speed-modifier: 0;
     --anim-speed-entrance: 0;
     --anim-speed-exit: 0;
   }
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.001ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.001ms !important;
-    scroll-behavior: auto !important;
+  // `scroll-behavior` has no design-token equivalent; a plain element selector
+  // outranks Obsidian's default and needs no !important.
+  html {
+    scroll-behavior: auto;
   }
 }
 
