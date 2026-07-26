@@ -247,7 +247,7 @@ body.is-mobile .notice {
   box-shadow: var(--shadow-xs);
 
   &:last-child {
-    transition: var(--anim-duration-slow) var(--anim-motion-baseline);
+    transition: var(--anim-slow);
 
     @starting-style {
       transform: translateY(-50%) scaleX(0.5);

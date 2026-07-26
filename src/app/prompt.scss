@@ -4,7 +4,7 @@ body {
 
   .prompt {
     background-color: var(--background-secondary);
-    animation: modalIn var(--anim-duration-moderate) var(--anim-motion-baseline) forwards;
+    animation: modalIn var(--anim-default) forwards;
 
     .prompt-input,
     .prompt-input:hover,

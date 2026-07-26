@@ -130,8 +130,8 @@ body:not(.is-phone) {
         border-radius: 10px;
         background-color: color-mix(in srgb, var(--background-modifier-form-field) 60%, transparent);
         transition:
-          border-color var(--anim-duration-fast) var(--anim-motion-baseline),
-          background-color var(--anim-duration-fast) var(--anim-motion-baseline),
+          border-color var(--anim-fast),
+          background-color var(--anim-fast),
           box-shadow 200ms var(--anim-motion-baseline); // softer ease-in for the focus ring (小动效)
       }
       .community-modal-controls .search-input-container:hover {

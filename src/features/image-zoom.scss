@@ -2,7 +2,7 @@ body:not(.is-mobile):not(.zoom-off) .markdown-preview-view {
   .image-embed:not(.canvas-node-content) img,
   img[referrerpolicy="no-referrer"] {
     cursor: zoom-in;
-    transition: transform var(--anim-duration-moderate) var(--anim-motion-baseline);
+    transition: transform var(--anim-default);
   }
 
   // CSS-only fallback: :active zoom (press and hold).

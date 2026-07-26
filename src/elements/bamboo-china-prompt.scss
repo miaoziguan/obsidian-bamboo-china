@@ -125,7 +125,7 @@ body.is-phone {
   }
 
   .prompt-results {
-    transition: var(--anim-duration-slow) var(--anim-motion-baseline);
+    transition: var(--anim-slow);
 
     @starting-style {
       transform: translateY(var(--safe-area-inset-top));

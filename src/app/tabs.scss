@@ -43,7 +43,7 @@ body.is-tablet {
 
 // All panels
 body:not(.is-phone) .workspace-tab-header-container {
-  transition: var(--anim-duration-moderate) var(--anim-motion-baseline);
+  transition: var(--anim-default);
   background-color: transparent;
   border-bottom: none;
 }
@@ -150,8 +150,8 @@ body:not(.is-phone):not(.tab-floating) .mod-root .workspace-tabs:not(.mod-stacke
       flex: 1;
       justify-content: safe center;
       transition:
-        padding-left var(--anim-duration-moderate) var(--anim-motion-baseline),
-        padding-right var(--anim-duration-moderate) var(--anim-motion-baseline);
+        padding-left var(--anim-default),
+        padding-right var(--anim-default);
     }
 
     .workspace-tab-header-spacer {
@@ -312,7 +312,7 @@ body.is-tablet .workspace .mod-root {
   .workspace-tab-header-container,
   .workspace-tab-header,
   .workspace-tab-header div {
-    transition: var(--anim-duration-moderate) var(--anim-motion-baseline);
+    transition: var(--anim-default);
   }
 
   .workspace-tab-header-container {

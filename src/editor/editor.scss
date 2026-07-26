@@ -88,7 +88,7 @@
     height: auto;
   }
   .view-header-title-container > div {
-    transition: var(--anim-duration-moderate) var(--anim-motion-baseline);
+    transition: var(--anim-default);
   }
   .view-header-title-parent {
     color: var(--text-faint);

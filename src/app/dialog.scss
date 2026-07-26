@@ -39,7 +39,7 @@ body:not(.is-phone) {
 
   & > .menu,
   & > .suggestion-container {
-    animation: menuIn var(--anim-duration-moderate) var(--anim-motion-baseline) forwards;
+    animation: menuIn var(--anim-default) forwards;
   }
 
   .menu,
@@ -127,7 +127,7 @@ body {
 
   .modal-title {
     font-family: var(--h1-font);
-    transition: var(--anim-duration-moderate) var(--anim-motion-baseline);
+    transition: var(--anim-default);
     overflow: visible;
     text-align: left;
   }
@@ -168,7 +168,7 @@ body:not(.is-mobile) {
     opacity: 0.2;
   }
   .modal {
-    animation: modalIn var(--anim-duration-moderate) var(--anim-motion-baseline) forwards;
+    animation: modalIn var(--anim-default) forwards;
   }
   .modal-title {
     margin-left: 0;

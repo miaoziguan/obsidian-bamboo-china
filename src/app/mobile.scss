@@ -322,7 +322,7 @@ body.is-phone {
       // transform (GPU layer, no reflow), whereas animating `top` triggers
       // layout. will-change matches the animated property.
       transform: translateY(0);
-      transition: transform var(--anim-duration-moderate) var(--anim-motion-baseline);
+      transition: transform var(--anim-default);
       will-change: transform;
       z-index: var(--bc-z-view-header);
       padding-inline: var(--safe-area-inset-side);
@@ -399,7 +399,7 @@ body.is-phone {
     position: fixed;
     transition:
       background-color var(--anim-duration-moderate),
-      transform var(--anim-duration-moderate) var(--anim-motion-baseline),
+      transform var(--anim-default),
       width 0s,
       height 0s,
       right 0s,
@@ -448,7 +448,7 @@ body.is-phone {
     margin: auto calc(8px + var(--touch-size-l) + var(--navbar-side-offset)) var(--navbar-bottom-offset) var(--navbar-side-offset);
     padding: 8px;
     transition:
-      transform var(--anim-duration-moderate) var(--anim-motion-baseline),
+      transform var(--anim-default),
       background-color var(--anim-duration-moderate);
   }
 

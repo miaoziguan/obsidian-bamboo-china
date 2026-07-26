@@ -1,5 +1,5 @@
 body.status-bar-baseline .status-bar {
-  transition: var(--anim-duration-moderate) var(--anim-motion-baseline);
+  transition: var(--anim-default);
   border: none;
   transform-origin: bottom right;
   background-color: transparent;
@@ -7,7 +7,7 @@ body.status-bar-baseline .status-bar {
   height: calc-size(auto, size);
 }
 body.status-bar-baseline .status-bar::before {
-  transition: var(--anim-duration-moderate) var(--anim-motion-baseline);
+  transition: var(--anim-default);
   content: "";
   position: absolute;
   bottom: 0;
@@ -31,8 +31,8 @@ body:not(.status-bar-baseline) .status-bar {
   right: unset;
   justify-content: center;
   transition:
-    var(--anim-duration-moderate) var(--anim-motion-baseline),
-    background-color var(--anim-duration-moderate) var(--anim-motion-baseline);
+    var(--anim-default),
+    background-color var(--anim-default);
   border: none;
   border-radius: 100vh;
   width: max-content;
@@ -40,7 +40,7 @@ body:not(.status-bar-baseline) .status-bar {
   min-height: unset;
 
   > div {
-    transition: var(--anim-duration-moderate) var(--anim-motion-baseline);
+    transition: var(--anim-default);
   }
   &:not(:hover) {
     bottom: 2px;
@@ -75,7 +75,7 @@ body:not(.status-bar-baseline) .status-bar {
     position: absolute;
     transform: scaleY(10);
     z-index: -1;
-    transition: var(--anim-duration-fast) var(--anim-motion-baseline);
+    transition: var(--anim-fast);
     width: 100%;
     height: 100%;
     content: "";

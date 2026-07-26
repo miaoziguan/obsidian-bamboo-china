@@ -25,7 +25,7 @@ body.is-mobile {
 }
 
 .sidebar-toggle-icon-inner {
-  transition: var(--anim-duration-moderate) var(--anim-motion-baseline);
+  transition: var(--anim-default);
 }
 .sidebar-toggle-button .clickable-icon:hover .sidebar-toggle-icon-inner {
   width: 24%;
@@ -134,7 +134,7 @@ body:not(.is-mobile) {
     background-color: transparent;
   }
   .mod-sidedock .workspace-leaf:not([style*="display: none"]) {
-    animation: workspaceLeafIn var(--anim-duration-moderate) var(--anim-motion-baseline) forwards;
+    animation: workspaceLeafIn var(--anim-default) forwards;
   }
 
   // Sidedock padding
@@ -157,7 +157,7 @@ body:not(.is-mobile) {
 .nav-action-button::after,
 .nav-header svg {
   transition:
-    var(--anim-duration-moderate) var(--anim-motion-baseline),
+    var(--anim-default),
     background-color var(--anim-duration-fast);
 }
 
@@ -169,7 +169,7 @@ body:not(.nav-action-center) .mod-sidedock .workspace-leaf-content .nav-header:f
 
 // hover 进出仅动画 opacity，平滑淡入淡出。
 body:not(.nav-action-center) .mod-sidedock .workspace-leaf-content .nav-header:first-child .nav-buttons-container {
-  transition: opacity var(--anim-duration-fast) var(--anim-motion-baseline);
+  transition: opacity var(--anim-fast);
 }
 
 // 左右栏顶部 tab header（面板标签 + 「展开/收起」图标）：默认隐藏，进入对应
@@ -181,7 +181,7 @@ body:not(.is-mobile) {
   .mod-sidedock.mod-right-split .mod-top-right-space .workspace-tab-header-container {
     opacity: 0;
     pointer-events: none;
-    transition: opacity var(--anim-duration-moderate) var(--anim-motion-baseline);
+    transition: opacity var(--anim-default);
   }
   .mod-sidedock.mod-left-split:hover .mod-top-left-space .workspace-tab-header-container,
   .mod-sidedock.mod-right-split:hover .mod-top-right-space .workspace-tab-header-container {
@@ -235,7 +235,7 @@ body:not(.is-mobile) .mod-sidedock.mod-left-split {
 
   .workspace-drawer-vault-switcher,
   .workspace-drawer-vault-actions .clickable-icon {
-    transition: var(--anim-duration-moderate) var(--anim-motion-baseline);
+    transition: var(--anim-default);
     pointer-events: visible;
   }
 

@@ -102,6 +102,12 @@ body,
   --anim-duration-moderate: calc(320ms * var(--anim-speed-modifier));
   --anim-duration-slow: calc(480ms * var(--anim-speed-modifier));
 
+  // Compound animation tokens — combine duration + baseline motion so the
+  // most repeated two-variable patterns collapse to a single var() reference.
+  --anim-default: var(--anim-duration-moderate) var(--anim-motion-baseline);
+  --anim-fast:    var(--anim-duration-fast)     var(--anim-motion-baseline);
+  --anim-slow:    var(--anim-duration-slow)     var(--anim-motion-baseline);
+
   // Named z-index tokens — replace magic numbers so layering stays auditable
   // and consistent across desktop hover-ribbon and mobile surfaces.
   --bc-z-base: 1;               // scrims, drawer header, edge-blur masks
@@ -253,7 +259,7 @@ body:not(.is-mobile) {
     // explicit property instead of the implicit `all` avoids a full-screen
     // flash on theme/workspace load and prevents layout properties from
     // being needlessly animated on resize.
-    transition: background-color var(--anim-duration-moderate) var(--anim-motion-baseline);
+    transition: background-color var(--anim-default);
     align-items: center;
   }
 
@@ -261,11 +267,11 @@ body:not(.is-mobile) {
     background: var(--background-secondary);
   }
   .workspace {
-    transition: background-color var(--anim-duration-moderate) var(--anim-motion-baseline);
+    transition: background-color var(--anim-default);
   }
 
   .workspace-split {
-    transition: background-color var(--anim-duration-moderate) var(--anim-motion-baseline);
+    transition: background-color var(--anim-default);
     background-color: transparent;
   }
 }
