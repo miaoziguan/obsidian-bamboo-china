@@ -6,13 +6,13 @@ id: bamboo-china
 settings:
     - 
         id: bamboo-china-desc
-        description: "竹影 · 宣纸竹青 — 东方意境主题。白纸为心、黛青为框，13 套意境配色让每篇笔记都有自己的氛围。"
+        description: "竹影 · 宣纸竹青 — 东方意境主题。白纸为心、黛青为框，12 套意境配色让每篇笔记都有自己的氛围。"
         type: info-text
         markdown: true
     -
         id: concept-palette
         title: 意境配色
-        description: 在 13 套东方意境配色间切换（胭脂、青绿…）。选「主题原生」不加 class，即竹影·宣纸竹青默认配色。
+        description: 在 12 套东方意境配色间切换（胭脂、青绿…）。选「主题原生」不加 class，即竹影·宣纸竹青默认配色。
         type: class-select
         default: "none"
         options:
@@ -52,9 +52,6 @@ settings:
             - label: 松花 · 橄榄新绿
               value: cn-songhua
               description: "橄榄绿强调 · 绿灰侧栏 · 松色画布 — 自然朴实"
-            - label: 藕荷 · 浅紫含烟
-              value: cn-ouhe
-              description: "浅紫强调 · 藕灰侧栏 · 含烟画布 — 淡雅朦胧"
     -
         id: hover-ribbon-off
         title: 禁用悬停功能区
@@ -219,11 +216,6 @@ settings:
         id: dynamic-type-off
         title: 标准字号
         description: 关闭操作系统动态字号。
-        type: class-toggle
-    -
-        id: accent-high-contrast
-        title: 高对比强调色
-        description: 把链接与强调色加深到 WCAG AA（4.5:1），提升可读性（默认关，开启后牺牲部分意境签名色）。
         type: class-toggle
     -
         id: font-ui-modifier
