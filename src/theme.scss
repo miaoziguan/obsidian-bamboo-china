@@ -6,7 +6,6 @@
 @use "app/prompt.scss";
 @use "app/settings.scss";
 @use "app/status-bar.scss";
-@use "app/empty-state.scss";
 @use "app/mobile.scss";
 @use "app/core-plugins.scss";
 @use "app/style-settings.scss";
@@ -28,12 +27,10 @@
 @use "elements/bamboo-china-prompt.scss";
 @use "elements/bamboo-china-mobile.scss";
 
-@use "features/block-width.scss";
 @use "features/hover-ribbon.scss";
 @use "features/image-zoom.scss";
 @use "features/helpers-tables.scss";
 @use "features/image-filters.scss";
-@use "features/focus-mode.scss";
 @use "features/file-explorer.scss";
 
 @use "color-schemes/bamboo-china.scss" as color-bamboo-china;
