@@ -1,0 +1,45 @@
+name: Release
+
+# Auto-publish a GitHub Release (with theme assets) whenever a version tag
+# like `3.2.16` (pure semver, no `v` prefix) is pushed. This keeps the
+# manifest version in sync with a downloadable release so the Obsidian
+# community-theme checker can scan & distribute it without a manual step.
+on:
+  push:
+    tags:
+      - "*.*.*"
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+
+      - name: Build theme
+        run: npm run build
+
+      - name: Build-sync guard (theme.css committed == SCSS built)
+        run: node scripts/verify_build.mjs
+
+      - name: Publish GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            theme.css
+            manifest.json
+            image-1.png
+            README.md
+            LICENSE
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
