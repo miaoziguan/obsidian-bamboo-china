@@ -6,22 +6,19 @@ id: bamboo-china
 settings:
     - 
         id: bamboo-china-desc
-        description: "竹影 · 宣纸竹青 — 东方意境主题。白纸为心、黛青为框，15 套意境配色让每篇笔记都有自己的氛围。"
+        description: "竹影 · 宣纸竹青 — 东方意境主题。白纸为心、黛青为框，14 套意境配色让每篇笔记都有自己的氛围。"
         type: info-text
         markdown: true
     -
         id: concept-palette
         title: 意境配色
-        description: 在 15 套东方意境配色间切换（墨夜、胭脂、青绿…）。选「主题原生」不加 class，即竹影·宣纸竹青默认配色。
+        description: 在 14 套东方意境配色间切换（胭脂、青绿…）。选「主题原生」不加 class，即竹影·宣纸竹青默认配色。
         type: class-select
         default: "none"
         options:
             - label: 竹影 · 宣纸竹青（主题原生）
               value: "none"
               description: "竹青强调 · 宣纸白画布 · 本色侧栏 — 克制的原点"
-            - label: 墨夜 · 墨黑月白
-              value: cn-moye
-              description: "靛蓝强调 · 月白侧栏 · 墨黑画布 — 深邃冷静"
             - label: 胭脂 · 米色朱砂
               value: cn-yanzhi
               description: "朱砂红强调 · 米色侧栏 · 暖纸画布 — 温润古典"
