@@ -195,7 +195,7 @@ body :is(
 }
 
 .theme-light {
-  --workspace-background-translucent: rgb(from var(--background-secondary) r g b / var(--translucent-light-opacity));
+  --workspace-background-translucent: color-mix(in srgb, var(--background-secondary) calc(var(--translucent-light-opacity) * 100%), transparent);
 
   --color-red-rgb: 254, 112, 112;
   --color-orange-rgb: 242, 154, 100;
@@ -218,7 +218,7 @@ body :is(
   --code-value: #a626a4;
 }
 .theme-dark {
-  --workspace-background-translucent: rgb(from var(--background-secondary) r g b / var(--translucent-dark-opacity));
+  --workspace-background-translucent: color-mix(in srgb, var(--background-secondary) calc(var(--translucent-dark-opacity) * 100%), transparent);
 
   --color-red-rgb: 217, 90, 95;
   --color-orange-rgb: 219, 134, 80;
@@ -408,11 +408,9 @@ body.reduce-motion {
 
 // Hide scrollbar (default)
 body {
-  scrollbar-width: none;
 }
 body * {
   -ms-overflow-style: none;
-  scrollbar-width: none;
 }
 // ── Semantic colour overrides (native Obsidian rainbow → mood-driven) ─────
 // Obsidian's --color-accent and --color-{red…pink} are fixed colours by

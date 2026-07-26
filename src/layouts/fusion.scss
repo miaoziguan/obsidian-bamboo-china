@@ -32,7 +32,7 @@ body:not(.is-phone) {
 
   &:not(.is-popout-window) .workspace-tabs:not(.mod-stacked) .mod-root {
     .workspace-tab-container {
-      background-color: rgba(from var(--background-primary) r g b / 75%);
+      background-color: color-mix(in srgb, var(--background-primary) 75%, transparent);
     }
 
     .view-header,
@@ -75,7 +75,7 @@ body:not(.is-phone) {
     }
 
     .workspace:is(.is-left-sidedock-open, .is-right-sidedock-open) .mod-root .workspace-tabs:not(.mod-stacked) .workspace-tab-header.is-active {
-      background-color: rgba(from var(--background-primary) r g b / 75%);
+      background-color: color-mix(in srgb, var(--background-primary) 75%, transparent);
       box-shadow: var(--shadow-tab);
     }
   }

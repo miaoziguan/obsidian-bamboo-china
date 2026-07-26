@@ -1,7 +1,7 @@
 
 body {
   --background-modifier-message: var(--modal-background);
-  --modal-background: rgb(from var(--background-secondary) r g b / 75%);
+  --modal-background: color-mix(in srgb, var(--background-secondary) 75%, transparent);
 
   &.is-translucent {
     --modal-background: var(--background-primary);

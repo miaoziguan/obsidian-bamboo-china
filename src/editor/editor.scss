@@ -220,7 +220,7 @@
   .markdown-reading-view mark,
   .markdown-source-view mark,
   .markdown-rendered mark {
-    box-decoration-break: clone;
+
     border-radius: var(--radius-s);
     padding: 2px 4px;
     color: var(--text-highlight, var(--text-normal));
@@ -228,7 +228,7 @@
   }
 
   .cm-s-obsidian span.cm-highlight {
-    box-decoration-break: clone;
+
     padding-block: 2px;
   }
   .cm-line .cm-highlight:nth-child(1 of .cm-highlight) {
