@@ -75,6 +75,10 @@ versions.json        版本映射
 
 构建：`npm run build`（生成 mood token → 编译压缩 CSS → 校验 mood 一致性）。
 
+## 基于 / 鸣谢
+
+本主题派生自 [Cupertino](https://github.com/aaaaalexis/obsidian-cupertino) 主题（作者 **aaaaalexis**，基于 MIT 许可证）。原主题的版权声明随附于 [LICENSE](LICENSE)。
+
 ## 许可
 
-[MIT](LICENSE) © 羽鳞君
+[MIT](LICENSE) © 2025 aaaaalexis, © 2026 羽鳞君
