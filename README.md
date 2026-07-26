@@ -32,21 +32,11 @@ Bamboo China 是一套原生、克制的 Obsidian 主题。编辑器画布保持
 
 ## 安装
 
-### 方式一：社区主题（推荐）
-
 主题已提交至 Obsidian 官方社区主题列表。在 Obsidian 中：
 
 1. 设置 → 外观 → 主题 → 管理 → 社区主题浏览
 2. 搜索 **Bamboo China**
 3. 点击「使用」，并在「Style Settings」中按需微调
-
-> 若暂未出现在列表中，可使用下方的 BRAT 方式先行体验。
-
-### 方式二：BRAT（开发者 / 抢先体验）
-
-1. 安装 [BRAT](https://github.com/TfTHacker/obsidian42-brat) 插件
-2. 命令面板 → `BRAT: Add a theme for testing`
-3. 填入仓库地址：`miaoziguan/obsidian-bamboo-china`
 
 ## 自定义
 
