@@ -144,16 +144,7 @@
     color: var(--text-muted);
   }
 
-  // Dataview
-  .dataview .inline-field-standalone-value,
-  .dataview.inline-field-key,
-  .dataview.inline-field-value {
-    font-family: var(--font-text);
-    font-size: var(--font-smaller);
-    background: transparent;
-    color: var(--text-faint);
-    padding-inline: 2px;
-  }
+
 
   // Embeds
   .embed-strict {

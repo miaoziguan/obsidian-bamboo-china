@@ -122,7 +122,6 @@
     text-align: var(--table-text-align-body);
   }
 
-  .dataview,
   .block-language-datacorejsx {
     &.table-view-table {
       &::before {
@@ -143,13 +142,6 @@
 
     &.table-view-table > tbody > tr:not(:only-child) > td {
       max-width: 20em;
-    }
-
-    &.dataview-error-box {
-      border: none;
-      border-radius: var(--radius-s);
-      background-color: var(--background-secondary);
-      min-height: 80px;
     }
 
     .dc-paging-control-page {

@@ -24,12 +24,8 @@ body:not(.block-width-off) {
   // Table
   div:is(.table-wide, .table-max, .table-100) {
     .markdown-preview-sizer > .el-table,
-    .markdown-preview-sizer > .el-pre .block-language-dataview,
-    .markdown-preview-sizer > .el-pre .block-language-dataviewjs,
     .markdown-preview-sizer > .el-pre .block-language-datacorejsx,
     .cm-content > .cm-table-widget,
-    .cm-content > .cm-lang-dataview,
-    .cm-content > .cm-lang-dataviewjs,
     .cm-content > .cm-lang-datacorejsx {
       max-width: var(--table-line-max-width);
       width: var(--table-line-width);
