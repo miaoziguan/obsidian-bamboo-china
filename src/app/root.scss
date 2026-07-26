@@ -355,9 +355,9 @@ body.styled-scrollbars div:not(:hover)::-webkit-scrollbar-thumb {
 
 // Style Settings
 body.reduce-motion {
-  --anim-speed-modifier: 0 !important;
-  --anim-speed-entrance: 0 !important;
-  --anim-speed-exit: 0 !important;
+  --anim-speed-modifier: 0;
+  --anim-speed-entrance: 0;
+  --anim-speed-exit: 0;
 
   &.is-mobile {
     .mobile-tab-switcher,
@@ -365,7 +365,7 @@ body.reduce-motion {
     .suggestion-bg,
     .modal,
     .modal-bg {
-      transition: none !important;
+      transition: none;
     }
   }
 }
@@ -376,9 +376,9 @@ body.reduce-motion {
 // reset catches any hardcoded transition/animation not built on the token.
 @media (prefers-reduced-motion: reduce) {
   body {
-    --anim-speed-modifier: 0 !important;
-    --anim-speed-entrance: 0 !important;
-    --anim-speed-exit: 0 !important;
+    --anim-speed-modifier: 0;
+    --anim-speed-entrance: 0;
+    --anim-speed-exit: 0;
   }
   *,
   *::before,
@@ -477,7 +477,7 @@ body.high-contrast-code .markdown-rendered pre {
   // declaration, so the triple `.obsidian-app` class repeat that was here only
   // inflated specificity for no reason. A single, readable selector is enough.
   body:not(.is-mobile) {
-    --modal-background: var(--background-secondary) !important;
+    --modal-background: var(--background-secondary);
   }
   body:not(.is-mobile):not(.is-popout-window) .mod-root::before {
     content: "Bamboo China requires a newer Obsidian installer. Download and run the latest installer from obsidian.md to remove this message.";

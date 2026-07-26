@@ -125,8 +125,8 @@ body:not(.is-mobile):not(.hover-ribbon-off) {
   @media (prefers-reduced-motion: reduce) {
     .workspace-ribbon.mod-left,
     .workspace-ribbon.mod-left:hover {
-      transform: none !important;
-      transition: opacity 120ms var(--anim-motion-baseline) !important;
+      transform: none;
+      transition: opacity 120ms var(--anim-motion-baseline);
     }
   }
 
