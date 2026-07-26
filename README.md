@@ -67,3 +67,9 @@ versions.json        版本映射
 ## 许可
 
 [MIT](LICENSE) © 2025 aaaaalexis, © 2026 羽鳞君
+
+---
+
+## English
+
+Bamboo China (竹林中国) is a native, minimal Obsidian theme built around the language of ink and paper. The editor canvas keeps a clean "rice-paper" white, while sidebars and panels carry the mood-tinted frame. It ships 16 named Eastern mood palettes (Ink Night, Rouge, Verdant…) on both light and dark bases, adaptive macOS Cupertino details (traffic-light controls, frameless layout), 30+ Style Settings toggles, and WCAG-validated contrast. It is a derivative work based on the Cupertino theme by aaaaalexis, licensed under MIT.
