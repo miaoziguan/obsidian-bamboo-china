@@ -80,8 +80,7 @@ body:not(.is-phone) {
         display: flex;
         flex-wrap: wrap;
         align-items: center;
-        column-gap: 8px;
-        row-gap: 10px;
+        gap: 10px 8px;
         height: auto;
         padding: var(--space-14) 52px var(--space-14) 16px; // right padding clears the close button
         width: 100%;
