@@ -21,7 +21,7 @@
 
 ## 任务清单
 1. 删除 `README.md`（用户要求，暂不重写）。
-2. `LICENSE.txt` → `LICENSE`；补回上游 Cupertino（kepano, MIT）版权声明与衍生说明，与作者声明并列。修复 README 坏链（README 已删，故只需确保 LICENSE 文件名合规）。
+2. `LICENSE.txt` → `LICENSE`；补回上游 Cupertino（aaaaalexis, MIT）版权声明与衍生说明，与作者声明并列。修复 README 坏链（README 已删，故只需确保 LICENSE 文件名合规）。
 3. `versions.json`：删除非法版本号 `"3.2.1.0"`（四段非 semver）。
 4. `manifest.json`：补充 `authorUrl: "https://github.com/miaoziguan"`（由 git 作者邮箱推导，真实存在）。
 5. `scripts/check-palette-contrast.mjs`：正则改为匹配 `body.cn-NAME.theme-light(:not(.is-mobile))?`；解析器支持 `rgb/var/hex`（意境 accent 与背景均为此类，无需解析 color-mix）；按意境合并 accent+背景算 WCAG 对比度；解析失败报错而非静默通过。
