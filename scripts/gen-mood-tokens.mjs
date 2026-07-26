@@ -144,24 +144,32 @@ for (const name of names) {
     const sel = variantSelector(name, v);
     if (!sel) continue;
     css += `${sel} {\n`;
-    for (const d of moods[name][v]) css += `  ${fixRgbFormat(d)};\n`;
+    const emitted = new Set();
+    for (const d of moods[name][v]) {
+      const line = `  ${fixRgbFormat(d)};\n`;
+      // Track variable name to skip S1/S2 re-emission.
+      const varName = d.match(/^--([\w-]+):/)?.[1];
+      if (varName) emitted.add(varName);
+      css += line;
+    }
     // S1 cross-skin anchors: so Material/Adwaita/Fluent can opt into the mood.
+    // Only emit if NOT already in baseline for this block.
     if (v === 'light' || v === 'dark') {
       const accent = tokenVal(moods[name][v], 'interactive-accent');
       const accentHover = tokenVal(moods[name][v], 'interactive-accent-hover');
       const textAccent = tokenVal(moods[name][v], 'text-accent');
-      if (accent) css += `  --mood-accent:${fixRgbFormat(accent)};\n`;
-      if (accentHover) css += `  --mood-accent-hover:${fixRgbFormat(accentHover)};\n`;
-      if (textAccent) css += `  --mood-text-accent:${fixRgbFormat(textAccent)};\n`;
+      if (accent && !emitted.has('mood-accent')) css += `  --mood-accent:${fixRgbFormat(accent)};\n`;
+      if (accentHover && !emitted.has('mood-accent-hover')) css += `  --mood-accent-hover:${fixRgbFormat(accentHover)};\n`;
+      if (textAccent && !emitted.has('mood-text-accent')) css += `  --mood-text-accent:${fixRgbFormat(textAccent)};\n`;
       // S2 bamboo palette bridge → 竹杖芒鞋 plugin picks these up via var() fallback.
       const accentFixed = tokenVal(moods[name][v], 'interactive-accent');
       if (accentFixed) {
         const palette = deriveBambooPalette(fixRgbFormat(accentFixed), v === 'dark');
         if (palette) {
-          css += `  --mood-bamboo-deep:${palette.deep};\n`;
-          css += `  --mood-bamboo:${palette.bamboo};\n`;
-          css += `  --mood-bamboo-light:${palette.light};\n`;
-          css += `  --mood-bamboo-pale:${palette.pale};\n`;
+          if (!emitted.has('mood-bamboo-deep')) css += `  --mood-bamboo-deep:${palette.deep};\n`;
+          if (!emitted.has('mood-bamboo')) css += `  --mood-bamboo:${palette.bamboo};\n`;
+          if (!emitted.has('mood-bamboo-light')) css += `  --mood-bamboo-light:${palette.light};\n`;
+          if (!emitted.has('mood-bamboo-pale')) css += `  --mood-bamboo-pale:${palette.pale};\n`;
         }
       }
     }
