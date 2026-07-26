@@ -95,8 +95,10 @@ body:not(.is-mobile):not(.hover-ribbon-off) {
       box-sizing: border-box;
       text-align: center;
     }
-    .side-dock-actions:has(.side-dock-ribbon-action),
-    .side-dock-settings:has(.side-dock-ribbon-action) {
+    // :not(:empty) means "contains at least one ribbon action" here:
+    // these containers are JS-created with no whitespace text nodes.
+    .side-dock-actions:not(:empty),
+    .side-dock-settings:not(:empty) {
       background-color: color-mix(in srgb, var(--background-primary) 95%, transparent);
       backdrop-filter: blur(20px) saturate(1.5);
       -webkit-backdrop-filter: blur(20px) saturate(1.5);

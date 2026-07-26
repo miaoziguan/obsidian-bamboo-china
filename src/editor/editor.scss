@@ -109,7 +109,9 @@
   }
 
   // Active line
-  body:not(.active-line-off) .view-content > .markdown-source-view .cm-line.cm-active:not(:has(.cm-fold-indicator):hover)::before {
+  // No-:has: the former hover-on-fold-indicator exception is dropped —
+  // the indicator simply stays visible while hovering a foldable line.
+  body:not(.active-line-off) .view-content > .markdown-source-view .cm-line.cm-active::before {
     position: absolute;
     top: 4px;
     bottom: 4px;
@@ -263,14 +265,15 @@
   }
 
   // Image grid
+  // No-:has: `.img-grid` is an explicit per-note opt-in (gallery notes),
+  // so the grid layout applies to every paragraph in such notes instead of
+  // only image-bearing ones. Text paragraphs degrade gracefully (a single
+  // anonymous flex item that still wraps normally).
   .img-grid .markdown-preview-section {
-    .el-p > p:has(> .image-embed):has(span:last-child),
-    .el-p > p:has(> img):not(:has(> :not(img))) {
+    .el-p > p {
       --p-spacing: 4px;
       display: flex;
       gap: var(--img-grid-gap, 4px);
-
-      line-height: 0;
 
       br {
         display: none;

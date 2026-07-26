@@ -51,10 +51,14 @@ body:not(.is-phone) .workspace:is(.is-left-sidedock-open, .is-right-sidedock-ope
 }
 
 body.is-tablet {
-  .workspace-drawer.mod-left.is-pinned + .mod-root:has(+ .workspace-drawer.mod-right:not(.is-pinned)) .workspace-tabs:last-of-type .workspace-tab-container {
+  // No-:has rewrite: pinned drawers keep `is-*-sidedock-open` on the
+  // workspace, so approximate "left pinned + right unpinned" with the
+  // workspace-level open state. Transient overlay drawers are covered by
+  // the overlay itself, so the difference is not visible.
+  .workspace.is-left-sidedock-open:not(.is-right-sidedock-open) .mod-root .workspace-tabs:last-of-type .workspace-tab-container {
     margin-right: 8px;
   }
-  .workspace-drawer.mod-left:not(.is-pinned) + .mod-root:has(+ .workspace-drawer.mod-right.is-pinned) .workspace-tabs:first-of-type .workspace-tab-container {
+  .workspace.is-right-sidedock-open:not(.is-left-sidedock-open) .mod-root .workspace-tabs:first-of-type .workspace-tab-container {
     margin-left: 8px;
   }
 }

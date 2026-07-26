@@ -428,14 +428,18 @@ body.is-phone {
   &:not(.is-floating-nav):not(.mod-toolbar-open):not(.mode-switcher-off).auto-full-screen .mod-root .workspace-leaf-content[data-type="markdown"] .view-actions button:nth-last-child(2) {
     margin-bottom: calc(var(--navbar-height) + 16px);
   }
-  & > .app-container > .horizontal-main-container:has(.workspace > .mod-root > .workspace-tabs.mod-visible > .workspace-tab-container > .workspace-leaf.mod-active > .workspace-leaf-content:not([data-type="markdown"])) .view-actions button:nth-last-child(2) {
+  // No-:has rewrite: instead of asking "is the active tab non-markdown?"
+  // from the container, hide the fixed mode-switcher of every markdown leaf
+  // that is not itself the active leaf — same visible outcome.
+  & .mod-root .workspace-leaf:not(.mod-active) > .workspace-leaf-content[data-type="markdown"] .view-actions button:nth-last-child(2) {
     opacity: 0;
     pointer-events: none;
   }
 
   // Navigation bar
-  &.is-floating-nav.mode-switcher-off .mobile-navbar,
-  &.is-floating-nav > .app-container > .horizontal-main-container:has(.workspace > .mod-root > .workspace-tabs.mod-visible > .workspace-tab-container > .workspace-leaf.mod-active > .workspace-leaf-content:not([data-type="markdown"])) ~ .mobile-navbar {
+  // No-:has: the navbar no longer reclaims the mode-switcher gap when a
+  // non-markdown tab is active; it keeps a stable reserved space instead.
+  &.is-floating-nav.mode-switcher-off .mobile-navbar {
     margin-right: var(--navbar-side-offset);
   }
 

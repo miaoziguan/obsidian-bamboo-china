@@ -168,13 +168,8 @@ body.is-phone {
       color: var(--text-accent);
     }
 
-    .tree-item:has(> .tree-item-self.is-active) {
-      &::before,
-      + .tree-item::before {
-        content: none;
-      }
-    }
-
+    // No-:has: separators adjacent to the active row stay visible — the
+    // active row's own background makes the hairline effectively invisible.
     .tree-item:not(.nav-files-container > div > div:nth-child(2)):not(:last-child:only-child):before {
       position: absolute;
       inset: calc(-1 * (var(--border-width) / 2)) var(--side-padding) auto;

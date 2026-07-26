@@ -46,13 +46,23 @@
     content: "";
   }
 
+  // No-:has rewrite: every quote line carries the bottom cap by default;
+  // a following quote line overlaps it (-16px) with its own square
+  // background, so only the last line of a run shows the cap.
   .HyperMD-quote {
     border: solid var(--blockquote-background-color);
-    border-width: 0 16px 0 16px;
+    border-width: 0 16px 16px 16px;
+    border-end-start-radius: var(--radius-s);
+    border-end-end-radius: var(--radius-s);
     background-color: var(--blockquote-background-color);
     &::before {
       width: 0;
+      border-end-start-radius: var(--radius-s);
+      border-end-end-radius: var(--radius-s);
     }
+  }
+  .cm-sizer > div > div > .HyperMD-quote + .HyperMD-quote {
+    margin-top: -16px;
   }
   .HyperMD-quote:first-child,
   .cm-sizer > div > div > *:not(.HyperMD-quote) + .HyperMD-quote {
@@ -62,16 +72,6 @@
     &::before {
       border-start-start-radius: var(--radius-s);
       border-start-end-radius: var(--radius-s);
-    }
-  }
-  .HyperMD-quote:last-child,
-  .cm-sizer > div > div > .HyperMD-quote:has(+ *:not(.HyperMD-quote)) {
-    border-bottom-width: 16px;
-    border-end-start-radius: var(--radius-s);
-    border-end-end-radius: var(--radius-s);
-    &::before {
-      border-end-start-radius: var(--radius-s);
-      border-end-end-radius: var(--radius-s);
     }
   }
 }

@@ -65,8 +65,17 @@ body:not(.block-width-off) {
   }
 
   // Image
+  // No-:has: in reading view the sizing targets the embeds/images directly
+  // instead of their paragraph; centering falls back to symmetric negative
+  // margins when no explicit offset is set.
   div:is(.img-wide, .img-max, .img-100) {
-    .markdown-preview-sizer > .el-p p:has(img),
+    .markdown-preview-sizer > .el-p .image-embed,
+    .markdown-preview-sizer > .el-p > p > img {
+      display: block;
+      max-width: var(--img-line-max-width);
+      width: var(--img-line-width);
+      margin-inline: var(--img-line-width-offset, calc((100% - var(--img-line-width)) / 2));
+    }
     .markdown-preview-sizer > .el-iframe,
     .cm-content .image-embed {
       max-width: var(--img-line-max-width);

@@ -406,12 +406,10 @@ body.is-phone {
       min-width: fit-content;
       max-width: 0;
     }
-    .modal-title:not(:has(.modal-setting-back-button)) {
-      font-size: 1.5rem;
-      font-weight: calc(var(--font-weight) + var(--bold-modifier));
-      max-width: 100%;
-      padding-left: 20px;
-    }
+    // No-:has: the large-title treatment for top-level pages is dropped —
+    // the back button is a child of .modal-title (titleEl.createDiv), so
+    // its absence cannot be detected without :has. Titles render at the
+    // default size on all pages.
     .modal-setting-back-button {
       inset-inline-start: 8px;
       bottom: unset;
