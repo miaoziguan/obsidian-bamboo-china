@@ -59,11 +59,6 @@ settings:
         type: class-toggle
         default: false
     -
-        id: system-native-font
-        title: 系统原生字体
-        description: 使用系统原生中文字体栈，替代默认的 SF Pro。
-        type: class-toggle
-    -
         id: tab-floating
         title: 左对齐标签页
         type: class-toggle
@@ -104,12 +99,6 @@ settings:
         step: 0.1
         format: ""
     -
-        id: focus-view
-        title: 专注视图
-        description: 两侧边栏折叠时隐藏标签页和标题栏。
-        type: class-toggle
-        addCommand: true
-    -
         id: nav-action-center
         title: 展开面板操作
         type: class-toggle
@@ -134,10 +123,6 @@ settings:
     -
         id: active-line-off
         title: 隐藏活动行高亮
-        type: class-toggle
-    -
-        id: font-variant-off
-        title: 常规字体变体
         type: class-toggle
     -
         id: full-width-media-off
@@ -181,11 +166,6 @@ settings:
         id: reduce-contrast-change
         title: 减少对比度变化
         description: 窗口失焦时减少对比度变化。
-        type: class-toggle
-    -
-        id: high-contrast-code
-        title: 高对比度代码块
-        description: 使用纯色背景替代渐变，提高代码块可读性。
         type: class-toggle
     -
         id: reduce-motion

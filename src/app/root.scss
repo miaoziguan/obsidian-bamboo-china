@@ -455,18 +455,6 @@ body ::-webkit-scrollbar-thumb,
 body::-webkit-scrollbar-track {
   background-color: transparent;
 }
-// System native font (Chinese)
-.system-native-font {
-  --font-interface-theme: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "SF Pro", sans-serif;
-  --font-text-theme: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "SF Pro", -apple-system, sans-serif;
-}
-
-// High contrast code block
-body.high-contrast-code .markdown-rendered pre {
-  background: var(--background-primary-alt);
-  box-shadow: none;
-}
-
 // Highlight link colors
 .theme-light.highlight-links {
   --link-color: #0050b3;

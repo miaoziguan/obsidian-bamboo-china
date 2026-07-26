@@ -44,14 +44,6 @@
     --file-header-border: none;
   }
 
-  body:not(.font-variant-off) .markdown-reading-view,
-  body:not(.font-variant-off) .markdown-source-view {
-    font-feature-settings:
-      "ss01" 1,
-      "ss07" 1,
-      "cv07" 1;
-  }
-
   .workspace-split.mod-root .workspace-tab-container {
     border-radius: var(--radius-center);
     transition: var(--anim-duration-moderate);
