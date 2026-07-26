@@ -17,7 +17,7 @@ body:not(.is-mobile):not(.zoom-off) .markdown-preview-view {
     height: 100%;
     max-height: unset;
     object-fit: contain;
-    mask: none;
+    
     padding: 24px;
     border-radius: var(--radius-s);
     border: none;
@@ -38,7 +38,7 @@ body:not(.is-mobile):not(.zoom-off):is(.zoom-active) .markdown-preview-view {
     height: 100%;
     max-height: unset;
     object-fit: contain;
-    mask: none;
+    
     padding: 24px;
     border-radius: var(--radius-s);
     border: none;

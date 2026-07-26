@@ -309,9 +309,6 @@ body.is-phone {
   }
   .workspace-drawer .workspace-leaf-content .nav-header ~ div:last-child {
     padding-top: 16px;
-
-    // cubic-bezier(0.4, 0, 0.6, 1)
-    mask: linear-gradient(to top, hsla(0, 0%, 0%, 0) 0px, hsla(0, 0%, 0%, 0.013) 5px, hsla(0, 0%, 0%, 0.049) 10px, hsla(0, 0%, 0%, 0.104) 14px, hsla(0, 0%, 0%, 0.175) 18px, hsla(0, 0%, 0%, 0.259) 22px, hsla(0, 0%, 0%, 0.352) 26px, hsla(0, 0%, 0%, 0.45) 30px, hsla(0, 0%, 0%, 0.55) 34px, hsla(0, 0%, 0%, 0.648) 38px, hsla(0, 0%, 0%, 0.741) 42px, hsla(0, 0%, 0%, 0.825) 46px, hsla(0, 0%, 0%, 0.896) 50px, hsla(0, 0%, 0%, 0.951) 54px, hsla(0, 0%, 0%, 0.987) 59px, hsl(0, 0%, 0%) 64px, black calc(100% - 16px), transparent);
   }
   .workspace-drawer-inner {
     padding-top: calc(env(safe-area-inset-top, var(--safe-area-inset-top)) + 32px);
@@ -319,8 +316,6 @@ body.is-phone {
 
   // Editor panel
   .mod-root {
-    mask-image: none;
-
     .view-header {
       top: 0;
       // Promote the hide/show animation to the compositor: translateY is a
@@ -338,9 +333,7 @@ body.is-phone {
       padding: 0;
     }
 
-    .workspace-leaf-content[data-type="markdown"] > .view-content > div {
-      mask-image: var(--view-bottom-fade-mask);
-    }
+
   }
   &:not(.mode-switcher-off) .mod-root {
     .view-action,
@@ -380,12 +373,12 @@ body.is-phone {
     }
     &::before {
       top: 0;
-      mask: linear-gradient(to bottom, black calc(var(--safe-area-inset-top) + (var(--view-header-height) / 2)), transparent);
+      background: linear-gradient(to bottom, black calc(var(--safe-area-inset-top) + (var(--view-header-height) / 2)), transparent);
       height: var(--view-top-spacing-markdown);
     }
     &::after {
       bottom: 0;
-      mask: linear-gradient(to top, black var(--navbar-bottom-offset), transparent);
+      background: linear-gradient(to top, black var(--navbar-bottom-offset), transparent);
       height: var(--view-bottom-spacing);
     }
   }
@@ -395,7 +388,6 @@ body.is-phone {
       pointer-events: none;
     }
     > .view-content > div {
-      mask-image: none;
     }
     > .view-content::after {
       content: none;
@@ -558,9 +550,7 @@ body.is-tablet {
       margin-left: 12px;
     }
 
-    .workspace-leaf-content .nav-header ~ div:last-child {
-      mask: linear-gradient(to bottom, transparent, black 16px, black calc(100% - 16px), transparent);
-    }
+
 
     .workspace-drawer-tab-options-list {
       margin: var(--touch-size-l) 0 0;

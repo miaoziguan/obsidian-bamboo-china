@@ -327,24 +327,24 @@ body:not(.mod-macos):not(.is-mobile) {
     }
 
     svg {
-      -webkit-mask-size: 100% 100%;
-      background-color: currentcolor;
+      background-size: 100% 100%;
+      background-color: transparent;
       width: auto;
       height: 10px;
     }
   }
 
   .titlebar-button.mod-minimize svg {
-    -webkit-mask-image: mx.$win-min-mac;
+    background-image: mx.$win-min-mac;
   }
   .titlebar-button.mod-maximize svg {
-    -webkit-mask-image: mx.$win-max-mac;
+    background-image: mx.$win-max-mac;
   }
   .titlebar-button.mod-close svg {
-    -webkit-mask-image: mx.$win-close-mac;
+    background-image: mx.$win-close-mac;
   }
   &.is-maximized .titlebar-button.mod-maximize svg {
-    -webkit-mask-image: mx.$win-max-mac-maximized;
+    background-image: mx.$win-max-mac-maximized;
   }
 }
 

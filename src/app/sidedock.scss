@@ -207,7 +207,14 @@ body:not(.is-mobile) .mod-sidedock.mod-left-split {
     width: auto;
 
     &:hover ~ .workspace-tabs:last-child {
-      mask: linear-gradient(to top, transparent, black 64px);
+      position: relative;
+    }
+    &:hover ~ .workspace-tabs:last-child::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: linear-gradient(to top, var(--background-primary) 0, transparent 64px);
     }
 
     .workspace-drawer-vault-switcher.has-active-menu {
