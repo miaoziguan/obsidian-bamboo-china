@@ -3,8 +3,7 @@ body {
   .prompt-input-container {
     align-items: center;
   }
-  .prompt-input-container::before,
-  .omnisearch-input-field::before {
+  .prompt-input-container::before {
     position: absolute;
     left: var(--side-padding);
     -webkit-mask-position: 50% 50%;

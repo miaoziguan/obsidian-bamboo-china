@@ -82,8 +82,7 @@ li[data-task="/"] > p > input:checked {
 .task-list-item:not([data-task]) input[type="checkbox"],
 .checked:after,
 div:checked::after,
-input[type="checkbox"]:checked::after,
-.tasks-modal-checkbox:checked::after {
+input[type="checkbox"]:checked::after {
   -webkit-mask-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' fill='none' viewBox='0 0 20 20'%3e%3cpath fill='black' d='m12.998 6.084-4.17 6.7-1.982-2.56c-.244-.322-.46-.41-.742-.41a.788.788 0 0 0-.782.801c0 .225.088.44.235.635l2.45 3.008c.255.342.528.478.86.478.332 0 .615-.156.82-.478l4.59-7.227c.118-.205.245-.43.245-.644 0-.46-.4-.752-.83-.752-.255 0-.508.156-.694.449Z'/%3e%3c/svg%3e");
 }
 

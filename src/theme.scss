@@ -9,7 +9,6 @@
 @use "app/empty-state.scss";
 @use "app/mobile.scss";
 @use "app/core-plugins.scss";
-@use "app/community-plugins.scss";
 @use "app/style-settings.scss";
 
 @use "editor/editor.scss";
@@ -17,7 +16,6 @@
 @use "editor/blockquote.scss";
 @use "editor/callout.scss";
 @use "editor/table.scss";
-@use "editor/bases.scss";
 @use "editor/code.scss";
 
 @use "layouts/bamboo-china.scss" as layout-bamboo-china;

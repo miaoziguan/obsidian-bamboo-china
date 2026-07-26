@@ -122,30 +122,5 @@
     text-align: var(--table-text-align-body);
   }
 
-  .block-language-datacorejsx {
-    &.table-view-table {
-      &::before {
-        border: none;
-      }
 
-      tr:first-child > td {
-        border-top: none;
-      }
-    }
-
-    &.table-view-table > thead > tr > th,
-    .datacore-table-header-cell {
-      border-bottom: none;
-      font-weight: var(--table-header-weight);
-      font-size: var(--table-header-size);
-    }
-
-    &.table-view-table > tbody > tr:not(:only-child) > td {
-      max-width: 20em;
-    }
-
-    .dc-paging-control-page {
-      padding: 0;
-    }
-  }
 }

@@ -21,7 +21,7 @@
   --table-column-alt-background: var(--background-primary);
 }
 
-.table-tabular table:not(.calendar) {
+.table-tabular table {
   font-variant-numeric: tabular-nums;
 }
 

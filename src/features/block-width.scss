@@ -24,9 +24,7 @@ body:not(.block-width-off) {
   // Table
   div:is(.table-wide, .table-max, .table-100) {
     .markdown-preview-sizer > .el-table,
-    .markdown-preview-sizer > .el-pre .block-language-datacorejsx,
-    .cm-content > .cm-table-widget,
-    .cm-content > .cm-lang-datacorejsx {
+    .cm-content > .cm-table-widget {
       max-width: var(--table-line-max-width);
       width: var(--table-line-width);
       justify-self: center;
@@ -64,32 +62,6 @@ body:not(.block-width-off) {
         border-block-end-width: 0;
       }
     }
-  }
-
-  // Bases
-  div:is(.bases-wide, .bases-max, .bases-100) {
-    .markdown-preview-sizer > .el-pre .bases-embed,
-    .markdown-preview-sizer > .el-p .bases-embed,
-    .cm-content > .bases-embed,
-    .cm-content > .cm-lang-base {
-      max-width: var(--bases-line-max-width);
-      width: var(--bases-line-width);
-      justify-self: center;
-      margin-inline: var(--bases-line-width-offset);
-    }
-  }
-  .bases-wide {
-    --bases-line-max-width: var(--block-width-max);
-    --bases-line-width: var(--block-width-wide);
-  }
-  .bases-max {
-    --bases-line-max-width: var(--block-width-max);
-    --bases-line-width: var(--block-width-max);
-  }
-  .bases-100 {
-    --bases-line-max-width: 100cqw;
-    --bases-line-width: 100cqw;
-    --bases-line-width-offset: var(--block-width-offset);
   }
 
   // Image
