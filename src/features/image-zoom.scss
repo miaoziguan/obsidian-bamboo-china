@@ -1,13 +1,13 @@
 body:not(.is-mobile):not(.zoom-off) .markdown-preview-view {
-  .image-embed:not(.canvas-node-content, [alt="banner"]) img,
-  img[referrerpolicy="no-referrer"]:not([alt="banner"]) {
+  .image-embed:not(.canvas-node-content) img,
+  img[referrerpolicy="no-referrer"] {
     cursor: zoom-in;
     transition: transform var(--anim-duration-moderate) var(--anim-motion-baseline);
   }
 
   // CSS-only fallback: :active zoom (press and hold).
-  .image-embed:not(.canvas-node-content, [alt="banner"]):active img,
-  img[referrerpolicy="no-referrer"]:not([alt="banner"]):active {
+  .image-embed:not(.canvas-node-content):active img,
+  img[referrerpolicy="no-referrer"]:active {
     position: fixed;
     z-index: var(--z-overlay);
     cursor: zoom-out;
@@ -27,8 +27,8 @@ body:not(.is-mobile):not(.zoom-off) .markdown-preview-view {
 
 // Enhanced zoom: click-toggled via body.zoom-active class.
 body:not(.is-mobile):not(.zoom-off):is(.zoom-active) .markdown-preview-view {
-  .image-embed:not(.canvas-node-content, [alt="banner"]) img,
-  img[referrerpolicy="no-referrer"]:not([alt="banner"]) {
+  .image-embed:not(.canvas-node-content) img,
+  img[referrerpolicy="no-referrer"] {
     cursor: zoom-out;
     position: fixed;
     z-index: var(--z-overlay);

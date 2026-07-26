@@ -253,13 +253,13 @@
     .image-embed:not([width]) > .image-wrapper,
     iframe,
     video,
-    img:not([width], .cm-widgetBuffer, .link-favicon, .emoji, [alt="banner"]) {
+    img:not([width], .cm-widgetBuffer, .link-favicon, .emoji) {
       width: 100%;
       padding: 0;
     }
     iframe,
     video,
-    img:not([width], .cm-widgetBuffer, .link-favicon, .emoji, [alt="banner"]) {
+    img:not([width], .cm-widgetBuffer, .link-favicon, .emoji) {
       background: var(--background-primary-alt);
       max-height: 75vh;
       object-fit: contain;

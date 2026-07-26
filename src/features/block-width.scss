@@ -120,8 +120,8 @@ body:not(.block-width-off) {
     --img-line-width: 100cqw;
     --img-line-width-offset: var(--block-width-offset);
 
-    .markdown-preview-sizer img:not([alt="banner"]),
-    .cm-content img:not([alt="banner"]) {
+    .markdown-preview-sizer img,
+    .cm-content img {
       border-radius: 0;
     }
   }

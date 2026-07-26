@@ -275,22 +275,6 @@ body.is-mobile .workspace-drawer .novel-word-count--active {
   width: 100%;
 }
 
-// Pixel Banner https://github.com/jparkerweb/pixel-banner
-body:not(.is-phone) .pixel-banner {
-  > .markdown-source-view > .cm-editor:first-child .pixel-banner-image,
-  > .markdown-reading-view > .markdown-preview-view:first-child > .pixel-banner-image {
-    top: var(--view-header-height, var(--header-height));
-  }
-}
-body.is-phone.is-mobile .pixel-banner {
-  .select-image-icon {
-    display: none;
-  }
-  .pixel-banner-image {
-    top: var(--view-top-spacing-markdown);
-  }
-}
-
 // Kanban https://github.com/mgmeyers/obsidian-kanban
 body.is-mobile .kanban-plugin__item,
 body.is-mobile .kanban-plugin__item-input-wrapper {
