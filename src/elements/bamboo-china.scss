@@ -360,7 +360,7 @@ body {
     opacity: 0;
   }
 
-  &:not(.mode-switcher-off) .mod-root .workspace-leaf-content[data-type="markdown"][data-mode="source"] .view-header .view-actions button:nth-last-child(2) {
+  .mod-root .workspace-leaf-content[data-type="markdown"][data-mode="source"] .view-header .view-actions button:nth-last-child(2) {
     background-color: color-mix(in srgb, var(--interactive-accent) 95%, transparent);
     color: color-mix(in oklch, var(--interactive-accent) 12%, white);
     box-shadow: var(--shadow-xs);

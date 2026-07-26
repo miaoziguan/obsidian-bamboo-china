@@ -335,7 +335,7 @@ body.is-phone {
 
 
   }
-  &:not(.mode-switcher-off) .mod-root {
+  & .mod-root {
     .view-action,
     .view-actions {
       backdrop-filter: none;
@@ -349,7 +349,7 @@ body.is-phone {
       transform: translateY(-32px);
     }
     .mobile-navbar,
-    &:not(.mode-switcher-off) .mod-root .workspace-leaf-content[data-type="markdown"] .view-header .view-actions button:nth-last-child(2) {
+    & .mod-root .workspace-leaf-content[data-type="markdown"] .view-header .view-actions button:nth-last-child(2) {
       transform: none;
       margin-bottom: 0;
     }
@@ -395,7 +395,7 @@ body.is-phone {
   }
 
   // Mode Switcher
-  &:not(.mode-switcher-off) .mod-root .workspace-leaf-content[data-type="markdown"] .view-actions button:nth-last-child(2) {
+  & .mod-root .workspace-leaf-content[data-type="markdown"] .view-actions button:nth-last-child(2) {
     position: fixed;
     transition:
       background-color var(--anim-duration-moderate),
@@ -415,17 +415,17 @@ body.is-phone {
     background-color: var(--background-secondary);
     border: var(--border-width) solid var(--background-modifier-border);
   }
-  &.mod-toolbar-open:not(.mode-switcher-off) .mod-root .workspace-leaf-content[data-type="markdown"] .view-actions button:nth-last-child(2) {
+  &.mod-toolbar-open .mod-root .workspace-leaf-content[data-type="markdown"] .view-actions button:nth-last-child(2) {
     width: var(--touch-size-m);
     height: var(--touch-size-m);
     margin-right: var(--keyboard-spacing);
     margin-bottom: var(--keyboard-spacing);
   }
-  &:not(.is-floating-nav):not(.mod-toolbar-open):not(.mode-switcher-off) .mod-root .workspace-leaf-content[data-type="markdown"] .view-actions button:nth-last-child(2) {
+  &:not(.is-floating-nav):not(.mod-toolbar-open) .mod-root .workspace-leaf-content[data-type="markdown"] .view-actions button:nth-last-child(2) {
     margin-right: 16px;
     margin-bottom: 16px;
   }
-  &:not(.is-floating-nav):not(.mod-toolbar-open):not(.mode-switcher-off).auto-full-screen .mod-root .workspace-leaf-content[data-type="markdown"] .view-actions button:nth-last-child(2) {
+  &:not(.is-floating-nav):not(.mod-toolbar-open).auto-full-screen .mod-root .workspace-leaf-content[data-type="markdown"] .view-actions button:nth-last-child(2) {
     margin-bottom: calc(var(--navbar-height) + 16px);
   }
   // No-:has rewrite: instead of asking "is the active tab non-markdown?"
@@ -434,13 +434,6 @@ body.is-phone {
   & .mod-root .workspace-leaf:not(.mod-active) > .workspace-leaf-content[data-type="markdown"] .view-actions button:nth-last-child(2) {
     opacity: 0;
     pointer-events: none;
-  }
-
-  // Navigation bar
-  // No-:has: the navbar no longer reclaims the mode-switcher gap when a
-  // non-markdown tab is active; it keeps a stable reserved space instead.
-  &.is-floating-nav.mode-switcher-off .mobile-navbar {
-    margin-right: var(--navbar-side-offset);
   }
 
   &.is-floating-nav .mobile-navbar {
@@ -474,11 +467,6 @@ body.is-phone {
     border: none;
     background-color: var(--background-primary);
     transition: background-color var(--anim-duration-moderate);
-  }
-
-  // Toolbar
-  &.mode-switcher-off.mod-toolbar-open .mobile-toolbar {
-    padding-right: var(--keyboard-spacing);
   }
 
   &:not(.AT-row, .AT-multirow, .AT-column) {
