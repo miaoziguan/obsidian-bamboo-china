@@ -5,7 +5,7 @@ body:not(.is-mobile) {
   --shadow-surface: 0 0 0 1px var(--background-modifier-hover);
   --tab-outline-width: 1px;
 
-  &:not(.is-focused):not(.reduce-contrast-change) {
+  &:not(.is-focused) {
     --workspace-background-translucent: var(--background-secondary);
     --tab-outline-color: transparent;
 
