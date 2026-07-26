@@ -10,3 +10,5 @@ playwright-report/
 .env
 # CodeBuddy local project data (never commit)
 .codebuddy/
+# Workbuddy local agent memory (never commit)
+.workbuddy/
