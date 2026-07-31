@@ -35,7 +35,7 @@
 
     .callout-title-inner {
       --p-spacing: 0;
-      color: color-mix(in srgb, rgb(var(--callout-color)), var(--text-normal) 25%);
+      color: color-mix(in srgb, var(--callout-color), var(--text-normal) 25%);
     }
 
     .callout-fold {
@@ -55,7 +55,7 @@
   }
 
   .callout:not([data-callout]) {
-    --callout-color: var(--color-accent);
+    --callout-color: rgb(var(--color-accent-rgb));
     background-color: color-mix(in srgb, var(--color-accent) 15%, transparent);
     border-color: color-mix(in srgb, var(--color-accent) var(--callout-border-opacity), transparent);
 
