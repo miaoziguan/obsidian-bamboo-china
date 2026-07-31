@@ -463,21 +463,11 @@ body.is-tablet {
 
 // Obsidian 1.13 paints each setting row as a white card on top of the content
 // area. Strip those cards and replace the visual rhythm with a divider line
-// between rows + a subtle hover background. Targets the new declarative
-// Settings DOM; old `.setting-item` (legacy plugin Setting API) keeps its own
-// container styles defined above.
-//
-// `.setting-row` is the most-likely inner row class; the other names are
-// belt-and-suspenders fallbacks. None of these selectors are destructive —
-// they only override background / border, leaving Obsidian's layout intact.
+// between rows + a subtle hover background. The new declarative Settings still
+// render each row as a `.setting-item` (the legacy Setting API container), so
+// we target that known class directly rather than guessing new names.
 body:not(.is-phone) .mod-settings {
-  .setting-row,
-  .setting-card,
-  .setting-entry,
-  .setting-block,
-  .settings-row,
-  [class*="setting-row"],
-  [class*="setting-card"] {
+  .setting-item {
     background-color: transparent !important;
     border: none !important;
     box-shadow: none !important;
@@ -488,9 +478,7 @@ body:not(.is-phone) .mod-settings {
   }
 
   // Group dividers between rows.
-  .setting-row + .setting-row,
-  .setting-card + .setting-card,
-  .setting-entry + .setting-entry {
+  .setting-item + .setting-item {
     border-top: var(--divider-width) solid var(--background-modifier-border) !important;
   }
 }
