@@ -461,13 +461,31 @@ body.is-tablet {
   }
 }
 
-// Obsidian 1.13 paints each setting row as a white card on top of the content
-// area. Strip those cards and replace the visual rhythm with a divider line
-// between rows + a subtle hover background. The new declarative Settings still
-// render each row as a `.setting-item` (the legacy Setting API container), so
-// we target that known class directly rather than guessing new names.
+// Obsidian 1.13 paints every setting row AND installed-plugin card as a
+// white card. Strip those cards and replace the visual rhythm with dividers
+// between rows + a subtle hover background.
+//
+// `.setting-item` is kept for the legacy plugin Setting API path. The wider
+// belt covers 1.13's new declarative DOM — names are educated guesses; any
+// match strips the white card. None of these selectors alter layout, only
+// background / border, so an unhit guess is harmless dead code.
 body:not(.is-phone) .mod-settings {
-  .setting-item {
+  .setting-item,
+  .setting-row,
+  .setting-card,
+  .setting-entry,
+  .setting-block,
+  .settings-row,
+  .installed-plugin,
+  .installed-plugin-container,
+  .installed-plugins-container,
+  .plugin-card,
+  .plugin-row,
+  .plugin-entry,
+  [class*="installed-plugin"],
+  [class*="setting-row"],
+  [class*="setting-card"],
+  [class*="plugin-card"] {
     background-color: transparent !important;
     border: none !important;
     box-shadow: none !important;
@@ -477,8 +495,13 @@ body:not(.is-phone) .mod-settings {
     }
   }
 
-  // Group dividers between rows.
-  .setting-item + .setting-item {
+  // Group dividers between adjacent rows / cards.
+  .setting-item + .setting-item,
+  .setting-row + .setting-row,
+  .setting-card + .setting-card,
+  .setting-entry + .setting-entry,
+  .installed-plugin + .installed-plugin,
+  .plugin-card + .plugin-card {
     border-top: var(--divider-width) solid var(--background-modifier-border) !important;
   }
 }
