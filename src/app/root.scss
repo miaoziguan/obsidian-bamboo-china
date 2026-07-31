@@ -44,8 +44,10 @@ body,
   --bc-focus-ring-offset: 2px;
   --bc-focus-ring-style: solid;
 
-  --titlebar-background: transparent;
-  --titlebar-background-focused: transparent;
+  // Title bar uses the frame color so the 1.13 standalone Settings window
+  // (and any frameless window) doesn't fall back to Obsidian's default black.
+  --titlebar-background: var(--background-secondary);
+  --titlebar-background-focused: var(--background-secondary);
 
   --divider-color-hover: var(--color-base-50);
 
