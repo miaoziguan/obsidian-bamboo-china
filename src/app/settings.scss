@@ -443,4 +443,13 @@ body.is-tablet {
   }
 }
 
+// Force the settings modal titlebar to the frame color on every platform.
+// Obsidian 1.13 changed the modal/workspace window structure so the old
+// `body.is-frameless .titlebar` rule no longer reaches the Settings window's
+// titlebar, leaving it on the default (黑底) background. This pins it back to
+// the frame color, matching the sidebar and tab-header strip.
+body .modal.mod-settings .titlebar {
+  background-color: var(--background-secondary);
+}
+
 
