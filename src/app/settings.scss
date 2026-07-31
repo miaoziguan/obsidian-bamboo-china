@@ -450,9 +450,48 @@ body.is-tablet {
 // canvas-colored content area must be set explicitly here. This restores the
 // frame-color titlebar / sidebar vs. canvas-color content separation that the
 // old `.modal.mod-settings` rules gave the pre-1.13 floating card.
+//
+// 3.2.43 originally set `.vertical-tab-content` to var(--background-primary),
+// but Obsidian 1.13 draws a white card on each setting row on top of that,
+// producing a wall of white with no visual rhythm. Revert that and instead
+// strip the row-card backgrounds so the canvas color shows through.
 .mod-sidebar-layout.mod-settings {
   .vertical-tab-content {
-    background-color: var(--background-primary);
+    background-color: transparent;
+  }
+}
+
+// Obsidian 1.13 paints each setting row as a white card on top of the content
+// area. Strip those cards and replace the visual rhythm with a divider line
+// between rows + a subtle hover background. Targets the new declarative
+// Settings DOM; old `.setting-item` (legacy plugin Setting API) keeps its own
+// container styles defined above.
+//
+// `.setting-row` is the most-likely inner row class; the other names are
+// belt-and-suspenders fallbacks. None of these selectors are destructive —
+// they only override background / border, leaving Obsidian's layout intact.
+body:not(.is-phone) .mod-settings {
+  .setting-row,
+  .setting-card,
+  .setting-entry,
+  .setting-block,
+  .settings-row,
+  [class*="setting-row"],
+  [class*="setting-card"] {
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+
+    &:hover {
+      background-color: var(--background-modifier-hover) !important;
+    }
+  }
+
+  // Group dividers between rows.
+  .setting-row + .setting-row,
+  .setting-card + .setting-card,
+  .setting-entry + .setting-entry {
+    border-top: var(--divider-width) solid var(--background-modifier-border) !important;
   }
 }
 
