@@ -91,15 +91,14 @@ body:not(.is-mobile) {
   }
 
   // Lift the left nav into a floating card so it visually separates from the
-  // canvas. Background, large radius, soft shadow. Inset margins keep the
-  // shadow from being clipped by the window edge and create breathing room
-  // around the nav — same trick macOS Settings uses. Selector specificity
-  // (0,5,1) beats Obsidian's defaults, so no !important needed.
+  // canvas. Background, large radius, soft shadow. Margin mirrors the content
+  // area's padding (24px top/bottom, --side-padding left/right) so the nav and
+  // content stay visually symmetric and the shadow is not clipped.
   .modal.mod-settings.mod-sidebar-layout .vertical-tab-header {
     background-color: var(--background-secondary);
     border-radius: var(--radius-l);
     box-shadow: var(--shadow-s);
-    margin: 12px;
+    margin: 24px var(--side-padding);
     padding: 8px;
   }
 
