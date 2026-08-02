@@ -6,7 +6,7 @@ body.mod-macos:not(.is-mobile) .mod-settings {
 }
 
 body:not(.is-phone) {
-  --setting-items-radius: var(--radius-m);
+  --setting-items-radius: var(--radius-l);
   --setting-items-padding: calc(16px * var(--density-modifier)) 16px;
   --setting-group-heading-color: var(--text-faint);
   --setting-group-heading-size: var(--font-ui-small);
@@ -462,12 +462,11 @@ body.is-tablet {
 }
 
 // Obsidian 1.13 standalone Settings window paints each setting row AND
-// installed-plugin card with the --setting-items-background variable. The
-// --setting-items-background: transparent above (on .mod-settings) makes those
-// cards disappear so the content canvas shows through — that is the real fix
-// for the "white cards" report. The rules below only restore the row rhythm
-// (hover + divider) for the legacy plugin Setting API path, whose .setting-item
-// elements are not driven by --setting-items-background.
+// installed-plugin card with the --setting-items-background variable. We keep
+// the default Obsidian background here (no transparent override) so each
+// setting-group reads as a single rounded card — that's the look the user
+// asked for. The rules below add spacing between those cards and the
+// vertical-tab-content edges.
 body:not(.is-phone) .mod-settings {
   .setting-item {
     background-color: transparent;

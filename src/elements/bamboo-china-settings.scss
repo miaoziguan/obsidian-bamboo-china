@@ -79,7 +79,15 @@ body:not(.is-mobile) {
   // High-specificity selector (0,5,1) already beats Obsidian's defaults, so no
   // !important is needed.
   .modal.mod-settings.mod-sidebar-layout .vertical-tab-content {
-    padding: var(--side-padding);
+    padding: 24px var(--side-padding);
+  }
+
+  // Space between adjacent setting groups (each group is a rounded card). The
+  // first group is offset from the top by vertical-tab-content's padding (24px
+  // above); every following group gets 16px above it via the adjacent sibling
+  // selector. Specificity (0,6,1) beats Obsidian defaults.
+  .modal.mod-settings.mod-sidebar-layout .vertical-tab-content .setting-group + .setting-group {
+    margin-top: 16px;
   }
 
   // Lift the left nav into a floating card so it visually separates from the
@@ -124,6 +132,14 @@ body:not(.is-mobile) {
 
     .setting-group-search + .setting-items {
       border-radius: var(--setting-items-radius);
+    }
+
+    // The white card (.setting-items) wraps a whole group of rows. Obsidian
+    // zeroes the first/last row's top/bottom padding (see below), so without
+    // inner padding here the text hugs the card's top/bottom edge. Add 16px
+    // block padding so the card has breathing room around its content.
+    .setting-items {
+      padding: 16px 0;
     }
 
     // Section heading (e.g. "帐户") lives inside .setting-group but OUTSIDE
