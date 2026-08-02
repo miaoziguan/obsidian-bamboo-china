@@ -473,8 +473,12 @@ body:not(.is-phone) .mod-settings {
     border: none;
     box-shadow: none;
 
+    // Restore the hover fill so it spans the full row and stays aligned with
+    // the white setting-items card (Obsidian 1.13's default inset hover looked
+    // misaligned). Cancel any shrink-on-hover transform.
     &:hover {
       background-color: var(--background-modifier-hover);
+      transform: none;
     }
   }
 

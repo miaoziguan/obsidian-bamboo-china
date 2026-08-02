@@ -134,14 +134,6 @@ body:not(.is-mobile) {
       border-radius: var(--setting-items-radius);
     }
 
-    // The white card (.setting-items) wraps a whole group of rows. Obsidian
-    // zeroes the first/last row's top/bottom padding (see below), so without
-    // inner padding here the text hugs the card's top/bottom edge. Add 16px
-    // block padding so the card has breathing room around its content.
-    .setting-items {
-      padding: 16px 0;
-    }
-
     // Section heading (e.g. "帐户") lives inside .setting-group but OUTSIDE
     // .setting-items, so --setting-items-padding does not reach it. Add extra
     // top padding so a heading does not hug the previous group's last row.
@@ -151,12 +143,6 @@ body:not(.is-mobile) {
     }
     .setting-group:first-child > .setting-item-heading {
       padding-top: 8px;
-    }
-    .setting-items .setting-item:first-child {
-      padding-top: 0;
-    }
-    .setting-items .setting-item:last-child {
-      padding-bottom: 0;
     }
     .setting-item:not(.setting-item-heading, .setting-items .setting-item) {
       padding: var(--setting-items-padding);
