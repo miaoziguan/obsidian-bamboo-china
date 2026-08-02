@@ -64,37 +64,35 @@ body {
 }
 
 body:not(.is-mobile) {
-  --setting-items-padding: calc(12px * var(--density-modifier)) var(--side-padding);
+  // Bump Obsidian's own --setting-items-padding so every setting row gets
+  // more vertical breathing room + a gutter from the content edge. Driving
+  // the layout through the variable (instead of overriding .setting-item
+  // padding with !important) keeps specificity clean and survives 1.13 updates.
+  --setting-items-padding: 20px var(--side-padding);
   --setting-group-heading-color: var(--text-normal);
 
-  // Obsidian 1.13 standalone Settings window: keep the content area off the
-  // panel edge. DevTools on 1.13 confirmed the Settings root is
-  // `<div class="modal mod-settings mod-sidebar-layout">` (no .vertical-tab-content
-  // descendant — that class name is leftover from pre-1.13). Add inline padding
-  // on the real root so every right-side row gets the same breathing room as
-  // the left nav. !important guards against 1.13 flex resets.
-  // Obsidian 1.13 standalone Settings window: keep the content area off the
-  // panel edge. DevTools on 1.13 confirmed the Settings root is
-  // `<div class="modal mod-settings mod-sidebar-layout">` with children
-  // `.vertical-tab-header` (left nav) + `.vertical-tab-content-container >
-  // .vertical-tab-content` (right content). Padding must be on the right
-  // content container ONLY — padding the root modal would also shove the
-  // left nav off the window edges and break the layout's top/bottom
-  // alignment. !important guards against 1.13 flex resets.
+  // Obsidian 1.13 standalone Settings window: DevTools confirmed the root is
+  // `<div class="modal mod-settings.mod-sidebar-layout">` with children
+  // `.vertical-tab-header` (left nav) + `.vertical-tab-content` (right content).
+  // Pad the right content container only — padding the root modal would also
+  // shove the left nav off the window edges and break top/bottom alignment.
+  // High-specificity selector (0,5,1) already beats Obsidian's defaults, so no
+  // !important is needed.
   .modal.mod-settings.mod-sidebar-layout .vertical-tab-content {
-    padding: var(--side-padding) !important;
+    padding: var(--side-padding);
   }
 
   // Lift the left nav into a floating card so it visually separates from the
   // canvas. Background, large radius, soft shadow. Inset margins keep the
   // shadow from being clipped by the window edge and create breathing room
-  // around the nav — same trick macOS Settings uses.
+  // around the nav — same trick macOS Settings uses. Selector specificity
+  // (0,5,1) beats Obsidian's defaults, so no !important needed.
   .modal.mod-settings.mod-sidebar-layout .vertical-tab-header {
-    background-color: var(--background-secondary) !important;
-    border-radius: var(--radius-l) !important;
-    box-shadow: var(--shadow-s) !important;
-    margin: 12px !important;
-    padding: 8px !important;
+    background-color: var(--background-secondary);
+    border-radius: var(--radius-l);
+    box-shadow: var(--shadow-s);
+    margin: 12px;
+    padding: 8px;
   }
 
   // Obsidian 1.13 standalone Settings window: do not paint .mod-sidebar-layout
@@ -128,22 +126,15 @@ body:not(.is-mobile) {
       border-radius: var(--setting-items-radius);
     }
 
-    .setting-items .setting-item {
-      // Left/right padding keeps each row's text and its control off the
-      // content-area edge (Obsidian's default here is 0, which makes buttons
-      // hug the right border). Top/bottom gives the rows breathing room.
-      // !important needed: Obsidian 1.13 sets a generic `.setting-item
-      // { padding: var(--space-l) }` that otherwise wins on equal specificity.
-      padding: 20px var(--side-padding) !important;
-    }
     // Section heading (e.g. "帐户") lives inside .setting-group but OUTSIDE
-    // .setting-items, so the rule above does not reach it. Without extra top
-    // padding here, a heading hugs the previous group's last row.
+    // .setting-items, so --setting-items-padding does not reach it. Add extra
+    // top padding so a heading does not hug the previous group's last row.
+    // Specificity (0,5,1) beats Obsidian defaults — no !important needed.
     .setting-group .setting-item-heading {
-      padding: 24px var(--side-padding) 12px !important;
+      padding: 24px var(--side-padding) 12px;
     }
     .setting-group:first-child > .setting-item-heading {
-      padding-top: 8px !important;
+      padding-top: 8px;
     }
     .setting-items .setting-item:first-child {
       padding-top: 0;

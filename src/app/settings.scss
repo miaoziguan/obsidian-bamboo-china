@@ -470,18 +470,18 @@ body.is-tablet {
 // elements are not driven by --setting-items-background.
 body:not(.is-phone) .mod-settings {
   .setting-item {
-    background-color: transparent !important;
-    border: none !important;
-    box-shadow: none !important;
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
 
     &:hover {
-      background-color: var(--background-modifier-hover) !important;
+      background-color: var(--background-modifier-hover);
     }
   }
 
   // Group dividers between adjacent legacy .setting-item rows.
   .setting-item + .setting-item {
-    border-top: var(--divider-width) solid var(--background-modifier-border) !important;
+    border-top: var(--divider-width) solid var(--background-modifier-border);
   }
 }
 
