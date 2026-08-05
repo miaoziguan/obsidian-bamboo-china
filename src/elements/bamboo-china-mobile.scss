@@ -17,7 +17,10 @@ body.is-mobile {
     border: none;
     background-color: var(--raised-background);
     color: var(--text-normal);
-    transition: var(--anim-duration-moderate);
+    transition:
+      opacity var(--anim-duration-moderate),
+      filter var(--anim-duration-moderate),
+      transform var(--anim-duration-moderate);
 
     @starting-style {
       opacity: 0;

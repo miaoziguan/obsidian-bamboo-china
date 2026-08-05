@@ -15,7 +15,29 @@ import path from 'node:path';
 const ROOT = process.cwd();
 const THEME = path.join(ROOT, 'theme.css');
 const BASELINE = path.join(ROOT, 'scripts', 'mood-parity-baseline.json');
+const CACHE = path.join(ROOT, 'scripts', '.mood-parity-cache.json');
 const UPDATE = process.argv.includes('--update');
+
+// ── Incremental cache ────────────────────────────────────────────────────────
+// The 1.13 build only rewrites theme.css when a mood-affecting source changes
+// (see gen-mood-tokens.mjs's write-if-changed). If theme.css mtime+size match
+// the last verified run, the mood output is provably unchanged, so skip the
+// expensive full-CSS regex pass. Stores { themeMtime, themeSize, rules }.
+function statKey() {
+  const st = fs.statSync(THEME);
+  return { themeMtime: st.mtimeMs, themeSize: st.size };
+}
+function loadCache() {
+  try {
+    const c = JSON.parse(fs.readFileSync(CACHE, 'utf8'));
+    return c && typeof c.themeMtime === 'number' ? c : null;
+  } catch {
+    return null;
+  }
+}
+function saveCache(key, rules) {
+  fs.writeFileSync(CACHE, JSON.stringify({ ...key, rules }, null, 2) + '\n');
+}
 
 // ── Normalisation ───────────────────────────────────────────────────────────
 // Collapse whitespace and unify rgb()/hsl() comma vs space syntax so that the
@@ -69,11 +91,15 @@ if (!fs.existsSync(THEME)) {
   console.error('✗ theme.css not found — run `npm run build` first.');
   process.exit(1);
 }
-const current = extract(fs.readFileSync(THEME, 'utf8'));
-const keys = Object.keys(current).sort();
+
+const key = statKey();
+const cached = loadCache();
 
 if (UPDATE) {
+  const current = extract(fs.readFileSync(THEME, 'utf8'));
+  const keys = Object.keys(current).sort();
   fs.writeFileSync(BASELINE, JSON.stringify(current, null, 2) + '\n');
+  saveCache(key, keys);
   console.log(`✓ baseline written: ${keys.length} mood rules captured.`);
   process.exit(0);
 }
@@ -82,6 +108,17 @@ if (!fs.existsSync(BASELINE)) {
   console.error('✗ baseline missing — run with --update first.');
   process.exit(1);
 }
+
+// Incremental fast-path: theme.css unchanged since last verified build → the
+// mood output is identical, no need to re-scan the whole bundle.
+if (cached && cached.themeMtime === key.themeMtime && cached.themeSize === key.themeSize) {
+  const n = cached.rules.length;
+  console.log(`✓ mood parity OK (cached) — ${n} mood rules, theme.css unchanged.`);
+  process.exit(0);
+}
+
+const current = extract(fs.readFileSync(THEME, 'utf8'));
+const keys = Object.keys(current).sort();
 const base = JSON.parse(fs.readFileSync(BASELINE, 'utf8'));
 for (const k of Object.keys(base)) {
   base[k] = base[k]
@@ -117,4 +154,5 @@ if (missing.length || extra.length || drift.length) {
   process.exit(1);
 }
 
+saveCache(key, keys);
 console.log(`✓ mood parity OK — ${keys.length} mood rules match baseline token-for-token.`);

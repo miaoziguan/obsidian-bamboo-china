@@ -46,7 +46,9 @@
 
   .workspace-split.mod-root .workspace-tab-container {
     border-radius: var(--radius-center);
-    transition: var(--anim-duration-moderate);
+    transition:
+      background-color var(--anim-duration-moderate),
+      box-shadow var(--anim-duration-moderate);
     overflow: hidden;
   }
 
@@ -80,7 +82,7 @@
     height: auto;
   }
   .view-header-title-container > div {
-    transition: var(--anim-default);
+    transition: opacity var(--anim-default);
   }
   .view-header-title-parent {
     color: var(--text-faint);
@@ -178,7 +180,7 @@
       inset: -8px;
       border-radius: var(--radius-s);
       pointer-events: none;
-      transition: var(--anim-duration-fast);
+      transition: border-color var(--anim-duration-fast);
       border: var(--border-width) solid transparent;
     }
     &:hover::before,

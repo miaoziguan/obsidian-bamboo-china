@@ -233,7 +233,9 @@ body.is-mobile {
     color: var(--text-normal);
     font-size: var(--font-ui-small);
     transition:
-      var(--anim-duration-fast),
+      background-color var(--anim-duration-fast),
+      color var(--anim-duration-fast),
+      border-color var(--anim-duration-fast),
       opacity var(--anim-duration-slow),
       transform 0s;
 

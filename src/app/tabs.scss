@@ -43,7 +43,7 @@ body.is-tablet {
 
 // All panels
 body:not(.is-phone) .workspace-tab-header-container {
-  transition: var(--anim-default);
+  transition: opacity var(--anim-default);
   background-color: transparent;
   border-bottom: none;
 }
@@ -312,7 +312,7 @@ body.is-tablet .workspace .mod-root {
   .workspace-tab-header-container,
   .workspace-tab-header,
   .workspace-tab-header div {
-    transition: var(--anim-default);
+    transition: opacity var(--anim-default);
   }
 
   .workspace-tab-header-container {
@@ -387,7 +387,11 @@ body:not(.is-mobile) {
     .workspace-tab-header-container-inner {
       -webkit-app-region: no-drag;
       gap: 0px;
-      transition: var(--anim-duration-moderate);
+      transition:
+        background-color var(--anim-duration-moderate),
+        outline-color var(--anim-duration-moderate),
+        box-shadow var(--anim-duration-moderate),
+        color var(--anim-duration-moderate);
       border-radius: var(--clickable-icon-radius);
       padding: 0;
       outline: 2px solid transparent;

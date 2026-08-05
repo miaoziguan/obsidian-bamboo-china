@@ -29,7 +29,11 @@
 // Animations
 body:not(.reduce-motion, .is-mobile) .workspace {
   svg.svg-icon {
-    transition: var(--anim-default);
+    transition:
+      filter var(--anim-default),
+      scale var(--anim-default),
+      opacity var(--anim-default),
+      transform var(--anim-default);
   }
   .clickable-icon:not(.workspace-ribbon > .sidebar-toggle-button > .clickable-icon) svg.svg-icon {
     @starting-style {

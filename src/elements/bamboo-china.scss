@@ -10,7 +10,8 @@ button,
 select,
 .dropdown {
   transition:
-    var(--anim-default),
+    transform var(--anim-default),
+    color var(--anim-default),
     background-color var(--anim-duration-fast);
 }
 
@@ -197,7 +198,10 @@ body {
   }
 
   input[type="range"]::-webkit-slider-thumb {
-    transition: var(--anim-default);
+    transition:
+      scale var(--anim-default),
+      box-shadow var(--anim-default),
+      background-color var(--anim-default);
     box-shadow:
       0 1px 4px rgba(0, 0, 0, 0.075),
       0 1px 16px rgba(0, 0, 0, 0.1);
@@ -241,7 +245,12 @@ body {
     }
 
     &::after {
-      transition: var(--anim-default);
+      // active 时变化的是 box-shadow 与 background-color；toggle 尺寸由
+      // --toggle-* 自定义属性驱动，CSS 变量本身无法直接过渡（除非 @property
+      // 注册），故不列入 transition 属性。
+      transition:
+        box-shadow var(--anim-default),
+        background-color var(--anim-default);
       box-shadow:
         0 1px 4px rgba(0, 0, 0, 0.075),
         0 1px 16px rgba(0, 0, 0, 0.1);

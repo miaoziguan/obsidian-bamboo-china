@@ -176,13 +176,26 @@ for (const name of names) {
     css += `}\n\n`;
   }
 }
-fs.writeFileSync(TOKENS, css);
+
+// ── Write generated files only when content actually changed ────────────────
+// Skipping identical writes keeps file mtimes stable, so the Sass compiler
+// does not recompile the whole theme.scss on every incremental build.
+function writeIfChanged(file, content) {
+  try {
+    if (fs.readFileSync(file, 'utf8') === content) return false;
+  } catch {
+    /* file missing → always write */
+  }
+  fs.writeFileSync(file, content);
+  return true;
+}
+const tokensChanged = writeIfChanged(TOKENS, css);
 
 // ── Rewrite palettes: keep default 竹影 blocks, drop hand-written cn-* blocks ──
 let pal = fs.readFileSync(PALETTES, 'utf8');
 const cnIdx = pal.indexOf('body.cn-');
 if (cnIdx >= 0) pal = pal.slice(0, cnIdx).replace(/\s+$/, '\n');
 if (!pal.includes('@use "mood-tokens"')) pal = '@use "mood-tokens";\n\n' + pal;
-fs.writeFileSync(PALETTES, pal);
+const palettesChanged = writeIfChanged(PALETTES, pal);
 
-console.log(`✓ generated _mood-tokens.scss (${names.length} moods) and rewrote palettes.`);
+console.log(`✓ generated _mood-tokens.scss (${names.length} moods) and rewrote palettes.${tokensChanged ? '' : ' (unchanged, skipped write)'}${palettesChanged ? '' : ' (palettes unchanged, skipped write)'}`);
