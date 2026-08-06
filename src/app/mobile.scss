@@ -378,12 +378,14 @@ body.is-phone {
     }
     &::before {
       top: 0;
-      background: linear-gradient(to bottom, black calc(var(--safe-area-inset-top) + (var(--view-header-height) / 2)), transparent);
+      // `mask` (not `background`) so the black gradient only fades the blur
+      // layer instead of painting opaque black over the markdown content.
+      mask: linear-gradient(to bottom, black calc(var(--safe-area-inset-top) + (var(--view-header-height) / 2)), transparent);
       height: var(--view-top-spacing-markdown);
     }
     &::after {
       bottom: 0;
-      background: linear-gradient(to top, black var(--navbar-bottom-offset), transparent);
+      mask: linear-gradient(to top, black var(--navbar-bottom-offset), transparent);
       height: var(--view-bottom-spacing);
     }
   }
