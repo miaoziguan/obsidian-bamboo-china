@@ -173,12 +173,18 @@ body.is-phone {
     --modal-radius: var(--radius-xl) var(--radius-xl) 0 0;
     max-height: calc(100% - var(--safe-area-inset-top));
 
+    // Pin all three header buttons (back / close / header) to the safe-area
+    // top so they sit on the same baseline as .modal-title's margin-top
+    // (settings.scss:426) — otherwise the back button drops out of alignment
+    // because only inset-inline-start was set, and the close/header buttons
+    // used the *side* inset which misaligns on notched devices.
     .modal-setting-back-button {
+      top: var(--safe-area-inset-top);
       inset-inline-start: var(--safe-area-inset-side);
     }
     .modal-close-button,
     .modal-header-button {
-      top: var(--safe-area-inset-side);
+      top: var(--safe-area-inset-top);
       inset-inline-end: var(--safe-area-inset-side);
     }
 
