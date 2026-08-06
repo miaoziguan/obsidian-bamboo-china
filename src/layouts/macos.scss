@@ -55,18 +55,10 @@ body:not(.is-mobile) {
     }
   }
 
-  // 暗色模式下，侧边栏使用框架色，与中间编辑区（画布色）区分开
-  &:not(.is-translucent).theme-dark .mod-sidedock {
-    background-color: var(--background-secondary);
-  }
-  &.is-translucent.theme-dark .mod-sidedock {
-    background-color: var(--background-secondary);
-  }
-  // 浅色模式同样逻辑：侧边栏框架色，中间编辑区画布色
-  &:not(.is-translucent).theme-light .mod-sidedock {
-    background-color: var(--background-secondary);
-  }
-  &.is-translucent.theme-light .mod-sidedock {
+  // 侧边栏使用框架色，与中间编辑区（画布色）区分开。原来按
+  // is-translucent × theme-light/dark 四组条件各写一条，值完全相同，
+  // 组合已穷尽所有情况 → 等价合并为一条，省字节。
+  .mod-sidedock {
     background-color: var(--background-secondary);
   }
   // 中间编辑区使用画布色，与两侧边栏框架色形成区分
