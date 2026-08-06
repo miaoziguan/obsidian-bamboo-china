@@ -200,10 +200,11 @@ body.is-phone {
   .modal.mod-settings,
   .mod-settings {
     --modal-header-height: 76px;
-
-    .modal-title {
-      margin-top: 16px;
-    }
+    // NOTE: do NOT override .modal-title margin-top here — settings.scss:426
+    // already sets `margin-top: var(--safe-area-inset-top)` so the title stays
+    // on the same horizontal line as the back/close buttons (which use
+    // safe-area-top too). A fixed 16px here silently misaligns the title on
+    // notched devices.
   }
   .modal.mod-community-modal {
     .modal-header {

@@ -114,7 +114,7 @@ body.is-phone {
 
   // Animation override: Prompt In
   .prompt {
-    transition: var(--anim-duration-moderate) !important;
+    transition: var(--anim-duration-moderate);
     transform: none;
     overflow: visible;
     box-shadow: none;

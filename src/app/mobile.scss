@@ -226,8 +226,8 @@ body.is-mobile {
   // Mirrors Cupertino: a bare `all` transition animates every property the
   // .mod-activated state changes (background-color/color/border-color/etc.),
   // while `opacity` eases out slower and `transform 0s` snaps instantly.
-  // `!important` + doubled class both guard against elements/*-mobile.scss's
-  // Liquid Glass transition overriding this rule.
+  // The doubled class (0,3,1) already outranks elements/*-mobile.scss's
+  // Liquid Glass `.pull-action` (0,2,1) — no `!important` needed (lint-clean).
   .pull-action.pull-action {
     border-radius: 100vh;
     background-color: var(--background-secondary);
@@ -240,7 +240,7 @@ body.is-mobile {
     transition:
       var(--anim-duration-fast),
       opacity var(--anim-duration-slow),
-      transform 0s !important;
+      transform 0s;
 
     @starting-style {
       opacity: 0;
