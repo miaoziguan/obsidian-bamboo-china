@@ -43,7 +43,7 @@ body.is-tablet {
 
 // All panels
 body:not(.is-phone) .workspace-tab-header-container {
-  transition: opacity var(--anim-default);
+  transition: var(--anim-duration-moderate) var(--anim-motion-baseline);
   background-color: transparent;
   border-bottom: none;
 }
@@ -312,7 +312,7 @@ body.is-tablet .workspace .mod-root {
   .workspace-tab-header-container,
   .workspace-tab-header,
   .workspace-tab-header div {
-    transition: opacity var(--anim-default);
+    transition: var(--anim-duration-moderate) var(--anim-motion-baseline);
   }
 
   .workspace-tab-header-container {

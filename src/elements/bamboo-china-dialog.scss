@@ -240,14 +240,14 @@ body {
 }
 
 body:not(.is-mobile) .notice {
-  transition: opacity var(--anim-duration-moderate), transform var(--anim-duration-moderate);
+  transition: var(--anim-duration-moderate);
 }
 
 body.is-mobile .notice {
   box-shadow: var(--shadow-xs);
 
   &:last-child {
-    transition: transform var(--anim-slow), filter var(--anim-slow), opacity var(--anim-slow);
+    transition: var(--anim-duration-slow) var(--anim-motion-baseline);
 
     @starting-style {
       transform: translateY(-50%) scaleX(0.5);

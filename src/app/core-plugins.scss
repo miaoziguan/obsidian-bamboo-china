@@ -46,11 +46,11 @@ body:not(.is-mobile) {
 
 .canvas-control-group {
   border: none;
-  transition: opacity var(--anim-duration-fast), scale var(--anim-duration-fast);
+  transition: var(--anim-duration-fast);
 }
 
 .canvas-card-menu {
-  transition: opacity var(--anim-duration-fast), scale var(--anim-duration-fast);
+  transition: var(--anim-duration-fast);
   padding: 8px;
   gap: 4px;
 }
@@ -58,5 +58,5 @@ body:not(.is-mobile) {
   --icon-size: 24px;
 }
 .canvas-card-menu .canvas-card-menu-button svg {
-  transition: scale var(--anim-default), color var(--anim-default);
+  transition: var(--anim-duration-moderate) var(--anim-motion-baseline);
 }

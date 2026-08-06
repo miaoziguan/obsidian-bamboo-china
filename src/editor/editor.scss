@@ -46,9 +46,7 @@
 
   .workspace-split.mod-root .workspace-tab-container {
     border-radius: var(--radius-center);
-    transition:
-      background-color var(--anim-duration-moderate),
-      box-shadow var(--anim-duration-moderate);
+    transition: var(--anim-duration-moderate);
     overflow: hidden;
   }
 
@@ -82,7 +80,7 @@
     height: auto;
   }
   .view-header-title-container > div {
-    transition: opacity var(--anim-default);
+    transition: var(--anim-duration-moderate) var(--anim-motion-baseline);
   }
   .view-header-title-parent {
     color: var(--text-faint);

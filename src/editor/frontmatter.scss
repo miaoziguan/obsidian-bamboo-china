@@ -55,7 +55,7 @@
   // Editor panel
   .mod-root .metadata-container .text-icon-button {
     gap: 8px;
-    transition: color var(--anim-default);
+    transition: var(--anim-duration-moderate) var(--anim-motion-baseline);
     margin-top: 4px;
     background-color: transparent;
     padding-inline: 8px;

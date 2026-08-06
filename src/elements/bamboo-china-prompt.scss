@@ -114,7 +114,7 @@ body.is-phone {
 
   // Animation override: Prompt In
   .prompt {
-    transition: opacity var(--anim-duration-moderate), transform var(--anim-duration-moderate);
+    transition: var(--anim-duration-moderate) !important;
     transform: none;
     overflow: visible;
     box-shadow: none;
@@ -125,7 +125,7 @@ body.is-phone {
   }
 
   .prompt-results {
-    transition: transform var(--anim-slow), opacity var(--anim-slow);
+    transition: var(--anim-duration-slow) var(--anim-motion-baseline);
 
     @starting-style {
       transform: translateY(var(--safe-area-inset-top));

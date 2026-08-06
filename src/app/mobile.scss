@@ -145,7 +145,7 @@ body.is-mobile {
     .workspace-drawer-tab-options::before {
       position: fixed;
       z-index: var(--bc-z-base);
-      transition: background-color var(--anim-duration-fast);
+      transition: var(--anim-duration-fast);
       inset: 0;
       background-color: var(--mobile-sidebar-background);
       content: "";
@@ -223,7 +223,12 @@ body.is-mobile {
   }
 
   // Pull action
-  .pull-action {
+  // Mirrors Cupertino: a bare `all` transition animates every property the
+  // .mod-activated state changes (background-color/color/border-color/etc.),
+  // while `opacity` eases out slower and `transform 0s` snaps instantly.
+  // `!important` + doubled class both guard against elements/*-mobile.scss's
+  // Liquid Glass transition overriding this rule.
+  .pull-action.pull-action {
     border-radius: 100vh;
     background-color: var(--background-secondary);
     background-image: none;
@@ -233,11 +238,9 @@ body.is-mobile {
     color: var(--text-normal);
     font-size: var(--font-ui-small);
     transition:
-      background-color var(--anim-duration-fast),
-      color var(--anim-duration-fast),
-      border-color var(--anim-duration-fast),
+      var(--anim-duration-fast),
       opacity var(--anim-duration-slow),
-      transform 0s;
+      transform 0s !important;
 
     @starting-style {
       opacity: 0;
@@ -371,7 +374,7 @@ body.is-phone {
       inset-inline: 0;
       pointer-events: none;
       content: "";
-      transition: opacity var(--anim-duration-moderate);
+      transition: var(--anim-duration-moderate);
     }
     &::before {
       top: 0;
@@ -399,13 +402,14 @@ body.is-phone {
   // Mode Switcher
   & .mod-root .workspace-leaf-content[data-type="markdown"] .view-actions button:nth-last-child(2) {
     position: fixed;
+    // Mirrors Cupertino: a bare `all` transition animates every property that
+    // shifts across toolbar/keyboard states (margin, transform, background…),
+    // while right/bottom/height/opacity snap instantly via 0s.
     transition:
-      background-color var(--anim-duration-moderate),
-      transform var(--anim-default),
-      width 0s,
-      height 0s,
+      var(--anim-duration-moderate) var(--anim-motion-baseline),
       right 0s,
       bottom 0s,
+      height 0s,
       opacity 0s;
     margin-right: var(--navbar-side-offset);
     margin-bottom: var(--navbar-bottom-offset);
@@ -442,8 +446,10 @@ body.is-phone {
     width: auto;
     margin: auto calc(8px + var(--touch-size-l) + var(--navbar-side-offset)) var(--navbar-bottom-offset) var(--navbar-side-offset);
     padding: 8px;
+    // Bare `all` so margin/width/padding all animate smoothly between the
+    // floating and non-floating navbar layouts (mirrors Cupertino).
     transition:
-      transform var(--anim-default),
+      var(--anim-duration-moderate) var(--anim-motion-baseline),
       background-color var(--anim-duration-moderate);
   }
 
@@ -468,7 +474,7 @@ body.is-phone {
   &:not(.is-floating-nav) .mobile-navbar {
     border: none;
     background-color: var(--background-primary);
-    transition: background-color var(--anim-duration-moderate);
+    transition: var(--anim-duration-moderate);
   }
 
   &:not(.AT-row, .AT-multirow, .AT-column) {

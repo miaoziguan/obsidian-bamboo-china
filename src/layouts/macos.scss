@@ -79,7 +79,7 @@ body:not(.is-mobile) {
   }
   .mod-sidedock {
     transition:
-      opacity var(--anim-duration-moderate),
+      var(--anim-duration-moderate),
       background-color 0s,
       box-shadow 0s;
   }
