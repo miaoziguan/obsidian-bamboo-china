@@ -509,8 +509,8 @@ body.is-phone {
 }
 
 body.is-tablet {
-  --titlebar-background: var(--background-secondary);
-  --titlebar-background-focused: var(--background-secondary);
+  --titlebar-background: var(--background-primary);
+  --titlebar-background-focused: var(--background-primary);
 
   --mobile-sidebar-min-width: unset;
 
