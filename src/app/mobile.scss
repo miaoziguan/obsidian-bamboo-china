@@ -325,10 +325,13 @@ body.is-phone {
       top: 0;
       // Promote the hide/show animation to the compositor: translateY is a
       // transform (GPU layer, no reflow), whereas animating `top` triggers
-      // layout. will-change matches the animated property.
+      // layout. We do NOT set a permanent `will-change: transform` here — a
+      // constant will-change on every markdown leaf header permanently
+      // promotes a compositor layer per leaf, which explodes layer count and
+      // memory when many notes are open. The transform animation is still GPU-
+      // composited on demand without the standing layer cost.
       transform: translateY(0);
       transition: transform var(--anim-default);
-      will-change: transform;
       z-index: var(--bc-z-view-header);
       padding-inline: var(--safe-area-inset-side);
       // Hairline separation so scrolled content doesn't bleed into the header.

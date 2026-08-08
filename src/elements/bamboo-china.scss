@@ -358,7 +358,13 @@ body {
   .mod-sidedock .workspace-tab-container,
   .mod-sidedock .workspace-leaf,
   .mod-sidedock .workspace-leaf-content {
-    contain: size;
+    // `content` (layout + style + paint) isolates each side-dock surface so a
+    // change inside one panel doesn't reflow/repaint the rest of the workspace.
+    // Preferred over `contain: size` — size containment forces the element to
+    // derive its own dimensions, which fights the `overflow: visible` here and
+    // can collapse the panel. Side docks never host the markdown preview, so
+    // this does not affect the image-zoom fixed-layer.
+    contain: content;
     overflow: visible;
   }
 
