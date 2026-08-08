@@ -56,7 +56,9 @@ body:not(.is-phone) {
         border-radius: 100vh;
         transition:
           var(--anim-duration-moderate),
-          background-color 0s;
+          background-color var(--anim-duration-moderate),
+          transform var(--anim-duration-moderate),
+          opacity var(--anim-duration-moderate);
 
         &:first-child {
           margin-inline-start: 2px;

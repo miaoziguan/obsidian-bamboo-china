@@ -470,7 +470,7 @@ body.is-phone {
     --icon-stroke: var(--icon-l-stroke-width);
   }
   .mobile-navbar-tabs-action {
-    font-family: "Inter";
+    font-family: var(--font-ui-medium);
   }
 
   &:not(.is-floating-nav) .mobile-navbar {

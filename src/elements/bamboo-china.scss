@@ -45,6 +45,7 @@ body:not(.is-mobile) {
   // Frame-coloured field behind the floating card
   .workspace-split.mod-root {
     background-color: var(--background-secondary);
+    transition: background-color var(--anim-duration-moderate);
   }
   .workspace-split.mod-root .workspace-tab-container {
     // Canvas card

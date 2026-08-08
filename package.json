@@ -1,6 +1,6 @@
 {
   "name": "obsidian-bamboo-china",
-  "version": "3.2.58",
+  "version": "3.2.59",
   "description": "Bamboo China — a native, minimal Obsidian theme.",
   "author": "羽鳞君",
   "license": "MIT",
@@ -8,7 +8,7 @@
   "scripts": {
     "build": "node scripts/gen-mood-tokens.mjs && sass src/theme.scss theme.css --no-source-map --style=compressed && npx --yes csso-cli theme.css --output theme.css && node scripts/verify-mood-parity.mjs",
     "build:min": "npm run build",
-    "test": "node scripts/check-css.mjs && node scripts/check-palette-contrast.mjs && node scripts/check-a11y.mjs && node scripts/check-size.mjs",
+    "test": "node scripts/check-css.mjs && node scripts/check-palette-contrast.mjs && node scripts/check-a11y.mjs && node scripts/check-anim-duration.mjs && node scripts/check-size.mjs",
     "test:visual": "playwright test --config scripts/visual-regression/playwright.config.mjs",
     "test:visual:update": "playwright test --config scripts/visual-regression/playwright.config.mjs --update-snapshots",
     "audit:cascade": "node scripts/audit_cascade.mjs",
