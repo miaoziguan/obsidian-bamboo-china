@@ -32,7 +32,9 @@ body:not(.is-phone) {
 
   &:not(.is-popout-window) .workspace-tabs:not(.mod-stacked) .mod-root {
     .workspace-tab-container {
-      background-color: color-mix(in srgb, var(--background-primary) 75%, transparent);
+      // 与编辑区同色（方案 A）：画布卡片不再用半透明框架色，
+      // 仅靠圆角+阴影浮起，左右中视觉统一。
+      background-color: var(--background-primary);
     }
 
     .view-header,

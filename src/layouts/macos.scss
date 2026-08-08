@@ -6,7 +6,7 @@ body:not(.is-mobile) {
   --tab-outline-width: 1px;
 
   &:not(.is-focused) {
-    --workspace-background-translucent: var(--background-secondary);
+    --workspace-background-translucent: var(--background-primary);
     --tab-outline-color: transparent;
 
     .modal.mod-settings .vertical-tab-header > div,
@@ -14,10 +14,12 @@ body:not(.is-mobile) {
     .mod-sidedock > div {
       opacity: 0.5;
     }
+    // 失焦时不再把侧栏/标签压成灰色（方案 A）：保持与编辑区同色，
+    // 只靠透明度弱化整体，不引入 secondary/hover 色块。
     .modal.mod-settings .vertical-tab-header,
     .mod-sidedock.mod-left-split,
     .mod-root .workspace-tabs:not(.mod-stacked) .workspace-tab-header {
-      background-color: var(--background-modifier-hover);
+      background-color: transparent;
       box-shadow: none;
       transition: none;
     }
@@ -55,19 +57,19 @@ body:not(.is-mobile) {
     }
   }
 
-  // 侧边栏使用框架色，与中间编辑区（画布色）区分开。原来按
-  // is-translucent × theme-light/dark 四组条件各写一条，值完全相同，
-  // 组合已穷尽所有情况 → 等价合并为一条，省字节。
+  // 侧边栏与编辑区统一同色（方案 A：去掉"两边灰中间白"的割裂感）。
+  // 左右栏与中间画布都用 --background-primary，区域边界改由已有的
+  // 分隔线（--divider-color / resize-handle 边框）界定，而非靠色差。
   .mod-sidedock {
-    background-color: var(--background-secondary);
+    background-color: var(--background-primary);
   }
-  // 中间编辑区使用画布色，与两侧边栏框架色形成区分
+  // 中间编辑区同样用画布色（保持与侧栏一致）
   .mod-root {
     background-color: var(--background-primary);
   }
-  // 编辑器标签页头部也使用框架色，让标题栏区域与侧边栏融为一体
+  // 编辑器标签页头部不再用框架色，改为透明以融入编辑区
   .mod-root .workspace-tab-header-container {
-    background-color: var(--background-secondary);
+    background-color: transparent;
   }
   .mod-sidedock {
     transition:

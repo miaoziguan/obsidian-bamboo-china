@@ -266,10 +266,13 @@ body:not(.is-mobile) {
   }
 
   &:not(.is-translucent) .workspace {
-    background: var(--background-secondary);
+    // 方案 A：根工作区与编辑区同色，去掉整体灰色底，左右中统一。
+    background: var(--background-primary);
   }
   .workspace {
     transition: background-color var(--anim-default);
+    // 方案 A：透明以透出上面的同色根背景（translucent 时也一致）。
+    background-color: transparent;
   }
 
   .workspace-split {

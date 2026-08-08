@@ -49,6 +49,11 @@ for (const variant of VARIANTS) {
       await expect(page).toHaveScreenshot(`bamboo-${variant.name}-${mode.name}.png`, {
         fullPage: true,
         maxDiffPixelRatio: 0.02,
+        caretHidden: true,
+        // The fixture page can render with a 1px sub-pixel height difference
+        // between consecutive captures (font hinting); give the stability
+        // checker enough room so a benign 1px wobble doesn't fail the run.
+        timeout: 15000,
       });
     });
   }

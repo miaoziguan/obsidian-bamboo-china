@@ -130,14 +130,10 @@ body.is-phone {
     }
   }
 
-  // File explorer
-  &.theme-light .nav-files-container > div {
-    background-color: var(--background-primary);
-  }
-  &.theme-dark .nav-files-container > div {
-    background-color: var(--background-secondary);
-  }
+  // File explorer — 与编辑区同色（方案 A）：移动端文件树不再用
+  // --background-secondary 制造细微灰度差，明暗都统一到 --background-primary。
   .nav-files-container > div {
+    background-color: var(--background-primary);
     --nav-item-size: var(--font-ui-medium);
     --nav-item-color: var(--text-normal);
     --nav-item-color-hover: var(--text-normal);

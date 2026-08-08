@@ -42,13 +42,15 @@ select,
 // colour. Corner radius is driven by --radius-center (Style Settings
 // 「中间视图圆角」slider). Scoped to desktop bamboo; mobile keeps the native look.
 body:not(.is-mobile) {
-  // Frame-coloured field behind the floating card
+  // 与编辑区同色（方案 A）：框架底不再用 --background-secondary，避免
+  // "两边灰中间白"的割裂感。卡片仍靠圆角+阴影浮起，但底色已统一。
   .workspace-split.mod-root {
-    background-color: var(--background-secondary);
+    background-color: var(--background-primary);
     transition: background-color var(--anim-duration-moderate);
   }
   .workspace-split.mod-root .workspace-tab-container {
-    // Canvas card
+    // Canvas card — same colour as the field; elevation comes from the
+    // rounded corner + drop shadow only, not from a colour step.
     background-color: var(--background-primary);
     border-radius: var(--radius-center);
     // Lift the card off the bottom edge so it doesn't hug the window
