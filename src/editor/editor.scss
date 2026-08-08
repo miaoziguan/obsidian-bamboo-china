@@ -50,6 +50,15 @@
     overflow: hidden;
   }
 
+  // Source-mode editor: isolate long-document reflow/repaint inside the editor
+  // surface. `.cm-editor` never hosts the image-zoom fixed layer (that lives in
+  // `.markdown-preview-view`, which we deliberately leave uncontained to avoid
+  // clipping the zoom overlay), so `contain: content` here is safe and keeps
+  // scroll/type repaints from escaping into the rest of the workspace.
+  .cm-editor {
+    contain: content;
+  }
+
   // Editor panel
   body:not(.mod-macos, .adaptive-mode-off):not(.is-phone) {
     .workspace-split.mod-vertical {

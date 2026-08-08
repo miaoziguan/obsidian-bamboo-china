@@ -49,6 +49,23 @@ body.bold-folders .nav-folder-title {
   align-items: center;
 }
 
+// File explorer: isolate each folder's list and the whole file tree so a
+// hover/scroll repaint inside one branch doesn't bubble up to reflow the
+// entire side-dock. The hover repaint itself is cheap (background-color only).
+.nav-files-container,
+.nav-folder-children {
+  contain: content;
+}
+
+// Hover feedback on file/folder rows: animate ONLY background-color. These
+// inherit a bare `all` transition from the universal button baseline; pinning
+// the property list keeps a hover from triggering layout/paint of neighbouring
+// rows (e.g. if a non-background property were ever touched).
+.nav-file-title,
+.nav-folder-title {
+  transition: background-color var(--anim-duration-fast) var(--anim-motion-baseline);
+}
+
 // Panel actions style
 .nav-header {
   display: flex;
