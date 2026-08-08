@@ -4,7 +4,9 @@ Bamboo China color scheme
 */
 
 body.theme-light:not(.is-mobile) {
-  --background-primary: #fff;
+  // 与 palettes 同步：整窗淡竹青宣纸底，不再纯白。
+  --background-primary: #e9ede5;  /* static fallback for the color-mix below */
+  --background-primary: color-mix(in srgb, #ffffff 92%, rgb(82, 160, 110) 8%);
   --background-primary-alt: #f7f7f7;  /* static fallback for --background-primary-alt (pre-color-mix browsers) */
   --background-primary-alt: color-mix(in srgb, var(--background-primary), black 3%);
   --background-secondary: #f2f2f2;  /* static fallback for --background-secondary (pre-color-mix browsers) */
@@ -21,7 +23,8 @@ body.theme-light:not(.is-mobile) {
   --text-faint: #bfbfbf; // rgba(var(--mono-rgb-100), 25%)
 }
 body.theme-light.is-mobile {
-  --background-primary: #fff;
+  --background-primary: #e9ede5;  /* static fallback for the color-mix below */
+  --background-primary: color-mix(in srgb, #ffffff 92%, rgb(82, 160, 110) 8%);
   --background-primary-alt: #f2f2f7;
   --background-secondary: #f2f2f7;
   --background-secondary-alt: #fff;
