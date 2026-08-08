@@ -44,10 +44,10 @@ body,
   --bc-focus-ring-offset: 2px;
   --bc-focus-ring-style: solid;
 
-  // Title bar uses the frame color so the 1.13 standalone Settings window
-  // (and any frameless window) doesn't fall back to Obsidian's default black.
-  --titlebar-background: var(--background-secondary);
-  --titlebar-background-focused: var(--background-secondary);
+  // Title bar uses the canvas colour so it blends with the unified workspace
+  // (scheme A) instead of introducing a grey titlebar band.
+  --titlebar-background: var(--background-primary);
+  --titlebar-background-focused: var(--background-primary);
 
   --divider-color-hover: var(--color-base-50);
 
@@ -307,13 +307,13 @@ body:not(.is-mobile) {
   background-color: rgb(var(--mono-rgb-100));
 }
 
-// Title bar
+// Title bar — 与主题背景统一（方案 A），不再使用 --background-secondary。
 body.is-frameless:not(.is-translucent, .is-hidden-frameless, .is-fullscreen) .titlebar {
-  background-color: var(--background-secondary);
+  background-color: var(--background-primary);
 }
-// 半透明窗口下，标题栏直接涂成框架色，与侧边栏完全融为一体（双保险）
+// 半透明窗口下同样与主题背景统一（方案 A）
 body.is-frameless.is-translucent:not(.is-hidden-frameless, .is-fullscreen) .titlebar {
-  background-color: var(--background-secondary);
+  background-color: var(--background-primary);
 }
 body.titlebar-text-off .titlebar-text {
   display: none;
