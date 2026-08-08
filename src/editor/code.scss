@@ -231,7 +231,7 @@ with both light and dark mode.
 
   // Keep the active-line highlight from washing out token colors.
   body:not(.active-line-off) .cm-line.cm-active .token,
-  body:not(.active-line-off) .cm-line.cm-active .hljs-* {
+  body:not(.active-line-off) .cm-line.cm-active span[class*="hljs-"] {
     opacity: 1;
   }
 }

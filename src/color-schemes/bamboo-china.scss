@@ -3,16 +3,6 @@
 Bamboo China color scheme
 */
 
-body.theme-light {
-  --color-red-rgb: 255, 56, 60;
-  --color-orange-rgb: 255, 141, 40;
-  --color-yellow-rgb: 255, 204, 0;
-  --color-green-rgb: 52, 199, 89;
-  --color-cyan-rgb: 0, 192, 232;
-  --color-blue-rgb: 0, 136, 255;
-  --color-purple-rgb: 203, 48, 224;
-  --color-pink-rgb: 255, 45, 85;
-}
 body.theme-light:not(.is-mobile) {
   --background-primary: #fff;
   --background-primary-alt: #f7f7f7;  /* static fallback for --background-primary-alt (pre-color-mix browsers) */
@@ -44,16 +34,6 @@ body.theme-light.is-mobile {
   --text-faint: #c4c4c7; // rgba(60, 60, 67, 30%)
 }
 
-body.theme-dark {
-  --color-red-rgb: 255, 66, 69;
-  --color-orange-rgb: 255, 146, 48;
-  --color-yellow-rgb: 255, 214, 0;
-  --color-green-rgb: 48, 209, 88;
-  --color-cyan-rgb: 60, 211, 254;
-  --color-blue-rgb: 0, 145, 255;
-  --color-purple-rgb: 107, 52, 242;
-  --color-pink-rgb: 255, 55, 95;
-}
 body.theme-dark:not(.is-mobile) {
   --background-primary: #1e1e1e;
   --background-primary-alt: #252525;  /* static fallback for --background-primary-alt (pre-color-mix browsers) */

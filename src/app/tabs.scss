@@ -178,11 +178,11 @@ body.mod-macos:not(.is-mobile):not(.tab-floating) {
     @container (min-width: 560px) {
       // Both sidedocks hidden
       &.mod-top-left-space.mod-top-right-space .workspace-tab-header-container-inner {
-        padding-right: calc(var(--frame-left-space) + calc(--tab-action-width) * 2);
+        padding-right: calc(var(--frame-left-space, 140px) + calc(--tab-action-width) * 2);
       }
       // Left sidedock hidden
       &.mod-top-left-space:not(.mod-top-right-space) .workspace-tab-header-container-inner {
-        padding-right: calc(var(--frame-left-space) - var(--tab-action-width));
+        padding-right: calc(var(--frame-left-space, 140px) - var(--tab-action-width));
       }
     }
   }

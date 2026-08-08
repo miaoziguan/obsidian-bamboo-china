@@ -8,7 +8,7 @@
 > - **Task 16（验收数字）**：写于五皮肤时代，"旗舰层 ~285 rules"已失效；
 >   单皮肤重构后 audit_cascade 仅报告 bamboo 层（~53 rules），且该脚本已移出
 >   `npm test`（见下方 deferred 决策与 docs/ARCHITECTURE.md）。
-> - Task 2 文中 `BASELINE_IMPORTANT = 10` 为旧值，现为 14（见 docs/important-audit.md）。
+> - Task 2 文中 `BASELINE_IMPORTANT = 10` 为旧值，现源码已将 `!important` 彻底归零（护栏基线同步收紧至 0）。
 >
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
