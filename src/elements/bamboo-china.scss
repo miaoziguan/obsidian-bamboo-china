@@ -373,6 +373,16 @@ body {
   .markdown-preview-view {
     transition: var(--anim-duration-slow) var(--anim-motion-baseline);
   }
+  // Background tabs: skip rendering off-screen leaves so multi-note workspaces
+  // don't pay layout/paint for hidden documents. `contain-intrinsic-size` gives
+  // the leaf a stable placeholder height so switching tabs doesn't cause a
+  // jarring size jump. Only the non-active leaf is skipped — the visible one
+  // stays fully rendered. This is scoped to the editor split (not the side
+  // dock) and never touches the image-zoom fixed layer.
+  .workspace-split.mod-root .workspace-leaf:not(.mod-active) {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 600px;
+  }
   .workspace-leaf-content[data-mode="source"] > .view-content > .markdown-reading-view > .markdown-preview-view {
     transform: scale(0.995);
     opacity: 0;

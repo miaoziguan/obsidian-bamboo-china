@@ -356,8 +356,10 @@ body:not(.mod-macos):not(.is-mobile) {
   }
 }
 
-// Scrollbar
-body.styled-scrollbars div:not(:hover)::-webkit-scrollbar-thumb {
+// Scrollbar — keep the thumb static (do NOT repaint opacity per-frame while
+// scrolling). The `:not(:hover)` thumb fade used to trigger a repaint on every
+// scroll frame; a static transparent thumb avoids that cost entirely.
+body.styled-scrollbars ::-webkit-scrollbar-thumb {
   background-color: transparent;
 }
 

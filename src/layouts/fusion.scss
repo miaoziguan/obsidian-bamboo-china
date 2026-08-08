@@ -59,6 +59,10 @@ body:not(.is-phone) {
           background-color var(--anim-duration-moderate),
           transform var(--anim-duration-moderate),
           opacity var(--anim-duration-moderate);
+        // Let the @starting-style enter state (blur/scale/opacity) actually
+        // play on first paint instead of snapping. `allow-discrete` makes the
+        // transition honor the starting style; unsupported engines ignore it.
+        transition-behavior: allow-discrete;
 
         &:first-child {
           margin-inline-start: 2px;
